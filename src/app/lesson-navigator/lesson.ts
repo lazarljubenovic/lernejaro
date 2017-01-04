@@ -6,14 +6,5 @@ export interface Lesson {
     name: string;
     color: LessonColor;
     icon: LessonIcon;
-    dependencies?: string[];
-}
-
-export interface LessonExpanded {
-    id: string;
-    name: string;
-    color: LessonColor;
-    icon: LessonIcon;
-    dependencies: string[];
-    isOpen: boolean;
+    isUnlocked?: boolean;
 }

@@ -1,4 +1,16 @@
 export enum LessonIcon {
     Star,
     Circle,
+    Folder,
+    Flask,
+    Eye,
+    Trash,
+    Wrench,
+    Trophy,
+    Umbrella,
+    Lock,
+    Magnet,
+    Cog,
+    Cubes,
+    Calendar,
 }

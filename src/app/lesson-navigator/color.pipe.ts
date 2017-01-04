@@ -8,8 +8,8 @@ export class ColorPipe implements PipeTransform {
     constructor(private colorMapper: LessonColorMappingService) {
     }
 
-    transform(color: LessonColor): string {
-        return this.colorMapper.getColorString(color);
+    transform(color: LessonColor, grayscale: boolean): string {
+        return this.colorMapper.getColorString(!grayscale ? color : LessonColor.BlueGrey);
     }
 
 }

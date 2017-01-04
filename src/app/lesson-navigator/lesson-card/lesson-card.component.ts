@@ -8,8 +8,7 @@ import {Lesson} from "../lesson";
 })
 export class LessonCardComponent implements OnInit {
 
-    @Input()
-    public lesson: Lesson;
+    @Input() public lesson: Lesson;
 
     constructor() {
     }

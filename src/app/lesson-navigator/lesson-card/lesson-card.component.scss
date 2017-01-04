@@ -17,10 +17,13 @@ $lesson-card-circle-size: 90px;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: rgba(white, .86);
+  color: rgba(white, .96);
+  @include z-depth-2dp;
+  transition: all .3s ease;
+  cursor: pointer;
 
-  .icon {
-    font-size: 3.5em;
+  &:hover {
+    @include z-depth-6dp;
   }
 }
 
