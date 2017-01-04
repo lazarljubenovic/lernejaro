@@ -1,0 +1,30 @@
+@import '../../imports';
+
+$lesson-card-circle-size: 90px;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 3em;
+  font-family: Roboto, sans-serif;
+}
+
+.background {
+  width: $lesson-card-circle-size;
+  height: $lesson-card-circle-size;
+  border-radius: $lesson-card-circle-size / 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(white, .86);
+
+  .icon {
+    font-size: 3.5em;
+  }
+}
+
+.name {
+  margin-top: 1.2ex;
+  font-style: italic;
+}
