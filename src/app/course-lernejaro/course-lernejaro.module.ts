@@ -6,6 +6,8 @@ import {CourseLernejaroComponent} from './course-lernejaro.component';
 import {RouterModule} from '@angular/router';
 import {MarkdownModule} from '../markdown/markdown.module';
 import {PresentationModule} from '../presentation/presentation.module';
+import { MarkdownMarkupComponent } from './markdown-markup/markdown-markup.component';
+import { IntroducingFlowchartsComponent } from './introducing-flowcharts/introducing-flowcharts.component';
 
 @NgModule({
     imports: [
@@ -21,12 +23,22 @@ import {PresentationModule} from '../presentation/presentation.module';
             {
                 path: '1-Introduction',
                 component: IntroductionComponent,
+            },
+            {
+                path: '2-Markdown',
+                component: MarkdownMarkupComponent,
+            },
+            {
+                path: '4-Flowcharts',
+                component: IntroducingFlowchartsComponent,
             }
         ]),
     ],
     declarations: [
         CourseLernejaroComponent,
         IntroductionComponent,
+        MarkdownMarkupComponent,
+        IntroducingFlowchartsComponent,
     ]
 })
 export class CourseLernejaroModule {

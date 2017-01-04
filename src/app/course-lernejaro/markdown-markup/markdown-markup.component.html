@@ -1,0 +1,108 @@
+<lrn-presentation>
+
+  <lrn-slide [title]="'Markdown'">
+    <lrn-markdown>
+      > **Markdown** is a lightweight _markup language_ with plain text formatting syntax
+      designed so that it can be converted to HTML or any other format.
+    </lrn-markdown>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Markdown Syntax'" [subtitle]="'Headings'">
+    <lrn-slide-column>
+      <lrn-markdown>
+        # Title
+
+        ## Section
+
+        ### Subsection
+
+        #### Subsubsection
+      </lrn-markdown>
+    </lrn-slide-column>
+    <lrn-slide-column>
+      <lrn-markdown>
+        ```
+        # Title
+
+        ## Section
+
+        ### Subsection
+
+        #### Subsubsection
+        ```
+      </lrn-markdown>
+    </lrn-slide-column>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Markdown Syntax'" [subtitle]="'Basic Text Formatting'">
+    <lrn-slide-column>
+      <lrn-markdown>
+        Paragraphs are
+        separated by a blank line.
+
+        Parts of text can be _italic_,
+        __bold__, *italic*, **bold**,
+        ~~stroke-out~~ or `monospace`.
+      </lrn-markdown>
+    </lrn-slide-column>
+    <lrn-slide-column>
+      <lrn-markdown>
+        ```
+        Paragraphs are
+        separated by a blank line.
+
+        Parts of text can be _italic_,
+        __bold__, *italic*, **bold**,
+        ~~stroke-out~~ or `monospace`.
+        ```
+      </lrn-markdown>
+    </lrn-slide-column>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Markdown Syntax'" [subtitle]="'Lists'">
+    <lrn-slide-column>
+      <lrn-markdown>
+        Numbered list:
+        1. foo
+        1. bar
+        1. baz
+
+        Unordered list:
+        - foo
+        - bar
+        - baz
+      </lrn-markdown>
+    </lrn-slide-column>
+    <lrn-slide-column>
+      <lrn-markdown>
+        ```
+        Numbered list:
+        1. foo
+        1. bar
+        1. baz
+
+        Unordered list:
+        - foo
+        - bar
+        - baz
+        ```
+      </lrn-markdown>
+    </lrn-slide-column>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Markdown Syntax'" [subtitle]="'Links'">
+    <lrn-slide-column>
+      <lrn-markdown>
+        A [link](http://example.com).
+      </lrn-markdown>
+    </lrn-slide-column>
+    <lrn-slide-column>
+      <lrn-markdown>
+        ```
+        A [link](http://example.com).
+        ```
+      </lrn-markdown>
+    </lrn-slide-column>
+  </lrn-slide>
+
+</lrn-presentation>

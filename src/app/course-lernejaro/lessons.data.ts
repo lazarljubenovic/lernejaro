@@ -28,6 +28,7 @@ export const LESSONS: Lesson[] = [
         name: 'Flowcharts',
         color: LessonColor.Blue,
         icon: LessonIcon.Magnet,
+        isUnlocked: true,
     },
     {
         id: '5',
