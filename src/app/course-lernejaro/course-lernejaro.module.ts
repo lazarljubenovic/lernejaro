@@ -8,6 +8,7 @@ import {MarkdownModule} from '../markdown/markdown.module';
 import {PresentationModule} from '../presentation/presentation.module';
 import { MarkdownMarkupComponent } from './markdown-markup/markdown-markup.component';
 import { IntroducingFlowchartsComponent } from './introducing-flowcharts/introducing-flowcharts.component';
+import {FlowchartModule} from '../flowchart/flowchart.module';
 
 @NgModule({
     imports: [
@@ -15,6 +16,7 @@ import { IntroducingFlowchartsComponent } from './introducing-flowcharts/introdu
         LessonNavigatorModule,
         MarkdownModule,
         PresentationModule,
+        FlowchartModule,
         RouterModule.forChild([
             {
                 path: '',

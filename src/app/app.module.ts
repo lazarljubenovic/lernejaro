@@ -11,6 +11,7 @@ import {IconComponent} from './icon/icon.component';
 import { CourseLernejaroComponent } from './course-lernejaro/course-lernejaro.component';
 import {RouterModule} from '@angular/router';
 import {CourseLernejaroModule} from './course-lernejaro/course-lernejaro.module';
+import { FlowchartComponent } from './flowchart/flowchart.component';
 
 @NgModule({
     declarations: [

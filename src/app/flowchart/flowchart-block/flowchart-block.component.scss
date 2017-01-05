@@ -1,0 +1,18 @@
+@import '../../imports';
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 0;
+}
+
+div {
+  padding: 2ex 1em;
+  background-color: material-color('blue-grey', '50');
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 24px;
+}

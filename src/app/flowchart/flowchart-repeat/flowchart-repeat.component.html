@@ -1,0 +1,11 @@
+<lrn-flowchart-arrow [arrow]="noArrow"></lrn-flowchart-arrow>
+
+<lrn-flowchart-connector></lrn-flowchart-connector>
+<lrn-flowchart-next></lrn-flowchart-next>
+
+<div #block>
+  <ng-content></ng-content>
+</div>
+
+<lrn-flowchart-condition #cond><code>{{condition}}</code></lrn-flowchart-condition>
+<lrn-flowchart-next></lrn-flowchart-next>
