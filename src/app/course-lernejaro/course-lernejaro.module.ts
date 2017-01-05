@@ -11,6 +11,8 @@ import { IntroducingFlowchartsComponent } from './introducing-flowcharts/introdu
 import {FlowchartModule} from '../flowchart/flowchart.module';
 import { IntroducingTablesComponent } from './introducing-tables/introducing-tables.component';
 import {TableModule} from '../table/table.module';
+import { IntroducingBitmapsComponent } from './introducing-bitmaps/introducing-bitmaps.component';
+import {BitmapModule} from '../bitmap/bitmap.module';
 
 @NgModule({
     imports: [
@@ -20,6 +22,7 @@ import {TableModule} from '../table/table.module';
         PresentationModule,
         FlowchartModule,
         TableModule,
+        BitmapModule,
         RouterModule.forChild([
             {
                 path: '',
@@ -40,6 +43,10 @@ import {TableModule} from '../table/table.module';
             {
                 path: '5-Tables',
                 component: IntroducingTablesComponent,
+            },
+            {
+                path: '6-Bitmaps',
+                component: IntroducingBitmapsComponent,
             }
         ]),
     ],
@@ -49,6 +56,7 @@ import {TableModule} from '../table/table.module';
         MarkdownMarkupComponent,
         IntroducingFlowchartsComponent,
         IntroducingTablesComponent,
+        IntroducingBitmapsComponent,
     ]
 })
 export class CourseLernejaroModule {

@@ -13,6 +13,7 @@ import {RouterModule} from '@angular/router';
 import {CourseLernejaroModule} from './course-lernejaro/course-lernejaro.module';
 import { FlowchartComponent } from './flowchart/flowchart.component';
 import { TableComponent } from './table/table.component';
+import { BitmapComponent } from './bitmap/bitmap.component';
 
 @NgModule({
     declarations: [

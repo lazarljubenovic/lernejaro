@@ -42,6 +42,7 @@ export const LESSONS: Lesson[] = [
         name: 'Bitmaps',
         color: LessonColor.LightBlue,
         icon: LessonIcon.Trophy,
+        isUnlocked: true,
     },
     {
         id: '7',
