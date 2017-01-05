@@ -35,6 +35,7 @@ export const LESSONS: Lesson[] = [
         name: 'Tables',
         color: LessonColor.DeepOrange,
         icon: LessonIcon.Lock,
+        isUnlocked: true,
     },
     {
         id: '6',

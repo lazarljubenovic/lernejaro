@@ -1,0 +1,50 @@
+lrn-table {
+  display: flex;
+
+  table {
+    empty-cells: show;
+    margin-top: 1ex;
+    border-top: solid 2pt rgba(black, .86);
+    margin-bottom: 1ex;
+    border-bottom: solid 2pt rgba(black, .86);
+    position: relative;
+    border-collapse: collapse;
+
+    thead::after {
+      content: '';
+      width: 100%;
+      position: absolute;
+      border-bottom: solid 1pt rgba(black, .86);
+    }
+
+    // Header and data
+    td, th {
+      min-width: 1em;
+      min-height: 2ex;
+      padding: 1ex .5em;
+    }
+
+    // Header
+    th {
+      //border: solid 1px blue;
+      font-variant: small-caps;
+    }
+
+    // Data
+    td {
+      //border: solid 1px red;
+    }
+
+    &.align-head {
+      &-left { th { text-align: left; } }
+      &-center { th { text-align: center; } }
+      &-right { th { text-align: right; } }
+    }
+
+    &.align-data {
+      &-left { td { text-align: left; } }
+      &-center { td { text-align: center; } }
+      &-right { td { text-align: right; } }
+    }
+  }
+}
