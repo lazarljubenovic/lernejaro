@@ -1,42 +1,42 @@
 <lrn-flowchart-condition><code>{{condition}}</code></lrn-flowchart-condition>
 
 <lrn-flowchart-line [x1]="lineThroughCondition?.x1"
-                    [y1]="lineThroughCondition?.y"
+                    [y1]="lineThroughCondition?._y"
                     [x2]="lineThroughCondition?.x2"
-                    [y2]="lineThroughCondition?.y"
+                    [y2]="lineThroughCondition?._y"
 ></lrn-flowchart-line>
 <lrn-flowchart-line [x1]="lineThroughConnector?.x1"
-                    [y1]="lineThroughConnector?.y"
+                    [y1]="lineThroughConnector?._y"
                     [x2]="lineThroughConnector?.x2"
-                    [y2]="lineThroughConnector?.y"
+                    [y2]="lineThroughConnector?._y"
 ></lrn-flowchart-line>
 
 <!-- above then -->
 <lrn-flowchart-line [x1]="lineThroughCondition?.x1"
-                    [y1]="lineThroughCondition?.y"
-                    [x2]="lineThen?.x"
+                    [y1]="lineThroughCondition?._y"
+                    [x2]="lineThen?._x"
                     [y2]="lineThen?.y1"
 ></lrn-flowchart-line>
 
 <!-- below then -->
-<lrn-flowchart-line [x1]="lineThen?.x"
+<lrn-flowchart-line [x1]="lineThen?._x"
                     [y1]="lineThen?.y2"
                     [x2]="lineThroughConnector?.x1"
-                    [y2]="lineThroughConnector?.y"
+                    [y2]="lineThroughConnector?._y"
 ></lrn-flowchart-line>
 
 <!-- above else -->
 <lrn-flowchart-line [x1]="lineThroughCondition?.x2"
-                    [y1]="lineThroughCondition?.y"
-                    [x2]="lineElse?.x"
+                    [y1]="lineThroughCondition?._y"
+                    [x2]="lineElse?._x"
                     [y2]="lineElse?.y1"
 ></lrn-flowchart-line>
 
 <!-- below then -->
-<lrn-flowchart-line [x1]="lineElse?.x"
+<lrn-flowchart-line [x1]="lineElse?._x"
                     [y1]="lineElse?.y2"
                     [x2]="lineThroughConnector?.x2"
-                    [y2]="lineThroughConnector?.y"
+                    [y2]="lineThroughConnector?._y"
 ></lrn-flowchart-line>
 
 <div class="blocks">
