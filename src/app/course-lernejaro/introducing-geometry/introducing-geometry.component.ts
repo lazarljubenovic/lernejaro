@@ -3,6 +3,7 @@ import {GeometryObject} from '../../planimetryts/geometry-objects/geometry-objec
 import {Point} from '../../planimetryts/geometry-objects/point';
 import {Segment} from '../../planimetryts/geometry-objects/segment';
 import {Circle} from '../../planimetryts/geometry-objects/circle';
+import {Line} from '../../planimetryts/geometry-objects/line';
 
 @Component({
     selector: 'lrn-introducing-geometry',
@@ -13,27 +14,41 @@ export class IntroducingGeometryComponent implements OnInit {
 
     public objects: Set<GeometryObject>;
 
-    private createObjects() {
-        const point1 = Point.FromCartesianCoordinates(10, 10);
-        const point2 = Point.FromCartesianCoordinates(100, 10);
-        const point3 = Point.FromCartesianCoordinates(10, 100);
+    public interactivePoints: Point[] = [
+        Point.FromCartesianCoordinates(400, 200),
+        Point.FromCartesianCoordinates(250, 500),
+        Point.FromCartesianCoordinates(50, 50),
+    ];
 
-        const segment1Start = Point.FromCartesianCoordinates(30, 30);
-        const segment1End = Point.FromCartesianCoordinates(100, 30);
-        const segment1 = Segment.FromTwoPoints(segment1Start, segment1End);
+    public evaluateObjects(...points: Point[]): void {
+        const A = points[0];
+        const B = points[1];
+        const C = points[2];
+        const segmentAB = Segment.FromTwoPoints(A, B);
+        const segmentBC = Segment.FromTwoPoints(B, C);
+        const segmentCA = Segment.FromTwoPoints(C, A);
+        const lineAB = Line.FromTwoPoints(A, B);
+        const lineBC = Line.FromTwoPoints(B, C);
+        const lineCA = Line.FromTwoPoints(C, A);
+        const bisector1: Line = Line.GetBisectors(lineAB, lineBC)[0];
+        const bisector2: Line = Line.GetBisectors(lineBC, lineCA)[0];
+        const bisector3: Line = Line.GetBisectors(lineCA, lineAB)[0];
+        const intersection: Point = Line.GetIntersection(bisector1, bisector2);
+        this.objects = new Set<GeometryObject>()
+            .add(segmentAB).add(segmentBC).add(segmentCA)
+            .add(bisector1).add(bisector2).add(bisector3)
+            .add(intersection);
+    }
 
-        const circleCenter = Point.Add(segment1End, Point.FromPolarCoordinates(200, Math.PI/2)).label('CIRCLE CENTER');
-        const circle = Circle.FromCenterAndPoint(circleCenter, point1);
-
-        const objects = new Set<GeometryObject>();
-        this.objects = objects.add(point1).add(point2).add(point3).add(segment1).add(circle).add(segment1End);
+    public onInteractivePointsChange(points: Point[]): void {
+        this.evaluateObjects(...points);
     }
 
     constructor() {
     }
 
     ngOnInit() {
-        this.createObjects();
+        this.evaluateObjects(...this.interactivePoints);
     }
 
 }

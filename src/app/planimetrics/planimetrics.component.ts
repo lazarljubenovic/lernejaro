@@ -6,7 +6,7 @@ import {
     ElementRef,
     Input,
     ChangeDetectionStrategy,
-    OnChanges
+    OnChanges, Output, EventEmitter
 } from '@angular/core';
 import {CanvasRenderer} from '../planimetryts/renderers/canvas-renderer';
 import {RendererService} from './renderer.service';
@@ -30,10 +30,12 @@ function getCursorPosition(canvas, event): {x: number, y: number} {
 export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
 
     @Input() public objects: Set<GeometryObject>;
+    @Input() public interactivePoints: Point[];
+
+    @Output() public interactivePointsChange = new EventEmitter<Point[]>();
 
     public getPointAt(x: number, y: number, eps: number = 6): Point {
-        return <Point>Array.from(this.objects)
-            .filter(object => object.kind == 'point')
+        return this.interactivePoints
             .filter((point: Point) => {
                 return areEqualFloats(point.x(), x, eps)
                     && areEqualFloats(point.y(), y, eps);
@@ -97,7 +99,7 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
                 this.currentPoint
                     .x(x => x + event.movementX)
                     .y(y => y + event.movementY);
-                this.render();
+                this.interactivePointsChange.emit(this.interactivePoints);
             } else {
                 // Move around
                 // TODO
