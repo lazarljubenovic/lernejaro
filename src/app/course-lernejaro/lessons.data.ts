@@ -61,5 +61,6 @@ export const LESSONS: Lesson[] = [
         name: 'Geometry',
         color: LessonColor.Lime,
         icon: LessonIcon.Flask,
+        isUnlocked: true,
     },
 ];

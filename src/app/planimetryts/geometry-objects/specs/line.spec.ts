@@ -1,16 +1,20 @@
-import {Line} from './line';
-import {Point} from './point';
-import {areEqualFloats, isZero} from './util';
+import {Line} from '../line';
+import {Point} from '../point';
+import {areEqualFloats, isZero} from '../../util';
+import {ZlibOptions} from 'zlib';
 
-const lineEquality = function (first: any, second: any) {
+const customEqualities = function (first: any, second: any) {
     if (first.kind == 'line' && second.kind == 'line') {
         return Line.AreEqual(first, second);
+    }
+    if (first.kind == 'point' && second.kind == 'point') {
+        return Point.AreEqual(first, second);
     }
 };
 
 describe(`Line`, () => {
 
-    beforeEach(() => jasmine.addCustomEqualityTester(lineEquality));
+    beforeEach(() => jasmine.addCustomEqualityTester(customEqualities));
 
     it(`should report very close lines as the same (eps = 1e-6`, () => {
         const diff = 1e-8;
@@ -261,6 +265,65 @@ describe(`Line`, () => {
         const line2 = Line.FromExplicitForm(-2, 0);
         expect(Line.AreOrthogonal(line1, line2)).toBe(false);
         expect(Line.AreOrthogonal(line2, line1)).toBe(false);
+    });
+
+    it(`should get intersection`, () => {
+        const line1 = Line.FromExplicitForm(1, 0);
+        const line2 = Line.FromExplicitForm(2, 1);
+        const intersection = Point.FromCartesianCoordinates(-1, -1);
+        expect(Line.GetIntersection(line1, line2)).toEqual(intersection);
+    });
+
+    it(`should get intersection when one line is horizontal`, () => {
+        const line1 = Line.FromExplicitForm(1, 2);
+        const line2 = Line.HorizontalThroughPoint(1);
+        const intersection = Point.FromCartesianCoordinates(-1, 1);
+        expect(Line.GetIntersection(line1, line2)).toEqual(intersection);
+    });
+
+    it(`should get intersection when one line is vertical`, () => {
+        const line1 = Line.FromExplicitForm(1, 2);
+        const line2 = Line.VerticalThroughPoint(-1);
+        const intersection = Point.FromCartesianCoordinates(-1, 1);
+        expect(Line.GetIntersection(line1, line2)).toEqual(intersection);
+    });
+
+    it(`should get intersection of orthogonal lines`, () => {
+        const line1 = Line.FromExplicitForm(1, 1);
+        const line2 = Line.FromExplicitForm(-1, 2);
+        const intersection = Point.FromCartesianCoordinates(0.5, 1.5);
+        expect(Line.GetIntersection(line1, line2)).toEqual(intersection);
+    });
+
+    it(`should get intersection of axises`, () => {
+        expect(Line.GetIntersection(Line.X_AXIS, Line.Y_AXIS)).toEqual(Point.CENTER);
+    });
+
+    it(`should not get intersection of parallel lines`, () => {
+        const line1 = Line.VerticalThroughPoint(1);
+        const line2 = Line.VerticalThroughPoint(2);
+        expect(Line.GetIntersection(line1, line2)).toBe(null);
+    });
+
+    it(`should get two points of a line`, () => {
+        const line = Line.FromExplicitForm(1, 1);
+        const point1 = Point.FromCartesianCoordinates(-1, 0);
+        const point2 = Point.FromCartesianCoordinates(0, +1);
+        expect(line.getTwoPoints()).toEqual([point1, point2]);
+    });
+
+    it(`should get two points of a vertical line`, () => {
+        const line = Line.VerticalThroughPoint(1);
+        const point1 = Point.FromCartesianCoordinates(1, 0);
+        const point2 = Point.FromCartesianCoordinates(1, 1);
+        expect(line.getTwoPoints()).toEqual([point1, point2]);
+    });
+
+    it(`should get two points of a horizontal line`, () => {
+        const line = Line.HorizontalThroughPoint(1);
+        const point1 = Point.FromCartesianCoordinates(0, 1);
+        const point2 = Point.FromCartesianCoordinates(1, 1);
+        expect(line.getTwoPoints()).toEqual([point1, point2]);
     });
 
 });

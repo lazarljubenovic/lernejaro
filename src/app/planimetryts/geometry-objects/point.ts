@@ -1,8 +1,11 @@
-import {polarToCartesian, cartesianToPolar, areEqualFloats} from './util';
+import {polarToCartesian, cartesianToPolar, areEqualFloats} from '../util';
 import {Matrix} from './matrix';
 import {Line} from './line';
+import {GeometryObject} from './geometry-object';
 
-export class Point {
+export class Point extends GeometryObject {
+
+    public static CENTER: Point = Point.FromCartesianCoordinates(0, 0);
 
     public static AreEqual(point1: Point, point2: Point): boolean {
         return areEqualFloats(point1.x(), point2.x())
@@ -67,13 +70,12 @@ export class Point {
     protected _x: number;
     protected _y: number;
     protected _label: string;
-    public kind: string;
 
     constructor(x: number, y: number, label?: string) {
+        super('point');
         this._x = x;
         this._y = y;
         this._label = label;
-        this.kind = 'point';
         return this;
     }
 
@@ -155,35 +157,8 @@ export class Point {
         return this.copyFrom(Point.FromMatrix(newMatrix));
     }
 
-    public stretchX(k: number): this {
-        const transformationMatrix = [[k, 0], [0, 1]];
-        return this.applyMatrix(transformationMatrix);
-    }
-
-    public stretchY(k: number): this {
-        const transformationMatrix = [[1, 0], [0, k]];
-        return this.applyMatrix(transformationMatrix);
-    }
-
-    public stretch(k: number): this {
-        return this.stretchX(k).stretchY(k);
-    }
-
-    public rotation(θ: number): this {
-        const c = Math.cos(θ);
-        const s = Math.sin(θ);
-        const rotationMatrix = [[c, -s], [s, c]];
-        return this.applyMatrix(rotationMatrix);
-    }
-
-    public shearX(k: number): this {
-        const shearMatrix = [[1, k], [0, 1]];
-        return this.applyMatrix(shearMatrix);
-    }
-
-    public shearY(k: number): this {
-        const shearMatrix = [[1, 0], [k, 1]];
-        return this.applyMatrix(shearMatrix);
+    public reflectOverPoint(point: Point): this {
+        throw "TODO";
     }
 
     public reflectOverLine(line: Line): this {
@@ -196,6 +171,10 @@ export class Point {
         const l = line.getExplicitForm();
         const d = (this.x() + (this.y() - l.n) * l.k) / (1 + l.k ** 2);
         return this.x(x => 2 * d - x).y(y => 2 * d * l.k - y + 2 * l.n);
+    }
+
+    public radialSymmetry(point: Point, count: number): this[] {
+        throw "TODO";
     }
 
 }

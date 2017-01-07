@@ -13,6 +13,8 @@ import { IntroducingTablesComponent } from './introducing-tables/introducing-tab
 import {TableModule} from '../table/table.module';
 import { IntroducingBitmapsComponent } from './introducing-bitmaps/introducing-bitmaps.component';
 import {BitmapModule} from '../bitmap/bitmap.module';
+import { IntroducingGeometryComponent } from './introducing-geometry/introducing-geometry.component';
+import {PlanimetricsModule} from '../planimetrics/planimetrics.module';
 
 @NgModule({
     imports: [
@@ -23,6 +25,7 @@ import {BitmapModule} from '../bitmap/bitmap.module';
         FlowchartModule,
         TableModule,
         BitmapModule,
+        PlanimetricsModule,
         RouterModule.forChild([
             {
                 path: '',
@@ -47,7 +50,11 @@ import {BitmapModule} from '../bitmap/bitmap.module';
             {
                 path: '6-Bitmaps',
                 component: IntroducingBitmapsComponent,
-            }
+            },
+            {
+                path: '9-Geometry',
+                component: IntroducingGeometryComponent,
+            },
         ]),
     ],
     declarations: [
@@ -57,6 +64,7 @@ import {BitmapModule} from '../bitmap/bitmap.module';
         IntroducingFlowchartsComponent,
         IntroducingTablesComponent,
         IntroducingBitmapsComponent,
+        IntroducingGeometryComponent,
     ]
 })
 export class CourseLernejaroModule {

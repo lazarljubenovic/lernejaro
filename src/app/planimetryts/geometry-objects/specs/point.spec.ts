@@ -1,5 +1,5 @@
-import {Point} from './point';
-import {Line} from './line';
+import {Point} from '../point';
+import {Line} from '../line';
 
 const pointEquality = function(first: any, second: any) {
     if (first.kind == 'point' && second.kind == 'point') {
@@ -234,15 +234,15 @@ describe(`Point`, () => {
     it(`should rotate`, () => {
         const point1 = Point.FromCartesianCoordinates(1, 0);
         const point2 = Point.FromCartesianCoordinates(0, 1);
-        expect(point1.rotation(Math.PI / 2)).toEqual(point2);
+        expect(point1.rotate(Math.PI / 2)).toEqual(point2);
 
         const point3 = Point.FromCartesianCoordinates(1, 0);
         const point4 = Point.FromCartesianCoordinates(-1, 0);
-        expect(point3.rotation(Math.PI)).toEqual(point4);
+        expect(point3.rotate(Math.PI)).toEqual(point4);
 
         const point5 = Point.FromCartesianCoordinates(1, 0);
         const point6 = Point.FromCartesianCoordinates(0, -1);
-        expect(point5.rotation(3 * Math.PI / 2)).toEqual(point6);
+        expect(point5.rotate(3 * Math.PI / 2)).toEqual(point6);
     });
 
     it(`should shear along x-axis`, () => {

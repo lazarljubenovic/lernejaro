@@ -1,8 +1,9 @@
 import {Point} from './point';
-import {isZero, areEqualFloats} from './util';
+import {isZero, areEqualFloats} from '../util';
+import {GeometryObject} from './geometry-object';
 
 
-export class Line {
+export class Line extends GeometryObject {
 
     public static X_AXIS: Line = Line.HorizontalThroughPoint(0);
     public static Y_AXIS: Line = Line.VerticalThroughPoint(0);
@@ -169,16 +170,36 @@ export class Line {
         return areEqualFloats(k1 * k2, -1);
     }
 
+    public static GetIntersection(line1: Line, line2: Line): Point {
+        if (Line.AreParallel(line1, line2)) {
+            return null;
+        }
+        const [l1, l2] = [line1, line2].map(line => line.getGeneralForm());
+        if (!isZero(l1.A)) {
+            const yNum = (l1.C * l2.A) / l1.A - l2.C;
+            const yDen = l2.B - (l1.B * l2.A) / l1.A;
+            const y = yNum / yDen;
+            const x = (-l1.C - l1.B * y) / l1.A;
+            return Point.FromCartesianCoordinates(x, y);
+        }
+        if (!isZero(l1.B)) {
+            const xNum = (l2.B * l1.C) / l1.B - l2.C;
+            const xDen = l2.A - (l2.B * l1.A) / l1.B;
+            const x = xNum / xDen;
+            const y = (-l1.C - l1.A * x) / l1.B;
+            return Point.FromCartesianCoordinates(x, y);
+        }
+    }
+
     private _A: number;
     private _B: number;
     private _C: number;
-    public kind: string;
 
     constructor(A: number, B: number, C: number) {
+        super('line');
         this._A = A;
         this._B = B;
         this._C = C;
-        this.kind = 'line';
         return this;
     }
 
@@ -227,5 +248,33 @@ export class Line {
     // public getNormalForm(): {φ: number, p: number} {
     //
     // }
+
+    public getTwoPoints(): Point[] {
+        if (this.isHorizontal()) {
+            return [Line.VerticalThroughPoint(0), Line.VerticalThroughPoint(1)]
+                .map(line => Line.GetIntersection(this, line));
+        } else {
+            return [Line.HorizontalThroughPoint(0), Line.HorizontalThroughPoint(1)]
+                .map(line => Line.GetIntersection(this, line));
+        }
+    }
+
+    public applyMatrix(matrix: number[][]): this {
+        const points = this.getTwoPoints();
+        const newPoints = points.map(point => point.applyMatrix(matrix));
+        return <this>Line.FromTwoPoints(newPoints[0], newPoints[1]);
+    }
+
+    public reflectOverPoint(point: Point): this {
+        throw "TODO";
+    }
+
+    public reflectOverLine(line: Line): this {
+        throw "TODO";
+    }
+
+    public radialSymmetry(point: Point, count: number): this[] {
+        throw "TODO";
+    }
 
 }
