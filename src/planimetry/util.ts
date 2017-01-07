@@ -10,4 +10,10 @@ export function polarToCartesian(r: number, φ: number): {x: number, y: number} 
     return {x, y};
 }
 
+export function radianToDegree(angleRadian: number): number {
+    return angleRadian * 57.2958;
+}
 
+export function degreeToRadian(angleDegree: number): number {
+    return angleDegree * 0.0174533;
+}

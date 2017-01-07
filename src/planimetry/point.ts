@@ -1,6 +1,8 @@
 import {polarToCartesian, cartesianToPolar} from './util';
+import {Matrix} from './matrix';
+import {Line} from './line';
 
-class Point {
+export class Point {
 
     public static FromPolarCoordinates(r: number, φ: number, label?: string): Point {
         const cartesian = polarToCartesian(r, φ);
@@ -8,6 +10,12 @@ class Point {
     }
 
     public static FromCartesianCoordinates(x: number, y: number, label?: string): Point {
+        return new Point(x, y, label);
+    }
+
+    public static FromMatrix(matrix: number[][], label?: string): Point {
+        const x = matrix[0][0];
+        const y = matrix[0][1];
         return new Point(x, y, label);
     }
 
@@ -27,10 +35,24 @@ class Point {
     //
     // }
 
-    public static DistanceBetween(point1: Point, point2: Point): number {
+    public static GetDistanceBetween(point1: Point, point2: Point): number {
         const dx = point1.x() - point2.x();
         const dy = point1.y() - point2.y();
         return Math.sqrt(dx * dx + dy * dy);
+    }
+
+    public static GetPointAtRatio(point1: Point, point2: Point, m: number, n: number = 1): Point {
+        const x = (n * point1.x() + m * point2.x()) / (m + n);
+        const y = (n * point1.y() + m * point2.y()) / (m + n);
+        return new Point(x, y);
+    }
+
+    public static GetPointBetween(point1: Point, point2: Point): Point {
+        return Point.GetPointAtRatio(point1, point2, 1, 1);
+    }
+
+    public static GetDistanceBetweenLineAndPoint(line: Line, point: Point): number {
+        return Line.GetDistanceBetweenLineAndPoint(line, point);
     }
 
     protected _x: number;
@@ -44,8 +66,9 @@ class Point {
         return this;
     }
 
-    private copyFrom(point: Point) {
+    private copyFrom(point: Point): this {
         this.x(point.x()).y(point.y()).label(point.label());
+        return this;
     }
 
     public x(): number;
@@ -91,7 +114,7 @@ class Point {
         }
     }
 
-    public matrixCoordinates(): [[number], [number]] {
+    public getMatrixCoordinates(): [[number], [number]] {
         return [[this._x], [this._y]];
     }
 
@@ -99,18 +122,52 @@ class Point {
         return cartesianToPolar(this._x, this._y);
     }
 
+    public getCartesianCoordinates(): {x: number, y: number} {
+        return {x: this._x, y: this._y};
+    }
+
     public translate(point: Point): this {
-        this.copyFrom(Point.Add(this, point));
-        return this;
+        return this.copyFrom(Point.Add(this, point));
     }
 
     public distanceTo(point: Point) {
-        return Point.DistanceBetween(this, point);
+        return Point.GetDistanceBetween(this, point);
     }
 
-    // public applyMatrix(matrix: Matrix | number[][]) {
-    //     matrix = (<Matrix>matrix).data ? (<Matrix>matrix).data : matrix;
-    //
-    // }
+    public applyMatrix(matrix: number[][]): this {
+        const newMatrix = Matrix.Multiply(matrix, this.getMatrixCoordinates());
+        return this.copyFrom(Point.FromMatrix(newMatrix));
+    }
+
+    public stretchX(k: number): this {
+        const transformationMatrix = [[k, 0], [0, 1]];
+        return this.applyMatrix(transformationMatrix);
+    }
+
+    public stretchY(k: number): this {
+        const transformationMatrix = [[1, 0], [0, k]];
+        return this.applyMatrix(transformationMatrix);
+    }
+
+    public stretch(k: number): this {
+        return this.stretchX(k).stretchY(k);
+    }
+
+    public rotation(θ: number): this {
+        const c = Math.cos(θ);
+        const s = Math.sin(θ);
+        const rotationMatrix = [[c, -s], [s, c]];
+        return this.applyMatrix(rotationMatrix);
+    }
+
+    public shearX(k: number): this {
+        const shearMatrix = [[1, k], [0, 1]];
+        return this.applyMatrix(shearMatrix);
+    }
+
+    public shearY(k: number): this {
+        const shearMatrix = [[1, 0], [k, 1]];
+        return this.applyMatrix(shearMatrix);
+    }
 
 }
