@@ -21,3 +21,7 @@ export function degreeToRadian(angleDegree: number): number {
 export function areEqualFloats(a: number, b: number, eps: number = 1e-6): boolean {
     return Math.abs(a - b) < eps;
 }
+
+export function isZero(n: number, eps: number = 1e-6): boolean {
+    return areEqualFloats(n, 0, eps);
+}

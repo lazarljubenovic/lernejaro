@@ -1,6 +1,7 @@
 import {Point} from './point';
+import {Line} from './line';
 
-let pointEquality = function(first: any, second: any) {
+const pointEquality = function(first: any, second: any) {
     if (first.kind == 'point' && second.kind == 'point') {
         return Point.AreEqual(first, second);
     }
@@ -228,6 +229,74 @@ describe(`Point`, () => {
         const point1 = Point.FromCartesianCoordinates(1, 2);
         const point2 = Point.FromCartesianCoordinates(5, 10);
         expect(point1.stretch(5)).toEqual(point2);
+    });
+
+    it(`should rotate`, () => {
+        const point1 = Point.FromCartesianCoordinates(1, 0);
+        const point2 = Point.FromCartesianCoordinates(0, 1);
+        expect(point1.rotation(Math.PI / 2)).toEqual(point2);
+
+        const point3 = Point.FromCartesianCoordinates(1, 0);
+        const point4 = Point.FromCartesianCoordinates(-1, 0);
+        expect(point3.rotation(Math.PI)).toEqual(point4);
+
+        const point5 = Point.FromCartesianCoordinates(1, 0);
+        const point6 = Point.FromCartesianCoordinates(0, -1);
+        expect(point5.rotation(3 * Math.PI / 2)).toEqual(point6);
+    });
+
+    it(`should shear along x-axis`, () => {
+        const point1 = Point.FromCartesianCoordinates(1, 2);
+        const point2 = Point.FromCartesianCoordinates(5, 2);
+        expect(point1.shearX(2)).toEqual(point2);
+    });
+
+    it(`should shear along y-axis`, () => {
+        const point1 = Point.FromCartesianCoordinates(1, 2);
+        const point2 = Point.FromCartesianCoordinates(1, 4);
+        expect(point1.shearY(2)).toEqual(point2);
+    });
+
+    it(`should reflect over a vertical line (to the left)`, () => {
+        const point = Point.FromCartesianCoordinates(1, 1);
+        const line = Line.VerticalThroughPoint(-2);
+        const reflection = Point.FromCartesianCoordinates(-5, 1);
+        expect(point.reflectOverLine(line)).toEqual(reflection);
+    });
+
+    it(`should reflect over a vertical line (to the right)`, () => {
+        const point = Point.FromCartesianCoordinates(1, 1);
+        const line = Line.VerticalThroughPoint(2);
+        const reflection = Point.FromCartesianCoordinates(3, 1);
+        expect(point.reflectOverLine(line)).toEqual(reflection);
+    });
+
+    it(`should reflect over a horizontal line (to the above)`, () => {
+        const point = Point.FromCartesianCoordinates(1, 1);
+        const line = Line.HorizontalThroughPoint(-1);
+        const reflection = Point.FromCartesianCoordinates(1, -3);
+        expect(point.reflectOverLine(line)).toEqual(reflection);
+    });
+
+    it(`should reflect over a horizontal line (to the below)`, () => {
+        const point = Point.FromCartesianCoordinates(1, 1);
+        const line = Line.HorizontalThroughPoint(2);
+        const reflection = Point.FromCartesianCoordinates(1, 3);
+        expect(point.reflectOverLine(line)).toEqual(reflection);
+    });
+
+    it(`should reflect over a line`, () => {
+        const point = Point.FromCartesianCoordinates(1, 0);
+        const line = Line.Y_EQUALS_X;
+        const reflection = Point.FromCartesianCoordinates(0, 1);
+        expect(point.reflectOverLine(line)).toEqual(reflection);
+    });
+
+    it(`should reflect over a line`, () => {
+        const point = Point.FromCartesianCoordinates(0, 1);
+        const line = Line.Y_EQUALS_X;
+        const reflection = Point.FromCartesianCoordinates(1, 0);
+        expect(point.reflectOverLine(line)).toEqual(reflection);
     });
 
 });

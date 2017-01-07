@@ -125,6 +125,11 @@ export class Point {
         }
     }
 
+    public clone(): Point {
+        let clone: Point;
+        return clone.copyFrom(this);
+    }
+
     public getMatrixCoordinates(): [[number], [number]] {
         return [[this._x], [this._y]];
     }
@@ -179,6 +184,18 @@ export class Point {
     public shearY(k: number): this {
         const shearMatrix = [[1, 0], [k, 1]];
         return this.applyMatrix(shearMatrix);
+    }
+
+    public reflectOverLine(line: Line): this {
+        if (line.isVertical()) {
+            const d = Line.GetDistanceBetweenLineAndPoint(line, this);
+            const l = line.getGeneralForm();
+            const isPointAboveLine: boolean = (- l.C / l.A) > this.y();
+            return this.x(x => x - 2 * d * (isPointAboveLine ? -1 : +1));
+        }
+        const l = line.getExplicitForm();
+        const d = (this.x() + (this.y() - l.n) * l.k) / (1 + l.k ** 2);
+        return this.x(x => 2 * d - x).y(y => 2 * d * l.k - y + 2 * l.n);
     }
 
 }
