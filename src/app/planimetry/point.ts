@@ -1,8 +1,13 @@
-import {polarToCartesian, cartesianToPolar} from './util';
+import {polarToCartesian, cartesianToPolar, areEqualFloats} from './util';
 import {Matrix} from './matrix';
 import {Line} from './line';
 
 export class Point {
+
+    public static AreEqual(point1: Point, point2: Point): boolean {
+        return areEqualFloats(point1.x(), point2.x())
+            && areEqualFloats(point1.y(), point2.y());
+    }
 
     public static FromPolarCoordinates(r: number, φ: number, label?: string): Point {
         const cartesian = polarToCartesian(r, φ);
@@ -15,8 +20,12 @@ export class Point {
 
     public static FromMatrix(matrix: number[][], label?: string): Point {
         const x = matrix[0][0];
-        const y = matrix[0][1];
+        const y = matrix[1][0];
         return new Point(x, y, label);
+    }
+
+    public static Negative(point: Point): Point {
+        return new Point(-point.x(), -point.y());
     }
 
     public static Add(point1: Point, point2: Point): Point {
@@ -24,7 +33,7 @@ export class Point {
     }
 
     public static Subtract(point1: Point, point2: Point): Point {
-        return new Point(point1.x() - point2.x(), point1.y() - point2.y());
+        return Point.Add(point1, Point.Negative(point2));
     }
 
     public static DotProduct(point1: Point, point2: Point): number {
@@ -58,11 +67,13 @@ export class Point {
     protected _x: number;
     protected _y: number;
     protected _label: string;
+    public kind: string;
 
     constructor(x: number, y: number, label?: string) {
         this._x = x;
         this._y = y;
         this._label = label;
+        this.kind = 'point';
         return this;
     }
 

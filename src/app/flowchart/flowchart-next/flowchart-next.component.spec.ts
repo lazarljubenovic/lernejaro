@@ -1,28 +1,25 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {FlowchartNextComponent} from './flowchart-next.component';
 
-import { FlowchartNextComponent } from './flowchart-next.component';
+xdescribe('FlowchartNextComponent', () => {
+    let component: FlowchartNextComponent;
+    let fixture: ComponentFixture<FlowchartNextComponent>;
 
-describe('FlowchartNextComponent', () => {
-  let component: FlowchartNextComponent;
-  let fixture: ComponentFixture<FlowchartNextComponent>;
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [FlowchartNextComponent]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FlowchartNextComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(() => {
+        fixture = TestBed.createComponent(FlowchartNextComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(FlowchartNextComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });
