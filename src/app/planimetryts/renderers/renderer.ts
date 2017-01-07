@@ -6,28 +6,50 @@ import {Circle} from '../geometry-objects/circle';
 
 export abstract class Renderer {
 
-    public abstract renderPoint(point: Point);
+    protected abstract renderPoint(point: Point);
 
-    public abstract renderLine(line: Line);
+    protected abstract renderLine(line: Line);
 
-    public abstract renderSegment(segment: Segment);
+    protected abstract renderSegment(segment: Segment);
 
-    public abstract renderCircle(circle: Circle);
+    protected abstract renderCircle(circle: Circle);
 
-    public render(object: GeometryObject) {
-        switch (object.kind) {
-            case 'point':
-                this.renderPoint(<Point>object);
-                break;
-            case 'line':
-                this.renderLine(<Line>object);
-                break;
-            case 'segment':
-                this.renderSegment(<Segment>object);
-                break;
-            case 'circle':
-                this.renderCircle(<Circle>object);
-        }
+    protected beforeObjectsRender(objects: Set<GeometryObject>) {
+        // Do nothing
+    }
+
+    protected afterObjectsRender(objects: Set<GeometryObject>) {
+        // Do nothing
+    }
+
+    protected beforeEachObjectRender(object: GeometryObject) {
+        // Do nothing
+    }
+
+    protected afterEachObjectRender(object: GeometryObject) {
+        // Do nothing
+    }
+
+    public render(objects: Set<GeometryObject>) {
+        this.beforeObjectsRender(objects);
+        objects.forEach(object => {
+            this.beforeEachObjectRender(object);
+            switch (object.kind) {
+                case 'point':
+                    this.renderPoint(<Point>object);
+                    break;
+                case 'line':
+                    this.renderLine(<Line>object);
+                    break;
+                case 'segment':
+                    this.renderSegment(<Segment>object);
+                    break;
+                case 'circle':
+                    this.renderCircle(<Circle>object);
+            }
+            this.afterEachObjectRender(object);
+        });
+        this.afterObjectsRender(objects);
     }
 
 }

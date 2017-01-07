@@ -15,7 +15,7 @@ export class RendererService {
     }
 
     public render(objects: Set<GeometryObject>): void {
-        objects.forEach(object => this.renderer.render(object));
+        this.renderer.render(objects);
     }
 
 }

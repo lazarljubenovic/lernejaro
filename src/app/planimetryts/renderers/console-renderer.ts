@@ -26,7 +26,9 @@ export class ConsoleRenderer extends Renderer {
     }
 
     public renderCircle(circle: Circle) {
-        throw "TODO";
+        const c = circle.center().getCartesianCoordinates();
+        const r = circle.radius();
+        console.log(`Circle with center at (${c.x}, ${c.y}) and radius of ${r}`);
     }
 
 }

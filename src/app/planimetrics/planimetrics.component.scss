@@ -4,9 +4,11 @@
   height: 100%;
   justify-content: center;
   align-items: center;
+  background-color: black;
 
   canvas {
-    width: 98%;
-    height: 98%;
+    width: 600px;
+    height: 600px;
+    background: white;
   }
 }
