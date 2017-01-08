@@ -30,4 +30,8 @@ $lesson-card-circle-size: 90px;
 .name {
   margin-top: 1.2ex;
   font-style: italic;
+  max-width: $lesson-card-circle-size;
+  text-align: center;
+  height: 2ex;
+  overflow: visible;
 }

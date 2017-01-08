@@ -37,6 +37,27 @@ export class IconComponent implements OnInit, OnChanges {
             case LessonIcon.Flask:
                 id = 'flask';
                 break;
+            case LessonIcon.Trophy:
+                id = 'trophy';
+                break;
+            case LessonIcon.Lock:
+                id = 'lock';
+                break;
+            case LessonIcon.Magnet:
+                id = 'magnet';
+                break;
+            case LessonIcon.Umbrella:
+                id = 'umbrella';
+                break;
+            case LessonIcon.Wrench:
+                id ='wrench';
+                break;
+            case LessonIcon.Trash:
+                id = 'trash';
+                break;
+            case LessonIcon.Star:
+                id = 'star';
+                break;
             default:
                 id = 'folder'
         }

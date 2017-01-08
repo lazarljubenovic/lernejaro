@@ -63,4 +63,34 @@ export const LESSONS: Lesson[] = [
         icon: LessonIcon.Flask,
         isUnlocked: true,
     },
+    {
+        id: '10',
+        name: 'Charts',
+        color: LessonColor.DeepPurple,
+        icon: LessonIcon.Magnet,
+    },
+    {
+        id: '11',
+        name: 'Class Diagrams & Co',
+        color: LessonColor.Cyan,
+        icon: LessonIcon.Trash,
+    },
+    {
+        id: '12',
+        name: 'Pseudocode',
+        color: LessonColor.DeepOrange,
+        icon: LessonIcon.Umbrella,
+    },
+    {
+        id: '13',
+        name: 'Console',
+        color: LessonColor.Indigo,
+        icon: LessonIcon.Folder,
+    },
+    {
+        id: '14',
+        name: 'Latex',
+        color: LessonColor.Green,
+        icon: LessonIcon.Trophy,
+    },
 ];
