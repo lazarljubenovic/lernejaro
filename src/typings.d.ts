@@ -3,3 +3,12 @@
 
 ///<reference path="Path2D.d.ts"/>
 
+interface Coordinate {
+    x: number;
+    y: number;
+}
+
+interface Offset {
+    dx: number;
+    dy: number;
+}

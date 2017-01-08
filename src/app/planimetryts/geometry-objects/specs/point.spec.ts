@@ -176,7 +176,7 @@ describe(`Point`, () => {
     it(`should translate the point`, () => {
         const point1 = Point.FromCartesianCoordinates(1, 2);
         const diff = Point.FromPolarCoordinates(3, Math.PI);
-        const point2 = point1.translate(diff);
+        const point2 = point1.translateByPoint(diff);
         expect(point1).toBe(point2);
         expect(point2).toEqual(Point.FromCartesianCoordinates(-2, 2));
     });

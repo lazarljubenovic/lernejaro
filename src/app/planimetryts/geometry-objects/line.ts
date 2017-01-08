@@ -62,6 +62,7 @@ export class Line extends GeometryObject {
     }
 
     public static FromTwoPoints(point1: Point, point2: Point): Line {
+        // TODO: what if two same points are given?
         const dy = point2.y() - point1.y();
         const dx = point2.x() - point1.x();
         if (isZero(dx)) {
@@ -92,7 +93,6 @@ export class Line extends GeometryObject {
     }
 
     public static GetAnglesBetween(line1: Line, line2: Line): number[] {
-        debugger;
         if ((line1.isVertical() && line2.isVertical())
             || (line1.isHorizontal() && line2.isHorizontal())) {
             return [0, Math.PI];
@@ -139,6 +139,13 @@ export class Line extends GeometryObject {
         const C1 = (l1.C / sqrt1 + l2.C / sqrt2);
         const C2 = (l1.C / sqrt1 - l2.C / sqrt2);
         return [new Line(A1, B1, C1), new Line(A2, B2, C2)];
+    }
+
+    public static GetBisector(vertex: Point, arm1: Point, arm2: Point): Line {
+        const line1 = Line.FromTwoPoints(vertex, arm1);
+        const line2 = Line.FromTwoPoints(vertex, arm2);
+        const bisectors = Line.GetBisectors(line1, line2);
+        return bisectors.find(bisector => !bisector.pointsAreOnSameSide(arm1, arm2));
     }
 
     public static AreParallel(line1: Line, line2: Line): boolean {
@@ -191,6 +198,29 @@ export class Line extends GeometryObject {
         }
     }
 
+    public static ParallelThroughPoint(line: Line, point: Point): Line {
+        if (line.isVertical()) {
+            return Line.VerticalThroughPoint(point);
+        } else if (line.isHorizontal()) {
+            return Line.HorizontalThroughPoint(point);
+        } else {
+            const k = line.getExplicitForm().k;
+            return Line.FromPointAndCoefficient(point, k);
+        }
+    }
+
+    public static OrthogonalThroughPoint(line: Line, point: Point): Line {
+        if (line.isVertical()) {
+            return Line.HorizontalThroughPoint(point);
+        } else if (line.isHorizontal()) {
+            return Line.VerticalThroughPoint(point);
+        } else {
+            const k = line.getExplicitForm().k;
+            const newK = -1 / k;
+            return Line.FromPointAndCoefficient(point, newK);
+        }
+    }
+
     private _A: number;
     private _B: number;
     private _C: number;
@@ -201,6 +231,19 @@ export class Line extends GeometryObject {
         this._B = B;
         this._C = C;
         return this;
+    }
+
+    protected copyFrom(line: Line): this {
+        const l = line.getGeneralForm();
+        this._A = l.A;
+        this._B = l.B;
+        this._C = l.C;
+        return this;
+    }
+
+    public clone(): Line {
+        const {A, B, C} = this.getGeneralForm();
+        return Line.FromGeneralForm(A, B, C);
     }
 
     private aIsZero(): boolean {
@@ -265,6 +308,12 @@ export class Line extends GeometryObject {
         return <this>Line.FromTwoPoints(newPoints[0], newPoints[1]);
     }
 
+    public applyHomogeneousMatrix(matrix: number[][]): this {
+        const points = this.getTwoPoints();
+        const newPoints = points.map(point => point.applyHomogeneousMatrix(matrix));
+        return <this>Line.FromTwoPoints(newPoints[0], newPoints[1]);
+    }
+
     public reflectOverPoint(point: Point): this {
         throw "TODO";
     }
@@ -275,6 +324,30 @@ export class Line extends GeometryObject {
 
     public radialSymmetry(point: Point, count: number): this[] {
         throw "TODO";
+    }
+
+    private getPointPositionalSign(point: Point): number {
+        const l = this.getGeneralForm();
+        const p = point.getCartesianCoordinates();
+        const result = l.A * p.x + l.B * p.y + l.C;
+        if (isZero(result)) {
+            return 0;
+        } else {
+            return result > 0 ? 1 : -1;
+        }
+    }
+
+    public pointsAreOnSameSide(point1: Point, point2: Point): boolean {
+        if (this.containsPoint(point1) || this.containsPoint(point2)) {
+            return false;
+        }
+        const sidePoint1: number = this.getPointPositionalSign(point1);
+        const sidePoint2: number = this.getPointPositionalSign(point2);
+        return sidePoint1 == sidePoint2;
+    }
+
+    public containsPoint(point: Point) {
+        return this.getPointPositionalSign(point) == 0;
     }
 
 }

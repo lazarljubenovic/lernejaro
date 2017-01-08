@@ -6,20 +6,15 @@ import {
     ElementRef,
     Input,
     ChangeDetectionStrategy,
-    OnChanges, Output, EventEmitter
+    OnChanges,
+    Output,
+    EventEmitter
 } from '@angular/core';
 import {CanvasRenderer} from '../planimetryts/renderers/canvas-renderer';
 import {RendererService} from './renderer.service';
 import {GeometryObject} from '../planimetryts/geometry-objects/geometry-object';
 import {Point} from '../planimetryts/geometry-objects/point';
 import {areEqualFloats} from '../planimetryts/util';
-
-function getCursorPosition(canvas, event): {x: number, y: number} {
-    let rect = canvas.getBoundingClientRect();
-    let x = event.clientX - rect.left;
-    let y = event.clientY - rect.top;
-    return {x, y};
-}
 
 @Component({
     selector: 'lrn-planimetrics',
@@ -52,6 +47,7 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
     }
 
     private render() {
+        this.interactivePoints.forEach(point => this.objects.add(point));
         this.renderer.render(this.objects);
     }
 
@@ -63,7 +59,10 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
         this.canvas.width = 600;
         this.canvas.height = 600; // TODO
         this.context = this.canvas.getContext('2d');
-        this.renderer.setRenderer(new CanvasRenderer(this.context));
+        this.renderer.setRenderer(new CanvasRenderer(this.canvas));
+        this.renderer.mouseDown$.subscribe(this.onMouseDown.bind(this));
+        this.renderer.mouseDrag$.subscribe(this.onMouseDrag.bind(this));
+        this.renderer.mouseUp$.subscribe(this.onMouseUp.bind(this));
         this.render();
     }
 
@@ -73,37 +72,27 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
         }
     }
 
-    public isMouseDown: boolean = false;
-    public currentPoint: Point = null;
+    private currentPoint: Point = null;
 
-    public onMouseUp(event: MouseEvent) {
-        this.isMouseDown = false;
+    private onMouseUp(position: Coordinate) {
         this.currentPoint = null;
     }
 
-    public onMouseLeave(event: MouseEvent) {
-        this.onMouseUp(event);
+    private onMouseDown(position: Coordinate) {
+        const {x, y} = position;
+        console.log('click', position.x, position.y);
+        this.currentPoint = this.getPointAt(x, y);
     }
 
-    public onMouseDown(event: MouseEvent) {
-        this.isMouseDown = true;
-        const clickPosition = getCursorPosition(this.canvas, event);
-        this.currentPoint = this.getPointAt(clickPosition.x, clickPosition.y);
-        console.log('click on', clickPosition.x, clickPosition.y, 'selected', this.currentPoint);
-    }
-
-    public onMouseMove(event: MouseEvent) {
-        if (this.isMouseDown) {
-            if (this.currentPoint) {
-                // Drag a point
-                this.currentPoint
-                    .x(x => x + event.movementX)
-                    .y(y => y + event.movementY);
-                this.interactivePointsChange.emit(this.interactivePoints);
-            } else {
-                // Move around
-                // TODO
-            }
+    private onMouseDrag(offset: {logic: Offset, canvas: Offset}) {
+        if (this.currentPoint != null) {
+            const {dx, dy} = offset.logic;
+            this.currentPoint.x(x => x + dx).y(y => y + dy);
+            this.interactivePointsChange.emit(this.interactivePoints);
+        } else {
+            const {dx, dy} = offset.canvas;
+            this.renderer.move(dx, dy);
+            this.render();
         }
     }
 

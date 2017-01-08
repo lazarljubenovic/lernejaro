@@ -1,5 +1,16 @@
 import {Matrix} from '../matrix';
+import {areEqualFloats} from '../../util';
+
+
+const customEqualities = function (first: any, second: any) {
+    if (typeof first == 'number' && typeof second == 'number') {
+        return areEqualFloats(first, second);
+    }
+};
+
 describe(`Matrix`, () => {
+
+    beforeEach(() => jasmine.addCustomEqualityTester(customEqualities));
 
     it(`should transpose a matrix`, () => {
         const a = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
@@ -38,6 +49,28 @@ describe(`Matrix`, () => {
                 [6, 12, 18, 24, 30, 36],
             ]
         );
+    });
+
+    it(`should generate identity matrices`, () => {
+        const i1 = [[1]];
+        const i2 = [[1, 0], [0, 1]];
+        const i3 = [[1, 0, 0], [0, 1, 0], [0, 0, 1]];
+        expect(Matrix.GetIdentity(1)).toEqual(i1);
+        expect(Matrix.GetIdentity(2)).toEqual(i2);
+        expect(Matrix.GetIdentity(3)).toEqual(i3);
+    });
+
+    it(`should get homogeneous inverse for I3`, () => {
+        const M = Matrix.GetIdentity(3);
+        const actual = Matrix.HomogeneousInverse(M);
+        expect(actual).toEqual(M);
+    });
+
+    it(`should get homogeneous inverse for translation`, () => {
+        const A = Matrix.Homogeneous.Translate(1, 2);
+        const E = Matrix.Homogeneous.Translate(-1, -2);
+        expect(Matrix.HomogeneousInverse(A)).toEqual(E);
+        expect(Matrix.HomogeneousInverse(E)).toEqual(A);
     });
 
 });

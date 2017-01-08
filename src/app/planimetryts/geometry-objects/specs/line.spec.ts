@@ -326,4 +326,150 @@ describe(`Line`, () => {
         expect(line.getTwoPoints()).toEqual([point1, point2]);
     });
 
+    it(`should create line parallel to a line and through point`, () => {
+        const line = Line.FromSegmentForm(-4, 2);
+        const point = Point.FromCartesianCoordinates(-4, 2);
+        const expected = Line.FromSegmentForm(-8, 4);
+        const actual = Line.ParallelThroughPoint(line, point);
+        expect(actual).toEqual(expected);
+    });
+
+    it(`should create line parallel to horizontal line`, () => {
+        const line = Line.HorizontalThroughPoint(1);
+        const point = Point.FromCartesianCoordinates(2, 2);
+        const expected = Line.HorizontalThroughPoint(2);
+        const actual = Line.ParallelThroughPoint(line, point);
+        expect(actual).toEqual(expected);
+    });
+
+    it(`should create line parallel to vertical line`, () => {
+        const line = Line.VerticalThroughPoint(1);
+        const point = Point.FromCartesianCoordinates(2, 2);
+        const expected = Line.VerticalThroughPoint(2);
+        const actual = Line.ParallelThroughPoint(line, point);
+        expect(actual).toEqual(expected);
+    });
+
+    it(`should create line orthogonal to a line`, () => {
+        const line = Line.FromSegmentForm(-4, 2);
+        const point = Point.FromCartesianCoordinates(-4, 2);
+        const expected = Line.FromSegmentForm(-3, -6);
+        const actual = Line.OrthogonalThroughPoint(line, point);
+        expect(actual).toEqual(expected);
+    });
+
+    it(`should create line orthogonal to horizontal line`, () => {
+        const line = Line.HorizontalThroughPoint(1);
+        const point = Point.FromCartesianCoordinates(2, 2);
+        const expected = Line.VerticalThroughPoint(2);
+        const actual = Line.OrthogonalThroughPoint(line, point);
+        expect(actual).toEqual(expected);
+    });
+
+    it(`should create line orthogonal to vertical line`, () => {
+        const line = Line.VerticalThroughPoint(1);
+        const point = Point.FromCartesianCoordinates(2, 2);
+        const expected = Line.HorizontalThroughPoint(2);
+        const actual = Line.OrthogonalThroughPoint(line, point);
+        expect(actual).toEqual(expected);
+    });
+
+    it(`should report that a point is on a line`, () => {
+        const line = Line.FromSegmentForm(-3, -6);
+        const point = Point.FromCartesianCoordinates(-4, 2);
+        expect(line.containsPoint(point)).toBe(true);
+    });
+
+    it(`should report that a point is on a vertical line`, () => {
+        const point = Point.FromCartesianCoordinates(1, 1);
+        const line = Line.VerticalThroughPoint(point);
+        expect(line.containsPoint(point)).toBe(true);
+    });
+
+    it(`should report that a point is on a horizotal line`, () => {
+        const point = Point.FromCartesianCoordinates(1, 1);
+        const line = Line.HorizontalThroughPoint(point);
+        expect(line.containsPoint(point)).toBe(true);
+    });
+
+    it(`should report that a point is not on a line`, () => {
+        const line = Line.FromSegmentForm(-4, -2);
+        const point = Point.FromCartesianCoordinates(1, 1);
+        expect(line.containsPoint(point)).toBe(false);
+    });
+
+    it(`should report that a point is not on a horizontal line`, () => {
+        const point = Point.FromCartesianCoordinates(2, 2);
+        const line = Line.HorizontalThroughPoint(1);
+        expect(line.containsPoint(point)).toBe(false);
+    });
+
+    it (`should report that a point is not on a vertical line`, () => {
+        const point = Point.FromCartesianCoordinates(2, 2);
+        const line = Line.VerticalThroughPoint(1);
+        expect(line.containsPoint(point)).toBe(false);
+    });
+
+    it(`should report that points are on the same side of a line`, () => {
+        const point1 = Point.FromCartesianCoordinates(2, 1);
+        const point2 = Point.FromCartesianCoordinates(-1, -3);
+        const line = Line.Y_EQUALS_X;
+        expect(line.pointsAreOnSameSide(point1, point2)).toBe(true);
+    });
+
+    it(`should report that points are not on the same side of a line`, () => {
+        const point1 = Point.FromCartesianCoordinates(2, 1);
+        const point2 = Point.FromCartesianCoordinates(-2, -1);
+        const line = Line.Y_EQUALS_X;
+        expect(line.pointsAreOnSameSide(point1, point2)).toBe(false);
+    });
+
+    it(`should report that point on a line is not one the same side with another point`, () => {
+        const line = Line.Y_EQUALS_X;
+        const point1 = Point.FromCartesianCoordinates(1, 1);
+
+        const point2 = Point.FromCartesianCoordinates(2, 1);
+        expect(line.pointsAreOnSameSide(point1, point2)).toBe(false);
+
+        const point3 = Point.FromCartesianCoordinates(2, 2);
+        expect(line.pointsAreOnSameSide(point1, point2)).toBe(false);
+    });
+
+    it(`should report that points are on the same side of horizontal line`, () => {
+        const line = Line.X_AXIS;
+        const point1 = Point.FromCartesianCoordinates(-1, 1);
+        const point2 = Point.FromCartesianCoordinates(1, 1);
+        expect(line.pointsAreOnSameSide(point1, point2)).toBe(true);
+    });
+
+    it(`should report that points are not on the same side of a horizontal line`, () => {
+        const line = Line.X_AXIS;
+        const point1 = Point.FromCartesianCoordinates(1, 1);
+        const point2 = Point.FromCartesianCoordinates(1, -1);
+        expect(line.pointsAreOnSameSide(point1, point2)).toBe(false);
+    });
+
+    it(`should report that points are on the same side of a vertical line`, () => {
+        const line = Line.Y_AXIS;
+        const point1 = Point.FromCartesianCoordinates(1, 1);
+        const point2 = Point.FromCartesianCoordinates(1, -1);
+        expect(line.pointsAreOnSameSide(point1, point2)).toBe(true);
+    });
+
+    it(`should report that points are not on the same side of a vertical line`, () => {
+        const line = Line.Y_AXIS;
+        const point1 = Point.FromCartesianCoordinates(1, 1);
+        const point2 = Point.FromCartesianCoordinates(-1, 1);
+        expect(line.pointsAreOnSameSide(point1, point2)).toBe(false);
+    });
+
+    it(`should get bisector`, () => {
+        const vertex = Point.CENTER;
+        const arm1 = Point.FromCartesianCoordinates(1, 1);
+        const arm2 = Point.FromCartesianCoordinates(1, -1);
+        const expected = Line.X_AXIS;
+        expect(Line.GetBisector(vertex, arm1, arm2)).toEqual(expected);
+        expect(Line.GetBisector(vertex, arm2, arm1)).toEqual(expected);
+    })
+
 });

@@ -21,10 +21,23 @@ export class Point extends GeometryObject {
         return new Point(x, y, label);
     }
 
+    /**
+     * Works for both regular and homogeneous matrix coordinates.
+     * @param matrix
+     * @param label
+     * @returns {Point}
+     * @constructor
+     */
     public static FromMatrix(matrix: number[][], label?: string): Point {
         const x = matrix[0][0];
         const y = matrix[1][0];
-        return new Point(x, y, label);
+        let z;
+        if (matrix.length == 2) {
+            z = 1;
+        } else {
+            z = matrix[2][0];
+        }
+        return new Point(x, y / z, label);
     }
 
     public static Negative(point: Point): Point {
@@ -78,11 +91,6 @@ export class Point extends GeometryObject {
         return this;
     }
 
-    private copyFrom(point: Point): this {
-        this.x(point.x()).y(point.y()).label(point.label());
-        return this;
-    }
-
     public x(): number;
     public x(x: number): this;
     public x(fn: (x: number) => number): this;
@@ -115,24 +123,34 @@ export class Point extends GeometryObject {
         }
     }
 
+    protected copyFrom(point: Point): this {
+        this._x = point._x;
+        this._y = point._y;
+        return this;
+    }
+
     public clone(): Point {
-        let clone: Point;
-        return clone.copyFrom(this);
+        const {x, y} = this.getCartesianCoordinates();
+        return Point.FromCartesianCoordinates(x, y);
     }
 
     public getMatrixCoordinates(): [[number], [number]] {
         return [[this._x], [this._y]];
     }
 
+    public getHomogeneousMatrixCoordinates(): [[number], [number], [number]] {
+        return [[this._x], [this._y], [1]];
+    }
+
     public getPolarCoordinates(): {r: number, φ: number} {
         return cartesianToPolar(this._x, this._y);
     }
 
-    public getCartesianCoordinates(): {x: number, y: number} {
+    public getCartesianCoordinates(): Coordinate {
         return {x: this._x, y: this._y};
     }
 
-    public translate(point: Point): this {
+    public translateByPoint(point: Point): this {
         return this.copyFrom(Point.Add(this, point));
     }
 
@@ -141,7 +159,14 @@ export class Point extends GeometryObject {
     }
 
     public applyMatrix(matrix: number[][]): this {
-        const newMatrix = Matrix.Multiply(matrix, this.getMatrixCoordinates());
+        const matrixCoordinates = this.getMatrixCoordinates();
+        const newMatrix = Matrix.Multiply(matrix, matrixCoordinates);
+        return this.copyFrom(Point.FromMatrix(newMatrix));
+    }
+
+    public applyHomogeneousMatrix(matrix: number[][]): this {
+        const homogeneousCoordinates = this.getHomogeneousMatrixCoordinates();
+        const newMatrix = Matrix.Multiply(matrix, homogeneousCoordinates);
         return this.copyFrom(Point.FromMatrix(newMatrix));
     }
 

@@ -15,9 +15,9 @@ export class IntroducingGeometryComponent implements OnInit {
     public objects: Set<GeometryObject>;
 
     public interactivePoints: Point[] = [
-        Point.FromCartesianCoordinates(400, 200),
-        Point.FromCartesianCoordinates(250, 500),
-        Point.FromCartesianCoordinates(50, 50),
+        Point.FromCartesianCoordinates(-200, -200),
+        Point.FromCartesianCoordinates(200, -200),
+        Point.FromCartesianCoordinates(30, 200),
     ];
 
     public evaluateObjects(...points: Point[]): void {
@@ -27,17 +27,15 @@ export class IntroducingGeometryComponent implements OnInit {
         const segmentAB = Segment.FromTwoPoints(A, B);
         const segmentBC = Segment.FromTwoPoints(B, C);
         const segmentCA = Segment.FromTwoPoints(C, A);
-        const lineAB = Line.FromTwoPoints(A, B);
-        const lineBC = Line.FromTwoPoints(B, C);
-        const lineCA = Line.FromTwoPoints(C, A);
-        const bisector1: Line = Line.GetBisectors(lineAB, lineBC)[0];
-        const bisector2: Line = Line.GetBisectors(lineBC, lineCA)[0];
-        const bisector3: Line = Line.GetBisectors(lineCA, lineAB)[0];
-        const intersection: Point = Line.GetIntersection(bisector1, bisector2);
+        const bisectorA: Line = Line.GetBisector(A, B, C);
+        const bisectorB: Line = Line.GetBisector(B, A, C);
+        const bisectorC: Line = Line.GetBisector(C, A, B);
+        const intersection: Point = Line.GetIntersection(bisectorA, bisectorB);
+        const inscribedCircle = Circle.FromCenterAndLine(intersection, segmentAB.getLine());
         this.objects = new Set<GeometryObject>()
             .add(segmentAB).add(segmentBC).add(segmentCA)
-            .add(bisector1).add(bisector2).add(bisector3)
-            .add(intersection);
+            .add(bisectorA).add(bisectorB).add(bisectorC)
+            .add(intersection).add(inscribedCircle);
     }
 
     public onInteractivePointsChange(points: Point[]): void {

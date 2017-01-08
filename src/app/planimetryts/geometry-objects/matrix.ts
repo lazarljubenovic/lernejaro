@@ -18,9 +18,36 @@ export namespace Matrix {
         return matrix[0].map((_, i) => matrix.map(x => x[i]));
     }
 
-    // export function GetIdentity(dimension: number): number[][] {
-    // TODO
-    // }
+    export function GetIdentity(dimension: number): number[][] {
+        return Array(dimension).fill(null)
+            .map((_, i) => Array(dimension).fill(null)
+                .map((_, j) => i == j ? 1 : 0));
+    }
+
+    /**
+     * Assumes that matrix has the following form.
+     *
+     * a c e
+     * b d f
+     * 0 0 1
+     *
+     * @param matrix
+     * @constructor
+     */
+    export function HomogeneousInverse(matrix: number[][]): number[][] {
+        const a = matrix[0][0];
+        const c = matrix[0][1];
+        const e = matrix[0][2];
+        const b = matrix[1][0];
+        const d = matrix[1][1];
+        const f = matrix[1][2];
+        const λ = 1 / (a * d - b * c);
+        return [
+            [d, -c, c * f - d * e],
+            [-b, a, b * e - a * f],
+            [0, 0, 1],
+        ].map(_ => _.map(el => el * λ));
+    }
 
     export function StretchX(k: number): number[][] {
         return [[k, 0], [0, 1]];
@@ -46,6 +73,48 @@ export namespace Matrix {
 
     export function ShearY(k: number): number[][] {
         return [[1, 0], [k, 1]];
+    }
+
+    export namespace Homogeneous {
+
+        export function TranslateX(dx: number): number[][] {
+            return [[1, 0, dx], [0, 1, 0], [0, 0, 1]];
+        }
+
+        export function TranslateY(dy: number): number[][] {
+            return [[1, 0, 0], [0, 1, dy], [0, 0, 1]];
+        }
+
+        export function Translate(dx: number, dy: number): number[][] {
+            return [[1, 0, dx], [0, 1, dy], [0, 0, 1]];
+        }
+
+        export function StretchX(k: number): number[][] {
+            return [[k, 0, 0], [0, 1, 0], [0, 0, 1]];
+        }
+
+        export function StretchY(k: number): number[][] {
+            return [[1, 0, 0], [0, k, 0], [0, 0, 1]];
+        }
+
+        export function Stretch(k: number): number[][] {
+            return [[k, 0, 0], [0, k, 0], [0, 0, 1]];
+        }
+
+        export function Rotate(θ: number): number[][] {
+            const c = Math.cos(θ);
+            const s = Math.sin(θ);
+            return [[c, s, 0], [-s, c, 0], [0, 0, 1]];
+        }
+
+        export function ShearX(k: number): number[][] {
+            return [[1, k, 0], [0, 1, 0], [0, 0, 1]];
+        }
+
+        export function ShearY(k: number): number[][] {
+            return [[1, 0, 0], [k, 1, 0], [0, 0, 1]];
+        }
+
     }
 
 }

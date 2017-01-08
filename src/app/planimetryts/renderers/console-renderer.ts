@@ -4,8 +4,6 @@ import {Segment} from '../geometry-objects/segment';
 import {Circle} from '../geometry-objects/circle';
 import {Line} from '../geometry-objects/line';
 
-type Coordinate = {x: number, y: number};
-
 export class ConsoleRenderer extends Renderer {
 
     private ctx: CanvasRenderingContext2D;

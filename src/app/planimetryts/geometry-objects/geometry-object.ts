@@ -1,6 +1,7 @@
 import {Line} from './line';
 import {Point} from './point';
 import {Matrix} from './matrix';
+import {MaterialColor} from './material-colors';
 
 export abstract class GeometryObject {
 
@@ -32,7 +33,25 @@ export abstract class GeometryObject {
         }
     }
 
+    protected abstract copyFrom(object: GeometryObject): this;
+
+    public abstract clone(): GeometryObject;
+
     public abstract applyMatrix(matrix: number[][]): this;
+
+    public abstract applyHomogeneousMatrix(matrix: number[][]): this;
+
+    public translateX(dx: number): this {
+        return this.applyHomogeneousMatrix(Matrix.Homogeneous.TranslateX(dx));
+    }
+
+    public translateY(dy: number): this {
+        return this.applyHomogeneousMatrix(Matrix.Homogeneous.TranslateY(dy));
+    }
+
+    public translate(dx: number, dy: number): this {
+        return this.applyHomogeneousMatrix(Matrix.Homogeneous.Translate(dx, dy));
+    }
 
     public stretchX(k: number): this {
         return this.applyMatrix(Matrix.StretchX(k));

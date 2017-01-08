@@ -1,4 +1,4 @@
-enum MaterialColor {
+export enum MaterialColor {
     RED,
     PINK,
     PURPLE,
