@@ -8,6 +8,8 @@ import {GeometryObject} from '../geometry-objects/geometry-object';
 import {Matrix} from '../geometry-objects/matrix';
 import {Subject} from 'rxjs';
 import {Polygon} from '../geometry-objects/polygon';
+import {MaterialColor} from './color';
+import {MaterialColor as MaterialColorEnum} from '../geometry-objects/material-colors';
 
 
 function getCursorPosition(canvas, event): Coordinate {
@@ -20,6 +22,7 @@ function getCursorPosition(canvas, event): Coordinate {
 export class CanvasRenderer extends Renderer {
 
     private secondaryRenderer: Renderer = new ConsoleRenderer();
+    private getColor = MaterialColor;
 
     private canvas: HTMLCanvasElement;
     private ctx: CanvasRenderingContext2D;
@@ -117,18 +120,38 @@ export class CanvasRenderer extends Renderer {
         this._drawAxis && this.drawAxis();
     }
 
+    protected renderLabel(label: string, position: Coordinate) {
+        if (label == null) {
+            return;
+        }
+        const {x, y} = position;
+        this.ctx.font = '12px monospace';
+        this.ctx.textBaseline = 'center';
+        this.ctx.fillStyle = 'black';
+        this.ctx.fillText(label, x, y);
+    }
+
     protected renderPoint(point: Point) {
         const clone = point.clone().applyHomogeneousMatrix(this._appliedMatrix);
         const {x, y} = clone.getCartesianCoordinates();
         this.ctx.save();
-        this.ctx.fillStyle = 'white';
-        this.ctx.strokeStyle = 'black';
+        let fillColor = point.color();
+        if (!fillColor) {
+            fillColor = MaterialColorEnum.BLUE_GREY; // should be class member
+        }
+        this.ctx.fillStyle = this.getColor(fillColor, 400);
+        let strokeColor = point.color();
+        if (!strokeColor) {
+            strokeColor = MaterialColorEnum.BLUE_GREY; // should be class member
+        }
+        this.ctx.strokeStyle = this.getColor(strokeColor, 800);
         this.ctx.lineWidth = 1;
         this.ctx.beginPath();
-        this.ctx.arc(x, y, 2, 0, 2 * Math.PI);
+        this.ctx.arc(x, y, 3, 0, 2 * Math.PI);
         this.ctx.fill();
         this.ctx.stroke();
         this.ctx.closePath();
+        this.renderLabel(point.label(), {x: x + 10, y: y + 10});
         this.ctx.restore();
     }
 

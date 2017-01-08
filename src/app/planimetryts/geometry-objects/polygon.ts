@@ -1,5 +1,6 @@
 import {GeometryObject} from './geometry-object';
 import {Point} from './point';
+import * as Chroma from 'chroma-js';
 import Color = Chroma.Color;
 import {Line} from './line';
 import {Angle} from './angle';

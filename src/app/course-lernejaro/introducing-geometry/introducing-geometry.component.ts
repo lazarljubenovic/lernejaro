@@ -5,6 +5,7 @@ import {Segment} from '../../planimetryts/geometry-objects/segment';
 import {Circle} from '../../planimetryts/geometry-objects/circle';
 import {Line} from '../../planimetryts/geometry-objects/line';
 import {Polygon} from '../../planimetryts/geometry-objects/polygon';
+import {MaterialColor} from '../../planimetryts/geometry-objects/material-colors';
 
 @Component({
     selector: 'lrn-introducing-geometry',
@@ -16,9 +17,12 @@ export class IntroducingGeometryComponent implements OnInit {
     public objects: Set<GeometryObject>;
 
     public interactivePoints: Point[] = [
-        Point.FromCartesianCoordinates(-200, -200),
-        Point.FromCartesianCoordinates(200, -200),
-        Point.FromCartesianCoordinates(30, 200),
+        Point.FromCartesianCoordinates(-200, -200)
+            .label('A').color(MaterialColor.AMBER),
+        Point.FromCartesianCoordinates(200, -200)
+            .label('B').color(MaterialColor.AMBER),
+        Point.FromCartesianCoordinates(30, 200)
+            .label('C').color(MaterialColor.AMBER),
     ];
 
     public evaluateObjects(...points: Point[]): void {

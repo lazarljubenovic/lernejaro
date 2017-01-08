@@ -14,7 +14,7 @@ export abstract class GeometryObject {
     public label(): string;
     public label(label: string): this;
     public label(label?: string): string | this {
-        if (label == null) {
+        if (arguments.length == 0) {
             return this._label;
         } else {
             this._label = label;
@@ -25,7 +25,7 @@ export abstract class GeometryObject {
     public color(): MaterialColor;
     public color(color: MaterialColor): this;
     public color(color?: MaterialColor): this | MaterialColor {
-        if (this.color == null) {
+        if (arguments.length == 0) {
             return this._color;
         } else {
             this._color = color;

@@ -1,3 +1,5 @@
+import * as Chroma from 'chroma-js';
+import {MaterialColor as MaterialColorEnum} from '../geometry-objects/material-colors';
 import Color = Chroma.Color;
 
 const materialColors: any = {
@@ -295,6 +297,76 @@ const materialColors: any = {
     }
 };
 
-export function MaterialColor(name: string, variant: string | number = 500): Color {
-    return chroma(materialColors[name.toLowerCase()][variant]);
+export function getByString(name: string,
+                            variant: string | number = 500): Color {
+    return Chroma(materialColors[name.toLowerCase()][variant]);
+}
+
+export function MaterialColor(name: MaterialColorEnum,
+                              variant: string | number = 500): Color {
+    let nameString: string;
+    switch (name) {
+        case MaterialColorEnum.AMBER:
+            nameString = 'amber';
+            break;
+        case MaterialColorEnum.BLUE:
+            nameString = 'blue';
+            break;
+        case MaterialColorEnum.BLUE_GREY:
+            nameString = 'blue-grey';
+            break;
+        case MaterialColorEnum.BROWN:
+            nameString = 'brown';
+            break;
+        case MaterialColorEnum.CYAN:
+            nameString = 'cyan';
+            break;
+        case MaterialColorEnum.DEEP_ORANGE:
+            nameString = 'deep-orange';
+            break;
+        case MaterialColorEnum.DEEP_PURPLE:
+            nameString = 'deep-purple';
+            break;
+        case MaterialColorEnum.GREEN:
+            nameString = 'green';
+            break;
+        case MaterialColorEnum.GREY:
+            nameString = 'grey';
+            break;
+        case MaterialColorEnum.INDIGO:
+            nameString = 'indigo';
+            break;
+        case MaterialColorEnum.LIGHT_BLUE:
+            nameString = 'light-blue';
+            break;
+        case MaterialColorEnum.LIGHT_GREEN:
+            nameString = 'light-green';
+            break;
+        case MaterialColorEnum.LIME:
+            nameString = 'lime';
+            break;
+        case MaterialColorEnum.ORANGE:
+            nameString = 'orange';
+            break;
+        case MaterialColorEnum.PINK:
+            nameString = 'pink';
+            break;
+        case MaterialColorEnum.PURPLE:
+            nameString = 'purple';
+            break;
+        case MaterialColorEnum.RED:
+            nameString = 'red';
+            break;
+        case MaterialColorEnum.TEAL:
+            nameString = 'teal';
+            break;
+        case MaterialColorEnum.YELLOW:
+            nameString = 'yellow';
+            break;
+        default:
+            console.log("Unknown color", name, "using pink instead");
+            nameString = 'pink';
+            break;
+    }
+    return getByString(nameString, variant);
 }

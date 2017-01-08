@@ -80,7 +80,6 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
 
     private onMouseDown(position: Coordinate) {
         const {x, y} = position;
-        console.log('click', position.x, position.y);
         this.currentPoint = this.getPointAt(x, y);
     }
 

@@ -126,12 +126,16 @@ export class Point extends GeometryObject {
     protected copyFrom(point: Point): this {
         this._x = point._x;
         this._y = point._y;
+        this._color = point._color;
+        this._label = point._label;
         return this;
     }
 
-    public clone(): Point {
+    public clone() {
         const {x, y} = this.getCartesianCoordinates();
-        return Point.FromCartesianCoordinates(x, y);
+        const label = this._label;
+        const color = this._color;
+        return new Point(x, y, label).color(color);
     }
 
     public getMatrixCoordinates(): [[number], [number]] {
@@ -161,13 +165,15 @@ export class Point extends GeometryObject {
     public applyMatrix(matrix: number[][]): this {
         const matrixCoordinates = this.getMatrixCoordinates();
         const newMatrix = Matrix.Multiply(matrix, matrixCoordinates);
-        return this.copyFrom(Point.FromMatrix(newMatrix));
+        const newPoint = Point.FromMatrix(newMatrix).color(this.color()).label(this.label());
+        return this.copyFrom(newPoint);
     }
 
     public applyHomogeneousMatrix(matrix: number[][]): this {
         const homogeneousCoordinates = this.getHomogeneousMatrixCoordinates();
         const newMatrix = Matrix.Multiply(matrix, homogeneousCoordinates);
-        return this.copyFrom(Point.FromMatrix(newMatrix));
+        const newPoint = Point.FromMatrix(newMatrix).label(this.label()).color(this.color())
+        return this.copyFrom(newPoint);
     }
 
     public reflectOverPoint(point: Point): this {
@@ -178,7 +184,7 @@ export class Point extends GeometryObject {
         if (line.isVertical()) {
             const d = Line.GetDistanceBetweenLineAndPoint(line, this);
             const l = line.getGeneralForm();
-            const isPointAboveLine: boolean = (- l.C / l.A) > this.y();
+            const isPointAboveLine: boolean = (-l.C / l.A) > this.y();
             return this.x(x => x - 2 * d * (isPointAboveLine ? -1 : +1));
         }
         const l = line.getExplicitForm();
