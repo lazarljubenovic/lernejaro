@@ -238,12 +238,14 @@ export class Line extends GeometryObject {
         this._A = l.A;
         this._B = l.B;
         this._C = l.C;
+        this._color = line.color();
+        this._label = line.label();
         return this;
     }
 
     public clone(): Line {
         const {A, B, C} = this.getGeneralForm();
-        return Line.FromGeneralForm(A, B, C);
+        return Line.FromGeneralForm(A, B, C).color(this._color).label(this._label);
     }
 
     private aIsZero(): boolean {

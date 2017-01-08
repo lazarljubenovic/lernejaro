@@ -22,30 +22,36 @@ export class Segment extends GeometryObject {
 
     protected copyFrom(segment: Segment): this {
         [this._point1, this._point2] = segment.getPoints();
+        this._label = segment._label;
+        this._color = segment._color;
         return this;
     }
 
     public clone(): Segment {
         const point1 = this._point1.clone();
         const point2 = this._point2.clone();
-        return Segment.FromTwoPoints(point1, point2);
+        return Segment.FromTwoPoints(point1, point2)
+            .label(this._label).color(this._color);
     }
 
     public getPoints(): Point[] {
         return [this._point1, this._point2];
     }
 
-    // TODO: Why does this return enw instead of mutate? also below
     public applyMatrix(matrix: number[][]): this {
         const points = this.getPoints();
         const newPoints = points.map(point => point.applyMatrix(matrix));
-        return <this>Segment.FromTwoPoints(newPoints[1], newPoints[2]);
+        const newSegment = Segment.FromTwoPoints(newPoints[0], newPoints[1])
+                .label(this._label).color(this._color);
+        return <this>this.copyFrom(newSegment);
     }
 
     public applyHomogeneousMatrix(matrix: number[][]): this {
         const points = this.getPoints();
         const newPoints = points.map(point => point.applyHomogeneousMatrix(matrix));
-        return <this>Segment.FromTwoPoints(newPoints[0], newPoints[1]);
+        const newSegment = Segment.FromTwoPoints(newPoints[0], newPoints[1])
+            .label(this._label).color(this._color);
+        return <this>this.copyFrom(newSegment);
     }
 
     public reflectOverPoint(point: Point): this {

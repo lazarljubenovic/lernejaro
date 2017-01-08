@@ -38,12 +38,16 @@ export class Polygon extends GeometryObject {
 
     protected copyFrom(polygon: Polygon): this {
         this._vertices = polygon._vertices;
+        this._label = polygon._label;
+        this._color = polygon._color;
         return this;
     }
 
     public clone(): Polygon {
         const clones = this._vertices.map(p => p.clone());
-        return Polygon.FromVertices(...clones);
+        return Polygon.FromVertices(...clones)
+            .label(this._label)
+            .color(this._color);
     }
 
     public getArea(): number {

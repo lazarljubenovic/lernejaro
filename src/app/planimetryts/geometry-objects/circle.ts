@@ -104,12 +104,14 @@ export class Circle extends GeometryObject {
     protected copyFrom(circle: Circle): this {
         this.radius(circle.radius());
         this._center = circle.center();
+        this._label = circle.label();
+        this._color = circle.color();
         return this;
     }
 
     public clone(): Circle {
         const {p, q, r} = this.getGeneralForm();
-        return Circle.FromGeneralForm(p, q, r);
+        return Circle.FromGeneralForm(p, q, r).label(this._label).color(this._color);
     }
 
     public getGeneralForm(): {p: number, q: number, r: number} {

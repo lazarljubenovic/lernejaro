@@ -31,10 +31,10 @@ export class IntroducingGeometryComponent implements OnInit {
         const C = points[2];
         const polygon = Polygon.FromVertices(A, B, C);
         const segmentAB = Segment.FromTwoPoints(A, B);
-        const bisectorA: Line = Line.GetBisector(A, B, C);
-        const bisectorB: Line = Line.GetBisector(B, A, C);
-        const bisectorC: Line = Line.GetBisector(C, A, B);
-        const intersection: Point = Line.GetIntersection(bisectorA, bisectorB);
+        const bisectorA: Line = Line.GetBisector(A, B, C).color(MaterialColor.RED);
+        const bisectorB: Line = Line.GetBisector(B, A, C).color(MaterialColor.GREEN);
+        const bisectorC: Line = Line.GetBisector(C, A, B).color(MaterialColor.BLUE);
+        const intersection: Point = Line.GetIntersection(bisectorA, bisectorB).color(MaterialColor.PINK);
         const inscribedCircle = Circle.FromCenterAndLine(intersection, segmentAB.getLine());
         this.objects = new Set<GeometryObject>()
             .add(polygon)

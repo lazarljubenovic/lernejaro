@@ -71,11 +71,17 @@ export class CanvasRenderer extends Renderer {
         return this.applyMatrix(Matrix.Homogeneous.Stretch(value), true);
     }
 
+    private prepareContext() {
+        this.ctx.lineCap = 'round';
+        this.ctx.lineJoin = 'round';
+    }
+
     constructor(canvas: HTMLCanvasElement) {
         super();
         this.canvas = canvas;
         this.ctx = canvas.getContext('2d');
         this.registerEvents();
+        this.prepareContext();
 
         this.setIdentityMatrix();
 
@@ -136,12 +142,12 @@ export class CanvasRenderer extends Renderer {
         const {x, y} = clone.getCartesianCoordinates();
         this.ctx.save();
         let fillColor = point.color();
-        if (!fillColor) {
+        if (fillColor == null) {
             fillColor = MaterialColorEnum.BLUE_GREY; // should be class member
         }
         this.ctx.fillStyle = this.getColor(fillColor, 400);
         let strokeColor = point.color();
-        if (!strokeColor) {
+        if (strokeColor == null) {
             strokeColor = MaterialColorEnum.BLUE_GREY; // should be class member
         }
         this.ctx.strokeStyle = this.getColor(strokeColor, 800);
@@ -166,14 +172,25 @@ export class CanvasRenderer extends Renderer {
         }
         const [start, end]: Point[] = [from, to]
             .map(bound => Line.GetIntersection(line, bound));
-        this.renderSegment(Segment.FromTwoPoints(start, end));
+        const segment = Segment.FromTwoPoints(start, end)
+            .label(line.label())
+            .color(line.color());
+        this.renderSegment(segment);
     }
 
     protected renderSegment(segment: Segment): void {
-        const clone = segment.clone().applyHomogeneousMatrix(this._appliedMatrix);
-        const [start, end] = clone.getPoints().map(point => point.getCartesianCoordinates());
+        const clone = segment.clone()
+            .applyHomogeneousMatrix(this._appliedMatrix);
+        const [start, end] = clone.getPoints().map(point => {
+            return point.getCartesianCoordinates();
+        });
+
         this.ctx.save();
-        this.ctx.strokeStyle = 'black';
+        let strokeColor = segment.color();
+        if (strokeColor == null) {
+            strokeColor = MaterialColorEnum.BLUE_GREY; // should be class member
+        }
+        this.ctx.strokeStyle = this.getColor(strokeColor, 700);
         this.ctx.lineWidth = 1;
         this.ctx.beginPath();
         this.ctx.moveTo(start.x, start.y);
