@@ -69,7 +69,6 @@ export class Point extends GeometryObject {
 
     protected _x: number;
     protected _y: number;
-    protected _label: string;
 
     constructor(x: number, y: number, label?: string) {
         super('point');
@@ -112,17 +111,6 @@ export class Point extends GeometryObject {
             } else {
                 this._y = y(this._y);
             }
-            return this;
-        }
-    }
-
-    public label(): string;
-    public label(label: string): this;
-    public label(label?: string): string | this {
-        if (label == null) {
-            return this._label;
-        } else {
-            this._label = label;
             return this;
         }
     }

@@ -70,6 +70,10 @@
     magic-string "^0.16.0"
     source-map "^0.5.6"
 
+"@types/chroma-js@^1.1.32":
+  version "1.1.32"
+  resolved "https://registry.yarnpkg.com/@types/chroma-js/-/chroma-js-1.1.32.tgz#0ba1996df55b344e3557eaecf203bd07e1807d11"
+
 "@types/jasmine@^2.2.30", "@types/jasmine@^2.2.31":
   version "2.5.40"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.5.40.tgz#875c7ae739dcab1342794f51231c4aadcda6eb79"
@@ -880,6 +884,10 @@ chokidar@^1.4.1, chokidar@^1.4.3, chokidar@^1.6.0:
     readdirp "^2.0.0"
   optionalDependencies:
     fsevents "^1.0.0"
+
+chroma-js@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/chroma-js/-/chroma-js-1.2.1.tgz#83d44f1aa5c7633e2de3d2c143b9089fc22ba987"
 
 cipher-base@^1.0.0, cipher-base@^1.0.1:
   version "1.0.3"

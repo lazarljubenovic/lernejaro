@@ -4,7 +4,32 @@ import {Matrix} from './matrix';
 
 export abstract class GeometryObject {
 
+    protected _color: MaterialColor;
+    protected _label: string;
+
     constructor(public kind: string) {
+    }
+
+    public label(): string;
+    public label(label: string): this;
+    public label(label?: string): string | this {
+        if (label == null) {
+            return this._label;
+        } else {
+            this._label = label;
+            return this;
+        }
+    }
+
+    public color(): MaterialColor;
+    public color(color: MaterialColor): this;
+    public color(color?: MaterialColor): this | MaterialColor {
+        if (this.color == null) {
+            return this._color;
+        } else {
+            this._color = color;
+            return this;
+        }
     }
 
     public abstract applyMatrix(matrix: number[][]): this;
@@ -34,7 +59,9 @@ export abstract class GeometryObject {
     }
 
     public abstract reflectOverPoint(point: Point): this;
+
     public abstract reflectOverLine(line: Line): this;
+
     public abstract radialSymmetry(point: Point, count: number): this[];
 
 }
