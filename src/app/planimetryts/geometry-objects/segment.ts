@@ -35,6 +35,7 @@ export class Segment extends GeometryObject {
         return [this._point1, this._point2];
     }
 
+    // TODO: Why does this return enw instead of mutate? also below
     public applyMatrix(matrix: number[][]): this {
         const points = this.getPoints();
         const newPoints = points.map(point => point.applyMatrix(matrix));

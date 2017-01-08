@@ -3,6 +3,7 @@ import {Point} from './point';
 import Color = Chroma.Color;
 import {Line} from './line';
 import {Angle} from './angle';
+import {Segment} from './segment';
 
 export class Polygon extends GeometryObject {
 
@@ -15,6 +16,33 @@ export class Polygon extends GeometryObject {
     constructor(...points: Point[]) {
         super('polygon');
         this._vertices = points;
+    }
+
+    public vertices(): Point[] {
+        return this._vertices.map(point => point.clone());
+    }
+
+    public segments(): Segment[] {
+        let vertices = this.vertices();
+        vertices.push(vertices[0]);
+        let segments: Segment[] = [];
+        for (let i = 0; i < vertices.length - 1; i++) {
+            const curr = vertices[i];
+            const next = vertices[i + 1];
+            const segment = Segment.FromTwoPoints(curr, next);
+            segments.push(segment);
+        }
+        return segments;
+    }
+
+    protected copyFrom(polygon: Polygon): this {
+        this._vertices = polygon._vertices;
+        return this;
+    }
+
+    public clone(): Polygon {
+        const clones = this._vertices.map(p => p.clone());
+        return Polygon.FromVertices(...clones);
     }
 
     public getArea(): number {
@@ -35,7 +63,17 @@ export class Polygon extends GeometryObject {
     }
 
     public applyMatrix(matrix: number[][]): this {
-        throw "TODO Polygon#applyMatrix";
+        this._vertices.forEach(point => {
+            point.applyMatrix(matrix);
+        });
+        return this;
+    }
+
+    public applyHomogeneousMatrix(matrix: number[][]): this {
+        this._vertices.forEach(point => {
+            point.applyHomogeneousMatrix(matrix);
+        });
+        return this;
     }
 
     public radialSymmetry(point: Point): this[] {

@@ -7,6 +7,7 @@ import {ConsoleRenderer} from './console-renderer';
 import {GeometryObject} from '../geometry-objects/geometry-object';
 import {Matrix} from '../geometry-objects/matrix';
 import {Subject} from 'rxjs';
+import {Polygon} from '../geometry-objects/polygon';
 
 
 function getCursorPosition(canvas, event): Coordinate {
@@ -131,7 +132,7 @@ export class CanvasRenderer extends Renderer {
         this.ctx.restore();
     }
 
-    protected renderLine(line: Line) {
+    protected renderLine(line: Line): void {
         let from, to;
         if (line.isVertical()) {
             from = Line.HorizontalThroughPoint(-1000);
@@ -145,7 +146,7 @@ export class CanvasRenderer extends Renderer {
         this.renderSegment(Segment.FromTwoPoints(start, end));
     }
 
-    protected renderSegment(segment: Segment) {
+    protected renderSegment(segment: Segment): void {
         const clone = segment.clone().applyHomogeneousMatrix(this._appliedMatrix);
         const [start, end] = clone.getPoints().map(point => point.getCartesianCoordinates());
         this.ctx.save();
@@ -159,7 +160,7 @@ export class CanvasRenderer extends Renderer {
         this.ctx.restore();
     }
 
-    protected renderCircle(circle: Circle) {
+    protected renderCircle(circle: Circle): void {
         const clone = circle.clone().applyHomogeneousMatrix(this._appliedMatrix);
         const c = clone.getGeneralForm();
         this.ctx.save();
@@ -170,6 +171,12 @@ export class CanvasRenderer extends Renderer {
         this.ctx.stroke();
         this.ctx.closePath();
         this.ctx.restore();
+    }
+
+    protected renderPolygon(polygon: Polygon): void {
+        const p = polygon.segments().forEach(segment => {
+            this.renderSegment(segment);
+        });
     }
 
     private isMouseDown;

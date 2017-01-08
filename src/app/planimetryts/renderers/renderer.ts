@@ -3,6 +3,7 @@ import {Point} from '../geometry-objects/point';
 import {Line} from '../geometry-objects/line';
 import {Segment} from '../geometry-objects/segment';
 import {Circle} from '../geometry-objects/circle';
+import {Polygon} from '../geometry-objects/polygon';
 
 export abstract class Renderer {
 
@@ -13,6 +14,8 @@ export abstract class Renderer {
     protected abstract renderSegment(segment: Segment);
 
     protected abstract renderCircle(circle: Circle);
+
+    protected abstract renderPolygon(polygon: Polygon);
 
     protected beforeObjectsRender(objects: Set<GeometryObject>) {
         // Do nothing
@@ -46,6 +49,10 @@ export abstract class Renderer {
                     break;
                 case 'circle':
                     this.renderCircle(<Circle>object);
+                    break;
+                case 'polygon':
+                    this.renderPolygon(<Polygon>object);
+                    break;
             }
             this.afterEachObjectRender(object);
         });

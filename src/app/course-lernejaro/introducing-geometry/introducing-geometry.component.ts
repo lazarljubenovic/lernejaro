@@ -4,6 +4,7 @@ import {Point} from '../../planimetryts/geometry-objects/point';
 import {Segment} from '../../planimetryts/geometry-objects/segment';
 import {Circle} from '../../planimetryts/geometry-objects/circle';
 import {Line} from '../../planimetryts/geometry-objects/line';
+import {Polygon} from '../../planimetryts/geometry-objects/polygon';
 
 @Component({
     selector: 'lrn-introducing-geometry',
@@ -24,16 +25,15 @@ export class IntroducingGeometryComponent implements OnInit {
         const A = points[0];
         const B = points[1];
         const C = points[2];
+        const polygon = Polygon.FromVertices(A, B, C);
         const segmentAB = Segment.FromTwoPoints(A, B);
-        const segmentBC = Segment.FromTwoPoints(B, C);
-        const segmentCA = Segment.FromTwoPoints(C, A);
         const bisectorA: Line = Line.GetBisector(A, B, C);
         const bisectorB: Line = Line.GetBisector(B, A, C);
         const bisectorC: Line = Line.GetBisector(C, A, B);
         const intersection: Point = Line.GetIntersection(bisectorA, bisectorB);
         const inscribedCircle = Circle.FromCenterAndLine(intersection, segmentAB.getLine());
         this.objects = new Set<GeometryObject>()
-            .add(segmentAB).add(segmentBC).add(segmentCA)
+            .add(polygon)
             .add(bisectorA).add(bisectorB).add(bisectorC)
             .add(intersection).add(inscribedCircle);
     }
