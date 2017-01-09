@@ -6,21 +6,23 @@ import {CourseLernejaroComponent} from './course-lernejaro.component';
 import {RouterModule} from '@angular/router';
 import {MarkdownModule} from '../markdown/markdown.module';
 import {PresentationModule} from '../presentation/presentation.module';
-import { MarkdownMarkupComponent } from './markdown-markup/markdown-markup.component';
-import { IntroducingFlowchartsComponent } from './introducing-flowcharts/introducing-flowcharts.component';
+import {MarkdownMarkupComponent} from './markdown-markup/markdown-markup.component';
+import {IntroducingFlowchartsComponent} from './introducing-flowcharts/introducing-flowcharts.component';
 import {FlowchartModule} from '../flowchart/flowchart.module';
-import { IntroducingTablesComponent } from './introducing-tables/introducing-tables.component';
+import {IntroducingTablesComponent} from './introducing-tables/introducing-tables.component';
 import {TableModule} from '../table/table.module';
-import { IntroducingBitmapsComponent } from './introducing-bitmaps/introducing-bitmaps.component';
+import {IntroducingBitmapsComponent} from './introducing-bitmaps/introducing-bitmaps.component';
 import {BitmapModule} from '../bitmap/bitmap.module';
-import { IntroducingGeometryComponent } from './introducing-geometry/introducing-geometry.component';
+import {IntroducingGeometryComponent} from './introducing-geometry/introducing-geometry.component';
 import {PlanimetricsModule} from '../planimetrics/planimetrics.module';
 import {ChartModule} from '../chart/chart.module';
-import { IntroducingChartsComponent } from './introducing-charts/introducing-charts.component';
+import {IntroducingChartsComponent} from './introducing-charts/introducing-charts.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
     imports: [
         CommonModule,
+        FormsModule,
         LessonNavigatorModule,
         MarkdownModule,
         PresentationModule,

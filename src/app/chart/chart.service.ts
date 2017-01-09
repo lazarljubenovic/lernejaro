@@ -12,6 +12,11 @@ export class ChartService {
         this.reRender$.next();
     }
 
+    public onSizeChange() {
+        this.sizeChange$.next();
+    }
+
     public reRender$ = new Subject<void>();
+    public sizeChange$ = new Subject<void>();
 
 }

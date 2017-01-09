@@ -1,4 +1,12 @@
-import {Directive, ContentChildren, QueryList, ElementRef, Input} from '@angular/core';
+import {
+    Directive,
+    ContentChildren,
+    QueryList,
+    ElementRef,
+    Input,
+    AfterViewInit,
+    OnInit
+} from '@angular/core';
 import {ChartDataDirective} from './chart-data.directive';
 import {CanvasUtil} from './canvas-util';
 import {ChartService} from './chart.service';
@@ -24,7 +32,7 @@ interface Rectangle {
 @Directive({
     selector: 'lrn-chart[verticalBars]',
 })
-export class VerticalBarsDirective {
+export class VerticalBarsDirective implements OnInit, AfterViewInit {
 
     @Input() public displayScale: boolean = true;
     @Input() public displayGuidelines: boolean = true;
@@ -36,7 +44,9 @@ export class VerticalBarsDirective {
     @ContentChildren(ChartDataDirective)
     public set dataDirectives(value: QueryList<ChartDataDirective>) {
         this._dataDirectives = value;
-        this.render(value.toArray());
+        if (this.isReady) {
+            this.render(value.toArray());
+        }
     }
 
     private canvas: HTMLCanvasElement;
@@ -46,9 +56,16 @@ export class VerticalBarsDirective {
     }
 
     private prepare(): void {
-        this.canvas = document.createElement('canvas');
-        this.canvas.width = 600;
-        this.canvas.height = 600;
+        // create canvas if it doesn't exist
+        let canvas: HTMLCanvasElement = this.elementRef.nativeElement.getElementsByTagName('canvas')[0];
+        if (!canvas) {
+            canvas = document.createElement('canvas');
+        }
+        this.canvas = canvas;
+        const rect = this.elementRef.nativeElement.getBoundingClientRect();
+        const {width, height} = {width: rect.right - rect.left, height: rect.bottom - rect.top};
+        this.canvas.width = width;
+        this.canvas.height = height;
         this.elementRef.nativeElement.appendChild(this.canvas);
     }
 
@@ -56,6 +73,11 @@ export class VerticalBarsDirective {
         const {x, y, w, h} = this.getCanvasRect();
         const ctx = this.canvas.getContext('2d');
         ctx.clearRect(x, y, w, h);
+    }
+
+    private onResize(): void {
+        this.prepare();
+        this.render(this._dataDirectives.toArray());
     }
 
     /**
@@ -157,7 +179,6 @@ export class VerticalBarsDirective {
             ctx.stroke();
             ctx.closePath();
             currentY += step;
-            console.log(currentY, h);
         });
 
         ctx.restore();
@@ -176,7 +197,7 @@ export class VerticalBarsDirective {
         // TODO
     }
 
-    private render(bars: VerticalBar[]): void {
+    private render(bars: VerticalBar[] = this._dataDirectives.toArray()): void {
         this.clear();
         const {x, y, w, h} = this.getCanvasRect();
         const notches = this.getNotches(bars);
@@ -214,12 +235,22 @@ export class VerticalBarsDirective {
                 private chartService: ChartService) {
     }
 
-    ngOnInit() {
-        this.prepare();
+    private isReady: boolean = false;
 
+    ngOnInit() {
         this.chartService.reRender$.subscribe(() => {
-            this.render(this._dataDirectives.toArray())
+            this.render()
         });
+
+        this.chartService.sizeChange$.subscribe(() => {
+            this.onResize();
+        });
+    }
+
+    ngAfterViewInit() {
+        this.prepare();
+        this.render();
+        this.isReady = true;
     }
 
 }

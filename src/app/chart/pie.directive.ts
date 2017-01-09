@@ -31,7 +31,6 @@ export class PieDirective {
 
     @ContentChildren(ChartDataDirective)
     public set dataDirectives(value: QueryList<ChartDataDirective>) {
-        console.log(value);
         this._dataDirectives = value;
         this.render(value.toArray());
     }
@@ -71,8 +70,8 @@ export class PieDirective {
             // console.log(current);
             const angle = previousAngle + mul * current.value;
             ctx.beginPath();
-            ctx.strokeStyle = getColor(current.color, '700');
-            ctx.fillStyle = getColor(current.color, '400');
+            ctx.strokeStyle = getColor(current.color, '600');
+            ctx.fillStyle = getColor(current.color, '300');
             ctx.moveTo(c.x, c.y);
             ctx.arc(c.x, c.y, radius, previousAngle, angle);
             ctx.lineTo(c.x, c.y);
