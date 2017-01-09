@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {ChartDataDirective} from './chart-data.directive';
 import {VerticalBarsDirective} from './vertical-bars.directive';
 import { ChartDirective } from './chart.directive';
+import { PieDirective } from './pie.directive';
 
 @NgModule({
     imports: [
@@ -12,12 +13,13 @@ import { ChartDirective } from './chart.directive';
         ChartDirective,
         ChartDataDirective,
         VerticalBarsDirective,
-        ChartDirective,
+        PieDirective,
     ],
     exports: [
         ChartDirective,
         ChartDataDirective,
         VerticalBarsDirective,
+        PieDirective,
     ],
 })
 export class ChartModule {
