@@ -68,6 +68,7 @@ export const LESSONS: Lesson[] = [
         name: 'Charts',
         color: LessonColor.DeepPurple,
         icon: LessonIcon.Magnet,
+        isUnlocked: true,
     },
     {
         id: '11',

@@ -15,6 +15,8 @@ import { IntroducingBitmapsComponent } from './introducing-bitmaps/introducing-b
 import {BitmapModule} from '../bitmap/bitmap.module';
 import { IntroducingGeometryComponent } from './introducing-geometry/introducing-geometry.component';
 import {PlanimetricsModule} from '../planimetrics/planimetrics.module';
+import {ChartModule} from '../chart/chart.module';
+import { IntroducingChartsComponent } from './introducing-charts/introducing-charts.component';
 
 @NgModule({
     imports: [
@@ -26,6 +28,7 @@ import {PlanimetricsModule} from '../planimetrics/planimetrics.module';
         TableModule,
         BitmapModule,
         PlanimetricsModule,
+        ChartModule,
         RouterModule.forChild([
             {
                 path: '',
@@ -55,6 +58,10 @@ import {PlanimetricsModule} from '../planimetrics/planimetrics.module';
                 path: '9-Geometry',
                 component: IntroducingGeometryComponent,
             },
+            {
+                path: '10-Charts',
+                component: IntroducingChartsComponent,
+            },
         ]),
     ],
     declarations: [
@@ -65,6 +72,7 @@ import {PlanimetricsModule} from '../planimetrics/planimetrics.module';
         IntroducingTablesComponent,
         IntroducingBitmapsComponent,
         IntroducingGeometryComponent,
+        IntroducingChartsComponent,
     ]
 })
 export class CourseLernejaroModule {
