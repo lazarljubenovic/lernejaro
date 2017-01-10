@@ -1,6 +1,7 @@
 import {Point} from './point';
 import {isZero, areEqualFloats} from '../util';
 import {GeometryObject} from './geometry-object';
+import {Segment} from './segment';
 
 
 export class Line extends GeometryObject {
@@ -70,6 +71,11 @@ export class Line extends GeometryObject {
         }
         const k = dy / dx;
         return Line.FromPointAndCoefficient(point1, k);
+    }
+
+    public static FromSegment(segment: Segment): Line {
+        const [point1, point2] = segment.getPoints();
+        return Line.FromTwoPoints(point1, point2);
     }
 
     public static HorizontalThroughPoint(point: Point | number): Line {

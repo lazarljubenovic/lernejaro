@@ -6,6 +6,7 @@ import {Circle} from '../../planimetryts/geometry-objects/circle';
 import {Line} from '../../planimetryts/geometry-objects/line';
 import {Polygon} from '../../planimetryts/geometry-objects/polygon';
 import {MaterialColor} from '../../planimetryts/geometry-objects/material-colors';
+import {Triangle} from '../../planimetryts/geometry-objects/triangle';
 
 @Component({
     selector: 'lrn-introducing-geometry',
@@ -36,7 +37,20 @@ export class IntroducingGeometryComponent implements OnInit {
         const bisectorC: Line = Line.GetBisector(C, A, B).color(MaterialColor.BLUE);
         const intersection: Point = Line.GetIntersection(bisectorA, bisectorB).color(MaterialColor.PINK);
         const inscribedCircle = Circle.FromCenterAndLine(intersection, segmentAB.getLine());
+
         this.objects = [bisectorA, bisectorB, bisectorC, inscribedCircle, polygon, intersection];
+
+        let eqTrianglePoints, eqTriangle;
+        try {
+            eqTrianglePoints = polygon.segments().map(segment => {
+                return Circle.GetIntersectionsWithLine(inscribedCircle, Line.FromSegment(segment))[0].label('X');
+            });
+            eqTriangle = Triangle.FromVertices(...eqTrianglePoints).fillColor(MaterialColor.PINK);
+            this.objects = [...this.objects, eqTriangle, ...eqTrianglePoints];
+        } catch (e) {
+            console.log(e);
+        }
+
     }
 
     public onInteractivePointsChange(points: Point[]): void {

@@ -1,10 +1,11 @@
 import {GeometryObject} from './geometry-object';
 import {Point} from './point';
 import * as Chroma from 'chroma-js';
-import Color = Chroma.Color;
 import {Line} from './line';
 import {Angle} from './angle';
 import {Segment} from './segment';
+import {MaterialColor} from './material-colors';
+import Color = Chroma.Color;
 
 export class Polygon extends GeometryObject {
 
@@ -13,6 +14,8 @@ export class Polygon extends GeometryObject {
     }
 
     protected _vertices: Point[];
+
+    protected _fillColor: MaterialColor;
 
     constructor(...points: Point[]) {
         super('polygon');
@@ -57,6 +60,17 @@ export class Polygon extends GeometryObject {
             segments.push(segment);
         }
         return segments;
+    }
+
+    public fillColor(): MaterialColor;
+    public fillColor(fillColor: MaterialColor): this;
+    public fillColor(fillColor?: MaterialColor): MaterialColor | this {
+        if (arguments.length == 0) {
+            return this._fillColor;
+        } else {
+            this._fillColor = fillColor;
+            return this;
+        }
     }
 
     protected copyFrom(polygon: Polygon): this {

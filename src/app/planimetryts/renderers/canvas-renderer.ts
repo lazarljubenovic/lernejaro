@@ -214,9 +214,38 @@ export class CanvasRenderer extends Renderer {
     }
 
     protected renderPolygon(polygon: Polygon): void {
-        const p = polygon.segments().forEach(segment => {
-            this.renderSegment(segment);
+        this.ctx.save();
+        const vertices = polygon.vertices();
+
+        this.ctx.beginPath();
+        let {x: x0, y: y0} = vertices[0].clone().applyHomogeneousMatrix(this._appliedMatrix).getCartesianCoordinates();
+        this.ctx.moveTo(x0, y0);
+        const p = vertices.forEach(vertex => {
+            let {x, y} = vertex.clone().applyHomogeneousMatrix(this._appliedMatrix).getCartesianCoordinates();
+            this.ctx.lineTo(x, y);
         });
+        let {x: xn, y: yn} = vertices[0].clone().applyHomogeneousMatrix(this._appliedMatrix).getCartesianCoordinates();
+        this.ctx.lineTo(xn, yn);
+
+        // Stroke - default if nothing given
+        let strokeColor = polygon.color();
+        if (strokeColor == null) {
+            strokeColor = MaterialColorEnum.BLUE_GREY; // should be class member
+        }
+        this.ctx.strokeStyle = this.getColor(strokeColor, 700);
+        this.ctx.stroke();
+
+        // Fill - nothing if nothing given
+        let fillColor = polygon.fillColor();
+        if (fillColor != null) {
+            this.ctx.fillStyle = this.getColor(fillColor, 500);
+            const oldAlpha = this.ctx.globalAlpha;
+            this.ctx.globalAlpha = .1;
+            this.ctx.fill();
+            this.ctx.globalAlpha = oldAlpha;
+        }
+        this.ctx.closePath();
+        this.ctx.restore();
     }
 
     private isMouseDown;
