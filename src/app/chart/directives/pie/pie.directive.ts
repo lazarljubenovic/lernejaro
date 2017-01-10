@@ -46,12 +46,13 @@ export class PieDirective extends ChartStrategyBase {
         const mul = 2 * Math.PI / total;
         let previousAngle = 0;
 
-        data.forEach(current => {
+        data.forEach((current, i) => {
             // console.log(current);
             const angle = previousAngle + mul * current.value;
             ctx.beginPath();
-            ctx.strokeStyle = getColor(current.color, '600');
-            ctx.fillStyle = getColor(current.color, '300');
+            const color = current.color ? current.color : this.getDefaultColor(i);
+            ctx.strokeStyle = getColor(color, '600');
+            ctx.fillStyle = getColor(color, '300');
             ctx.moveTo(c.x, c.y);
             ctx.arc(c.x, c.y, radius, previousAngle, angle);
             ctx.lineTo(c.x, c.y);

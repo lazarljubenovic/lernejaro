@@ -27,6 +27,7 @@ export class ChartComponent implements OnInit {
     @Input() public titlePosition: 'above' | 'below' = 'above';
     @Input() public legendPosition: 'left' | 'right' = 'right';
 
+    // We need this for the legend
     @ContentChildren(ChartDataDirective)
     public data: QueryList<ChartDataDirective>;
 
@@ -69,7 +70,7 @@ export class ChartComponent implements OnInit {
             this.strategy.isReady = true;
 
             this.chartService.reRender$.subscribe(() => {
-                this.strategy.render()
+                this.strategy.render();
             });
 
             this.chartService.sizeChange$.subscribe(() => {

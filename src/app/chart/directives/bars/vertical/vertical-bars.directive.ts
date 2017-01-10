@@ -95,12 +95,13 @@ export class VerticalBarsDirective extends ChartStrategyBase {
 
         let currentX = spaceAround + spaceBetween;
 
-        bars.forEach(bar => {
+        bars.forEach((current, i) => {
             ctx.beginPath();
-            const barHeight = bar.value * normalizingRatio;
+            const barHeight = current.value * normalizingRatio;
             CanvasUtil.Rectangle(ctx, currentX, h - barHeight, barWidth, barHeight);
-            ctx.fillStyle = getColor(bar.color, '300');
-            ctx.strokeStyle = getColor(bar.color, '600');
+            const color = current.color ? current.color : this.getDefaultColor(i);
+            ctx.strokeStyle = getColor(color, '600');
+            ctx.fillStyle = getColor(color, '300');
             ctx.fill();
             ctx.stroke();
             ctx.closePath();

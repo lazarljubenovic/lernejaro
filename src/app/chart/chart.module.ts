@@ -5,6 +5,7 @@ import {VerticalBarsDirective} from './directives/bars/vertical/vertical-bars.di
 import { ChartDirective } from './internal/chart/chart.directive';
 import { PieDirective } from './directives/pie/pie.directive';
 import { ChartComponent } from './chart/chart.component';
+import { OrDefaultColorPipe } from './chart/or-default-color.pipe';
 
 @NgModule({
     imports: [
@@ -16,6 +17,7 @@ import { ChartComponent } from './chart/chart.component';
         VerticalBarsDirective,
         PieDirective,
         ChartComponent,
+        OrDefaultColorPipe,
     ],
     exports: [
         ChartDataDirective,

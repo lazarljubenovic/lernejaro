@@ -9,8 +9,8 @@
   </div>
   <div class="legend-wrapper">
     <div class="legend">
-      <div class="item" *ngFor="let d of data">
-        <div [class]="d.color + ' color'"></div>
+      <div class="item" *ngFor="let d of data; let i = index">
+        <div [class]="(d.color | orDefaultColor : i : data.length) + ' color'"></div>
         <div class="">{{d.label}}</div>
       </div>
     </div>

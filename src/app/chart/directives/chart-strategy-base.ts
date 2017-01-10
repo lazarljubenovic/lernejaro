@@ -16,6 +16,11 @@ export abstract class ChartStrategyBase implements AfterViewInit {
 
     public isReady: boolean = false;
 
+    protected getDefaultColor(index: number): string {
+        return this.chartService
+            .getEquallySpacedColors(this._dataDirectives.length)[index];
+    }
+
     public abstract render();
 
     protected getCanvasRect(): Rectangle {
