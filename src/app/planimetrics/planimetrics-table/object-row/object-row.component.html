@@ -1,7 +1,12 @@
 <td>{{jsonObject?.kind}}</td>
 <td>{{jsonObject?.label}}</td>
-<td>
+<td *ngIf="editable">
   <lrn-object-editor [object]="jsonObject?.value['cartesian']"
                      (objectChange)="onObjectUpdate($event)"
+  ></lrn-object-editor>
+</td>
+<td *ngIf="!editable">
+  <lrn-object-editor [editable]="false"
+                     [object]="partialJsonObject"
   ></lrn-object-editor>
 </td>

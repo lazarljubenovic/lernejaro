@@ -1,11 +1,17 @@
-import {Component, OnInit, Input, OnChanges, Output, EventEmitter} from '@angular/core';
+import {
+    Component, OnInit, Input, OnChanges, Output, EventEmitter,
+    ChangeDetectionStrategy
+} from '@angular/core';
 
 @Component({
     selector: 'lrn-object-editor',
     templateUrl: './object-editor.component.html',
-    styleUrls: ['./object-editor.component.scss']
+    styleUrls: ['./object-editor.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ObjectEditorComponent implements OnInit, OnChanges {
+
+    @Input() public editable: boolean = true;
 
     @Input() public inline: boolean = true; // TODO
 
@@ -55,7 +61,6 @@ export class ObjectEditorComponent implements OnInit, OnChanges {
     }
 
     private onObjectChange(): void {
-        console.log('object change');
         this.objectChange.emit(this.getObject());
     }
 

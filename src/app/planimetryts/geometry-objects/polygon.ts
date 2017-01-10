@@ -35,6 +35,7 @@ export class Polygon extends GeometryObject {
     public readJson(json): this {
         this.label(json.label);
         this.color(json.color);
+        debugger;
         this._vertices = json.values['list-of-vertices'].map(coord => {
             return Point.FromCartesianCoordinates(coord.x, coord.y);
         });

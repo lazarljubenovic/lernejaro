@@ -7,9 +7,13 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let point of interactivePoints"
+  <tr *ngFor="let point of interactivePoints; let i = index; trackBy: trackBy"
+      lrnObjectRow [editable]="true"
+      [object]="point" (objectChange)="onObjectChange($event, i)"
+  ></tr>
+  <tr *ngFor="let obj of objects; trackBy: trackBy"
       lrnObjectRow [editable]="false"
-      [object]="point" (objectChange)="onObjectChange($event)"
+      [object]="obj"
   ></tr>
   </tbody>
 </lrn-table>

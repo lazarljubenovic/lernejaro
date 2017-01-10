@@ -1,6 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import {GeometryObject} from '../../../planimetryts/geometry-objects/geometry-object';
-import {Point} from '../../../planimetryts/geometry-objects/point';
 
 export interface PointCartesian {
     x: number;
@@ -16,6 +15,7 @@ export interface GeometryJsonObject<Value> {
     kind: string;
     label: string;
     value: Value;
+    defaultValue: string;
 }
 
 @Component({
@@ -27,19 +27,17 @@ export class ObjectRowComponent implements OnInit {
 
     private _object: GeometryObject;
 
-    public strategy = '';
+    public strategy = ''; // TODO allow user to change strategy to displaying
 
     @Input()
     public set object(object: GeometryObject) {
         if (this._object == object) {
             return;
         }
-        console.log('setting ', object);
         this._object = object;
-        switch (object.kind) {
-            case 'point':
-                this.jsonObject = object.writeJson();
-                break;
+        // TODO: polygons break
+        if (object.kind != 'polygon') {
+            this.jsonObject = object.writeJson();
         }
     }
 
@@ -49,21 +47,32 @@ export class ObjectRowComponent implements OnInit {
 
     @Output() objectChange = new EventEmitter<GeometryObject>();
 
-    public jsonObject: GeometryJsonObject<any>;
+    private _jsonObject: GeometryJsonObject<any>;
+
+    public set jsonObject (value: GeometryJsonObject<any>) {
+        if (value == null) {
+            this._jsonObject = null;
+            this.partialJsonObject = null;
+        }
+        this._jsonObject = value;
+        this.partialJsonObject = value.value[value.defaultValue];
+    }
+
+    public get jsonObject(): GeometryJsonObject<any> {
+        return this._jsonObject;
+    }
+
+    public partialJsonObject;
 
     public onObjectUpdate(obj) {
         let newJson = this._object.writeJson();
+        debugger;
         newJson.value[newJson.defaultValue] = obj;
         this._object = this._object.readJson(newJson).clone();
+        this.objectChange.next(this._object);
     }
 
     @Input() editable: boolean = false;
-
-    // public getStrategy: (obj: GeometryObject) => {[name: string]: number};
-    // public setStrategy: (data: {[name: string]: number}) => GeometryObject;
-
-    public getStrategy: Function = x => x;
-    public setStrategy: Function = x => x;
 
     constructor() {
     }
