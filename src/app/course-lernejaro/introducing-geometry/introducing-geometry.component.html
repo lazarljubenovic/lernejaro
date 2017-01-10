@@ -1,4 +1,19 @@
-<lrn-planimetrics [objects]="objects"
-                  [interactivePoints]="interactivePoints"
-                  (interactivePointsChange)="onInteractivePointsChange($event)"
-></lrn-planimetrics>
+<div style="width: 600px; height: 600px; border: dashed 1px rgba(0, 0, 0, .4); margin: 2em;">
+  <lrn-planimetrics [objects]="objects"
+                    [interactivePoints]="interactivePoints"
+                    (interactivePointsChange)="onInteractivePointsChange($event)"
+  ></lrn-planimetrics>
+</div>
+
+<lrn-planimetrics-table [objects]="objects"
+                        [interactivePoints]="interactivePoints"
+                        (interactivePointsChange)="onInteractivePointsChange($event)"
+>
+</lrn-planimetrics-table>
+
+<input type="number"
+       [ngModel]="interactivePoints[0].x()"
+       (ngModelChange)="interactivePoints[0].x($event); onExternalChange();"
+>
+
+<pre>{{interactivePoints | json}}</pre>

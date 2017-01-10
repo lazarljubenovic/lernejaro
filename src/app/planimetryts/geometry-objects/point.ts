@@ -91,6 +91,27 @@ export class Point extends GeometryObject {
         return this;
     }
 
+    public writeJson() {
+        return {
+            kind: 'point',
+            label: this.label(),
+            color: this.color(),
+            defaultValue: 'cartesian',
+            value: {
+                'cartesian': this.getCartesianCoordinates(),
+                'polar': this.getPolarCoordinates(),
+            }
+        }
+    }
+
+    public readJson(json): this {
+        this.x(json.value['cartesian'].x);
+        this.y(json.value['cartesian'].y);
+        this.label(json.label);
+        this.color(json.color);
+        return this;
+    }
+
     public x(): number;
     public x(x: number): this;
     public x(fn: (x: number) => number): this;

@@ -11,6 +11,10 @@ export abstract class GeometryObject {
     constructor(public kind: string) {
     }
 
+    public abstract readJson(json): this;
+
+    public abstract writeJson();
+
     public label(): string;
     public label(label: string): this;
     public label(label?: string): string | this {

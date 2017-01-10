@@ -20,6 +20,32 @@ export class Segment extends GeometryObject {
         this._isDirected = isDirected;
     }
 
+    public writeJson() {
+        const [p1, p2] = this.getPoints();
+        const {x1, y1, x2, y2} = {x1: p1.x(), y1: p1.y(), x2: p2.x(), y2: p2.y()};
+        return {
+            kind: 'segment',
+            label: this.label(),
+            color: this.color(),
+            defaultValue: 'two-points',
+            value: {
+                'two-points': {x1, y1, x2, y2},
+            }
+        }
+    }
+
+    public readJson(json): this {
+        this.label(json.label);
+        this.color(json.color);
+        const x1 = json.value['two-points'].x1;
+        const x2 = json.value['two-points'].x2;
+        const y1 = json.value['two-points'].y1;
+        const y2 = json.value['two-points'].y2;
+        this._point1 = Point.FromCartesianCoordinates(x1, y1);
+        this._point2 = Point.FromCartesianCoordinates(x2, y2);
+        return this;
+    }
+
     protected copyFrom(segment: Segment): this {
         [this._point1, this._point2] = segment.getPoints();
         this._label = segment._label;

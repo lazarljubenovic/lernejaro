@@ -19,6 +19,28 @@ export class Polygon extends GeometryObject {
         this._vertices = points;
     }
 
+    public writeJson() {
+        const vertices = this._vertices.map(v => v.getCartesianCoordinates());
+        return {
+            kind: 'polygon',
+            color: this.color(),
+            label: this.label(),
+            defaultValue: 'list-of-vertices',
+            values: {
+                'list-of-vertices': vertices,
+            },
+        };
+    }
+
+    public readJson(json): this {
+        this.label(json.label);
+        this.color(json.color);
+        this._vertices = json.values['list-of-vertices'].map(coord => {
+            return Point.FromCartesianCoordinates(coord.x, coord.y);
+        });
+        return this;
+    }
+
     public vertices(): Point[] {
         return this._vertices.map(point => point.clone());
     }

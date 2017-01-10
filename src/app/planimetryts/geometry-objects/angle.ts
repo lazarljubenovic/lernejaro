@@ -37,6 +37,26 @@ export class Angle extends GeometryObject {
         this._angleDegrees = angleDegrees;
     }
 
+    // TODO
+    // plus the whole component is dubious
+    // is it for transforming angles
+    // or for drawing angle at a point
+    public writeJson() {
+        return {
+            label: this.label(),
+            color: this.color(),
+            kind: 'angle',
+            defaultValue: 'three-points',
+            value: {}
+        }
+    }
+
+    public readJson(json): this {
+        this.label(json.label);
+        this.color(json.color);
+        return this;
+    }
+
     protected copyFrom(angle: Angle): this {
         this._angleDegrees = angle.degrees;
         this._color = angle.color();

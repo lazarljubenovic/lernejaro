@@ -36,21 +36,27 @@ export class IntroducingGeometryComponent implements OnInit {
         const bisectorC: Line = Line.GetBisector(C, A, B).color(MaterialColor.BLUE);
         const intersection: Point = Line.GetIntersection(bisectorA, bisectorB).color(MaterialColor.PINK);
         const inscribedCircle = Circle.FromCenterAndLine(intersection, segmentAB.getLine());
-        this.objects = new Set<GeometryObject>()
-            .add(polygon)
-            .add(bisectorA).add(bisectorB).add(bisectorC)
-            .add(intersection).add(inscribedCircle);
+        this.objects = new Set()
+            // .add(polygon)
+            // .add(bisectorA).add(bisectorB).add(bisectorC)
+            .add(intersection)
+            // .add(inscribedCircle)
+        ;
     }
 
     public onInteractivePointsChange(points: Point[]): void {
         this.evaluateObjects(...points);
     }
 
+    public onExternalChange() {
+        this.evaluateObjects(...this.interactivePoints);
+    }
+
     constructor() {
+        this.evaluateObjects(...this.interactivePoints);
     }
 
     ngOnInit() {
-        this.evaluateObjects(...this.interactivePoints);
     }
 
 }

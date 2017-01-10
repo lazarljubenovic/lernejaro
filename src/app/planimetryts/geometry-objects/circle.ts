@@ -81,6 +81,28 @@ export class Circle extends GeometryObject {
         return this;
     }
 
+    public writeJson() {
+        return {
+            kind: 'circle',
+            label: this.label(),
+            color: this.color(),
+            defaultValue: 'general',
+            value: {
+                'general': this.getGeneralForm(),
+            }
+        };
+    }
+
+    public readJson(json): this {
+        this.label(json.label);
+        this.color(json.color);
+        const x = json.value['general'].p;
+        const y = json.value['general'].q;
+        this._center = Point.FromCartesianCoordinates(x, y);
+        this._radius = json.value['general'].r;
+        return this;
+    }
+
     public center(): Point {
         return this._center;
     }

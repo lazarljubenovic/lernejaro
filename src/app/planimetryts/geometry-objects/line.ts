@@ -233,6 +233,29 @@ export class Line extends GeometryObject {
         return this;
     }
 
+    public writeJson() {
+        return {
+            kind: 'line',
+            label: this.label(),
+            color: this.color(),
+            defaultValue: 'general',
+            value: {
+                'general': this.getGeneralForm(),
+                'explicit': this.getExplicitForm(),
+                'segment': this.getSegmentForm(),
+            }
+        }
+    }
+
+    public readJson(json): this {
+        this._A = json.value['general'].A;
+        this._B = json.value['general'].B;
+        this._C = json.value['general'].C;
+        this.label(json.label);
+        this.color(json.color);
+        return this;
+    }
+
     protected copyFrom(line: Line): this {
         const l = line.getGeneralForm();
         this._A = l.A;

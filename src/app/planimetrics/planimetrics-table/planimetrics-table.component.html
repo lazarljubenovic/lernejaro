@@ -1,0 +1,15 @@
+<lrn-table>
+  <thead>
+  <tr>
+    <th>Kind</th>
+    <th>Label</th>
+    <th>Values</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let point of interactivePoints"
+      lrnObjectRow [editable]="false"
+      [object]="point" (objectChange)="onObjectChange($event)"
+  ></tr>
+  </tbody>
+</lrn-table>
