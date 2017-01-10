@@ -1,3 +1,23 @@
 @import 'imports';
 
 $font: Roboto, sans-serif;
+
+@function get-color-strings() {
+  @return 'red' 'pink' 'purple' 'deep-purple' 'indigo' 'blue' 'light-blue' 'cyan' 'teal' 'green' 'light-green' 'lime' 'yellow' 'amber' 'orange' 'deep-orange' 'brown' 'grey' 'blue-grey'
+}
+
+@mixin all-background-colors($variant: '500') {
+  @each $color in get-color-strings() {
+    &.#{$color} {
+      background-color: material-color($color, $variant);
+    }
+  }
+}
+
+@mixin all-border-colors($variant: 500, $border-style: solid, $border-width: 1px) {
+  @each $color in get-color-strings() {
+    &.#{$color} {
+      border: $border-style $border-width material-color($color, $variant);
+    }
+  }
+}

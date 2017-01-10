@@ -9,7 +9,10 @@
   </div>
   <div class="legend-wrapper">
     <div class="legend">
-      legend
+      <div class="item" *ngFor="let d of data">
+        <div [class]="d.color + ' color'"></div>
+        <div class="">{{d.label}}</div>
+      </div>
     </div>
   </div>
 </div>

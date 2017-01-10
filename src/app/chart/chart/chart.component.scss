@@ -1,18 +1,31 @@
-@import '../../imports';
+@import '../../global';
 
 lrn-chart {
+  font-family: $font;
+  color: rgba(black, .86);
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
   border: dashed 1px rgba(black, .4);
+  padding: 1em;
+  margin: 1em;
+  box-sizing: border-box;
+
+  * {
+    box-sizing: border-box;
+  }
 
   .title-wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 6ex;
+    padding-top: .5em;
+    padding-bottom: 1em;
+    font-size: 1.24em;
+    box-sizing: border-box;
+    font-weight: 300;
 
     .title {
     }
@@ -34,6 +47,30 @@ lrn-chart {
       align-items: center;
 
       .legend {
+        color: rgba(black, .54);
+        font-weight: normal;
+        font-size: .8em;
+
+        .item {
+          display: flex;
+          align-items: center;
+
+          &:not(:last-child) {
+            margin-bottom: .25ex;
+          }
+
+          .color {
+            @include all-background-colors('400');
+            @include all-border-colors('700');
+            border-radius: 1px;
+            width: 1em;
+            height: 1em;
+            margin-right: .5em;
+          }
+
+          .label {
+          }
+        }
       }
     }
 

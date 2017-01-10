@@ -6,11 +6,12 @@ import {
     Renderer,
     ViewChild,
     ViewEncapsulation,
-    Self
+    Self, ContentChildren, QueryList
 } from '@angular/core';
 import {ChartService} from '../chart.service';
 import {ChartDirective} from '../internal/chart/chart.directive';
 import {ChartStrategyBase} from '../directives/chart-strategy-base';
+import {ChartDataDirective} from '../chart-data.directive';
 
 @Component({
     selector: 'lrn-chart',
@@ -25,6 +26,9 @@ export class ChartComponent implements OnInit {
     @Input() public displayLegend: boolean = false;
     @Input() public titlePosition: 'above' | 'below' = 'above';
     @Input() public legendPosition: 'left' | 'right' = 'right';
+
+    @ContentChildren(ChartDataDirective)
+    public data: QueryList<ChartDataDirective>;
 
     @ViewChild(ChartDirective)
     public chartDirective: ChartDirective;
