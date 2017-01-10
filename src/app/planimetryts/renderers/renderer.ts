@@ -17,11 +17,11 @@ export abstract class Renderer {
 
     protected abstract renderPolygon(polygon: Polygon);
 
-    protected beforeObjectsRender(objects: Set<GeometryObject>) {
+    protected beforeObjectsRender(objects: GeometryObject[]) {
         // Do nothing
     }
 
-    protected afterObjectsRender(objects: Set<GeometryObject>) {
+    protected afterObjectsRender(objects: GeometryObject[]) {
         // Do nothing
     }
 
@@ -33,7 +33,7 @@ export abstract class Renderer {
         // Do nothing
     }
 
-    public render(objects: Set<GeometryObject>) {
+    public render(objects: GeometryObject[]) {
         this.beforeObjectsRender(objects);
         objects.forEach(object => {
             this.beforeEachObjectRender(object);

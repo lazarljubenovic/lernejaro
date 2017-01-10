@@ -14,7 +14,7 @@ import {MaterialColor} from '../../planimetryts/geometry-objects/material-colors
 })
 export class IntroducingGeometryComponent implements OnInit {
 
-    public objects: Set<GeometryObject>;
+    public objects: GeometryObject[];
 
     public interactivePoints: Point[] = [
         Point.FromCartesianCoordinates(-200, -200)
@@ -36,10 +36,10 @@ export class IntroducingGeometryComponent implements OnInit {
         const bisectorC: Line = Line.GetBisector(C, A, B).color(MaterialColor.BLUE);
         const intersection: Point = Line.GetIntersection(bisectorA, bisectorB).color(MaterialColor.PINK);
         const inscribedCircle = Circle.FromCenterAndLine(intersection, segmentAB.getLine());
-        this.objects = new Set()
+        this.objects = [intersection]
             // .add(polygon)
             // .add(bisectorA).add(bisectorB).add(bisectorC)
-            .add(intersection)
+            // .add(intersection)
             // .add(inscribedCircle)
         ;
     }

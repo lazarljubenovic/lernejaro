@@ -31,7 +31,7 @@ export class RendererService {
     constructor() {
     }
 
-    public render(objects: Set<GeometryObject>): void {
+    public render(objects: GeometryObject[]): void {
         this.renderer.render(objects);
     }
 

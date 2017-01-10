@@ -9,7 +9,7 @@ import {Point} from '../../planimetryts/geometry-objects/point';
 })
 export class PlanimetricsTableComponent implements OnInit {
 
-    @Input() public objects: Set<GeometryObject>;
+    @Input() public objects: GeometryObject[];
     @Input() public interactivePoints: Point[];
 
     @Output() public interactivePointsChange = new EventEmitter<Point[]>();

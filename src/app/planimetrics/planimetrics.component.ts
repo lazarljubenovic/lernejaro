@@ -24,7 +24,7 @@ import {areEqualFloats} from '../planimetryts/util';
 })
 export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
 
-    @Input() public objects: Set<GeometryObject>;
+    @Input() public objects: GeometryObject[];
     @Input() public interactivePoints: Point[];
 
     @Output() public interactivePointsChange = new EventEmitter<Point[]>();
@@ -47,8 +47,10 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
     }
 
     private render() {
-        this.interactivePoints.forEach(point => this.objects.add(point));
-        this.renderer.render(this.objects);
+        this.objects = this.objects.concat(...this.interactivePoints);
+        const set = new Set();
+        this.objects.forEach(o => set.add(o));
+        this.renderer.render(Array.from(set));
     }
 
     ngOnInit() {

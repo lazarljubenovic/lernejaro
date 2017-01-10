@@ -120,7 +120,7 @@ export class CanvasRenderer extends Renderer {
         return {x, y};
     }
 
-    protected beforeObjectsRender(objects: Set<GeometryObject>) {
+    protected beforeObjectsRender(objects: GeometryObject[]) {
         this.clear();
         this._drawGrid && this.drawGrid();
         this._drawAxis && this.drawAxis();
