@@ -1,16 +1,9 @@
-import {
-    Directive,
-    ContentChildren,
-    QueryList,
-    ElementRef,
-    Input,
-    AfterViewInit,
-    OnInit
-} from '@angular/core';
-import {ChartDataDirective} from './chart-data.directive';
-import {CanvasUtil} from './canvas-util';
-import {ChartService} from './chart.service';
-import {getByString} from '../planimetryts/renderers/color';
+import {Directive, ContentChildren, QueryList, ElementRef, Input, forwardRef} from '@angular/core';
+import {ChartDataDirective} from '../../../chart-data.directive';
+import {CanvasUtil} from '../../../canvas-util';
+import {ChartService} from '../../../chart.service';
+import {getByString} from '../../../../planimetryts/renderers/color';
+import {ChartStrategyBase, Rectangle} from '../../chart-strategy-base';
 
 function getColor(name: string, variant: string = '500'): string {
     return getByString(name, variant).hex();
@@ -22,24 +15,19 @@ interface VerticalBar {
     color: string;
 }
 
-interface Rectangle {
-    x: number;
-    y: number;
-    w: number;
-    h: number;
-}
-
 @Directive({
     selector: 'lrn-chart[verticalBars]',
+    providers: [{
+        provide: ChartStrategyBase,
+        useExisting: forwardRef(() => VerticalBarsDirective),
+    }],
 })
-export class VerticalBarsDirective implements OnInit, AfterViewInit {
+export class VerticalBarsDirective extends ChartStrategyBase {
 
     @Input() public displayScale: boolean = true;
     @Input() public displayGuidelines: boolean = true;
     @Input() public displayLabels: boolean = true;
     @Input() public labelsAbove: boolean = false;
-
-    private _dataDirectives: QueryList<ChartDataDirective>;
 
     @ContentChildren(ChartDataDirective)
     public set dataDirectives(value: QueryList<ChartDataDirective>) {
@@ -49,37 +37,6 @@ export class VerticalBarsDirective implements OnInit, AfterViewInit {
         }
     }
 
-    private canvas: HTMLCanvasElement;
-
-    private getCanvasRect(): Rectangle {
-        return {x: 0, y: 0, w: this.canvas.width, h: this.canvas.height};
-    }
-
-    private prepare(): void {
-        // create canvas if it doesn't exist
-        let canvas: HTMLCanvasElement = this.elementRef.nativeElement.getElementsByTagName('canvas')[0];
-        if (!canvas) {
-            canvas = document.createElement('canvas');
-        }
-        this.canvas = canvas;
-        const rect = this.elementRef.nativeElement.getBoundingClientRect();
-        const {width, height} = {width: rect.right - rect.left, height: rect.bottom - rect.top};
-        this.canvas.width = width;
-        this.canvas.height = height;
-        this.elementRef.nativeElement.appendChild(this.canvas);
-    }
-
-    private clear(): void {
-        const {x, y, w, h} = this.getCanvasRect();
-        const ctx = this.canvas.getContext('2d');
-        ctx.clearRect(x, y, w, h);
-    }
-
-    private onResize(): void {
-        this.prepare();
-        this.render(this._dataDirectives.toArray());
-    }
-
     /**
      * Area for actual bars (not scale, not labels)
      */
@@ -87,10 +44,6 @@ export class VerticalBarsDirective implements OnInit, AfterViewInit {
         const [x, y] = [20, 20];
         const {w, h} = this.getCanvasRect();
         return {x, y, w: w - 40, h: h - 40};
-    }
-
-    private getNormalizingRatio(topNotch: number, height: number) {
-        const normalizingRatio = height / topNotch;
     }
 
     private getNotches(bars: VerticalBar[]): number[] {
@@ -189,17 +142,17 @@ export class VerticalBarsDirective implements OnInit, AfterViewInit {
         const {x, y, w, h} = boundingBox;
 
         // Rectangle for debugging purposes
-        // ctx.beginPath();
-        // CanvasUtil.Rectangle(ctx, x, y, w, h);
-        // ctx.stroke();
-        // ctx.closePath();
+        ctx.beginPath();
+        CanvasUtil.Rectangle(ctx, x, y, w, h);
+        ctx.stroke();
+        ctx.closePath();
 
         // TODO
     }
 
-    private render(bars: VerticalBar[] = this._dataDirectives.toArray()): void {
+    public render(bars: VerticalBar[] = this._dataDirectives.toArray()): void {
         this.clear();
-        const {x, y, w, h} = this.getCanvasRect();
+        const {w, h} = this.getCanvasRect();
         const notches = this.getNotches(bars);
 
         const left = this.getScaleAreaWidth(notches);
@@ -232,25 +185,8 @@ export class VerticalBarsDirective implements OnInit, AfterViewInit {
     }
 
     constructor(private elementRef: ElementRef,
-                private chartService: ChartService) {
-    }
-
-    private isReady: boolean = false;
-
-    ngOnInit() {
-        this.chartService.reRender$.subscribe(() => {
-            this.render()
-        });
-
-        this.chartService.sizeChange$.subscribe(() => {
-            this.onResize();
-        });
-    }
-
-    ngAfterViewInit() {
-        this.prepare();
-        this.render();
-        this.isReady = true;
+                chartService: ChartService) {
+        super(chartService);
     }
 
 }

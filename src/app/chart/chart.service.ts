@@ -5,7 +5,6 @@ import {Subject} from 'rxjs';
 export class ChartService {
 
     constructor() {
-        console.log('chart service init');
     }
 
     public reRender() {
@@ -18,5 +17,7 @@ export class ChartService {
 
     public reRender$ = new Subject<void>();
     public sizeChange$ = new Subject<void>();
+
+    public outlet;
 
 }

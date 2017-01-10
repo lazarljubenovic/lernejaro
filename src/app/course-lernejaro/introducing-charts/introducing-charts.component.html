@@ -1,16 +1,17 @@
-<button (click)="change()">Change</button><input type="range" [(ngModel)]="width" min="50" max="1000" step="50">
+<button (click)="change()">Change</button>
+<!--<input type="range" [(ngModel)]="width" min="50" max="1000" step="50">-->
 <br/>
 
-<div [style.width.px]="width" [style.height.px]="400">
-  <lrn-chart verticalBars>
+<div style="height: 300px; width: 600px">
+  <lrn-chart verticalBars [title]="'Bars example'">
     <lrn-chart-data [color]="color" [label]="'foo'" [value]="32"></lrn-chart-data>
     <lrn-chart-data [color]="'blue'" [label]="label" [value]="16"></lrn-chart-data>
     <lrn-chart-data [color]="'green'" [label]="'baz'" [value]="value"></lrn-chart-data>
   </lrn-chart>
 </div>
 
-<div>
-  <lrn-chart pie>
+<div style="height: 300px; width: 600px">
+  <lrn-chart pie [title]="'Pie example'">
     <lrn-chart-data [color]="color" [label]="'foo'" [value]="32"></lrn-chart-data>
     <lrn-chart-data [color]="'blue'" [label]="label" [value]="16"></lrn-chart-data>
     <lrn-chart-data [color]="'green'" [label]="'baz'" [value]="value"></lrn-chart-data>

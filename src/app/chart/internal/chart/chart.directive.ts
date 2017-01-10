@@ -1,30 +1,23 @@
 import {
     Directive,
-    Input,
     ElementRef,
     OnInit,
     AfterViewInit,
     Renderer,
-    OnChanges, HostListener
+    OnChanges,
+    HostListener, ViewChild
 } from '@angular/core';
-import {ChartService} from './chart.service';
+import {ChartService} from '../../chart.service';
 
 @Directive({
-    selector: 'lrn-chart',
-    providers: [
-        ChartService,
-    ],
+    selector: 'lrn-chart-directive-internal',
 })
 export class ChartDirective implements OnInit, AfterViewInit, OnChanges {
-
-    @Input() public displayLegend: boolean = false;
-    @Input() public titlePosition: 'above' | 'below' = 'above';
-    @Input() public legendPosition: 'left' | 'right' = 'right';
 
     private canvas: HTMLCanvasElement;
 
     constructor(private chartService: ChartService,
-                private elRef: ElementRef,
+                public elRef: ElementRef,
                 private renderer: Renderer) {
     }
 
@@ -45,8 +38,6 @@ export class ChartDirective implements OnInit, AfterViewInit, OnChanges {
     }
 
     ngAfterViewInit() {
-        this.canvas = this.elRef.nativeElement.getElementsByTagName('canvas')[0];
-
     }
 
 }
