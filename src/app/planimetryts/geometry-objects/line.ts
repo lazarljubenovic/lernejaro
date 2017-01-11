@@ -243,7 +243,7 @@ export class Line extends GeometryObject {
         return {
             kind: 'line',
             label: this.label(),
-            color: this.color(),
+            color: this.strokeColor(),
             defaultValue: 'general',
             value: {
                 'general': this.getGeneralForm(),
@@ -258,7 +258,7 @@ export class Line extends GeometryObject {
         this._B = json.value['general'].B;
         this._C = json.value['general'].C;
         this.label(json.label);
-        this.color(json.color);
+        this.strokeColor(json.strokeColor);
         return this;
     }
 
@@ -267,14 +267,14 @@ export class Line extends GeometryObject {
         this._A = l.A;
         this._B = l.B;
         this._C = l.C;
-        this._color = line.color();
+        this._strokeColor = line.strokeColor();
         this._label = line.label();
         return this;
     }
 
     public clone(): Line {
         const {A, B, C} = this.getGeneralForm();
-        return Line.FromGeneralForm(A, B, C).color(this._color).label(this._label);
+        return Line.FromGeneralForm(A, B, C).strokeColor(this._strokeColor).label(this._label);
     }
 
     private aIsZero(): boolean {

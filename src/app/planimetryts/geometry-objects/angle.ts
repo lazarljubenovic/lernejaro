@@ -44,7 +44,7 @@ export class Angle extends GeometryObject {
     public writeJson() {
         return {
             label: this.label(),
-            color: this.color(),
+            color: this.strokeColor(),
             kind: 'angle',
             defaultValue: 'three-points',
             value: {}
@@ -53,13 +53,13 @@ export class Angle extends GeometryObject {
 
     public readJson(json): this {
         this.label(json.label);
-        this.color(json.color);
+        this.strokeColor(json.strokeColor);
         return this;
     }
 
     protected copyFrom(angle: Angle): this {
         this._angleDegrees = angle.degrees;
-        this._color = angle.color();
+        this._strokeColor = angle.strokeColor();
         this._label = angle.label();
         return this;
     }

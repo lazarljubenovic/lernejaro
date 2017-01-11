@@ -19,11 +19,11 @@ export class IntroducingGeometryComponent implements OnInit {
 
     public interactivePoints: Point[] = [
         Point.FromCartesianCoordinates(-200, -200)
-            .label('A').color(MaterialColor.AMBER),
+            .label('A').strokeColor(MaterialColor.AMBER),
         Point.FromCartesianCoordinates(200, -200)
-            .label('B').color(MaterialColor.AMBER),
+            .label('B').strokeColor(MaterialColor.AMBER),
         Point.FromCartesianCoordinates(30, 200)
-            .label('C').color(MaterialColor.AMBER),
+            .label('C').strokeColor(MaterialColor.AMBER),
     ];
 
     public evaluateObjects(...points: Point[]): void {
@@ -32,10 +32,10 @@ export class IntroducingGeometryComponent implements OnInit {
         const C = points[2];
         const polygon = Polygon.FromVertices(A, B, C);
         const segmentAB = Segment.FromTwoPoints(A, B);
-        const bisectorA: Line = Line.GetBisector(A, B, C).color(MaterialColor.RED);
-        const bisectorB: Line = Line.GetBisector(B, A, C).color(MaterialColor.GREEN);
-        const bisectorC: Line = Line.GetBisector(C, A, B).color(MaterialColor.BLUE);
-        const intersection: Point = Line.GetIntersection(bisectorA, bisectorB).color(MaterialColor.PINK);
+        const bisectorA: Line = Line.GetBisector(A, B, C).strokeColor(MaterialColor.RED);
+        const bisectorB: Line = Line.GetBisector(B, A, C).strokeColor(MaterialColor.GREEN);
+        const bisectorC: Line = Line.GetBisector(C, A, B).strokeColor(MaterialColor.BLUE);
+        const intersection: Point = Line.GetIntersection(bisectorA, bisectorB).strokeColor(MaterialColor.PINK);
         const inscribedCircle = Circle.FromCenterAndLine(intersection, segmentAB.getLine());
 
         this.objects = [bisectorA, bisectorB, bisectorC, inscribedCircle, polygon, intersection];

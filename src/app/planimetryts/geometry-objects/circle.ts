@@ -85,7 +85,7 @@ export class Circle extends GeometryObject {
         return {
             kind: 'circle',
             label: this.label(),
-            color: this.color(),
+            color: this.strokeColor(),
             defaultValue: 'general',
             value: {
                 'general': this.getGeneralForm(),
@@ -95,7 +95,7 @@ export class Circle extends GeometryObject {
 
     public readJson(json): this {
         this.label(json.label);
-        this.color(json.color);
+        this.strokeColor(json.strokeColor);
         const x = json.value['general'].p;
         const y = json.value['general'].q;
         this._center = Point.FromCartesianCoordinates(x, y);
@@ -127,13 +127,13 @@ export class Circle extends GeometryObject {
         this.radius(circle.radius());
         this._center = circle.center();
         this._label = circle.label();
-        this._color = circle.color();
+        this._strokeColor = circle.strokeColor();
         return this;
     }
 
     public clone(): Circle {
         const {p, q, r} = this.getGeneralForm();
-        return Circle.FromGeneralForm(p, q, r).label(this._label).color(this._color);
+        return Circle.FromGeneralForm(p, q, r).label(this._label).strokeColor(this._strokeColor);
     }
 
     public getGeneralForm(): {p: number, q: number, r: number} {

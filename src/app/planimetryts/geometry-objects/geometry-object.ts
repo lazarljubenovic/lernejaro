@@ -5,7 +5,7 @@ import {MaterialColor} from './material-colors';
 
 export abstract class GeometryObject {
 
-    protected _color: MaterialColor;
+    protected _strokeColor: MaterialColor;
     protected _label: string;
 
     constructor(public kind: string) {
@@ -26,13 +26,13 @@ export abstract class GeometryObject {
         }
     }
 
-    public color(): MaterialColor;
-    public color(color: MaterialColor): this;
-    public color(color?: MaterialColor): this | MaterialColor {
+    public strokeColor(): MaterialColor;
+    public strokeColor(color: MaterialColor): this;
+    public strokeColor(color?: MaterialColor): this | MaterialColor {
         if (arguments.length == 0) {
-            return this._color;
+            return this._strokeColor;
         } else {
-            this._color = color;
+            this._strokeColor = color;
             return this;
         }
     }

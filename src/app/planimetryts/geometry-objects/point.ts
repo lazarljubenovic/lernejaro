@@ -95,7 +95,7 @@ export class Point extends GeometryObject {
         return {
             kind: 'point',
             label: this.label(),
-            color: this.color(),
+            color: this.strokeColor(),
             defaultValue: 'cartesian',
             value: {
                 'cartesian': this.getCartesianCoordinates(),
@@ -108,7 +108,7 @@ export class Point extends GeometryObject {
         this.x(json.value['cartesian'].x);
         this.y(json.value['cartesian'].y);
         this.label(json.label);
-        this.color(json.color);
+        this.strokeColor(json.strokeColor);
         return this;
     }
 
@@ -147,7 +147,7 @@ export class Point extends GeometryObject {
     protected copyFrom(point: Point): this {
         this._x = point._x;
         this._y = point._y;
-        this._color = point._color;
+        this._strokeColor = point._strokeColor;
         this._label = point._label;
         return this;
     }
@@ -155,8 +155,8 @@ export class Point extends GeometryObject {
     public clone() {
         const {x, y} = this.getCartesianCoordinates();
         const label = this._label;
-        const color = this._color;
-        return new Point(x, y, label).color(color);
+        const color = this._strokeColor;
+        return new Point(x, y, label).strokeColor(color);
     }
 
     public getMatrixCoordinates(): [[number], [number]] {
@@ -186,14 +186,14 @@ export class Point extends GeometryObject {
     public applyMatrix(matrix: number[][]): this {
         const matrixCoordinates = this.getMatrixCoordinates();
         const newMatrix = Matrix.Multiply(matrix, matrixCoordinates);
-        const newPoint = Point.FromMatrix(newMatrix).color(this.color()).label(this.label());
+        const newPoint = Point.FromMatrix(newMatrix).strokeColor(this.strokeColor()).label(this.label());
         return this.copyFrom(newPoint);
     }
 
     protected applyHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this {
         const homogeneousCoordinates = this.getHomogeneousMatrixCoordinates();
         const newMatrix = Matrix.Multiply(matrix, homogeneousCoordinates);
-        const newPoint = Point.FromMatrix(newMatrix).label(this.label()).color(this.color());
+        const newPoint = Point.FromMatrix(newMatrix).label(this.label()).strokeColor(this.strokeColor());
         return this.copyFrom(newPoint);
     }
 

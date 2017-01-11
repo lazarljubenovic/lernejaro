@@ -26,7 +26,7 @@ export class Polygon extends GeometryObject {
         const vertices = this._vertices.map(v => v.getCartesianCoordinates());
         return {
             kind: 'polygon',
-            color: this.color(),
+            color: this.strokeColor(),
             label: this.label(),
             defaultValue: 'list-of-vertices',
             values: {
@@ -37,7 +37,7 @@ export class Polygon extends GeometryObject {
 
     public readJson(json): this {
         this.label(json.label);
-        this.color(json.color);
+        this.strokeColor(json.strokeColor);
         debugger;
         this._vertices = json.values['list-of-vertices'].map(coord => {
             return Point.FromCartesianCoordinates(coord.x, coord.y);
@@ -76,7 +76,7 @@ export class Polygon extends GeometryObject {
     protected copyFrom(polygon: Polygon): this {
         this._vertices = polygon._vertices;
         this._label = polygon._label;
-        this._color = polygon._color;
+        this._strokeColor = polygon._strokeColor;
         return this;
     }
 
@@ -84,7 +84,7 @@ export class Polygon extends GeometryObject {
         const clones = this._vertices.map(p => p.clone());
         return Polygon.FromVertices(...clones)
             .label(this._label)
-            .color(this._color);
+            .strokeColor(this._strokeColor);
     }
 
     public getArea(): number {

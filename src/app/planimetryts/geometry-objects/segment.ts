@@ -26,7 +26,7 @@ export class Segment extends GeometryObject {
         return {
             kind: 'segment',
             label: this.label(),
-            color: this.color(),
+            color: this.strokeColor(),
             defaultValue: 'two-points',
             value: {
                 'two-points': {x1, y1, x2, y2},
@@ -36,7 +36,7 @@ export class Segment extends GeometryObject {
 
     public readJson(json): this {
         this.label(json.label);
-        this.color(json.color);
+        this.strokeColor(json.strokeColor);
         const x1 = json.value['two-points'].x1;
         const x2 = json.value['two-points'].x2;
         const y1 = json.value['two-points'].y1;
@@ -49,7 +49,7 @@ export class Segment extends GeometryObject {
     protected copyFrom(segment: Segment): this {
         [this._point1, this._point2] = segment.getPoints();
         this._label = segment._label;
-        this._color = segment._color;
+        this._strokeColor = segment._strokeColor;
         return this;
     }
 
@@ -57,7 +57,7 @@ export class Segment extends GeometryObject {
         const point1 = this._point1.clone();
         const point2 = this._point2.clone();
         return Segment.FromTwoPoints(point1, point2)
-            .label(this._label).color(this._color);
+            .label(this._label).strokeColor(this._strokeColor);
     }
 
     public getPoints(): Point[] {
@@ -68,7 +68,7 @@ export class Segment extends GeometryObject {
         const points = this.getPoints();
         const newPoints = points.map(point => point.applyMatrix(matrix));
         const newSegment = Segment.FromTwoPoints(newPoints[0], newPoints[1])
-                .label(this._label).color(this._color);
+                .label(this._label).strokeColor(this._strokeColor);
         return <this>this.copyFrom(newSegment);
     }
 
@@ -76,7 +76,7 @@ export class Segment extends GeometryObject {
         const points = this.getPoints();
         const newPoints = points.map(point => point.applyHomogeneousMatrix(matrix));
         const newSegment = Segment.FromTwoPoints(newPoints[0], newPoints[1])
-            .label(this._label).color(this._color);
+            .label(this._label).strokeColor(this._strokeColor);
         return <this>this.copyFrom(newSegment);
     }
 

@@ -141,12 +141,12 @@ export class CanvasRenderer extends Renderer {
         const clone = point.clone().applyHomogeneousMatrix(this._appliedMatrix);
         const {x, y} = clone.getCartesianCoordinates();
         this.ctx.save();
-        let fillColor = point.color();
+        let fillColor = point.strokeColor();
         if (fillColor == null) {
             fillColor = MaterialColorEnum.BLUE_GREY; // should be class member
         }
         this.ctx.fillStyle = this.getColor(fillColor, 400);
-        let strokeColor = point.color();
+        let strokeColor = point.strokeColor();
         if (strokeColor == null) {
             strokeColor = MaterialColorEnum.BLUE_GREY; // should be class member
         }
@@ -174,7 +174,7 @@ export class CanvasRenderer extends Renderer {
             .map(bound => Line.GetIntersection(line, bound));
         const segment = Segment.FromTwoPoints(start, end)
             .label(line.label())
-            .color(line.color());
+            .strokeColor(line.strokeColor());
         this.renderSegment(segment);
     }
 
@@ -186,7 +186,7 @@ export class CanvasRenderer extends Renderer {
         });
 
         this.ctx.save();
-        let strokeColor = segment.color();
+        let strokeColor = segment.strokeColor();
         if (strokeColor == null) {
             strokeColor = MaterialColorEnum.BLUE_GREY; // should be class member
         }
@@ -228,7 +228,7 @@ export class CanvasRenderer extends Renderer {
         this.ctx.lineTo(xn, yn);
 
         // Stroke - default if nothing given
-        let strokeColor = polygon.color();
+        let strokeColor = polygon.strokeColor();
         if (strokeColor == null) {
             strokeColor = MaterialColorEnum.BLUE_GREY; // should be class member
         }
