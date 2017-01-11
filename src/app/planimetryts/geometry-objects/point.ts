@@ -190,10 +190,10 @@ export class Point extends GeometryObject {
         return this.copyFrom(newPoint);
     }
 
-    public applyHomogeneousMatrix(matrix: number[][]): this {
+    protected applyHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this {
         const homogeneousCoordinates = this.getHomogeneousMatrixCoordinates();
         const newMatrix = Matrix.Multiply(matrix, homogeneousCoordinates);
-        const newPoint = Point.FromMatrix(newMatrix).label(this.label()).color(this.color())
+        const newPoint = Point.FromMatrix(newMatrix).label(this.label()).color(this.color());
         return this.copyFrom(newPoint);
     }
 

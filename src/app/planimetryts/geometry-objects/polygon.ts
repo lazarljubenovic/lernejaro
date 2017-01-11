@@ -111,7 +111,7 @@ export class Polygon extends GeometryObject {
         return this;
     }
 
-    public applyHomogeneousMatrix(matrix: number[][]): this {
+    protected applyHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this {
         this._vertices.forEach(point => {
             point.applyHomogeneousMatrix(matrix);
         });

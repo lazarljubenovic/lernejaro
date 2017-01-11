@@ -156,7 +156,7 @@ export class Circle extends GeometryObject {
         return this.copyFrom(newCircle);
     }
 
-    public applyHomogeneousMatrix(matrix: number[][]): this {
+    protected applyHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this {
         const segment = Segment.FromTwoPoints(this._center, this.getRightPoint());
         segment.applyHomogeneousMatrix(matrix);
         const newCenter = segment.getPoints()[0];

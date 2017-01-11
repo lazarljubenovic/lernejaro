@@ -43,7 +43,23 @@ export abstract class GeometryObject {
 
     public abstract applyMatrix(matrix: number[][]): this;
 
-    public abstract applyHomogeneousMatrix(matrix: number[][]): this;
+    protected abstract applyHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this;
+
+    protected applyHomogeneousMatrixWithRespectTo(matrix: number[][], center: Point): this {
+        const {x, y} = center.getCartesianCoordinates();
+        return this.translate(-x, -y).applyHomogeneousMatrix(matrix).translate(x, y);
+    }
+
+    public applyHomogeneousMatrix(matrix: number[][], center?: Point): this {
+        if (arguments.length == 1) {
+            return this.applyHomogeneousMatrixWithRespectToCenter(matrix)
+        } else if (arguments.length == 2) {
+            return this.applyHomogeneousMatrixWithRespectTo(matrix, center);
+        } else {
+            throw `Invalid number of arguments for function applyHomogeneousMatrix.
+Expected 1 or 2 but given ${arguments.length}`;
+        }
+    }
 
     public translateX(dx: number): this {
         return this.applyHomogeneousMatrix(Matrix.Homogeneous.TranslateX(dx));
@@ -58,27 +74,27 @@ export abstract class GeometryObject {
     }
 
     public stretchX(k: number): this {
-        return this.applyMatrix(Matrix.StretchX(k));
+        return this.applyHomogeneousMatrix(Matrix.Homogeneous.StretchX(k));
     }
 
     public stretchY(k: number): this {
-        return this.applyMatrix(Matrix.StretchY(k));
+        return this.applyHomogeneousMatrix(Matrix.Homogeneous.StretchY(k));
     }
 
     public stretch(k: number): this {
-        return this.applyMatrix(Matrix.Stretch(k));
+        return this.applyHomogeneousMatrix(Matrix.Homogeneous.Stretch(k));
     }
 
     public rotate(θ: number): this {
-        return this.applyMatrix(Matrix.Rotate(θ));
+        return this.applyHomogeneousMatrix(Matrix.Homogeneous.Rotate(θ));
     }
 
     public shearX(k: number): this {
-        return this.applyMatrix(Matrix.ShearX(k));
+        return this.applyHomogeneousMatrix(Matrix.Homogeneous.ShearX(k));
     }
 
     public shearY(k: number): this {
-        return this.applyMatrix(Matrix.ShearY(k));
+        return this.applyHomogeneousMatrix(Matrix.Homogeneous.ShearY(k));
     }
 
     public abstract reflectOverPoint(point: Point): this;

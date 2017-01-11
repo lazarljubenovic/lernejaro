@@ -72,7 +72,7 @@ export class Segment extends GeometryObject {
         return <this>this.copyFrom(newSegment);
     }
 
-    public applyHomogeneousMatrix(matrix: number[][]): this {
+    protected applyHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this {
         const points = this.getPoints();
         const newPoints = points.map(point => point.applyHomogeneousMatrix(matrix));
         const newSegment = Segment.FromTwoPoints(newPoints[0], newPoints[1])

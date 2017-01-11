@@ -339,7 +339,7 @@ export class Line extends GeometryObject {
         return <this>Line.FromTwoPoints(newPoints[0], newPoints[1]);
     }
 
-    public applyHomogeneousMatrix(matrix: number[][]): this {
+    protected applyHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this {
         const points = this.getTwoPoints();
         const newPoints = points.map(point => point.applyHomogeneousMatrix(matrix));
         return <this>Line.FromTwoPoints(newPoints[0], newPoints[1]);
