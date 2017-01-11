@@ -99,13 +99,6 @@ export class Polygon extends GeometryObject {
         return this;
     }
 
-    protected applyMatrixWithRespectToCenter(matrix: number[][]): this {
-        this._vertices.forEach(point => {
-            point.applyMatrix(matrix);
-        });
-        return this;
-    }
-
     public radialSymmetry(point: Point): this[] {
         throw "TODO Polygon#radialSymmetry";
     }

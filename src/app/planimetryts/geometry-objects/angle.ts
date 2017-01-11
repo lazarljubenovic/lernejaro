@@ -111,10 +111,6 @@ export class Angle extends GeometryObject {
         throw 'TODO';
     }
 
-    protected applyMatrixWithRespectToCenter(matrix: number[][]): this {
-        throw 'TODO';
-    }
-
     public radialSymmetry(point: Point): this[] {
         throw 'TODO';
     }

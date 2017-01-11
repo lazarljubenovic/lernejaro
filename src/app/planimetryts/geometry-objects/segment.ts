@@ -75,14 +75,6 @@ export class Segment extends GeometryObject {
         return this;
     }
 
-    protected applyMatrixWithRespectToCenter(matrix: number[][]): this {
-        const points = this.getPoints();
-        const newPoints = points.map(point => point.applyMatrix(matrix));
-        const newSegment = Segment.FromTwoPoints(newPoints[0], newPoints[1])
-            .label(this._label).strokeColor(this._strokeColor);
-        return <this>this.copyFrom(newSegment);
-    }
-
     public reflectOverLine(line: Line): this {
         throw "TODO";
     }

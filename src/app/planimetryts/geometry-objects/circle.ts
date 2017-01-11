@@ -161,15 +161,6 @@ export class Circle extends GeometryObject {
         return this;
     }
 
-    protected applyMatrixWithRespectToCenter(matrix: number[][]): this {
-        const segment = Segment.FromTwoPoints(this._center, this.getRightPoint());
-        segment.applyMatrix(matrix);
-        const newCenter = segment.getPoints()[0];
-        const newRightPoint = segment.getPoints()[1];
-        const newCircle = Circle.FromCenterAndPoint(newCenter, newRightPoint);
-        return this.copyFrom(newCircle);
-    }
-
     public reflectOverLine(line: Line): this {
         throw "TODO Circle#reflectOverLine";
     }

@@ -346,12 +346,6 @@ export class Line extends GeometryObject {
         return this;
     }
 
-    protected applyMatrixWithRespectToCenter(matrix: number[][]): this {
-        const points = this.getTwoPoints();
-        const newPoints = points.map(point => point.applyMatrix(matrix));
-        return <this>Line.FromTwoPoints(newPoints[0], newPoints[1]);
-    }
-
     public reflectOverLine(line: Line): this {
         throw "TODO";
     }

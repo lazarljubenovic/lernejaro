@@ -57,7 +57,11 @@ export abstract class GeometryObject {
 
     protected abstract reconstructFromPoints(...points: Point[]): this;
 
-    protected abstract applyMatrixWithRespectToCenter(matrix: number[][]): this;
+    protected applyMatrixWithRespectToCenter(matrix: number[][]): this {
+        const points = this.destructToPoints();
+        points.forEach(point => point.applyMatrix(matrix));
+        return this.reconstructFromPoints(...points);
+    }
 
     protected applyMatrixWithRespectTo(matrix: number[][], point: Point): this {
         const {x, y} = point.getCartesianCoordinates();
