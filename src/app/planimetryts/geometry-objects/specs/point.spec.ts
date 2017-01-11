@@ -390,4 +390,11 @@ describe(`Point`, () => {
         expect(point.reflectOverLine(line)).toEqual(reflection);
     });
 
+    it(`should reflect over a point`, () => {
+        const point1 = Point.FromCartesianCoordinates(2, 1);
+        const center = Point.FromCartesianCoordinates(1, 2);
+        const point2 = Point.FromCartesianCoordinates(0, 3);
+        expect(point1.reflectOverPoint(center)).toEqual(point2);
+    });
+
 });

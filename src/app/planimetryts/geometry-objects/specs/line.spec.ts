@@ -470,6 +470,13 @@ describe(`Line`, () => {
         const expected = Line.X_AXIS;
         expect(Line.GetBisector(vertex, arm1, arm2)).toEqual(expected);
         expect(Line.GetBisector(vertex, arm2, arm1)).toEqual(expected);
-    })
+    });
+
+    it(`should reflect over a point`, () => {
+        const point = Point.FromCartesianCoordinates(1, 2);
+        const line1 = Line.FromSegmentForm(1, -1);
+        const line2 = Line.FromSegmentForm(-3, 3);
+        expect(line1.reflectOverPoint(point)).toEqual(line2);
+    });
 
 });

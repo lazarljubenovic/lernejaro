@@ -197,11 +197,10 @@ export class Point extends GeometryObject {
         return this.copyFrom(newPoint);
     }
 
-    public reflectOverPoint(point: Point): this {
-        throw "TODO";
-    }
-
     public reflectOverLine(line: Line): this {
+        // TODO
+        // This can be simplified using reflectOverPoint function and
+        // getting intersection of orthogonal line through point and the line.
         if (line.isVertical()) {
             const d = Line.GetDistanceBetweenLineAndPoint(line, this);
             const l = line.getGeneralForm();

@@ -97,7 +97,9 @@ Expected 1 or 2 but given ${arguments.length}`;
         return this.applyHomogeneousMatrix(Matrix.Homogeneous.ShearY(k), point);
     }
 
-    public abstract reflectOverPoint(point: Point): this;
+    public reflectOverPoint(point: Point): this {
+        return this.stretch(-1, point);
+    }
 
     public abstract reflectOverLine(line: Line): this;
 

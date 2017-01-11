@@ -345,10 +345,6 @@ export class Line extends GeometryObject {
         return <this>Line.FromTwoPoints(newPoints[0], newPoints[1]);
     }
 
-    public reflectOverPoint(point: Point): this {
-        throw "TODO";
-    }
-
     public reflectOverLine(line: Line): this {
         throw "TODO";
     }

@@ -80,10 +80,6 @@ export class Segment extends GeometryObject {
         return <this>this.copyFrom(newSegment);
     }
 
-    public reflectOverPoint(point: Point): this {
-        throw "TODO";
-    }
-
     public reflectOverLine(line: Line): this {
         throw "TODO";
     }

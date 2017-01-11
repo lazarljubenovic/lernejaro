@@ -165,10 +165,6 @@ export class Circle extends GeometryObject {
         return this.copyFrom(newCircle);
     }
 
-    public reflectOverPoint(point: Point): this {
-        throw "TODO Circle#reflectOverPoint";
-    }
-
     public reflectOverLine(line: Line): this {
         throw "TODO Circle#reflectOverLine";
     }

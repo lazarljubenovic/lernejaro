@@ -119,8 +119,4 @@ export class Angle extends GeometryObject {
         throw 'TDOO';
     }
 
-    public reflectOverPoint(point: Point): this {
-        throw 'TODO';
-    }
-
 }

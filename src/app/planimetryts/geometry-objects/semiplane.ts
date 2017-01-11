@@ -23,8 +23,4 @@ export class SemiPlane extends GeometryObject {
         throw "TODO SemiPlane#reflectOverLine";
     }
 
-    public reflectOverPoint(point: Point): this {
-        throw "TODO SemiPlane#reflectOverPoint";
-    }
-
 }

@@ -126,8 +126,4 @@ export class Polygon extends GeometryObject {
         throw "TODO Polygon#reflectOverLine";
     }
 
-    public reflectOverPoint(point: Point): this {
-        throw "TODO Polygon#reflectOverPoint";
-    }
-
 }
