@@ -73,4 +73,48 @@ describe(`Matrix`, () => {
         expect(Matrix.HomogeneousInverse(E)).toEqual(A);
     });
 
+    describe(`should get homogeneous matrix for`, () => {
+        it(`translation along X`, () => {
+            const m = [[1, 0, 2], [0, 1, 0], [0, 0, 1]];
+            expect(Matrix.Homogeneous.TranslateX(2)).toEqual(m);
+        });
+        it(`translation along Y`, () => {
+            const m = [[1, 0, 0], [0, 1, 2], [0, 0, 1]];
+            expect(Matrix.Homogeneous.TranslateY(2)).toEqual(m);
+        });
+        it(`translation along X and Y`, () => {
+            const m = [[1, 0, 2], [0, 1, 3], [0, 0, 1]];
+            expect(Matrix.Homogeneous.Translate(2, 3)).toEqual(m);
+        });
+        it(`stretching along X`, () => {
+            const m = [[2, 0, 0], [0, 1, 0], [0, 0, 1]];
+            expect(Matrix.Homogeneous.StretchX(2)).toEqual(m);
+        });
+        it(`stretching along Y`, () => {
+            const m = [[1, 0, 0], [0, 2, 0], [0, 0, 1]];
+            expect(Matrix.Homogeneous.StretchY(2)).toEqual(m);
+        });
+        it(`stretching along X and Y`, () => {
+            const m = [[2, 0, 0], [0, 2, 0], [0, 0, 1]];
+            expect(Matrix.Homogeneous.Stretch(2)).toEqual(m);
+        });
+        it(`rotation`, () => {
+            const m = [[0, -1, 0], [1, 0, 0], [0, 0, 1]];
+            const n = Matrix.Homogeneous.Rotate(Math.PI / 2);
+            m.forEach((_, i) => {
+                _.forEach((_, j) => {
+                    expect(_).toBeCloseTo(n[i][j]);
+                });
+            });
+        });
+        it(`shearing along X axis`, () => {
+            const m = [[1, 2, 0], [0, 1, 0], [0, 0, 1]];
+            expect(Matrix.Homogeneous.ShearX(2));
+        });
+        it(`shearing along Y axis`, () => {
+            const m = [[1, 0, 0], [2, 1, 0], [0, 0, 1]];
+            expect(Matrix.Homogeneous.ShearY(2)).toEqual(m);
+        });
+    });
+
 });

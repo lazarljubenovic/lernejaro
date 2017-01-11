@@ -104,7 +104,7 @@ export namespace Matrix {
         export function Rotate(θ: number): number[][] {
             const c = Math.cos(θ);
             const s = Math.sin(θ);
-            return [[c, s, 0], [-s, c, 0], [0, 0, 1]];
+            return [[c, -s, 0], [s, c, 0], [0, 0, 1]];
         }
 
         export function ShearX(k: number): number[][] {
