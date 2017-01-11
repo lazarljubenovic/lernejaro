@@ -64,6 +64,17 @@ export class Segment extends GeometryObject {
         return [this._point1, this._point2];
     }
 
+    protected destructToPoints(): Point[] {
+        return this.getPoints().map(p => p.clone());
+    }
+
+    protected reconstructFromPoints(...points: Point[]): this {
+        const [point1, point2] = points;
+        this._point1 = point1;
+        this._point2 = point2;
+        return this;
+    }
+
     protected applyMatrixWithRespectToCenter(matrix: number[][]): this {
         const points = this.getPoints();
         const newPoints = points.map(point => point.applyMatrix(matrix));

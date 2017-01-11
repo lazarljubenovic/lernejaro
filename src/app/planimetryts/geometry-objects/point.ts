@@ -191,6 +191,17 @@ export class Point extends GeometryObject {
         return Point.GetDistanceBetween(this, point);
     }
 
+    protected destructToPoints(): Point[] {
+        return [this.clone()];
+    }
+
+    protected reconstructFromPoints(...points: Point[]): this {
+        const point = points[0];
+        this._x = point._x;
+        this._y = point._y;
+        return this;
+    }
+
     protected applyMatrixWithRespectToCenter(matrix: number[][]): this {
         const [n, m] = Matrix.GetDimensions(matrix);
         let isHomogeneous: boolean;

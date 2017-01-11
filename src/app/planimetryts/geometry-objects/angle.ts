@@ -103,6 +103,14 @@ export class Angle extends GeometryObject {
         return this;
     }
 
+    protected destructToPoints(): Point[] {
+        throw 'TODO';
+    }
+
+    protected reconstructFromPoints(...points: Point[]): this {
+        throw 'TODO';
+    }
+
     protected applyMatrixWithRespectToCenter(matrix: number[][]): this {
         throw 'TODO';
     }

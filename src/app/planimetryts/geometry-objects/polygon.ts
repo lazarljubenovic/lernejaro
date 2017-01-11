@@ -90,6 +90,15 @@ export class Polygon extends GeometryObject {
         throw "TODO";
     }
 
+    protected destructToPoints(): Point[] {
+        return this.vertices().map(v => v.clone());
+    }
+
+    protected reconstructFromPoints(...points: Point[]): this {
+        this._vertices = points;
+        return this;
+    }
+
     protected applyMatrixWithRespectToCenter(matrix: number[][]): this {
         this._vertices.forEach(point => {
             point.applyMatrix(matrix);

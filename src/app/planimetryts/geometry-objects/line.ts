@@ -333,6 +333,19 @@ export class Line extends GeometryObject {
         }
     }
 
+    protected destructToPoints(): Point[] {
+        return this.getTwoPoints().map(p => p.clone());
+    }
+
+    protected reconstructFromPoints(...points: Point[]): this {
+        const [point1, point2] = points;
+        const line = Line.FromTwoPoints(point1, point2);
+        this._A = line._A;
+        this._B = line._B;
+        this._C = line._C;
+        return this;
+    }
+
     protected applyMatrixWithRespectToCenter(matrix: number[][]): this {
         const points = this.getTwoPoints();
         const newPoints = points.map(point => point.applyMatrix(matrix));

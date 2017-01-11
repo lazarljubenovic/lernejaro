@@ -53,6 +53,10 @@ export abstract class GeometryObject {
 
     public abstract clone(): GeometryObject;
 
+    protected abstract destructToPoints(): Point[];
+
+    protected abstract reconstructFromPoints(...points: Point[]): this;
+
     protected abstract applyMatrixWithRespectToCenter(matrix: number[][]): this;
 
     protected applyMatrixWithRespectTo(matrix: number[][], point: Point): this {

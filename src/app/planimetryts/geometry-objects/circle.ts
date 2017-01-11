@@ -147,6 +147,20 @@ export class Circle extends GeometryObject {
         return Point.Add(this._center, Point.FromPolarCoordinates(this._radius, 0));
     }
 
+    protected destructToPoints(): Point[] {
+        const center = this._center.clone();
+        const point = this.getRightPoint();
+        return [center, point];
+    }
+
+    protected reconstructFromPoints(...points: Point[]): this {
+        const [center, point] = points;
+        const circle = Circle.FromCenterAndPoint(center, point);
+        this._radius = circle._radius;
+        this._center = circle._center;
+        return this;
+    }
+
     protected applyMatrixWithRespectToCenter(matrix: number[][]): this {
         const segment = Segment.FromTwoPoints(this._center, this.getRightPoint());
         segment.applyMatrix(matrix);
