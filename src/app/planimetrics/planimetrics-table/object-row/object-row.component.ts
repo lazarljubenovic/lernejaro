@@ -66,7 +66,6 @@ export class ObjectRowComponent implements OnInit {
 
     public onObjectUpdate(obj) {
         let newJson = this._object.writeJson();
-        debugger;
         newJson.value[newJson.defaultValue] = obj;
         this._object = this._object.readJson(newJson).clone();
         this.objectChange.next(this._object);

@@ -60,6 +60,73 @@ describe(`Matrix`, () => {
         expect(Matrix.GetIdentity(3)).toEqual(i3);
     });
 
+    describe(`Matrix.IsMatrix`, () => {
+
+        it(`should return false for a string`, () => {
+            expect(Matrix.IsMatrix(<any>'foo')).toBe(false);
+        });
+
+        it(`should return false for a number`, () => {
+            expect(Matrix.IsMatrix(<any>1)).toBe(false);
+        });
+
+        it(`should return false for 1D array`, () => {
+            expect(Matrix.IsMatrix(<any>[1, 2]));
+        });
+
+        it(`should return false for different lengths of rows`, () => {
+            expect(Matrix.IsMatrix([[1], [1, 2]])).toBe(false);
+        });
+
+        it(`should return false for one element being a string`, () => {
+            expect(Matrix.IsMatrix(<any>[[1, 2], [3, '4']])).toBe(false);
+        });
+
+        it(`should return false for one element being undefined`, () => {
+            expect(Matrix.IsMatrix(<any>[[1, 2], [3, null]])).toBe(false);
+        });
+
+        it(`should return true for a proper matrix`, () => {
+            expect(Matrix.IsMatrix([[1, 2], [3, 4]])).toBe(true);
+            expect(Matrix.IsMatrix([[1]])).toBe(true);
+        });
+
+        it(`should return true for a proper non-square matrix`, () => {
+            expect(Matrix.IsMatrix([[1, 2], [3, 4], [5, 6]])).toBe(true);
+        });
+
+    });
+
+    describe(`Matrix.GetDimensions`, () => {
+        it(`should get dimension`, () => {
+            expect(Matrix.GetDimensions([[1, 2, 3], [1, 2, 3]])).toEqual([2, 3]);
+            expect(Matrix.GetDimensions([[1, 2], [1, 2]])).toEqual([2, 2]);
+            expect(Matrix.GetDimensions([[1], [1]])).toEqual([2, 1]);
+            expect(Matrix.GetDimensions([[1]])).toEqual([1, 1]);
+        });
+
+        it(`should throw when not a proper matrix`, () => {
+            expect(() => Matrix.GetDimensions([[1], [2], [3, 4]])).toThrow();
+        });
+    });
+
+    describe(`Matrix.IsSquareMatrix`, () => {
+        it(`should determine that matrix is square`, () => {
+            const m = [[1, 2], [3, 4]];
+            expect(Matrix.IsSquareMatrix(m)).toBe(true);
+        });
+
+        it(`should determine that matrix is not square`, () => {
+            const m = [[1, 2], [3, 4], [5, 6]];
+            expect(Matrix.IsSquareMatrix(m)).toBe(false);
+        });
+
+        it(`should throw when not a proper matrix`, () => {
+            const m = [[1, 2], [3, 4], [5]];
+            expect(() => Matrix.IsSquareMatrix(m)).toThrow();
+        });
+    });
+
     it(`should get homogeneous inverse for I3`, () => {
         const M = Matrix.GetIdentity(3);
         const actual = Matrix.HomogeneousInverse(M);

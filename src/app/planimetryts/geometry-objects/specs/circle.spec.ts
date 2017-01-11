@@ -283,7 +283,6 @@ describe(`Circle`, () => {
     // TODO
     // See above
     it(`should apply homogeneous matrix`, () => {
-        debugger;
         const matrix = [[1, 2, 3], [4, 5, 6], [0, 0, 1]];
         const circle1 = Circle.FromGeneralForm(1, 1, 1);
         const circle2 = Circle.FromGeneralForm(6, 15, Math.sqrt(17));

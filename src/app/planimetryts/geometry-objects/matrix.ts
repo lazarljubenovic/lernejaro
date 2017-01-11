@@ -49,6 +49,45 @@ export namespace Matrix {
         ].map(_ => _.map(el => el * λ));
     }
 
+    /**
+     * Check if given parameter is a 2D matrix made of numbers.
+     *
+     * This means that all elements must be of type number, and that matrix is
+     * in two dimensions. It also means that all elements of the matrix array
+     * need to have the same length.
+     *
+     * @param matrix
+     * @constructor
+     */
+    export function IsMatrix(matrix: number[][]): boolean {
+        try {
+            const firstRowLength = matrix[0].length;
+            return matrix.every(row => {
+                return row.length == firstRowLength &&
+                    row.every(cell => {
+                        return typeof cell == 'number';
+                    });
+            })
+        } catch (e) {
+            return false;
+        }
+    }
+
+    // NOTE: Works only with 2D matrices
+    export function GetDimensions(matrix: number[][]): number[] {
+        if (!IsMatrix(matrix)) {
+            throw `Not a matrix: ${JSON.stringify(matrix)}`;
+        }
+        const numberOfRows = matrix.length;
+        const numberOfColumns = matrix[0].length;
+        return [numberOfRows, numberOfColumns];
+    }
+
+    export function IsSquareMatrix(matrix: number[][]): boolean {
+        const [n, m] = GetDimensions(matrix);
+        return n == m;
+    }
+
     export function StretchX(k: number): number[][] {
         return [[k, 0], [0, 1]];
     }
