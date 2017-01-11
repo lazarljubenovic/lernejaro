@@ -2,7 +2,7 @@ import {Point} from '../point';
 import {Line} from '../line';
 import {areEqualFloats} from '../../util';
 
-const pointEquality = function(first: any, second: any) {
+const pointEquality = function (first: any, second: any) {
     if (first.kind == 'point' && second.kind == 'point') {
         return Point.AreEqual(first, second);
     }
@@ -170,7 +170,7 @@ describe(`Point`, () => {
     it(`should get point at ratio given as a single number`, () => {
         const point1 = Point.FromCartesianCoordinates(0, 0);
         const point2 = Point.FromCartesianCoordinates(6, 3);
-        const ratio = Point.GetPointAtRatio(point1, point2, 1/2);
+        const ratio = Point.GetPointAtRatio(point1, point2, 1 / 2);
         const expected = Point.FromCartesianCoordinates(2, 1);
         expect(ratio).toEqual(expected);
     });
@@ -230,7 +230,7 @@ describe(`Point`, () => {
         expect(p7.applyMatrix(m)).toEqual(p8);
     });
 
-    it(`should apply homogeneous transformation matrix`, () => {
+    it(`should apply homogeneous transformation matrix with default center`, () => {
         const m = [[1, 2, 3], [4, 5, 6], [0, 0, 1]];
 
         const p1 = Point.FromCartesianCoordinates(0, 0);
@@ -274,10 +274,24 @@ describe(`Point`, () => {
         expect(point1.stretchX(2)).toEqual(point2);
     });
 
+    it(`should stretch x with new center`, () => {
+        const center = Point.FromCartesianCoordinates(1, 1);
+        const point1 = Point.FromCartesianCoordinates(2, 1);
+        const point2 = Point.FromCartesianCoordinates(3, 1);
+        expect(point1.stretchX(2, center)).toEqual(point2);
+    });
+
     it(`should stretch Y`, () => {
         const point1 = Point.FromCartesianCoordinates(2, 1);
         const point2 = Point.FromCartesianCoordinates(2, 2);
         expect(point1.stretchY(2)).toEqual(point2);
+    });
+
+    it(`should stretch y with new center`, () => {
+        const center = Point.FromCartesianCoordinates(2, 3);
+        const point1 = Point.FromCartesianCoordinates(2, 2);
+        const point2 = Point.FromCartesianCoordinates(2, 1);
+        expect(point1.stretchY(2, center)).toEqual(point2);
     });
 
     it(`should stretch`, () => {
@@ -286,18 +300,40 @@ describe(`Point`, () => {
         expect(point1.stretch(5)).toEqual(point2);
     });
 
-    it(`should rotate`, () => {
-        const point1 = Point.FromCartesianCoordinates(1, 0);
-        const point2 = Point.FromCartesianCoordinates(0, 1);
-        expect(point1.rotate(Math.PI / 2)).toEqual(point2);
+    it(`should stretch with new center`, () => {
+        const center = Point.FromCartesianCoordinates(4, 4);
+        const point1 = Point.FromCartesianCoordinates(0, 0);
+        const point2 = Point.FromCartesianCoordinates(-4, -4);
+        expect(point1.stretch(2, center)).toEqual(point2);
+    });
 
-        const point3 = Point.FromCartesianCoordinates(1, 0);
-        const point4 = Point.FromCartesianCoordinates(-1, 0);
-        expect(point3.rotate(Math.PI)).toEqual(point4);
+    describe(`should rotate`, () => {
+        it(`for π / 2`, () => {
+            const point1 = Point.FromCartesianCoordinates(1, 0);
+            const point2 = Point.FromCartesianCoordinates(0, 1);
+            expect(point1.rotate(Math.PI / 2)).toEqual(point2);
+        });
 
-        const point5 = Point.FromCartesianCoordinates(1, 0);
-        const point6 = Point.FromCartesianCoordinates(0, -1);
-        expect(point5.rotate(3 * Math.PI / 2)).toEqual(point6);
+        it(`for π`, () => {
+            const point3 = Point.FromCartesianCoordinates(1, 0);
+            const point4 = Point.FromCartesianCoordinates(-1, 0);
+            expect(point3.rotate(Math.PI)).toEqual(point4);
+        });
+
+        it(`for 3π / 2`, () => {
+            const point5 = Point.FromCartesianCoordinates(1, 0);
+            const point6 = Point.FromCartesianCoordinates(0, -1);
+            expect(point5.rotate(3 * Math.PI / 2)).toEqual(point6);
+        });
+    });
+
+    describe(`should rotate around an arbitrary point`, () => {
+        it(`for π / 2`, () => {
+            const point1 = Point.FromCartesianCoordinates(2, 1);
+            const point2 = Point.FromCartesianCoordinates(1, 2);
+            const center = Point.FromCartesianCoordinates(1, 1);
+            expect(point1.rotate(Math.PI / 2, center)).toEqual(point2);
+        });
     });
 
     it(`should shear along x-axis`, () => {
