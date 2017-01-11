@@ -1,5 +1,6 @@
 import {Point} from '../point';
 import {Line} from '../line';
+import {areEqualFloats} from '../../util';
 
 const pointEquality = function(first: any, second: any) {
     if (first.kind == 'point' && second.kind == 'point') {
@@ -159,11 +160,19 @@ describe(`Point`, () => {
         expect(Point.GetDistanceBetween(point5, point6)).toBe(1);
     });
 
-    it(`should get point at given ratio`, () => {
+    it(`should get point at ratio given as two numbers`, () => {
         const point1 = Point.FromCartesianCoordinates(0, 0);
         const point2 = Point.FromCartesianCoordinates(6, 3);
         const third = Point.FromCartesianCoordinates(2, 1);
         expect(Point.GetPointAtRatio(point1, point2, 1, 2)).toEqual(third);
+    });
+
+    it(`should get point at ratio given as a single number`, () => {
+        const point1 = Point.FromCartesianCoordinates(0, 0);
+        const point2 = Point.FromCartesianCoordinates(6, 3);
+        const ratio = Point.GetPointAtRatio(point1, point2, 1/2);
+        const expected = Point.FromCartesianCoordinates(2, 1);
+        expect(ratio).toEqual(expected);
     });
 
     it(`should get point at the middle`, () => {
@@ -171,6 +180,14 @@ describe(`Point`, () => {
         const point2 = Point.FromCartesianCoordinates(3, 4);
         const middle = Point.FromCartesianCoordinates(2, 3);
         expect(Point.GetPointBetween(point1, point2)).toEqual(middle);
+    });
+
+    it(`should get distance between line and a point`, () => {
+        const point = Point.FromCartesianCoordinates(1, 1);
+        const line = Line.FromSegmentForm(-2, 2);
+        const distance = Point.GetDistanceBetweenLineAndPoint(line, point);
+        expect(areEqualFloats(distance, Math.SQRT2)).toBe(true,
+            `Distance should've been ≈√2 but was ${distance}`);
     });
 
     it(`should translate the point`, () => {
@@ -211,6 +228,44 @@ describe(`Point`, () => {
         const p7 = Point.FromCartesianCoordinates(2, -3);
         const p8 = Point.FromCartesianCoordinates(-4, -6);
         expect(p7.applyMatrix(m)).toEqual(p8);
+    });
+
+    it(`should apply homogeneous transformation matrix`, () => {
+        const m = [[1, 2, 3], [4, 5, 6], [0, 0, 1]];
+
+        const p1 = Point.FromCartesianCoordinates(0, 0);
+        const p2 = Point.FromCartesianCoordinates(3, 6);
+        expect(p1.applyHomogeneousMatrix(m)).toEqual(p2);
+
+        const p3 = Point.FromCartesianCoordinates(1, 1);
+        const p4 = Point.FromCartesianCoordinates(6, 15);
+        expect(p3.applyHomogeneousMatrix(m)).toEqual(p4);
+
+        const p5 = Point.FromCartesianCoordinates(-1, 1);
+        const p6 = Point.FromCartesianCoordinates(4, 7);
+        expect(p5.applyHomogeneousMatrix(m)).toEqual(p6);
+
+        const p7 = Point.FromCartesianCoordinates(2, -3);
+        const p8 = Point.FromCartesianCoordinates(-1, -1);
+        expect(p7.applyHomogeneousMatrix(m)).toEqual(p8);
+    });
+
+    it(`should translate along X`, () => {
+        const point1 = Point.FromCartesianCoordinates(1, 1);
+        const point2 = Point.FromCartesianCoordinates(2, 1);
+        expect(point1.translateX(1)).toEqual(point2);
+    });
+
+    it(`should translate along Y`, () => {
+        const point1 = Point.FromCartesianCoordinates(1, 1);
+        const point2 = Point.FromCartesianCoordinates(1, 2);
+        expect(point1.translateY(1)).toEqual(point2);
+    });
+
+    it(`should translate along X and Y`, () => {
+        const point1 = Point.FromCartesianCoordinates(1, 1);
+        const point2 = Point.FromCartesianCoordinates(3, 2);
+        expect(point1.translate(2, 1)).toEqual(point2);
     });
 
     it(`should stretch X`, () => {
