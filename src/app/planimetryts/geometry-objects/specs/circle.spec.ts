@@ -286,7 +286,7 @@ describe(`Circle`, () => {
         const matrix = [[1, 2, 3], [4, 5, 6], [0, 0, 1]];
         const circle1 = Circle.FromGeneralForm(1, 1, 1);
         const circle2 = Circle.FromGeneralForm(6, 15, Math.sqrt(17));
-        circle1.applyHomogeneousMatrix(matrix);
+        circle1.applyMatrix(matrix);
         expect(circle1).toEqual(circle2);
     });
 

@@ -235,19 +235,19 @@ describe(`Point`, () => {
 
         const p1 = Point.FromCartesianCoordinates(0, 0);
         const p2 = Point.FromCartesianCoordinates(3, 6);
-        expect(p1.applyHomogeneousMatrix(m)).toEqual(p2);
+        expect(p1.applyMatrix(m)).toEqual(p2);
 
         const p3 = Point.FromCartesianCoordinates(1, 1);
         const p4 = Point.FromCartesianCoordinates(6, 15);
-        expect(p3.applyHomogeneousMatrix(m)).toEqual(p4);
+        expect(p3.applyMatrix(m)).toEqual(p4);
 
         const p5 = Point.FromCartesianCoordinates(-1, 1);
         const p6 = Point.FromCartesianCoordinates(4, 7);
-        expect(p5.applyHomogeneousMatrix(m)).toEqual(p6);
+        expect(p5.applyMatrix(m)).toEqual(p6);
 
         const p7 = Point.FromCartesianCoordinates(2, -3);
         const p8 = Point.FromCartesianCoordinates(-1, -1);
-        expect(p7.applyHomogeneousMatrix(m)).toEqual(p8);
+        expect(p7.applyMatrix(m)).toEqual(p8);
     });
 
     it(`should translate along X`, () => {

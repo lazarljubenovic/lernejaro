@@ -53,60 +53,101 @@ export abstract class GeometryObject {
 
     public abstract clone(): GeometryObject;
 
-    public abstract applyMatrix(matrix: number[][]): this;
+    // region Non Homogeneous
 
-    protected abstract applyHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this;
+    protected abstract applyNonHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this;
 
-    protected applyHomogeneousMatrixWithRespectTo(matrix: number[][], center: Point): this {
-        const {x, y} = center.getCartesianCoordinates();
-        return this.translate(-x, -y).applyHomogeneousMatrix(matrix).translate(x, y);
+    protected applyNonHomogeneousMatrixWithRespectTo(matrix: number[][], point: Point): this {
+        const {x, y} = point.getCartesianCoordinates();
+        return this
+            .translate(-x, -y)
+            .applyNonHomogeneousMatrixWithRespectToCenter(matrix)
+            .translate(x, y);
     }
 
-    public applyHomogeneousMatrix(matrix: number[][], center?: Point): this {
-        if (arguments.length == 1 || center == null) {
-            return this.applyHomogeneousMatrixWithRespectToCenter(matrix)
+    protected applyNonHomogeneousMatrix(matrix, point?: Point): this {
+        if (arguments.length == 1 || point == null) {
+            return this.applyNonHomogeneousMatrixWithRespectToCenter(matrix)
         } else if (arguments.length == 2) {
-            return this.applyHomogeneousMatrixWithRespectTo(matrix, center);
+            return this.applyNonHomogeneousMatrixWithRespectTo(matrix, point);
         } else {
             throw `Invalid number of arguments for function applyHomogeneousMatrix.
 Expected 1 or 2 but given ${arguments.length}`;
         }
     }
 
+    // endregion
+
+    // region Homogeneous
+
+    protected abstract applyHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this;
+
+    protected applyHomogeneousMatrixWithRespectTo(matrix: number[][], point: Point): this {
+        const {x, y} = point.getCartesianCoordinates();
+        return this
+            .translate(-x, -y)
+            .applyHomogeneousMatrixWithRespectToCenter(matrix)
+            .translate(x, y);
+    }
+
+    protected applyHomogeneousMatrix(matrix: number[][], point?: Point): this {
+        if (arguments.length == 1 || point == null) {
+            return this.applyHomogeneousMatrixWithRespectToCenter(matrix)
+        } else if (arguments.length == 2) {
+            return this.applyHomogeneousMatrixWithRespectTo(matrix, point);
+        } else {
+            throw `Invalid number of arguments for function applyHomogeneousMatrix.
+Expected 1 or 2 but given ${arguments.length}`;
+        }
+    }
+
+    // endregion
+
+    public applyMatrix(matrix: number[][], point?: Point): this {
+        const [n, m] = Matrix.GetDimensions(matrix);
+        if (n == 2 && m == 2) {
+            return this.applyNonHomogeneousMatrix(matrix, point);
+        } else if (n == 3 && m == 3) {
+            return this.applyHomogeneousMatrix(matrix, point);
+        } else {
+            throw `Matrix needs to be 2×2 or 3×3. Given matrix is ${matrix}`;
+        }
+    }
+
     public translateX(dx: number): this {
-        return this.applyHomogeneousMatrix(Matrix.Homogeneous.TranslateX(dx));
+        return this.applyMatrix(Matrix.Homogeneous.TranslateX(dx));
     }
 
     public translateY(dy: number): this {
-        return this.applyHomogeneousMatrix(Matrix.Homogeneous.TranslateY(dy));
+        return this.applyMatrix(Matrix.Homogeneous.TranslateY(dy));
     }
 
     public translate(dx: number, dy: number): this {
-        return this.applyHomogeneousMatrix(Matrix.Homogeneous.Translate(dx, dy));
+        return this.applyMatrix(Matrix.Homogeneous.Translate(dx, dy));
     }
 
     public stretchX(k: number, point?: Point): this {
-        return this.applyHomogeneousMatrix(Matrix.Homogeneous.StretchX(k), point);
+        return this.applyMatrix(Matrix.Homogeneous.StretchX(k), point);
     }
 
     public stretchY(k: number, point?: Point): this {
-        return this.applyHomogeneousMatrix(Matrix.Homogeneous.StretchY(k), point);
+        return this.applyMatrix(Matrix.Homogeneous.StretchY(k), point);
     }
 
     public stretch(k: number, point?: Point): this {
-        return this.applyHomogeneousMatrix(Matrix.Homogeneous.Stretch(k), point);
+        return this.applyMatrix(Matrix.Homogeneous.Stretch(k), point);
     }
 
     public rotate(θ: number, point?: Point): this {
-        return this.applyHomogeneousMatrix(Matrix.Homogeneous.Rotate(θ), point);
+        return this.applyMatrix(Matrix.Homogeneous.Rotate(θ), point);
     }
 
     public shearX(k: number, point?: Point): this {
-        return this.applyHomogeneousMatrix(Matrix.Homogeneous.ShearX(k), point);
+        return this.applyMatrix(Matrix.Homogeneous.ShearX(k), point);
     }
 
     public shearY(k: number, point?: Point): this {
-        return this.applyHomogeneousMatrix(Matrix.Homogeneous.ShearY(k), point);
+        return this.applyMatrix(Matrix.Homogeneous.ShearY(k), point);
     }
 
     public reflectOverPoint(point: Point): this {

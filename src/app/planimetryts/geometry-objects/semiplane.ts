@@ -11,7 +11,7 @@ export class SemiPlane extends GeometryObject {
         super('semiplane');
     }
 
-    public applyMatrix(matrix: number[][]): this {
+    protected applyNonHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this {
         throw "TODO SemiPlane#applyMatrix";
     }
 

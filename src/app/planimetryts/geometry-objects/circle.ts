@@ -147,7 +147,7 @@ export class Circle extends GeometryObject {
         return Point.Add(this._center, Point.FromPolarCoordinates(this._radius, 0));
     }
 
-    public applyMatrix(matrix: number[][]): this {
+    protected applyNonHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this {
         const segment = Segment.FromTwoPoints(this._center, this.getRightPoint());
         segment.applyMatrix(matrix);
         const newCenter = segment.getPoints()[0];
@@ -158,7 +158,7 @@ export class Circle extends GeometryObject {
 
     protected applyHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this {
         const segment = Segment.FromTwoPoints(this._center, this.getRightPoint());
-        segment.applyHomogeneousMatrix(matrix);
+        segment.applyMatrix(matrix);
         const newCenter = segment.getPoints()[0];
         const newRightPoint = segment.getPoints()[1];
         const newCircle = Circle.FromCenterAndPoint(newCenter, newRightPoint);

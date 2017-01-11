@@ -138,7 +138,7 @@ export class CanvasRenderer extends Renderer {
     }
 
     protected renderPoint(point: Point) {
-        const clone = point.clone().applyHomogeneousMatrix(this._appliedMatrix);
+        const clone = point.clone().applyMatrix(this._appliedMatrix);
         const {x, y} = clone.getCartesianCoordinates();
         this.ctx.save();
         let fillColor = point.strokeColor();
@@ -180,7 +180,7 @@ export class CanvasRenderer extends Renderer {
 
     protected renderSegment(segment: Segment): void {
         const clone = segment.clone()
-            .applyHomogeneousMatrix(this._appliedMatrix);
+            .applyMatrix(this._appliedMatrix);
         const [start, end] = clone.getPoints().map(point => {
             return point.getCartesianCoordinates();
         });
@@ -201,7 +201,7 @@ export class CanvasRenderer extends Renderer {
     }
 
     protected renderCircle(circle: Circle): void {
-        const clone = circle.clone().applyHomogeneousMatrix(this._appliedMatrix);
+        const clone = circle.clone().applyMatrix(this._appliedMatrix);
         const c = clone.getGeneralForm();
         this.ctx.save();
         this.ctx.strokeStyle = 'black';
@@ -218,13 +218,13 @@ export class CanvasRenderer extends Renderer {
         const vertices = polygon.vertices();
 
         this.ctx.beginPath();
-        let {x: x0, y: y0} = vertices[0].clone().applyHomogeneousMatrix(this._appliedMatrix).getCartesianCoordinates();
+        let {x: x0, y: y0} = vertices[0].clone().applyMatrix(this._appliedMatrix).getCartesianCoordinates();
         this.ctx.moveTo(x0, y0);
         const p = vertices.forEach(vertex => {
-            let {x, y} = vertex.clone().applyHomogeneousMatrix(this._appliedMatrix).getCartesianCoordinates();
+            let {x, y} = vertex.clone().applyMatrix(this._appliedMatrix).getCartesianCoordinates();
             this.ctx.lineTo(x, y);
         });
-        let {x: xn, y: yn} = vertices[0].clone().applyHomogeneousMatrix(this._appliedMatrix).getCartesianCoordinates();
+        let {x: xn, y: yn} = vertices[0].clone().applyMatrix(this._appliedMatrix).getCartesianCoordinates();
         this.ctx.lineTo(xn, yn);
 
         // Stroke - default if nothing given

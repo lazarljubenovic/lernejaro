@@ -107,7 +107,7 @@ export class Angle extends GeometryObject {
         throw 'TODO';
     }
 
-    public applyMatrix(matrix: number[][]): this {
+    protected applyNonHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this {
         throw 'TODO';
     }
 

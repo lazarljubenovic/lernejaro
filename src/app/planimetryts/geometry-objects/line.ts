@@ -333,7 +333,7 @@ export class Line extends GeometryObject {
         }
     }
 
-    public applyMatrix(matrix: number[][]): this {
+    protected applyNonHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this {
         const points = this.getTwoPoints();
         const newPoints = points.map(point => point.applyMatrix(matrix));
         return <this>Line.FromTwoPoints(newPoints[0], newPoints[1]);
@@ -341,7 +341,7 @@ export class Line extends GeometryObject {
 
     protected applyHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this {
         const points = this.getTwoPoints();
-        const newPoints = points.map(point => point.applyHomogeneousMatrix(matrix));
+        const newPoints = points.map(point => point.applyMatrix(matrix));
         return <this>Line.FromTwoPoints(newPoints[0], newPoints[1]);
     }
 

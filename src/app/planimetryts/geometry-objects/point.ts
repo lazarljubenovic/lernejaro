@@ -183,7 +183,7 @@ export class Point extends GeometryObject {
         return Point.GetDistanceBetween(this, point);
     }
 
-    public applyMatrix(matrix: number[][]): this {
+    protected applyNonHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this {
         const matrixCoordinates = this.getMatrixCoordinates();
         const newMatrix = Matrix.Multiply(matrix, matrixCoordinates);
         const newPoint = Point.FromMatrix(newMatrix).strokeColor(this.strokeColor()).label(this.label());
