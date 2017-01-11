@@ -48,7 +48,7 @@ export class Circle extends GeometryObject {
 
             const A = 1;
             const B = -2 * c.y;
-            const C = c.y ** 2 - (l.C / l.A + c.x) ** 2 - r ** 2;
+            const C = (x - c.x) ** 2 - r ** 2 + c.y ** 2;
             const y: number[] = Equation.Quadratic.solve(A, B, C);
 
             return y.map(y => Point.FromCartesianCoordinates(x, y));
