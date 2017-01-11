@@ -18,6 +18,69 @@ describe(`Circle`, () => {
 
     beforeEach(() => jasmine.addCustomEqualityTester(customEqualities));
 
+    describe(`Circle.AreEqual`, () => {
+        it(`should determine that two circles are equal`, () => {
+            const circle1 = Circle.FromGeneralForm(1, 1, 1);
+            const circle2 = Circle.FromGeneralForm(1, 1, 1);
+            expect(circle1).not.toBe(circle2);
+            expect(Circle.AreEqual(circle1, circle2)).toBe(true);
+            expect(circle1).toEqual(circle2);
+        });
+
+        it(`should determine that two circles are not equal`, () => {
+            const circle1 = Circle.FromGeneralForm(1, 1, 1);
+            const circle2 = Circle.FromGeneralForm(1, 1.1, 1);
+            expect(circle1).not.toBe(circle2);
+            expect(Circle.AreEqual(circle1, circle2)).toBe(false);
+            expect(circle1).not.toEqual(circle2);
+        });
+    });
+
+    describe(`Circle.FromBoundingBox`, () => {
+        it(`should create a circle from bounding box`, () => {
+            const topLeft = Point.FromCartesianCoordinates(2, 0);
+            const bottomRight = Point.FromCartesianCoordinates(0, 2);
+            const actual = Circle.FromBoundingBox(topLeft, bottomRight);
+            const expected = Circle.FromGeneralForm(1, 1, 1);
+            expect(actual).toEqual(expected);
+        });
+    });
+
+    describe(`Circle.FromCenterAndPoint`, () => {
+        it(`should create a circle from a center and another point`, () => {
+            const center = Point.FromCartesianCoordinates(1, 1);
+            const point = Point.FromCartesianCoordinates(1, 0);
+            const actual = Circle.FromCenterAndPoint(center, point);
+            const expected = Circle.FromGeneralForm(1, 1, 1);
+            expect(actual).toEqual(expected);
+        });
+    });
+
+    describe(`Circle.FromCenterAndLine`, () => {
+        const center = Point.FromCartesianCoordinates(1, 1);
+        const expected = Circle.FromGeneralForm(1, 1, 1);
+
+        it(`should create a circle from a center and a vertical line`, () => {
+            const verticalLine = Line.VerticalThroughPoint(2);
+            const actual = Circle.FromCenterAndLine(center, verticalLine);
+            expect(actual).toEqual(expected);
+        });
+
+        it(`should create a circle from a center and a horizontal line`, () => {
+            const horizontalLine = Line.HorizontalThroughPoint(2);
+            const actual = Circle.FromCenterAndLine(center, horizontalLine);
+            expect(actual).toEqual(expected);
+        });
+
+        it(`should create a circle from a center and a line`, () => {
+            const line = Line.Y_EQUALS_X;
+            const center = Point.FromCartesianCoordinates(4, 2);
+            const actual = Circle.FromCenterAndLine(center, line);
+            const expected = Circle.FromCenterAndRadius(center, Math.SQRT2);
+            expect(actual).toEqual(expected);
+        });
+    });
+
     it(`should get two intersections with line`, () => {
         const line = Line.Y_EQUALS_X;
         const center = Point.FromCartesianCoordinates(2, 2);
@@ -172,5 +235,60 @@ describe(`Circle`, () => {
         });
     });
 
+    it(`should get center`, () => {
+        const circle = Circle.FromGeneralForm(1, 1, 2);
+        const center = Point.FromCartesianCoordinates(1, 1);
+        expect(circle.center()).toEqual(center);
+    });
+
+    it(`should get radius`, () => {
+        const circle = Circle.FromGeneralForm(1, 1, 1);
+        expect(circle.radius()).toEqual(1);
+    });
+
+    it(`should set radius`, () => {
+        const circle1 = Circle.FromGeneralForm(1, 1, 1);
+        expect(circle1.radius()).toEqual(1);
+        const circle2 = circle1.radius(2);
+        expect(circle2.radius()).toEqual(2);
+        expect(circle1).toBe(circle2); // Should not change reference
+    });
+
+    it(`should map radius`, () => {
+        const circle1 = Circle.FromGeneralForm(1, 1, 1);
+        expect(circle1.radius()).toEqual(1);
+        const circle2 = circle1.radius(r => r + 5);
+        expect(circle2.radius()).toEqual(6);
+        expect(circle1).toBe(circle2); // Should not change reference
+    });
+
+    it(`should clone`, () => {
+        const circle1 = Circle.FromGeneralForm(1, 1, 1);
+        const circle2 = circle1.clone();
+        expect(circle1).toEqual(circle2);
+        expect(circle1).not.toBe(circle2);
+    });
+
+    // TODO
+    // Note that this is mathematically wrong -- shear will be applied malformed.
+    // However, it remains this way until we develop a strategy for this.
+    it(`should apply matrix`, () => {
+        const matrix = [[1, 2], [3, 4]];
+        const circle1 = Circle.FromGeneralForm(1, 1, 1);
+        const circle2 = Circle.FromGeneralForm(3, 7, Math.sqrt(10));
+        circle1.applyMatrix(matrix);
+        expect(circle1).toEqual(circle2);
+    });
+
+    // TODO
+    // See above
+    it(`should apply homogeneous matrix`, () => {
+        debugger;
+        const matrix = [[1, 2, 3], [4, 5, 6], [0, 0, 1]];
+        const circle1 = Circle.FromGeneralForm(1, 1, 1);
+        const circle2 = Circle.FromGeneralForm(6, 15, Math.sqrt(17));
+        circle1.applyHomogeneousMatrix(matrix);
+        expect(circle1).toEqual(circle2);
+    });
 
 });
