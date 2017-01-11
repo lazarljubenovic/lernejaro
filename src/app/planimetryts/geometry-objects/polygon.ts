@@ -15,8 +15,6 @@ export class Polygon extends GeometryObject {
 
     protected _vertices: Point[];
 
-    protected _fillColor: MaterialColor;
-
     constructor(...points: Point[]) {
         super('polygon');
         this._vertices = points;
@@ -60,17 +58,6 @@ export class Polygon extends GeometryObject {
             segments.push(segment);
         }
         return segments;
-    }
-
-    public fillColor(): MaterialColor;
-    public fillColor(fillColor: MaterialColor): this;
-    public fillColor(fillColor?: MaterialColor): MaterialColor | this {
-        if (arguments.length == 0) {
-            return this._fillColor;
-        } else {
-            this._fillColor = fillColor;
-            return this;
-        }
     }
 
     protected copyFrom(polygon: Polygon): this {
