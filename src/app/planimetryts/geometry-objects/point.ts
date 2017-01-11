@@ -159,12 +159,20 @@ export class Point extends GeometryObject {
         return new Point(x, y, label).strokeColor(color);
     }
 
-    public getMatrixCoordinates(): [[number], [number]] {
+    public getNonHomogeneousMatrixCoordinates(): [[number], [number]] {
         return [[this._x], [this._y]];
     }
 
     public getHomogeneousMatrixCoordinates(): [[number], [number], [number]] {
         return [[this._x], [this._y], [1]];
+    }
+
+    public getMatrixCoordinates(homogeneous: boolean = true): number[][] {
+        if (homogeneous) {
+            return this.getHomogeneousMatrixCoordinates();
+        } else {
+            return this.getNonHomogeneousMatrixCoordinates();
+        }
     }
 
     public getPolarCoordinates(): {r: number, φ: number} {
@@ -183,17 +191,19 @@ export class Point extends GeometryObject {
         return Point.GetDistanceBetween(this, point);
     }
 
-    protected applyNonHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this {
-        const matrixCoordinates = this.getMatrixCoordinates();
+    protected applyMatrixWithRespectToCenter(matrix: number[][]): this {
+        const [n, m] = Matrix.GetDimensions(matrix);
+        let isHomogeneous: boolean;
+        if (n == 2 && m == 2) {
+            isHomogeneous = false;
+        } else if (n == 3 && m == 3) {
+            isHomogeneous = true;
+        } else {
+            throw `Matrix needs to be 2×2 or 3×3. Given matrix is ${matrix}`;
+        }
+        const matrixCoordinates = this.getMatrixCoordinates(isHomogeneous);
         const newMatrix = Matrix.Multiply(matrix, matrixCoordinates);
         const newPoint = Point.FromMatrix(newMatrix).strokeColor(this.strokeColor()).label(this.label());
-        return this.copyFrom(newPoint);
-    }
-
-    protected applyHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this {
-        const homogeneousCoordinates = this.getHomogeneousMatrixCoordinates();
-        const newMatrix = Matrix.Multiply(matrix, homogeneousCoordinates);
-        const newPoint = Point.FromMatrix(newMatrix).label(this.label()).strokeColor(this.strokeColor());
         return this.copyFrom(newPoint);
     }
 

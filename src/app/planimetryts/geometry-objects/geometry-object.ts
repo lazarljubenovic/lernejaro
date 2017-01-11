@@ -53,64 +53,24 @@ export abstract class GeometryObject {
 
     public abstract clone(): GeometryObject;
 
-    // region Non Homogeneous
+    protected abstract applyMatrixWithRespectToCenter(matrix: number[][]): this;
 
-    protected abstract applyNonHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this;
-
-    protected applyNonHomogeneousMatrixWithRespectTo(matrix: number[][], point: Point): this {
+    protected applyMatrixWithRespectTo(matrix: number[][], point: Point): this {
         const {x, y} = point.getCartesianCoordinates();
         return this
             .translate(-x, -y)
-            .applyNonHomogeneousMatrixWithRespectToCenter(matrix)
+            .applyMatrixWithRespectToCenter(matrix)
             .translate(x, y);
     }
-
-    protected applyNonHomogeneousMatrix(matrix, point?: Point): this {
-        if (arguments.length == 1 || point == null) {
-            return this.applyNonHomogeneousMatrixWithRespectToCenter(matrix)
-        } else if (arguments.length == 2) {
-            return this.applyNonHomogeneousMatrixWithRespectTo(matrix, point);
-        } else {
-            throw `Invalid number of arguments for function applyHomogeneousMatrix.
-Expected 1 or 2 but given ${arguments.length}`;
-        }
-    }
-
-    // endregion
-
-    // region Homogeneous
-
-    protected abstract applyHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this;
-
-    protected applyHomogeneousMatrixWithRespectTo(matrix: number[][], point: Point): this {
-        const {x, y} = point.getCartesianCoordinates();
-        return this
-            .translate(-x, -y)
-            .applyHomogeneousMatrixWithRespectToCenter(matrix)
-            .translate(x, y);
-    }
-
-    protected applyHomogeneousMatrix(matrix: number[][], point?: Point): this {
-        if (arguments.length == 1 || point == null) {
-            return this.applyHomogeneousMatrixWithRespectToCenter(matrix)
-        } else if (arguments.length == 2) {
-            return this.applyHomogeneousMatrixWithRespectTo(matrix, point);
-        } else {
-            throw `Invalid number of arguments for function applyHomogeneousMatrix.
-Expected 1 or 2 but given ${arguments.length}`;
-        }
-    }
-
-    // endregion
 
     public applyMatrix(matrix: number[][], point?: Point): this {
-        const [n, m] = Matrix.GetDimensions(matrix);
-        if (n == 2 && m == 2) {
-            return this.applyNonHomogeneousMatrix(matrix, point);
-        } else if (n == 3 && m == 3) {
-            return this.applyHomogeneousMatrix(matrix, point);
+        if (arguments.length == 1 || point == null) {
+            return this.applyMatrixWithRespectToCenter(matrix)
+        } else if (arguments.length == 2) {
+            return this.applyMatrixWithRespectTo(matrix, point);
         } else {
-            throw `Matrix needs to be 2×2 or 3×3. Given matrix is ${matrix}`;
+            throw `Invalid number of arguments for function applyHomogeneousMatrix.
+Expected 1 or 2 but given ${arguments.length}`;
         }
     }
 

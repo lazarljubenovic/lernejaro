@@ -103,11 +103,7 @@ export class Angle extends GeometryObject {
         return this;
     }
 
-    protected applyHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this {
-        throw 'TODO';
-    }
-
-    protected applyNonHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this {
+    protected applyMatrixWithRespectToCenter(matrix: number[][]): this {
         throw 'TODO';
     }
 

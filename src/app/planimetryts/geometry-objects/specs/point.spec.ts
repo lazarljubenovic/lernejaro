@@ -107,7 +107,7 @@ describe(`Point`, () => {
 
     it(`should get matrix from a point`, () => {
         const point = Point.FromCartesianCoordinates(1, 2);
-        const matrix = point.getMatrixCoordinates();
+        const matrix = point.getNonHomogeneousMatrixCoordinates();
         expect(matrix).toEqual([[1], [2]]);
     });
 

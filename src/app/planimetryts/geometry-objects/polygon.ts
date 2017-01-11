@@ -90,14 +90,7 @@ export class Polygon extends GeometryObject {
         throw "TODO";
     }
 
-    protected applyNonHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this {
-        this._vertices.forEach(point => {
-            point.applyMatrix(matrix);
-        });
-        return this;
-    }
-
-    protected applyHomogeneousMatrixWithRespectToCenter(matrix: number[][]): this {
+    protected applyMatrixWithRespectToCenter(matrix: number[][]): this {
         this._vertices.forEach(point => {
             point.applyMatrix(matrix);
         });
