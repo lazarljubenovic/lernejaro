@@ -4,9 +4,12 @@
 </div>
 
 <div class="content">
-  <div *ngFor="let strategyName of strategyNames">
-    <lrn-object-editor [object]="controller | destruct : strategyName"
-                       (objectChange)="onChange(strategyName, $event)"
-    ></lrn-object-editor>
+  <div *ngFor="let strategyName of strategyNames" class="strategy-content">
+    <div class="strategy-name">{{strategyName}}</div>
+    <div class="strategy">
+      <lrn-object-editor [object]="controller | destruct : strategyName"
+                         (objectChange)="onChange(strategyName, $event)"
+      ></lrn-object-editor>
+    </div>
   </div>
 </div>

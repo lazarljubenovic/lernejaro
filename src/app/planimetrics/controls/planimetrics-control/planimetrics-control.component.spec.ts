@@ -1,28 +1,25 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {PlanimetricsControlComponent} from './planimetrics-control.component';
 
-import { PlanimetricsControlComponent } from './planimetrics-control.component';
+xdescribe('PlanimetricsControlComponent', () => {
+    let component: PlanimetricsControlComponent;
+    let fixture: ComponentFixture<PlanimetricsControlComponent>;
 
-describe('PlanimetricsControlComponent', () => {
-  let component: PlanimetricsControlComponent;
-  let fixture: ComponentFixture<PlanimetricsControlComponent>;
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [PlanimetricsControlComponent]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ PlanimetricsControlComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(() => {
+        fixture = TestBed.createComponent(PlanimetricsControlComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PlanimetricsControlComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

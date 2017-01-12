@@ -1,5 +1,12 @@
-<lrn-planimetrics-control-point [(point)]="point" [strategy]="'cartesian'"></lrn-planimetrics-control-point>
-<lrn-planimetrics-control-line [(line)]="line" [strategy]="'segment'"></lrn-planimetrics-control-line>
+<div class="controls">
+  <lrn-planimetrics-control [(object)]="point"
+                            [strategies]="['cartesian', 'polar']"
+  ></lrn-planimetrics-control>
+
+  <lrn-planimetrics-control [(object)]="line"
+                            [strategies]="['general', 'segment', 'explicit']"
+  ></lrn-planimetrics-control>
+</div>
 
 <br>
 

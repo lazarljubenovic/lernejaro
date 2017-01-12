@@ -1,0 +1,71 @@
+@import '../../../global';
+
+$left-right-padding: 1.6ex;
+
+:host {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  font-family: Roboto, sans-serif;
+  @include z-depth-2dp;
+  overflow: hidden;
+  border-radius: 3px;
+
+  .title {
+    width: 100%;
+    padding: 1.6ex $left-right-padding;
+    box-sizing: border-box;
+    font-weight: bold;
+    color: rgba(black, .7);
+    border-bottom: solid 1px rgba(black, .12);
+
+    .kind {
+      text-transform: capitalize;
+    }
+
+    .label {
+    }
+  }
+
+  .content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .strategy-content {
+      display: flex;
+      flex-direction: column;
+      border-top: solid 1px rgba(black, .04);
+      padding-bottom: 1ex;
+
+      .strategy-name {
+        box-sizing: border-box;
+        font-size: .8em;
+        font-weight: bold;
+        margin-bottom: 1ex;
+        margin-top: 1.6ex;
+        text-transform: uppercase;
+        color: rgba(black, .5);
+        padding-left: $left-right-padding * 1 / 0.8;
+        padding-right: $left-right-padding * 1 / 0.8;
+      }
+
+      .strategy {
+        box-sizing: border-box;
+        padding-left: $left-right-padding;
+        padding-right: $left-right-padding;
+        display: flex;
+        justify-content: space-between;
+
+        lrn-input {
+          width: 100%;
+          box-sizing: border-box;
+
+          &:not(:last-child) {
+            margin-right: 2ex;
+          }
+        }
+      }
+    }
+  }
+}

@@ -29,13 +29,33 @@ label {
 input {
   outline: none;
   border: none;
-  border-bottom: solid $input-border-width rgba(black, .4);
+  border-bottom: solid $input-border-width rgba(black, .25);
   font-family: Roboto, sans-serif;
   height: $input-height;
   padding: 0;
   margin: 0;
   font-size: inherit;
   width: 100%;
+  color: rgba(black, .86);
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  text-align: right;
+}
+
+input[type=number] + .underline {
+  right: 0;
+  left: auto;
+}
+
+input[type=number] ~ .label {
+  justify-content: flex-end;
 }
 
 .underline {
@@ -44,6 +64,7 @@ input {
   position: absolute;
   height: $thickness;
   left: 0;
+  right: auto;
   width: 0;
   bottom: $input-border-width - $thickness;
   background-color: $highlight-color;
@@ -51,6 +72,7 @@ input {
 }
 
 .label {
+  width: 100%;
   $height: $label-height;
   display: flex;
   align-items: flex-end;

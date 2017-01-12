@@ -6,7 +6,7 @@ import {WrapGeometryObjectIntoController} from '../geometry-object-controllers/w
 @Component({
     selector: 'lrn-planimetrics-control',
     templateUrl: './planimetrics-control.component.html',
-    styleUrls: ['../planimetrics-control.component.scss'],
+    styleUrls: ['./planimetrics-control.component.scss'],
 })
 export class PlanimetricsControlComponent implements OnInit {
 

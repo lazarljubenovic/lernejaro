@@ -4,6 +4,9 @@ import {Point} from '../../planimetryts/geometry-objects/point';
 import {Line} from '../../planimetryts/geometry-objects/line';
 import {Polygon} from '../../planimetryts/geometry-objects/polygon';
 import {MaterialColor} from '../../planimetryts/geometry-objects/material-colors';
+import {Segment} from '../../planimetryts/geometry-objects/segment';
+import {Circle} from '../../planimetryts/geometry-objects/circle';
+import {Triangle} from '../../planimetryts/geometry-objects/triangle';
 
 @Component({
     selector: 'lrn-introducing-geometry',
@@ -24,44 +27,44 @@ export class IntroducingGeometryComponent implements OnInit {
             .label('B').strokeColor(MaterialColor.AMBER),
         Point.FromCartesianCoordinates(0, -170)
             .label('C').strokeColor(MaterialColor.AMBER),
-        Point.FromCartesianCoordinates(0, 0).label('X').strokeColor(MaterialColor.LIGHT_GREEN),
+        // Point.FromCartesianCoordinates(0, 0).label('X').strokeColor(MaterialColor.LIGHT_GREEN),
         // Point.FromCartesianCoordinates(+290, 0).label('Y').strokeColor(MaterialColor.LIGHT_GREEN),
     ];
 
     public evaluateObjects(...points: Point[]): void {
-        const [A, B, C, X] = points;
-
-        const triangle = Polygon.FromVertices(A, B, C)
-            .fillColor(MaterialColor.RED)
-            .strokeColor(MaterialColor.RED);
-
-        const mirrorTriangles = triangle
-            .radialSymmetry(X, 8).map(triangle => triangle
-                .fillColor(MaterialColor.TEAL)
-                .strokeColor(MaterialColor.TEAL));
-
-        this.objects = [triangle, ...mirrorTriangles];
-
-        // const polygon = Polygon.FromVertices(A, B, C);
-        // const segmentAB = Segment.FromTwoPoints(A, B);
-        // const bisectorA: Line = Line.GetBisector(A, B, C).strokeColor(MaterialColor.RED);
-        // const bisectorB: Line = Line.GetBisector(B, A, C).strokeColor(MaterialColor.GREEN);
-        // const bisectorC: Line = Line.GetBisector(C, A, B).strokeColor(MaterialColor.BLUE);
-        // const intersection: Point = Line.GetIntersection(bisectorA, bisectorB).strokeColor(MaterialColor.PINK);
-        // const inscribedCircle = Circle.FromCenterAndLine(intersection, segmentAB.getLine());
+        const [A, B, C] = points;
         //
-        // this.objects = [bisectorA, bisectorB, bisectorC, inscribedCircle, polygon, intersection];
+        // const triangle = Polygon.FromVertices(A, B, C)
+        //     .fillColor(MaterialColor.RED)
+        //     .strokeColor(MaterialColor.RED);
         //
-        // let eqTrianglePoints, eqTriangle;
-        // try {
-        //     eqTrianglePoints = polygon.segments().map(segment => {
-        //         return Circle.GetIntersectionsWithLine(inscribedCircle, Line.FromSegment(segment))[0].label('X');
-        //     });
-        //     eqTriangle = Triangle.FromVertices(...eqTrianglePoints).fillColor(MaterialColor.PINK);
-        //     this.objects = [...this.objects, eqTriangle, ...eqTrianglePoints];
-        // } catch (e) {
-        //     console.log(e);
-        // }
+        // const mirrorTriangles = triangle
+        //     .radialSymmetry(X, 8).map(triangle => triangle
+        //         .fillColor(MaterialColor.TEAL)
+        //         .strokeColor(MaterialColor.TEAL));
+        //
+        // this.objects = [triangle, ...mirrorTriangles];
+
+        const polygon = Polygon.FromVertices(A, B, C);
+        const segmentAB = Segment.FromTwoPoints(A, B);
+        const bisectorA: Line = Line.GetBisector(A, B, C).strokeColor(MaterialColor.RED);
+        const bisectorB: Line = Line.GetBisector(B, A, C).strokeColor(MaterialColor.GREEN);
+        const bisectorC: Line = Line.GetBisector(C, A, B).strokeColor(MaterialColor.BLUE);
+        const intersection: Point = Line.GetIntersection(bisectorA, bisectorB).strokeColor(MaterialColor.PINK);
+        const inscribedCircle = Circle.FromCenterAndLine(intersection, segmentAB.getLine());
+
+        this.objects = [bisectorA, bisectorB, bisectorC, inscribedCircle, polygon, intersection];
+
+        let eqTrianglePoints, eqTriangle;
+        try {
+            eqTrianglePoints = polygon.segments().map(segment => {
+                return Circle.GetIntersectionsWithLine(inscribedCircle, Line.FromSegment(segment))[0].label('X');
+            });
+            eqTriangle = Triangle.FromVertices(...eqTrianglePoints).fillColor(MaterialColor.PINK);
+            this.objects = [...this.objects, eqTriangle, ...eqTrianglePoints];
+        } catch (e) {
+            console.log(e);
+        }
 
     }
 
