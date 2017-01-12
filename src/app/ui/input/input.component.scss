@@ -4,57 +4,67 @@ $highlight-color: tomato; // TODO
 $highlight-thickness: .25ex;
 $input-height: 2.5ex;
 $input-border-width: .1ex;
+$label-height: 3ex;
 
 :host {
+  display: inline-block;
+}
+
+.wrapper {
   display: block;
   font-family: Roboto, sans-serif;
-  padding: 1ex;
+  //padding: 1ex;
+  box-sizing: border-box;
+  width: 100%;
+  padding-bottom: $label-height * .6;
+}
 
-  label {
-    position: relative;
-    display: inline-flex;
-    flex-direction: column;
+label {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  width: 100%;
+}
 
-    input {
-      outline: none;
-      border: none;
-      border-bottom: solid $input-border-width rgba(black, .4);
-      font-family: Roboto, sans-serif;
-      height: $input-height;
-      padding: 0;
-      margin: 0;
-      font-size: inherit;
-    }
+input {
+  outline: none;
+  border: none;
+  border-bottom: solid $input-border-width rgba(black, .4);
+  font-family: Roboto, sans-serif;
+  height: $input-height;
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
+  width: 100%;
+}
 
-    .underline {
-      $thickness: $highlight-thickness;
-      display: block;
-      position: absolute;
-      height: $thickness;
-      left: 0;
-      width: 0;
-      bottom: $input-border-width - $thickness;
-      background-color: $highlight-color;
-      transition: all .2s ease-out;
-    }
+.underline {
+  $thickness: $highlight-thickness;
+  display: block;
+  position: absolute;
+  height: $thickness;
+  left: 0;
+  width: 0;
+  bottom: $input-border-width - $thickness;
+  background-color: $highlight-color;
+  transition: all .2s ease-out;
+}
 
-    .label {
-      $height: 3ex;
-      display: flex;
-      align-items: flex-end;
-      position: absolute;
-      font-style: italic;
-      color: rgba(black, .4);
-      font-size: .6em;
-      height: $height;
-      top: $input-height / .6; //
-      transition: all .2s ease-out;
-      pointer-events: none;
+.label {
+  $height: $label-height;
+  display: flex;
+  align-items: flex-end;
+  position: absolute;
+  font-style: italic;
+  color: rgba(black, .4);
+  font-size: .6em;
+  height: $height;
+  top: calc(#{$input-height} / .6 - #{$input-border-width});
+  transition: all .2s ease-out;
+  pointer-events: none;
 
-      span {
-        display: inline-block;
-      }
-    }
+  span {
+    display: inline-block;
   }
 }
 

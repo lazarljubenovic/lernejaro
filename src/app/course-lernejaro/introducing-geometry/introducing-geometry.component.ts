@@ -12,6 +12,8 @@ import {MaterialColor} from '../../planimetryts/geometry-objects/material-colors
 })
 export class IntroducingGeometryComponent implements OnInit {
 
+    public point: Point = Point.FromCartesianCoordinates(2, 3);
+
     public objects: GeometryObject[];
 
     public interactivePoints: Point[] = [

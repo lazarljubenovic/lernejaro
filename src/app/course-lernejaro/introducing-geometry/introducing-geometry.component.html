@@ -1,3 +1,11 @@
+<lrn-planimetrics-control-point [(point)]="point" [strategy]="'cartesian'"></lrn-planimetrics-control-point>
+
+<br>
+
+{{point | json}}
+
+<br>
+
 <div style="width: 600px; height: 600px; border: dashed 1px rgba(0, 0, 0, .4); margin: 2em; display: flex">
   <lrn-planimetrics style="width:600px;"
                     [objects]="objects"

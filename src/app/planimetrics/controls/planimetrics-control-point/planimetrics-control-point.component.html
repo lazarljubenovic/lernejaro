@@ -1,0 +1,15 @@
+<div class="title">
+  <span class="kind">{{point | kind}}</span>&nbsp;<span class="point">{{point | label}}</span>
+</div>
+
+<div class="content">
+  <div *ngIf="strategy == 'cartesian'">
+    <lrn-input [type]="'number'" [label]="'x'" [value]="point | cartesian : 'x'" (valueChange)="onChangeX($event)"></lrn-input>
+    <lrn-input [type]="'number'" [label]="'y'" [value]="point | cartesian : 'y'" (valueChange)="onChangeY($event)"></lrn-input>
+  </div>
+
+  <div *ngIf="strategy == 'polar'">
+    <lrn-input [type]="'number'" [label]="'r'" [value]="point | polar : 'r'" (valueChange)="onChangeR($event)"></lrn-input>
+    <lrn-input [type]="'number'" [label]="'φ'" [value]="point | polar : 'phi'" (valueChange)="onChangePhi($event)"></lrn-input>
+  </div>
+</div>
