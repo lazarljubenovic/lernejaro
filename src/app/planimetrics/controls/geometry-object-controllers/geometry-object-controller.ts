@@ -1,8 +1,11 @@
 import {GeometryObject} from '../../../planimetryts/geometry-objects/geometry-object';
+
 export class DestructImpossibleError extends Error {
+
     constructor(message: string = "Destruction impossible") {
         super(message);
     }
+
 }
 
 export interface Strategy {
