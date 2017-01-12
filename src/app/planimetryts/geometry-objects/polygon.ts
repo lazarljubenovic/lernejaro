@@ -99,12 +99,4 @@ export class Polygon extends GeometryObject {
         return this;
     }
 
-    public radialSymmetry(point: Point): this[] {
-        throw "TODO Polygon#radialSymmetry";
-    }
-
-    public reflectOverLine(line: Line): this {
-        throw "TODO Polygon#reflectOverLine";
-    }
-
 }

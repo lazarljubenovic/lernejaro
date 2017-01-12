@@ -161,14 +161,6 @@ export class Circle extends GeometryObject {
         return this;
     }
 
-    public reflectOverLine(line: Line): this {
-        throw "TODO Circle#reflectOverLine";
-    }
-
-    public radialSymmetry(point: Point, count: number): this[] {
-        throw "TODO Circle#radialSymmetry";
-    }
-
     private getPointPositionalSign(point: Point): number {
         const c = this.getGeneralForm();
         const p = point.getCartesianCoordinates();

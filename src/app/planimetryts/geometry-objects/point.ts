@@ -152,7 +152,7 @@ export class Point extends GeometryObject {
         return this;
     }
 
-    public clone() {
+    public clone(): Point {
         const {x, y} = this.getCartesianCoordinates();
         const label = this._label;
         const color = this._strokeColor;
@@ -216,25 +216,6 @@ export class Point extends GeometryObject {
         const newMatrix = Matrix.Multiply(matrix, matrixCoordinates);
         const newPoint = Point.FromMatrix(newMatrix).strokeColor(this.strokeColor()).label(this.label());
         return this.copyFrom(newPoint);
-    }
-
-    public reflectOverLine(line: Line): this {
-        // TODO
-        // This can be simplified using reflectOverPoint function and
-        // getting intersection of orthogonal line through point and the line.
-        if (line.isVertical()) {
-            const d = Line.GetDistanceBetweenLineAndPoint(line, this);
-            const l = line.getGeneralForm();
-            const isPointAboveLine: boolean = (-l.C / l.A) > this.y();
-            return this.x(x => x - 2 * d * (isPointAboveLine ? -1 : +1));
-        }
-        const l = line.getExplicitForm();
-        const d = (this.x() + (this.y() - l.n) * l.k) / (1 + l.k ** 2);
-        return this.x(x => 2 * d - x).y(y => 2 * d * l.k - y + 2 * l.n);
-    }
-
-    public radialSymmetry(point: Point, count: number): this[] {
-        throw "TODO";
     }
 
 }

@@ -75,14 +75,6 @@ export class Segment extends GeometryObject {
         return this;
     }
 
-    public reflectOverLine(line: Line): this {
-        throw "TODO";
-    }
-
-    public radialSymmetry(point: Point, count: number): this[] {
-        throw "TODO";
-    }
-
     public getMiddle(): Point {
         return Point.GetPointBetween(this._point1, this._point2);
     }

@@ -346,14 +346,6 @@ export class Line extends GeometryObject {
         return this;
     }
 
-    public reflectOverLine(line: Line): this {
-        throw "TODO";
-    }
-
-    public radialSymmetry(point: Point, count: number): this[] {
-        throw "TODO";
-    }
-
     private getPointPositionalSign(point: Point): number {
         const l = this.getGeneralForm();
         const p = point.getCartesianCoordinates();
@@ -374,7 +366,7 @@ export class Line extends GeometryObject {
         return sidePoint1 == sidePoint2;
     }
 
-    public containsPoint(point: Point) {
+    public containsPoint(point: Point): boolean {
         return this.getPointPositionalSign(point) == 0;
     }
 

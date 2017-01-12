@@ -115,8 +115,4 @@ export class Angle extends GeometryObject {
         throw 'TODO';
     }
 
-    public reflectOverLine(line: Line): this {
-        throw 'TDOO';
-    }
-
 }

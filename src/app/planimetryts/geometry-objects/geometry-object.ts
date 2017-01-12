@@ -122,8 +122,30 @@ Expected 1 or 2 but given ${arguments.length}`;
         return this.stretch(-1, point);
     }
 
-    public abstract reflectOverLine(line: Line): this;
+    public reflectOverLine(line: Line): this {
+        if (line.isVertical()) {
+            const {A, C} = line.getGeneralForm();
+            const x = -C / A;
+            return this
+                .translateX(-x)
+                .stretchX(-1)
+                .translateX(x);
+        } else {
+            const {k, n} = line.getExplicitForm();
+            const angle = Math.atan(k);
+            return this.translateY(-n)
+                .rotate(-angle)
+                .stretchY(-1)
+                .rotate(angle)
+                .translateY(n);
+        }
+    }
 
-    public abstract radialSymmetry(point: Point, count: number): this[];
+    public radialSymmetry(point: Point, count: number): GeometryObject[] {
+        const angle = 2 * Math.PI / count;
+        return Array(count).fill(0).map((_, i) => i * angle).map(angle => {
+            return this.clone().rotate(angle, point);
+        });
+    }
 
 }
