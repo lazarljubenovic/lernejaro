@@ -1,8 +1,10 @@
 <lrn-planimetrics-control-point [(point)]="point" [strategy]="'cartesian'"></lrn-planimetrics-control-point>
+<lrn-planimetrics-control-line [(line)]="line" [strategy]="'segment'"></lrn-planimetrics-control-line>
 
 <br>
 
-{{point | json}}
+<pre>{{point | json}}</pre>
+<pre>{{line | json}}</pre>
 
 <br>
 

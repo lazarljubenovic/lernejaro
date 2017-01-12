@@ -13,6 +13,10 @@ import {CartesianPipe} from './controls/planimetrics-control-point/cartesian.pip
 import {PolarPipe} from './controls/planimetrics-control-point/polar.pipe';
 import {LabelPipe} from './controls/pipes/label.pipe';
 import {KindPipe} from './controls/pipes/kind.pipe';
+import {PlanimetricsControlLineComponent} from './controls/planimetrics-control-line/planimetrics-control-line.component';
+import {PlanimetricsControlCircleComponent} from './controls/planimetrics-control-circle/planimetrics-control-circle.component';
+import {PlanimetricsControlSegmentComponent} from './controls/planimetrics-control-segment/planimetrics-control-segment.component';
+import {LinePipe} from './controls/pipes/line.pipe';
 
 @NgModule({
     imports: [
@@ -31,11 +35,18 @@ import {KindPipe} from './controls/pipes/kind.pipe';
         PolarPipe,
         LabelPipe,
         KindPipe,
+        PlanimetricsControlLineComponent,
+        PlanimetricsControlCircleComponent,
+        PlanimetricsControlSegmentComponent,
+        LinePipe,
     ],
     exports: [
         PlanimetricsComponent,
         PlanimetricsTableComponent,
         PlanimetricsControlPointComponent,
+        PlanimetricsControlLineComponent,
+        PlanimetricsControlCircleComponent,
+        PlanimetricsControlSegmentComponent,
     ],
     providers: [
         RendererService,

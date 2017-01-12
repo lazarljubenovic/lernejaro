@@ -4,7 +4,7 @@ import {Point} from '../../../planimetryts/geometry-objects/point';
 @Component({
     selector: 'lrn-planimetrics-control-point',
     templateUrl: './planimetrics-control-point.component.html',
-    styleUrls: ['./planimetrics-control-point.component.scss']
+    styleUrls: ['../planimetrics-control.component.scss']
 })
 export class PlanimetricsControlPointComponent implements OnInit {
 
@@ -12,16 +12,6 @@ export class PlanimetricsControlPointComponent implements OnInit {
 
     @Input() public point: Point;
     @Output() public pointChange = new EventEmitter<Point>();
-
-    public getPolar() {
-        if (!this.point) {
-            return null;
-        }
-        return {
-            r: this.point.getPolarCoordinates().r,
-            phi: this.point.getPolarCoordinates().φ,
-        };
-    }
 
     public onChangeX(newX: string): void {
         const x: number = Number.parseFloat(newX);

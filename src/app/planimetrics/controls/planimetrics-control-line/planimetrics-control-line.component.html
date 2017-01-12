@@ -1,0 +1,19 @@
+<div class="title">
+  <span class="kind">{{line | kind}}</span>&nbsp;<span class="point">{{line | label}}</span>
+</div>
+
+<div class="content">
+  <div *ngIf="strategy == 'general'">
+    <lrn-input [type]="'number'" [label]="'A'" [value]="line | line : 'general' : 'A'" (valueChange)="onChangeA($event)"></lrn-input>
+    <lrn-input [type]="'number'" [label]="'B'" [value]="line | line : 'general' : 'B'" (valueChange)="onChangeB($event)"></lrn-input>
+    <lrn-input [type]="'number'" [label]="'C'" [value]="line | line : 'general' : 'C'" (valueChange)="onChangeC($event)"></lrn-input>
+  </div>
+  <div *ngIf="strategy == 'explicit'">
+    <lrn-input [type]="'number'" [label]="'k'" [value]="line | line : 'explicit' : 'k'" (valueChange)="onChangeK($event)"></lrn-input>
+    <lrn-input [type]="'number'" [label]="'n'" [value]="line | line : 'explicit' : 'n'" (valueChange)="onChangeN($event)"></lrn-input>
+  </div>
+  <div *ngIf="strategy == 'segment'">
+    <lrn-input [type]="'number'" [label]="'m'" [value]="line | line : 'segment' : 'm'" (valueChange)="onChangeSegmentM($event)"></lrn-input>
+    <lrn-input [type]="'number'" [label]="'n'" [value]="line | line : 'segment' : 'n'" (valueChange)="onChangeSegmentN($event)"></lrn-input>
+  </div>
+</div>

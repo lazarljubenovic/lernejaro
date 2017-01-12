@@ -12,7 +12,8 @@ import {MaterialColor} from '../../planimetryts/geometry-objects/material-colors
 })
 export class IntroducingGeometryComponent implements OnInit {
 
-    public point: Point = Point.FromCartesianCoordinates(2, 3);
+    public point: Point = Point.FromCartesianCoordinates(2, 3).strokeColor(MaterialColor.BLUE).fillColor(MaterialColor.GREEN).label('A');
+    public line: Line = Line.FromGeneralForm(10, 20, 30).strokeColor(MaterialColor.RED).fillColor(MaterialColor.YELLOW).label('a');
 
     public objects: GeometryObject[];
 

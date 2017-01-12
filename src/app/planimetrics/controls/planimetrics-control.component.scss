@@ -30,8 +30,12 @@
       justify-content: space-between;
 
       lrn-input {
-        width: calc(50% - 1ex);
+        width: 100%;
         box-sizing: border-box;
+
+        &:not(:last-child) {
+          margin-right: 2ex;
+        }
       }
     }
   }
