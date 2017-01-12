@@ -304,8 +304,14 @@ export function getByString(name: string,
 
 export function MaterialColor(name: MaterialColorEnum,
                               variant: string | number = 500): Color {
+
+    const nameString = enumToString(name);
+    return getByString(nameString, variant);
+}
+
+export function enumToString(color: MaterialColorEnum): string {
     let nameString: string;
-    switch (name) {
+    switch (color) {
         case MaterialColorEnum.AMBER:
             nameString = 'amber';
             break;
@@ -368,5 +374,5 @@ export function MaterialColor(name: MaterialColorEnum,
             nameString = 'pink';
             break;
     }
-    return getByString(nameString, variant);
+    return nameString;
 }

@@ -1,6 +1,12 @@
 <div class="title">
-  <span class="kind">{{controller | kind}}</span>
-  <span class="label">{{controller | label}}</span>
+  <span class="kind-and-label">
+    <span class="kind">{{controller | kind}}</span>
+    <span class="label">{{controller | label}}</span>
+  </span>
+  <span class="view-data">
+    <span [class]="'chip ' + (controller | strokeColor | getColorString)"><span>stroke</span></span>
+    <span [class]="'chip ' + (controller | fillColor | getColorString)"><span>fill</span></span>
+  </span>
 </div>
 
 <div class="content">
