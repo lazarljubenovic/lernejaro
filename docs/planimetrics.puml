@@ -1,0 +1,178 @@
+@startuml
+
+abstract class GeometryObject {
+    # _strokeColor: MaterialColor
+    # _fillColor: MaterialColor
+    # _label: string
+    --
+    # <<abstract>> copyFrom(object: GeometryObject): this
+    + <<abstract>> clone(): GeometryObject
+    + label(): string
+    + label(label: string): this
+    + strokeColor(): MaterialColor
+    + strokeColor(strokeColor: MaterialColor): this
+    + fillColor(): MaterialColor
+    + fillColor(fillColor: MaterialColor): this
+    --
+    # <<abstract>> applyMatrixWithRespectToCenter(matrix: number[][]): this
+    # applyMatrixWithRespectTo(matrix: number[][], point: Point): this
+    + applyMatrix(matrix: number[][], point?: Point): this
+    --
+    + translateX(dx: number): this
+    + translateY(dy: number): this
+    + translate(dx: number, dy: number): this
+    + stretchX(k: number, point?: Point): this
+    + stretchY(k: number, point?: Point): this
+    + stretch(k: number, point?: Point): this
+    + rotate(θ: number, point?: Point): this
+    + shearX(k: number, point?: Point): this
+    + shearY(k: number, point?: Point): this
+    + reflectOverPoint(point: Point): this
+    + reflectOverLine(line: Line): this
+    + radialSymmetry(point: Point, count: number): GeometryObject[]
+}
+
+class Point extends GeometryObject {
+    + <<static>> CENTER: Point
+    + <<static>> AreEqual(point1: Point, point2: Point): boolean
+    + <<static>> FromPolarCoordinates(r: number, φ: number, label?: string): Point
+    + <<static>> FromCartesianCoordinates(x: number, y: number, label?: string): Point
+    + <<static>> FromMatrix(matrix: number[][], label?: string): Point
+    + <<static>> Negative(point: Point): Point
+    + <<static>> Add(point1: Point, point2: Point): Point
+    + <<static>> Subtract(point1: Point, point2: Point): Point
+    + <<static>> DotProduct(point1: Point, point2: Point): number
+    + <<static>> GetDistanceBetween(point1: Point, point2: Point): number
+    + <<static>> GetPointAtRatio(point1: Point, point2: Point, m: number, n: number = 1): Point
+    + <<static>> GetPointBetween(point1: Point, point2: Point): Point
+    + <<static>> GetDistanceBetweenLineAndPoint(line: Line, point: Point): number
+    # _x: number
+    # _y: number
+    + constructor(x: number, y: number, label?: string)
+    + x(): number
+    + x(x: number): this
+    + x(fn: (x: number) => number): this
+    + y(): number
+    + y(y: number): this
+    + y(fn: (y: number) => number): this
+    # copyFrom(point: Point): this
+    + clone(): Point
+    + getNonHomogeneousMatrixCoordinates(): [[number], [number]]
+    + getHomogeneousMatrixCoordinates(): [[number], [number], [number]]
+    + getMatrixCoordinates(homogeneous: boolean = true): number[][]
+    + getPolarCoordinates(): {r: number, φ: number}
+    + getCartesianCoordinates(): Coordinate
+    + translateByPoint(point: Point): this
+    + distanceTo(point: Point)
+    # destructToPoints(): Point[]
+    # reconstructFromPoints(...points: Point[]): this
+    # protected applyMatrixWithRespectToCenter(matrix: number[][]): this
+}
+
+class Line extends GeometryObject {
+    + <<static>> X_AXIS: Line
+    + <<static>> Y_AXIS: Line
+    + <<static>> Y_EQUALS_X: Line
+    + <<static>> AreEqual(line1: Line, line2: Line): boolean
+    + <<static>> FromSegmentForm(m: number, n: number): Line
+    + <<static>> FromExplicitForm(k: number, n: number): Line
+    + <<static>> FromGeneralForm(A: number, B: number, C: number): Line
+    + <<static>> FromNormalForm(φ: number, p: number): Line
+    + <<static>> FromPointAndCoefficient(point: Point, k: number): Line
+    + <<static>> FromPointAndAngle(point: Point, angleRad: number): Line
+    + <<static>> FromTwoPoints(point1: Point, point2: Point): Line
+    + <<static>> FromSegment(segment: Segment): Line
+    + <<static>> HorizontalThroughPoint(point: Point | number): Line
+    + <<static>> VerticalThroughPoint(point: Point | number): Line
+    + <<static>> GetAnglesBetween(line1: Line, line2: Line): number[]
+    + <<static>> GetDistanceBetweenLineAndPoint(line: Line, point: Point): number
+    + <<static>> GetBisectors(line1: Line, line2: Line): Line[]
+    + <<static>> GetBisector(vertex: Point, arm1: Point, arm2: Point): Line
+    + <<static>> AreParallel(line1: Line, line2: Line): boolean
+    + <<static>> AreOrthogonal(line1: Line, line2: Line): boolean
+    + <<static>> GetIntersection(line1: Line, line2: Line): Point
+    + <<static>> ParallelThroughPoint(line: Line, point: Point): Line
+    + <<static>> OrthogonalThroughPoint(line: Line, point: Point): Line
+    - _A: number
+    - _B: number
+    - _C: number
+    + constructor(A: number, B: number, C: number)
+    # copyFrom(line: Line): this
+    + clone(): Line
+    - aIsZero(): boolean
+    - bIsZero(): boolean
+    - cIsZero(): boolean
+    + isVertical(): boolean
+    + isHorizontal(): boolean
+    + getGeneralForm(): {A: number, B: number, C: number}
+    + getExplicitForm(): {k: number, n: number}
+    + getSegmentForm(): {m: number, n: number}
+    + getTwoPoints(): Point[]
+    # destructToPoints(): Point[]
+    # reconstructFromPoints(...points: Point[]): this
+    - getPointPositionalSign(point: Point): number
+    + pointsAreOnSameSide(point1: Point, point2: Point): boolean
+    + containsPoint(point: Point): boolean
+}
+
+class Segment extends GeometryObject {
+    + <<static>> FromTwoPoints(point1: Point, point2: Point): Segment
+    # _point1: Point
+    # _point2: Point
+    # _isDirected: boolean
+    + constructor(point1: Point, point2: Point, label?: string, isDirected: boolean = false)
+    # copyFrom(segment: Segment): this
+    + clone(): Segment
+    + getPoints(): Point[]
+    # destructToPoints(): Point[]
+    # reconstructFromPoints(...points: Point[]): this
+    + getMiddle(): Point
+    + getLine(): Line
+    + getBisector(): Line
+}
+
+class Circle extends GeometryObject {
+    + <<static>> AreEqual(circle1: Circle, circle2: Circle): boolean
+    + <<static>> FromGeneralForm(p: number, q: number, r: number): Circle
+    + <<static>> FromCenterAndRadius(center: Point, radius: number): Circle
+    + <<static>> FromBoundingBox(topLeft: Point, bottomRight: Point): Circle
+    + <<static>> FromCenterAndPoint(center: Point, point: Point): Circle
+    + <<static>> FromCenterAndLine(center: Point, line: Line): Circle
+    + <<static>> GetIntersectionsWithLine(circle: Circle, line: Line): Point[]
+    + <<static>> GetIntersectionsWithCircle(c1: Circle, c2: Circle): Point[]
+    - _center: Point
+    - _radius: number
+    + constructor(center: Point, radius: number)
+    + center(): Point
+    + radius(): number
+    + radius(radius: number): this
+    + radius(fn: ((radius: number) => number)): this
+    # copyFrom(circle: Circle): this
+    + clone(): Circle
+    + getGeneralForm(): {p: number, q: number, r: number}
+    + getRightPoint(): Point
+    # destructToPoints(): Point[]
+    # reconstructFromPoints(...points: Point[]): this
+    - getPointPositionalSign(point: Point): number
+    + containsPoint(point: Point): boolean
+    + isPointInside(point: Point): boolean
+    + isPointOutside(point: Point): boolean
+    + pointsAreOnSameSide(point1: Point, point2: Point): boolean
+    + getTangentsThroughPoint(point: Point): Line[]
+}
+
+class Polygon extends GeometryObject {
+    + <<static>> FromVertices(...points: Point[]): Polygon
+    # _vertices: Point[]
+    + constructor(...points: Point[])
+    + vertices(): Point[]
+    + segments(): Segment[]
+    # copyFrom(polygon: Polygon): this
+    + clone(): Polygon
+    + getArea(): number
+    + getAngleAt(vertexIndex: number): Angle
+    # destructToPoints(): Point[]
+    # reconstructFromPoints(...points: Point[]): this
+}
+
+@enduml
