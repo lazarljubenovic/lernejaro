@@ -1,0 +1,81 @@
+@import '../../global';
+
+$highlight-color: tomato; // TODO
+$highlight-thickness: .25ex;
+$input-height: 2.5ex;
+$input-border-width: .1ex;
+
+:host {
+  display: block;
+  font-family: Roboto, sans-serif;
+  padding: 1ex;
+
+  label {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+
+    input {
+      outline: none;
+      border: none;
+      border-bottom: solid $input-border-width rgba(black, .4);
+      font-family: Roboto, sans-serif;
+      height: $input-height;
+      padding: 0;
+      margin: 0;
+      font-size: inherit;
+    }
+
+    .underline {
+      $thickness: $highlight-thickness;
+      display: block;
+      position: absolute;
+      height: $thickness;
+      left: 0;
+      width: 0;
+      bottom: $input-border-width - $thickness;
+      background-color: $highlight-color;
+      transition: all .2s ease-out;
+    }
+
+    .label {
+      $height: 3ex;
+      display: flex;
+      align-items: flex-end;
+      position: absolute;
+      font-style: italic;
+      color: rgba(black, .4);
+      font-size: .6em;
+      height: $height;
+      top: $input-height / .6; //
+      transition: all .2s ease-out;
+      pointer-events: none;
+
+      span {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+label.focus {
+
+  .underline {
+    width: 100%;
+  }
+
+  .label {
+    color: $highlight-color;
+  }
+
+}
+
+label.overlay-label {
+
+  .label {
+    height: $input-height;
+    top: -$input-border-width;
+    font-size: 1em;
+  }
+
+}

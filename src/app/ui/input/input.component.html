@@ -1,0 +1,13 @@
+<label [class.focus]="focus"
+       [class.overlay-label]="(value === '' || value === undefined || value === null) && !focus"
+>
+  <input [attr.type]="type"
+         [ngModel]="value"
+         (ngModelChange)="valueChange.emit($event)"
+         ngDefaultControl
+         (focus)="onFocus()"
+         (blur)="onBlur()"
+  >
+  <span class="underline"></span>
+  <span class="label"><span>{{label}}</span></span>
+</label>

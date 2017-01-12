@@ -5,7 +5,6 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {MarkdownParserService} from './markdown/markdown-parser.service';
 import {RouterModule} from '@angular/router';
-import { ObjectEditorComponent } from './object-editor/object-editor.component';
 
 @NgModule({
     declarations: [

@@ -18,6 +18,7 @@ import {PlanimetricsModule} from '../planimetrics/planimetrics.module';
 import {ChartModule} from '../chart/chart.module';
 import {IntroducingChartsComponent} from './introducing-charts/introducing-charts.component';
 import {FormsModule} from '@angular/forms';
+import {UiModule} from '../ui/ui.module';
 
 @NgModule({
     imports: [
@@ -31,6 +32,7 @@ import {FormsModule} from '@angular/forms';
         BitmapModule,
         PlanimetricsModule,
         ChartModule,
+        UiModule,
         RouterModule.forChild([
             {
                 path: '',
