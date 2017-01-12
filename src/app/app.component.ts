@@ -1,4 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
+import {Point} from './planimetryts/geometry-objects/point';
+import {Line} from './planimetryts/geometry-objects/line';
+import {Segment} from './planimetryts/geometry-objects/segment';
+import {Circle} from './planimetryts/geometry-objects/circle';
 
 @Component({
     selector: 'app-root',
@@ -6,6 +10,20 @@ import {Component, OnInit} from '@angular/core';
     styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
+
+    public test = {
+        a: 2,
+        b: 3,
+        c: 4,
+    };
+
+    public n = 1;
+
+    public point = Point.FromCartesianCoordinates(1, 2);
+    public point2 = Point.FromCartesianCoordinates(2, 1);
+    public line = Line.FromExplicitForm(1, 1);
+    public segment = Segment.FromTwoPoints(this.point, this.point2);
+    public circle = Circle.FromCenterAndRadius(this.point, 3);
 
     private slidesText = [
         `It's very easy to make some words **bold**

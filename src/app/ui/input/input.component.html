@@ -2,10 +2,9 @@
   <label [class.focus]="focus"
          [class.overlay-label]="(value === '' || value === undefined || value === null) && !focus"
   >
-    <input [attr.type]="type"
+    <input [type]="type"
            [ngModel]="value"
-           (ngModelChange)="valueChange.emit($event)"
-           ngDefaultControl
+           (ngModelChange)="onChange($event)"
            (focus)="onFocus()"
            (blur)="onBlur()"
     >

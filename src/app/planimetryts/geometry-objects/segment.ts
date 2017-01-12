@@ -46,7 +46,7 @@ export class Segment extends GeometryObject {
         return this;
     }
 
-    protected copyFrom(segment: Segment): this {
+    public copyFrom(segment: Segment): this {
         [this._point1, this._point2] = segment.getPoints();
         this._label = segment._label;
         this._strokeColor = segment._strokeColor;

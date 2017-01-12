@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { PlanimetricsControlPointComponent } from './planimetrics-control-point.component';
+import { PlanimetricsControlComponent } from './planimetrics-control.component';
 
-describe('PlanimetricsControlPointComponent', () => {
-  let component: PlanimetricsControlPointComponent;
-  let fixture: ComponentFixture<PlanimetricsControlPointComponent>;
+describe('PlanimetricsControlComponent', () => {
+  let component: PlanimetricsControlComponent;
+  let fixture: ComponentFixture<PlanimetricsControlComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlanimetricsControlPointComponent ]
+      declarations: [ PlanimetricsControlComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PlanimetricsControlPointComponent);
+    fixture = TestBed.createComponent(PlanimetricsControlComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

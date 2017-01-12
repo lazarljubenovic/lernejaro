@@ -123,7 +123,7 @@ export class Circle extends GeometryObject {
         }
     }
 
-    protected copyFrom(circle: Circle): this {
+    public copyFrom(circle: Circle): this {
         this.radius(circle.radius());
         this._center = circle.center();
         this._label = circle.label();

@@ -262,7 +262,7 @@ export class Line extends GeometryObject {
         return this;
     }
 
-    protected copyFrom(line: Line): this {
+    public copyFrom(line: Line): this {
         const l = line.getGeneralForm();
         this._A = l.A;
         this._B = l.B;

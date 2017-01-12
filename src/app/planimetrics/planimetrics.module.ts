@@ -7,16 +7,14 @@ import {TableModule} from '../table/table.module';
 import {ObjectRowComponent} from './planimetrics-table/object-row/object-row.component';
 import {ObjectEditorModule} from '../object-editor/object-editor.module';
 import {FormsModule} from '@angular/forms';
-import {PlanimetricsControlPointComponent} from './controls/planimetrics-control-point/planimetrics-control-point.component';
 import {UiModule} from '../ui/ui.module';
-import {CartesianPipe} from './controls/planimetrics-control-point/cartesian.pipe';
-import {PolarPipe} from './controls/planimetrics-control-point/polar.pipe';
-import {LabelPipe} from './controls/pipes/label.pipe';
-import {KindPipe} from './controls/pipes/kind.pipe';
-import {PlanimetricsControlLineComponent} from './controls/planimetrics-control-line/planimetrics-control-line.component';
-import {PlanimetricsControlCircleComponent} from './controls/planimetrics-control-circle/planimetrics-control-circle.component';
-import {PlanimetricsControlSegmentComponent} from './controls/planimetrics-control-segment/planimetrics-control-segment.component';
 import {LinePipe} from './controls/pipes/line.pipe';
+import {PlanimetricsControlComponent} from './controls/planimetrics-control/planimetrics-control.component';
+import {KindPipe} from './controls/planimetrics-control/pipes/kind.pipe';
+import {LabelPipe} from './controls/planimetrics-control/pipes/label.pipe';
+import {FillColorPipe} from './controls/planimetrics-control/pipes/fill-color.pipe';
+import {StrokeColorPipe} from './controls/planimetrics-control/pipes/stroke-color.pipe';
+import {DestructPipe} from './controls/planimetrics-control/pipes/destruct.pipe';
 
 @NgModule({
     imports: [
@@ -30,23 +28,18 @@ import {LinePipe} from './controls/pipes/line.pipe';
         PlanimetricsComponent,
         PlanimetricsTableComponent,
         ObjectRowComponent,
-        PlanimetricsControlPointComponent,
-        CartesianPipe,
-        PolarPipe,
-        LabelPipe,
-        KindPipe,
-        PlanimetricsControlLineComponent,
-        PlanimetricsControlCircleComponent,
-        PlanimetricsControlSegmentComponent,
         LinePipe,
+        PlanimetricsControlComponent,
+        KindPipe,
+        LabelPipe,
+        FillColorPipe,
+        StrokeColorPipe,
+        DestructPipe,
     ],
     exports: [
         PlanimetricsComponent,
         PlanimetricsTableComponent,
-        PlanimetricsControlPointComponent,
-        PlanimetricsControlLineComponent,
-        PlanimetricsControlCircleComponent,
-        PlanimetricsControlSegmentComponent,
+        PlanimetricsControlComponent,
     ],
     providers: [
         RendererService,

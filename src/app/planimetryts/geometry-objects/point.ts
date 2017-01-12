@@ -144,7 +144,7 @@ export class Point extends GeometryObject {
         }
     }
 
-    protected copyFrom(point: Point): this {
+    public copyFrom(point: Point): this {
         this._x = point._x;
         this._y = point._y;
         this._strokeColor = point._strokeColor;

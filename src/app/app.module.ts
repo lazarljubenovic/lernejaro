@@ -5,6 +5,9 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {MarkdownParserService} from './markdown/markdown-parser.service';
 import {RouterModule} from '@angular/router';
+import {ObjectEditorModule} from './object-editor/object-editor.module';
+import {UiModule} from './ui/ui.module';
+import {PlanimetricsModule} from './planimetrics/planimetrics.module';
 
 @NgModule({
     declarations: [
@@ -14,6 +17,9 @@ import {RouterModule} from '@angular/router';
         BrowserModule,
         FormsModule,
         HttpModule,
+        ObjectEditorModule,
+        UiModule,
+        PlanimetricsModule,
         RouterModule.forRoot([
             {
                 path: 'courses',

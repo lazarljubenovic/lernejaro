@@ -1,9 +1,9 @@
-<dl>
-  <ng-container *ngFor="let kvPair of keyValuePairs; trackBy: trackBy">
-    <dt>{{kvPair.key}}</dt>
-    <dd>
-      <input *ngIf="isNumber(kvPair.value)" type="number" [ngModel]="kvPair.value" (ngModelChange)="kvPair.value = $event; onObjectChange()">
-      <input *ngIf="!isNumber(kvPair.value)" type="text" [ngModel]="kvPair.value" (ngModelChange)="kvPair.value = $event; onObjectChange()">
-    </dd>
-  </ng-container>
-</dl>
+<div class="wrapper">
+  <lrn-input *ngFor="let kvPair of object | keyValuePairs; trackBy: trackBy"
+             [type]="kvPair.type"
+             [label]="kvPair.key"
+             [value]="kvPair.value"
+             (valueChange)="onChange(kvPair.key, $event)"
+  ></lrn-input>
+</div>
+

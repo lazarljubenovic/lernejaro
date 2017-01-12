@@ -1,0 +1,12 @@
+<div class="title">
+  <span class="kind">{{controller | kind}}</span>
+  <span class="label">{{controller | label}}</span>
+</div>
+
+<div class="content">
+  <div *ngFor="let strategyName of strategyNames">
+    <lrn-object-editor [object]="controller | destruct : strategyName"
+                       (objectChange)="onChange(strategyName, $event)"
+    ></lrn-object-editor>
+  </div>
+</div>

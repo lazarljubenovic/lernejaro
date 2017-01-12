@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { PolarPipe } from './polar.pipe';
+import { StrokeColorPipe } from './stroke-color.pipe';
 
-describe('PolarPipe', () => {
+describe('StrokeColorPipe', () => {
   it('create an instance', () => {
-    let pipe = new PolarPipe();
+    let pipe = new StrokeColorPipe();
     expect(pipe).toBeTruthy();
   });
 });

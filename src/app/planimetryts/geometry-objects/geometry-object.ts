@@ -49,7 +49,7 @@ export abstract class GeometryObject {
         }
     }
 
-    protected abstract copyFrom(object: GeometryObject): this;
+    public abstract copyFrom(object: GeometryObject): this;
 
     public abstract clone(): GeometryObject;
 

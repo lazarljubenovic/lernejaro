@@ -22,6 +22,14 @@ export class InputComponent implements OnInit {
         this.focus = false;
     }
 
+    public onChange(newValue) {
+        // TODO: Why do we need this?
+        if (this.type == 'number') {
+            newValue = Number.parseFloat(newValue);
+        }
+        this.valueChange.emit(newValue);
+    }
+
     constructor() {
     }
 

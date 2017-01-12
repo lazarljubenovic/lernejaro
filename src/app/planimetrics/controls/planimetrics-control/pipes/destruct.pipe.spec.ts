@@ -1,11 +1,11 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async } from '@angular/core/testing';
-import { CartesianPipe } from './cartesian.pipe';
+import { DestructPipe } from './destruct.pipe';
 
-describe('CartesianPipe', () => {
+describe('DestructPipe', () => {
   it('create an instance', () => {
-    let pipe = new CartesianPipe();
+    let pipe = new DestructPipe();
     expect(pipe).toBeTruthy();
   });
 });
