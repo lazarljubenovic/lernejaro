@@ -150,11 +150,9 @@ export class Point extends GeometryObject {
         return this;
     }
 
-    public clone(): Point {
+    protected cloneValues(): this {
         const {x, y} = this.getCartesianCoordinates();
-        const label = this._label;
-        const color = this._strokeColor;
-        return new Point(x, y, label).strokeColor(color);
+        return <this>Point.FromCartesianCoordinates(x, y);
     }
 
     public getNonHomogeneousMatrixCoordinates(): [[number], [number]] {
@@ -190,7 +188,7 @@ export class Point extends GeometryObject {
     }
 
     protected destructToPoints(): Point[] {
-        return [this.clone()];
+        return [this.cloneValues()];
     }
 
     protected reconstructFromPoints(...points: Point[]): this {

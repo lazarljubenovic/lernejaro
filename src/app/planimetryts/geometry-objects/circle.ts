@@ -129,9 +129,9 @@ export class Circle extends GeometryObject {
         return this;
     }
 
-    public clone(): Circle {
+    protected cloneValues(): this {
         const {p, q, r} = this.getGeneralForm();
-        return Circle.FromGeneralForm(p, q, r).label(this._label).strokeColor(this._strokeColor);
+        return <this>Circle.FromGeneralForm(p, q, r);
     }
 
     public getGeneralForm(): {p: number, q: number, r: number} {

@@ -62,10 +62,8 @@ export class Angle extends GeometryObject {
         return this;
     }
 
-    public clone(): Angle {
-        return Angle.Degrees(this.degrees)
-            .displayLines(this._displayLines)
-            .decoration(this._decoration);
+    protected cloneValues(): this {
+        return <this>Angle.Degrees(this.degrees);
     }
 
     public decoration(): AngleDecoration;

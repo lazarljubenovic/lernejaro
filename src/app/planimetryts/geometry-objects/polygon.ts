@@ -1,11 +1,8 @@
 import {GeometryObject} from './geometry-object';
 import {Point} from './point';
 import * as Chroma from 'chroma-js';
-import {Line} from './line';
 import {Angle} from './angle';
 import {Segment} from './segment';
-import {MaterialColor} from './material-colors';
-import Color = Chroma.Color;
 
 export class Polygon extends GeometryObject {
 
@@ -64,11 +61,9 @@ export class Polygon extends GeometryObject {
         return this;
     }
 
-    public clone(): Polygon {
+    protected cloneValues(): this {
         const clones = this._vertices.map(p => p.clone());
-        return Polygon.FromVertices(...clones)
-            .label(this._label)
-            .strokeColor(this._strokeColor);
+        return <this>Polygon.FromVertices(...clones);
     }
 
     public getArea(): number {

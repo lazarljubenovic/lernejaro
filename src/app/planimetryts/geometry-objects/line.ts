@@ -270,9 +270,9 @@ export class Line extends GeometryObject {
         return this;
     }
 
-    public clone(): Line {
+    protected cloneValues(): this {
         const {A, B, C} = this.getGeneralForm();
-        return Line.FromGeneralForm(A, B, C).strokeColor(this._strokeColor).label(this._label);
+        return <this>Line.FromGeneralForm(A, B, C);
     }
 
     private aIsZero(): boolean {

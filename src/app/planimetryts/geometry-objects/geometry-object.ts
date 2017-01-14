@@ -75,7 +75,14 @@ export abstract class GeometryObject {
         return this.copyViewDataFrom(object).copyValuesFrom(object);
     }
 
-    public abstract clone(): GeometryObject;
+    protected abstract cloneValues(): this;
+
+    // TODO: Write tests for this
+    public clone(): this {
+        const valueClone: this = this.cloneValues();
+        valueClone.copyViewDataFrom(this);
+        return valueClone;
+    }
 
     protected abstract destructToPoints(): Point[];
 
@@ -168,7 +175,7 @@ Expected 1 or 2 but given ${arguments.length}`;
     public radialSymmetry(point: Point, count: number): GeometryObject[] {
         const angle = 2 * Math.PI / count;
         return Array(count).fill(0).map((_, i) => i * angle).map(angle => {
-            return this.clone().rotate(angle, point);
+            return this.cloneValues().rotate(angle, point);
         });
     }
 

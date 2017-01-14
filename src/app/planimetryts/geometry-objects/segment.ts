@@ -67,11 +67,10 @@ export class Segment extends GeometryObject {
         return this;
     }
 
-    public clone(): Segment {
+    protected cloneValues(): this {
         const point1 = this._point1.clone();
         const point2 = this._point2.clone();
-        return Segment.FromTwoPoints(point1, point2)
-            .label(this._label).strokeColor(this._strokeColor);
+        return <this>Segment.FromTwoPoints(point1, point2);
     }
 
     public getPoints(): Point[] {
