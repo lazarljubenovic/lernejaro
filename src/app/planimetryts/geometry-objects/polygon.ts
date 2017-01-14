@@ -59,10 +59,8 @@ export class Polygon extends GeometryObject {
         return segments;
     }
 
-    public copyFrom(polygon: Polygon): this {
-        this._vertices = polygon._vertices;
-        this._label = polygon._label;
-        this._strokeColor = polygon._strokeColor;
+    public copyValuesFrom(polygon: Polygon): this {
+        this._vertices = polygon._vertices.map(v => v.clone());
         return this;
     }
 

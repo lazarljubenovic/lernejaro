@@ -262,13 +262,11 @@ export class Line extends GeometryObject {
         return this;
     }
 
-    public copyFrom(line: Line): this {
-        const l = line.getGeneralForm();
-        this._A = l.A;
-        this._B = l.B;
-        this._C = l.C;
-        this._strokeColor = line.strokeColor();
-        this._label = line.label();
+    public copyValuesFrom(line: Line): this {
+        const {A, B, C} = line.getGeneralForm();
+        this._A = A;
+        this._B = B;
+        this._C = C;
         return this;
     }
 

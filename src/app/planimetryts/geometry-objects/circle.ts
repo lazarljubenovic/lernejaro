@@ -123,11 +123,9 @@ export class Circle extends GeometryObject {
         }
     }
 
-    public copyFrom(circle: Circle): this {
-        this.radius(circle.radius());
-        this._center = circle.center();
-        this._label = circle.label();
-        this._strokeColor = circle.strokeColor();
+    public copyValuesFrom(circle: Circle): this {
+        this._radius = circle._radius;
+        this._center = circle._center.clone();
         return this;
     }
 

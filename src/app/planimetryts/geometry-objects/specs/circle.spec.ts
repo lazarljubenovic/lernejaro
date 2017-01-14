@@ -1,6 +1,7 @@
 import {Line} from '../line';
 import {Point} from '../point';
 import {Circle} from '../circle';
+import {MaterialColor} from '../material-colors';
 
 const customEqualities = function (first: any, second: any) {
     if (first.kind == 'line' && second.kind == 'line') {
@@ -34,6 +35,77 @@ describe(`Circle`, () => {
             expect(Circle.AreEqual(circle1, circle2)).toBe(false);
             expect(circle1).not.toEqual(circle2);
         });
+    });
+
+    describe(`Circle#copyValuesFrom`, () => {
+
+        it(`should copy by value to an object`, () => {
+            const circleSrc = Circle.FromGeneralForm(1, 2, 3);
+            const circleDst = Circle.FromGeneralForm(4, 5, 6);
+            circleDst.copyValuesFrom(circleSrc);
+            expect(circleSrc).toEqual(circleDst);
+            expect(circleSrc).not.toBe(circleDst);
+        });
+
+        it(`should not copy view data`, () => {
+            const circleSrc = Circle.FromGeneralForm(1, 2, 3)
+                .label('k')
+                .strokeColor(MaterialColor.BLUE)
+                .fillColor(MaterialColor.BLUE_GREY);
+            const circleDst = Circle.FromGeneralForm(4, 5, 6)
+                .label('n')
+                .strokeColor(MaterialColor.CYAN)
+                .fillColor(MaterialColor.BROWN);
+            circleDst.copyValuesFrom(circleSrc);
+            expect(circleSrc).toEqual(circleDst);
+            expect(circleSrc).not.toBe(circleDst);
+            expect(circleDst.label()).toBe('n');
+            expect(circleDst.strokeColor()).toBe(MaterialColor.CYAN);
+            expect(circleDst.fillColor()).toBe(MaterialColor.BROWN);
+        });
+
+    });
+
+    describe(`Circle#copyViewDataFrom`, () => {
+
+        it(`should copy only label, stroke color and fill color`, () => {
+            const circleSrc = Circle.FromGeneralForm(1, 2, 3)
+                .label('k')
+                .strokeColor(MaterialColor.BLUE)
+                .fillColor(MaterialColor.BLUE_GREY);
+            const circleDst = Circle.FromGeneralForm(4, 5, 6)
+                .label('n')
+                .strokeColor(MaterialColor.CYAN)
+                .fillColor(MaterialColor.BROWN);
+            circleDst.copyViewDataFrom(circleSrc);
+            expect(circleSrc).not.toEqual(circleDst);
+            expect(circleSrc).not.toBe(circleDst);
+            expect(circleDst.label()).toBe('k');
+            expect(circleDst.strokeColor()).toBe(MaterialColor.BLUE);
+            expect(circleDst.fillColor()).toBe(MaterialColor.BLUE_GREY);
+        });
+
+    });
+
+    describe(`Circle#copyFrom`, () => {
+
+        it(`should copy everything`, () => {
+            const circleSrc = Circle.FromGeneralForm(1, 2, 3)
+                .label('k')
+                .strokeColor(MaterialColor.BLUE)
+                .fillColor(MaterialColor.BLUE_GREY);
+            const circleDst = Circle.FromGeneralForm(4, 5, 6)
+                .label('n')
+                .strokeColor(MaterialColor.CYAN)
+                .fillColor(MaterialColor.BROWN);
+            circleDst.copyFrom(circleSrc);
+            expect(circleSrc).toEqual(circleDst);
+            expect(circleSrc).not.toBe(circleDst);
+            expect(circleDst.label()).toBe('k');
+            expect(circleDst.strokeColor()).toBe(MaterialColor.BLUE);
+            expect(circleDst.fillColor()).toBe(MaterialColor.BLUE_GREY);
+        });
+
     });
 
     describe(`Circle.FromBoundingBox`, () => {

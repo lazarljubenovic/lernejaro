@@ -57,10 +57,8 @@ export class Angle extends GeometryObject {
         return this;
     }
 
-    public copyFrom(angle: Angle): this {
+    public copyValuesFrom(angle: Angle): this {
         this._angleDegrees = angle.degrees;
-        this._strokeColor = angle.strokeColor();
-        this._label = angle.label();
         return this;
     }
 

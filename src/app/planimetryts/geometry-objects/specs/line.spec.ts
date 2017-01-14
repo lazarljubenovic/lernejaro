@@ -2,6 +2,7 @@ import {Line} from '../line';
 import {Point} from '../point';
 import {areEqualFloats, isZero} from '../../util';
 import {ZlibOptions} from 'zlib';
+import {MaterialColor} from '../material-colors';
 
 const customEqualities = function (first: any, second: any) {
     if (first.kind == 'line' && second.kind == 'line') {
@@ -21,6 +22,77 @@ describe(`Line`, () => {
         const line1 = new Line(1, 2, 3);
         const line2 = new Line(1 + diff, 2 + diff, 3 + diff);
         expect(Line.AreEqual(line1, line2)).toBe(true);
+    });
+
+    describe(`Line#copyValuesFrom`, () => {
+
+        it(`should copy by value to an object`, () => {
+            const line1 = Line.FromGeneralForm(1, 2, 3);
+            const line2 = Line.FromGeneralForm(4, 5, 6);
+            line2.copyValuesFrom(line1);
+            expect(line2).toEqual(line1);
+            expect(line2).not.toBe(line1);
+        });
+
+        it(`should not copy view data`, () => {
+            const line1 = Line.FromGeneralForm(1, 2, 3)
+                .label('A')
+                .strokeColor(MaterialColor.LIGHT_BLUE)
+                .fillColor(MaterialColor.BLUE);
+            const line2 = Line.FromGeneralForm(4, 5, 6)
+                .label('B')
+                .strokeColor(MaterialColor.AMBER)
+                .fillColor(MaterialColor.RED);
+            line1.copyValuesFrom(line2);
+            expect(line1).toEqual(line2);
+            expect(line1).not.toBe(line2);
+            expect(line1.label()).toBe('A');
+            expect(line1.strokeColor()).toBe(MaterialColor.LIGHT_BLUE);
+            expect(line1.fillColor()).toBe(MaterialColor.BLUE);
+        });
+
+    });
+
+    describe(`Line#copyViewDataFrom`, () => {
+
+        it(`should copy only label, stroke color and fill color`, () => {
+            const line1 = Line.FromGeneralForm(1, 2, 3)
+                .label('A')
+                .strokeColor(MaterialColor.LIGHT_BLUE)
+                .fillColor(MaterialColor.BLUE);
+            const line2 = Line.FromGeneralForm(4, 5, 6)
+                .label('B')
+                .strokeColor(MaterialColor.AMBER)
+                .fillColor(MaterialColor.RED);
+            line1.copyViewDataFrom(line2);
+            expect(line1).not.toEqual(line2);
+            expect(line1).not.toBe(line2);
+            expect(line1.label()).toBe('B');
+            expect(line1.strokeColor()).toBe(MaterialColor.AMBER);
+            expect(line1.fillColor()).toBe(MaterialColor.RED);
+        });
+
+    });
+
+    describe(`Line#copyFrom`, () => {
+
+        it(`should copy everything`, () => {
+            const line1 = Line.FromGeneralForm(1, 2, 3)
+                .label('A')
+                .strokeColor(MaterialColor.LIGHT_BLUE)
+                .fillColor(MaterialColor.BLUE);
+            const line2 = Line.FromGeneralForm(4, 5, 6)
+                .label('B')
+                .strokeColor(MaterialColor.AMBER)
+                .fillColor(MaterialColor.RED);
+            line1.copyFrom(line2);
+            expect(line1).toEqual(line2);
+            expect(line1).not.toBe(line2);
+            expect(line1.label()).toBe('B');
+            expect(line1.strokeColor()).toBe(MaterialColor.AMBER);
+            expect(line1.fillColor()).toBe(MaterialColor.RED);
+        });
+
     });
 
     it(`should get general form`, () => {

@@ -4,25 +4,41 @@ import {Line} from './line';
 
 export class Segment extends GeometryObject {
 
+    public static AreEqual(segment1: Segment, segment2: Segment): boolean {
+        const [point11, point12] = segment1.getPoints();
+        const [point21, point22] = segment2.getPoints();
+        return (Point.AreEqual(point11, point21) && Point.AreEqual(point12, point22))
+            || (Point.AreEqual(point11, point22) && Point.AreEqual(point12, point21));
+    }
+
     public static FromTwoPoints(point1: Point, point2: Point): Segment {
         return new Segment(point1, point2);
     }
 
+    public static FromGeneralForm(x1: number, y1: number, x2: number, y2: number): Segment {
+        const point1 = Point.FromCartesianCoordinates(x1, y1);
+        const point2 = Point.FromCartesianCoordinates(x2, y2);
+        return Segment.FromTwoPoints(point1, point2);
+    }
+
     protected _point1: Point;
     protected _point2: Point;
-    protected _isDirected: boolean;
 
-    constructor(point1: Point, point2: Point, label?: string, isDirected: boolean = false) {
+    constructor(point1: Point, point2: Point, label?: string) {
         super('segment');
         this._point1 = point1;
         this._point2 = point2;
         this._label = label;
-        this._isDirected = isDirected;
     }
 
     public writeJson() {
         const [p1, p2] = this.getPoints();
-        const {x1, y1, x2, y2} = {x1: p1.x(), y1: p1.y(), x2: p2.x(), y2: p2.y()};
+        const {x1, y1, x2, y2} = {
+            x1: p1.x(),
+            y1: p1.y(),
+            x2: p2.x(),
+            y2: p2.y(),
+        };
         return {
             kind: 'segment',
             label: this.label(),
@@ -46,10 +62,8 @@ export class Segment extends GeometryObject {
         return this;
     }
 
-    public copyFrom(segment: Segment): this {
-        [this._point1, this._point2] = segment.getPoints();
-        this._label = segment._label;
-        this._strokeColor = segment._strokeColor;
+    public copyValuesFrom(segment: Segment): this {
+        [this._point1, this._point2] = segment.getPoints().map(p => p.clone());
         return this;
     }
 

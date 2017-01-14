@@ -1,6 +1,8 @@
 import {Point} from '../point';
 import {Line} from '../line';
 import {areEqualFloats} from '../../util';
+import {MaterialColor} from '../material-colors';
+import {WithLatestFromSignature} from 'rxjs/operator/withLatestFrom';
 
 const pointEquality = function (first: any, second: any) {
     if (first.kind == 'point' && second.kind == 'point') {
@@ -89,6 +91,74 @@ describe(`Point`, () => {
         const point5 = Point.FromPolarCoordinates(1, Math.PI / 2);
         const point6 = Point.FromCartesianCoordinates(0, 1);
         expect(point5).toEqual(point6);
+    });
+
+    describe(`Point#copyValuesFrom`, () => {
+
+        it(`should copy by value to an object`, () => {
+            const point1 = Point.FromCartesianCoordinates(1, 2);
+            const point2 = Point.FromCartesianCoordinates(2, 3);
+            point2.copyValuesFrom(point1);
+            expect(point1).toEqual(point2);
+            expect(point1).not.toBe(point2);
+        });
+
+        it(`should not copy view data`, () => {
+            const point1 = Point.FromCartesianCoordinates(1, 2)
+                .label('A')
+                .strokeColor(MaterialColor.AMBER)
+                .fillColor(MaterialColor.BLUE);
+            const point2 = Point.FromCartesianCoordinates(4, 5)
+                .label('B')
+                .strokeColor(MaterialColor.BLUE_GREY)
+                .fillColor(MaterialColor.BROWN);
+            point2.copyValuesFrom(point1);
+            expect(point1).toEqual(point2);
+            expect(point2.label()).toBe('B');
+            expect(point2.strokeColor()).toBe(MaterialColor.BLUE_GREY);
+            expect(point2.fillColor()).toBe(MaterialColor.BROWN);
+        });
+
+    });
+
+    describe(`Point#copyViewDataFrom`, () => {
+
+        it(`should copy label, stroke color and fill color`, () => {
+            const point1 = Point.FromCartesianCoordinates(1, 2)
+                .label('A')
+                .fillColor(MaterialColor.BROWN)
+                .strokeColor(MaterialColor.BLUE_GREY);
+            const point2 = Point.FromCartesianCoordinates(3, 4)
+                .label('B')
+                .fillColor(MaterialColor.BLUE)
+                .strokeColor(MaterialColor.LIGHT_BLUE);
+            point2.copyViewDataFrom(point1);
+            expect(point1).not.toEqual(point2);
+            expect(point2.label()).toBe('A');
+            expect(point2.fillColor()).toBe(MaterialColor.BROWN);
+            expect(point2.strokeColor()).toBe(MaterialColor.BLUE_GREY);
+        });
+
+    });
+
+    describe(`Point#copyFrom`, () => {
+
+        it(`should copy everything`, () => {
+            const point1 = Point.FromCartesianCoordinates(1, 2)
+                .label('A')
+                .fillColor(MaterialColor.BROWN)
+                .strokeColor(MaterialColor.BLUE_GREY);
+            const point2 = Point.FromCartesianCoordinates(3, 4)
+                .label('B')
+                .fillColor(MaterialColor.BLUE)
+                .strokeColor(MaterialColor.LIGHT_BLUE);
+            point2.copyFrom(point1);
+            expect(point1).toEqual(point2);
+            expect(point2.label()).toBe('A');
+            expect(point2.fillColor()).toBe(MaterialColor.BROWN);
+            expect(point2.strokeColor()).toBe(MaterialColor.BLUE_GREY);
+        });
+
     });
 
     it(`should get polar coordinates`, () => {

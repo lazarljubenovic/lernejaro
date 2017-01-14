@@ -3,11 +3,24 @@ import {Point} from './point';
 import {Matrix} from './matrix';
 import {MaterialColor} from './material-colors';
 
+function ViewData() {
+    return function (target: GeometryObject, key: string) {
+        const targetAny = target as any;
+        if (!targetAny.$$viewData) {
+            targetAny.$$viewData = [];
+        }
+        targetAny.$$viewData.push(key);
+    }
+}
+
+
 export abstract class GeometryObject {
 
-    protected _strokeColor: MaterialColor;
-    protected _fillColor: MaterialColor;
-    protected _label: string;
+    public $$viewData: string[]; // Populated by the decorator
+
+    @ViewData() protected _strokeColor: MaterialColor;
+    @ViewData() protected _fillColor: MaterialColor;
+    @ViewData() protected _label: string;
 
     constructor(public kind: string) {
     }
@@ -49,7 +62,18 @@ export abstract class GeometryObject {
         }
     }
 
-    public abstract copyFrom(object: GeometryObject): this;
+    public copyViewDataFrom(object: GeometryObject): this {
+        object.$$viewData.forEach(key => {
+            this[key] = object[key];
+        });
+        return this;
+    }
+
+    public abstract copyValuesFrom(object: GeometryObject): this;
+
+    public copyFrom(object: GeometryObject): this {
+        return this.copyViewDataFrom(object).copyValuesFrom(object);
+    }
 
     public abstract clone(): GeometryObject;
 
