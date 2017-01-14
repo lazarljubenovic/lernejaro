@@ -19,8 +19,8 @@ describe(`Line`, () => {
 
     it(`should report very close lines as the same (eps = 1e-6`, () => {
         const diff = 1e-8;
-        const line1 = new Line(1, 2, 3);
-        const line2 = new Line(1 + diff, 2 + diff, 3 + diff);
+        const line1 = Line.FromGeneralForm(1, 2, 3);
+        const line2 = Line.FromGeneralForm(1 + diff, 2 + diff, 3 + diff);
         expect(Line.AreEqual(line1, line2)).toBe(true);
     });
 
@@ -96,7 +96,7 @@ describe(`Line`, () => {
     });
 
     it(`should get general form`, () => {
-        const line = new Line(1, 2, 3);
+        const line = Line.FromGeneralForm(1, 2, 3);
         expect(line.getGeneralForm()).toEqual({A: 1, B: 2, C: 3});
     });
 

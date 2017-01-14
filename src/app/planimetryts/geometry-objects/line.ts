@@ -231,7 +231,7 @@ export class Line extends GeometryObject {
     private _B: number;
     private _C: number;
 
-    constructor(A: number, B: number, C: number) {
+    protected constructor(A: number, B: number, C: number) {
         super('line');
         this._A = A;
         this._B = B;

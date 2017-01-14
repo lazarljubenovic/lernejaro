@@ -1,10 +1,18 @@
 import {GeometryObject} from './geometry-object';
 import {Point} from './point';
-import * as Chroma from 'chroma-js';
 import {Angle} from './angle';
 import {Segment} from './segment';
 
+// TODO: Add Polylines
+
 export class Polygon extends GeometryObject {
+
+    // TODO: Add circular tests (ABC == BCA)
+    // TODO: Also think about is CW/CCW important for marking polygons as the same ones
+    public static AreEqual(polygon1: Polygon, polygon2: Polygon): boolean {
+        return (polygon1._vertices.length == polygon2._vertices.length)
+            && (polygon1._vertices.every((v1, i) => Point.AreEqual(v1, polygon2._vertices[i])));
+    }
 
     public static FromVertices(...points: Point[]): Polygon {
         return new Polygon(...points);
@@ -12,7 +20,7 @@ export class Polygon extends GeometryObject {
 
     protected _vertices: Point[];
 
-    constructor(...points: Point[]) {
+    protected constructor(...points: Point[]) {
         super('polygon');
         this._vertices = points;
     }

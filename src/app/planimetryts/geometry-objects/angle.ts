@@ -32,7 +32,7 @@ export class Angle extends GeometryObject {
     private _displayLines: boolean = false;
     private _decoration: AngleDecoration = AngleDecoration.NONE;
 
-    constructor(angleDegrees: number) {
+    protected constructor(angleDegrees: number) {
         super('angle');
         this._angleDegrees = angleDegrees;
     }

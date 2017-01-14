@@ -18,7 +18,7 @@ export class IntroducingGeometryComponent implements OnInit {
     public point: Point = Point.FromCartesianCoordinates(2, 3).strokeColor(MaterialColor.BLUE).fillColor(MaterialColor.GREEN).label('A');
     public line: Line = Line.FromGeneralForm(10, 20, 30).strokeColor(MaterialColor.RED).fillColor(MaterialColor.YELLOW).label('l');
     public circle: Circle = Circle.FromGeneralForm(0, 1, 2).strokeColor(MaterialColor.AMBER).fillColor(MaterialColor.INDIGO).label('k');
-    public segment: Segment = Segment.FromTwoPoints(new Point(1, 2), new Point(3, 4)).strokeColor(MaterialColor.INDIGO).fillColor(MaterialColor.LIGHT_BLUE).label('a');
+    public segment: Segment = Segment.FromTwoPoints(Point.FromCartesianCoordinates(1, 2), Point.FromCartesianCoordinates(3, 4)).strokeColor(MaterialColor.INDIGO).fillColor(MaterialColor.LIGHT_BLUE).label('a');
 
     public objects: GeometryObject[];
 

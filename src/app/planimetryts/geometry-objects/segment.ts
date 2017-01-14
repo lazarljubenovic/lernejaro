@@ -24,7 +24,7 @@ export class Segment extends GeometryObject {
     protected _point1: Point;
     protected _point2: Point;
 
-    constructor(point1: Point, point2: Point, label?: string) {
+    protected constructor(point1: Point, point2: Point, label?: string) {
         super('segment');
         this._point1 = point1;
         this._point2 = point2;

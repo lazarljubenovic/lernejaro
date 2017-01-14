@@ -83,7 +83,7 @@ export class Point extends GeometryObject {
     protected _x: number;
     protected _y: number;
 
-    constructor(x: number, y: number, label?: string) {
+    protected constructor(x: number, y: number, label?: string) {
         super('point');
         this._x = x;
         this._y = y;

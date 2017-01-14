@@ -16,8 +16,8 @@ describe(`Point`, () => {
 
     it(`should report very close points as the same (eps = 1e-6)`, () => {
         const diff = 1e-7;
-        const point1 = new Point(1, 2);
-        const point2 = new Point(1 + diff, 2 - diff);
+        const point1 = Point.FromCartesianCoordinates(1, 2);
+        const point2 = Point.FromCartesianCoordinates(1 + diff, 2 - diff);
         const equality: boolean = Point.AreEqual(point1, point2);
         expect(equality).toBe(true);
     });

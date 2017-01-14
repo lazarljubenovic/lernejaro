@@ -7,7 +7,7 @@ export class SemiPlane extends GeometryObject {
     protected _line: Line;
     protected _vector: Point;
 
-    constructor(line: Line, _vector: Point) {
+    protected constructor(line: Line, vector: Point) {
         super('semiplane');
     }
 

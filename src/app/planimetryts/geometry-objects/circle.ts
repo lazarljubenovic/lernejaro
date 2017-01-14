@@ -74,7 +74,7 @@ export class Circle extends GeometryObject {
     private _center: Point;
     private _radius: number;
 
-    constructor(center: Point, radius: number) {
+    protected constructor(center: Point, radius: number) {
         super('circle');
         this._center = center;
         this._radius = radius;
