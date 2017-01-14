@@ -3,6 +3,7 @@ import {CommonModule} from '@angular/common';
 import {InputComponent} from './input/input.component';
 import {FormsModule} from '@angular/forms';
 import { GetColorNamePipe } from './get-color-name.pipe';
+import { CardComponent } from './card/card.component';
 
 @NgModule({
     imports: [
@@ -12,10 +13,12 @@ import { GetColorNamePipe } from './get-color-name.pipe';
     declarations: [
         InputComponent,
         GetColorNamePipe,
+        CardComponent,
     ],
     exports: [
         InputComponent,
         GetColorNamePipe,
+        CardComponent,
     ],
 })
 export class UiModule {

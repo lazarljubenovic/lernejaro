@@ -1,0 +1,12 @@
+@import '../../global';
+
+:host {
+  display: block;
+
+  .card-wrapper {
+    display: block;
+    @include z-depth-2dp;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+}
