@@ -59,6 +59,12 @@ export abstract class StereometryObject {
 
     protected abstract cloneValues(): this;
 
+    public clone(): this {
+        const valueClone: this = this.cloneValues();
+        valueClone.copyViewDataFrom(this);
+        return valueClone;
+    }
+
     protected abstract destructToPoints(): Point3D[];
 
     protected abstract reconstructFromPoints(...points: Point3D[]): this;

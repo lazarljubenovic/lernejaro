@@ -1,5 +1,5 @@
 import {StereometryObject} from './stereometry-object';
-import {areEqualFloats} from '../planimetryts/util';
+import {areEqualFloats, isZero} from '../planimetryts/util';
 import {Matrix} from '../planimetryts/geometry-objects/matrix';
 
 
@@ -53,9 +53,27 @@ export class Point3D extends StereometryObject {
         return Point3D.Add(point1, Point3D.Negative(point2));
     }
 
-    public static DotProduct(point1: Point3D, point2: Point3D): number {
-        return point1._x * point2._x + point1._y * point2._y + point1._z * point2._z;
+    public static DotProduct(vector1: Point3D, vector2: Point3D): number {
+        return vector1._x * vector2._x + vector1._y * vector2._y + vector1._z * vector2._z;
     }
+
+    public static ScalarProduct(vector1: Point3D, vector2: Point3D): number {
+        return Point3D.DotProduct(vector1, vector2);
+    }
+
+    public static CrossProduct(vector1: Point3D, vector2: Point3D): Point3D {
+        const u = vector1.getCartesianCoordinates();
+        const v = vector2.getCartesianCoordinates();
+        const i = u.y * v.z - u.z * v.y;
+        const j = u.x * v.z - u.z * v.x;
+        const k = u.x * v.y - u.y * v.x;
+        return Point3D.FromCartesianCoordinates(i, j, k);
+    }
+
+    public static VectorProduct(vector1: Point3D, vector2: Point3D): Point3D {
+        return Point3D.CrossProduct(vector1, vector2);
+    }
+
 
     public static GetDistanceBetween(point1: Point3D, point2: Point3D): number {
         const dx = point1._x - point2._x;
@@ -80,6 +98,22 @@ export class Point3D extends StereometryObject {
     // public static GetDistanceBetweenLineAndPoint(line: Line, point: Point3D): number {
     // return Line.GetDistanceBetweenLineAndPoint(line, point);
     // }
+
+    public static AreCollinearVectors(vector1: Point3D, vector2: Point3D): boolean {
+        // const dx = vector1._x / vector2._x;
+        // const dy = vector1._y / vector2._y;
+        // const dz = vector1._z / vector2._z;
+        // return areEqualFloats(dx, dy) && areEqualFloats(dy, dz);
+        return isZero(Point3D.VectorProduct(vector1, vector2).norm());
+    }
+
+    public static AreOrthogonalVectors(vector1: Point3D, vector2: Point3D): boolean {
+        return isZero(Point3D.ScalarProduct(vector1, vector2));
+    }
+
+    public static AsVectorFromTwoPoints(start: Point3D, end: Point3D): Point3D {
+        return Point3D.Subtract(end, start);
+    }
 
     protected _x: number;
     protected _y: number;
@@ -203,6 +237,10 @@ export class Point3D extends StereometryObject {
         const newMatrix = Matrix.Multiply(matrix, matrixCoordinates);
         const newPoint = Point3D.FromMatrix(newMatrix);
         return this.copyFrom(newPoint);
+    }
+
+    public norm(): number {
+        return Point3D.GetDistanceBetween(Point3D.CENTER, this);
     }
 
 }

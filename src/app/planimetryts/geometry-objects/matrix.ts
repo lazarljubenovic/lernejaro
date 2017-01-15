@@ -1,3 +1,4 @@
+import {isZero} from '../util';
 export namespace Matrix {
 
     export function Multiply(a: number[][], b: number[][]): number[][] {
@@ -157,6 +158,83 @@ export namespace Matrix {
     }
 
     export namespace ThreeD {
+
+        export namespace Projection {
+
+            export namespace Orthographic {
+                export function Front(): number[][] {
+                    return [
+                        [1, 0, 0, 0],
+                        [0, 1, 0, 0],
+                        [0, 0, 0, 0],
+                        [0, 0, 0, 1],
+                    ];
+                }
+                export function Above(): number[][] {
+                    return [
+                        [1, 0, 0, 0],
+                        [0, 0, 0, 0],
+                        [0, 0, 1, 0],
+                        [0, 0, 0, 1],
+                    ];
+                }
+                export function Side(): number[][] {
+                    return [
+                        [0, 0, 0, 0],
+                        [0, 1, 0, 0],
+                        [0, 0, 1, 0],
+                        [0, 0, 0, 1],
+                    ];
+                }
+            }
+
+            export namespace Perspective {
+                export function CopAtCenter(d: number): number[][] {
+                    if (isZero(d)) {
+                        throw `d cannot be 0`;
+                    }
+                    return [
+                        [1, 0, 0, 0],
+                        [0, 1, 0, 0],
+                        [0, 0, 1, 0],
+                        [0, 0, 1/d, 0],
+                    ];
+                }
+                export function PlaneAtCenter(d: number): number[][] {
+                    if (isZero(d)) {
+                        throw `d cannot be 0`;
+                    }
+                    return [
+                        [1, 0, 0, 0],
+                        [0, 1, 0, 0],
+                        [0, 0, 0, 0],
+                        [0, 0, 1/d, 1],
+                    ];
+                }
+            }
+
+            export namespace Oblique {
+                export function General(α: number, L: number): number[][] {
+                    const c = Math.cos(α);
+                    const s = Math.sin(α);
+                    const C = L * c;
+                    const S = L * s;
+                    return [
+                        [1, 0, 0, 0],
+                        [0, 1, 0, 0],
+                        [C, S, 0, 0],
+                        [0, 0, 0, 1],
+                    ];
+                }
+                export function Cavalier(): number[][] {
+                    return Oblique.General(Math.PI / 2, 1);
+                }
+                export function Cabinet(): number[][] {
+                    return Oblique.General(Math.atan(2), 0.5);
+                }
+            }
+
+        }
 
         export namespace Homogeneous {
 
