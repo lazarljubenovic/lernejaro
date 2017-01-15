@@ -1,4 +1,4 @@
-import {StereometryObject} from './stereometry-object';
+import {StereometryObject} from '../stereometry-object';
 import {Point3D} from './point-3d';
 
 export class Line3D extends StereometryObject {

@@ -1,6 +1,6 @@
-import {StereometryObject} from './stereometry-object';
-import {areEqualFloats, isZero} from '../planimetryts/util';
-import {Matrix} from '../planimetryts/geometry-objects/matrix';
+import {StereometryObject} from '../stereometry-object';
+import {areEqualFloats, isZero} from '../../planimetryts/util';
+import {Matrix} from '../../planimetryts/geometry-objects/matrix';
 
 
 export class Point3D extends StereometryObject {

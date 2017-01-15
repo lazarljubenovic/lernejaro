@@ -1,6 +1,6 @@
-import {StereometryObject} from './stereometry-object';
+import {StereometryObject} from '../stereometry-object';
 import {Point3D} from './point-3d';
-import {isZero} from '../planimetryts/util';
+import {isZero} from '../../planimetryts/util';
 
 export class Plane3D extends StereometryObject {
 

@@ -1,5 +1,5 @@
 import {MaterialColor} from '../planimetryts/geometry-objects/material-colors';
-import {Point3D} from './point-3d';
+import {Point3D} from './objects/point-3d';
 import {Matrix} from '../planimetryts/geometry-objects/matrix';
 
 function ViewData() {

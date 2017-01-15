@@ -220,9 +220,9 @@ export namespace Matrix {
                     const C = L * c;
                     const S = L * s;
                     return [
-                        [1, 0, 0, 0],
-                        [0, 1, 0, 0],
-                        [C, S, 0, 0],
+                        [1, 0, C, 0],
+                        [0, 1, S, 0],
+                        [0, 0, 0, 0],
                         [0, 0, 0, 1],
                     ];
                 }

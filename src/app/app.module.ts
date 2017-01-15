@@ -8,6 +8,7 @@ import {RouterModule} from '@angular/router';
 import {ObjectEditorModule} from './object-editor/object-editor.module';
 import {UiModule} from './ui/ui.module';
 import {PlanimetricsModule} from './planimetrics/planimetrics.module';
+import {StereometricsModule} from './stereometrics/stereometrics.module';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,7 @@ import {PlanimetricsModule} from './planimetrics/planimetrics.module';
         ObjectEditorModule,
         UiModule,
         PlanimetricsModule,
+        StereometricsModule,
         RouterModule.forRoot([
             {
                 path: 'courses',

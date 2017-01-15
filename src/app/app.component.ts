@@ -3,6 +3,12 @@ import {Point} from './planimetryts/geometry-objects/point';
 import {Line} from './planimetryts/geometry-objects/line';
 import {Segment} from './planimetryts/geometry-objects/segment';
 import {Circle} from './planimetryts/geometry-objects/circle';
+import {Point3D} from './stereometryts/objects/point-3d';
+import {MaterialColor} from './planimetryts/geometry-objects/material-colors';
+
+const n = 3;
+const colors = [MaterialColor.RED, MaterialColor.GREEN, MaterialColor.BLUE];
+let colorIndex = -1;
 
 @Component({
     selector: 'app-root',
@@ -11,19 +17,29 @@ import {Circle} from './planimetryts/geometry-objects/circle';
 })
 export class AppComponent {
 
-    public test = {
-        a: 2,
-        b: 3,
-        c: 4,
-    };
+    public points = Array(n).fill(null).map((_, y) => {
+        colorIndex++;
+        return Array(n).fill(null).map((_, x) => {
+            return Array(n).fill(null).map((_, z) => {
+                const [i, j, k] = [x - n / 2, y - n / 2, z - n / 2].map(_ => 50 * _);
+                return Point3D.FromCartesianCoordinates(i, j, k).strokeColor(colors[colorIndex]);
+            });
+        }).reduce((acc, curr) => acc.concat(curr), []);
+    }).reduce((acc, curr) => acc.concat(curr), []);
 
-    public n = 1;
-
-    public point = Point.FromCartesianCoordinates(1, 2);
-    public point2 = Point.FromCartesianCoordinates(2, 1);
-    public line = Line.FromExplicitForm(1, 1);
-    public segment = Segment.FromTwoPoints(this.point, this.point2);
-    public circle = Circle.FromCenterAndRadius(this.point, 3);
+    // public test = {
+    //     a: 2,
+    //     b: 3,
+    //     c: 4,
+    // };
+    //
+    // public n = 1;
+    //
+    // public point = Point.FromCartesianCoordinates(1, 2);
+    // public point2 = Point.FromCartesianCoordinates(2, 1);
+    // public line = Line.FromExplicitForm(1, 1);
+    // public segment = Segment.FromTwoPoints(this.point, this.point2);
+    // public circle = Circle.FromCenterAndRadius(this.point, 3);
 
     private slidesText = [
         `It's very easy to make some words **bold**
