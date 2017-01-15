@@ -37,7 +37,7 @@ export class Point extends GeometryObject {
         } else {
             z = matrix[2][0];
         }
-        return new Point(x, y / z, label);
+        return new Point(x, y / z, label); // TODO shouldn't it be x / z?
     }
 
     public static Negative(point: Point): Point {
@@ -210,7 +210,7 @@ export class Point extends GeometryObject {
         }
         const matrixCoordinates = this.getMatrixCoordinates(isHomogeneous);
         const newMatrix = Matrix.Multiply(matrix, matrixCoordinates);
-        const newPoint = Point.FromMatrix(newMatrix).strokeColor(this.strokeColor()).label(this.label());
+        const newPoint = Point.FromMatrix(newMatrix);
         return this.copyFrom(newPoint);
     }
 

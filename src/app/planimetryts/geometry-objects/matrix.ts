@@ -156,4 +156,121 @@ export namespace Matrix {
 
     }
 
+    export namespace ThreeD {
+
+        export namespace Homogeneous {
+
+            export function Identity(): number[][] {
+                return GetIdentity(4);
+            }
+
+            export function TranslateX(dx: number): number[][] {
+                return [
+                    [1, 0, 0, dx],
+                    [0, 1, 0, 0],
+                    [0, 0, 1, 0],
+                    [0, 0, 0, 1],
+                ];
+            }
+
+            export function TranslateY(dy: number): number[][] {
+                return [
+                    [1, 0, 0, 0],
+                    [0, 1, 0, dy],
+                    [0, 0, 1, 0],
+                    [0, 0, 0, 1],
+                ];
+            }
+
+            export function TranslateZ(dz: number): number[][] {
+                return [
+                    [1, 0, 0, 0],
+                    [0, 1, 0, 0],
+                    [0, 0, 1, dz],
+                    [0, 0, 0, 1],
+                ];
+            }
+
+            export function Translate(dx: number, dy: number, dz: number): number[][] {
+                return [
+                    [1, 0, 0, dx],
+                    [0, 1, 0, dy],
+                    [0, 0, 1, dz],
+                    [0, 0, 0, 1],
+                ];
+            }
+
+            export function ScaleX(k: number): number[][] {
+                return [
+                    [k, 0, 0, 0],
+                    [0, 1, 0, 0],
+                    [0, 0, 1, 0],
+                    [0, 0, 0, 1],
+                ];
+            }
+
+            export function ScaleY(k: number): number[][] {
+                return [
+                    [1, 0, 0, 0],
+                    [0, k, 0, 0],
+                    [0, 0, 1, 0],
+                    [0, 0, 0, 1],
+                ];
+            }
+
+            export function ScaleZ(k: number): number[][] {
+                return [
+                    [1, 0, 0, 0],
+                    [0, 1, 0, 0],
+                    [0, 0, k, 0],
+                    [0, 0, 0, 1],
+                ];
+            }
+
+            export function Scale(k: number): number[][] {
+                return [
+                    [k, 0, 0, 0],
+                    [0, k, 0, 0],
+                    [0, 0, k, 0],
+                    [0, 0, 0, 1],
+                ];
+            }
+
+            export function RotateX(θ: number): number[][] {
+                const c = Math.cos(θ);
+                const s = Math.sin(θ);
+                return [
+                    [1, 0, 0, 0],
+                    [0, c, -s, 0],
+                    [0, s, c, 0],
+                    [0, 0, 0, 1],
+                ];
+            }
+
+            export function RotateY(θ: number): number[][] {
+                const c = Math.cos(θ);
+                const s = Math.sin(θ);
+                return [
+                    [c, 0, s, 0],
+                    [0, 1, 0, 0],
+                    [-s, 0, c, 0],
+                    [0, 0, 0, 1],
+                ];
+            }
+
+            export function RotateZ(θ: number): number[][] {
+                const c = Math.cos(θ);
+                const s = Math.sin(θ);
+                return [
+                    [c, -s, 0, 0],
+                    [s, c, 0, 0],
+                    [0, 0, 1, 0],
+                    [0, 0, 0, 1],
+                ];
+            }
+
+        }
+
+    }
+
 }
