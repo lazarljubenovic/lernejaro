@@ -41,6 +41,11 @@ export class AppComponent {
     // public segment = Segment.FromTwoPoints(this.point, this.point2);
     // public circle = Circle.FromCenterAndRadius(this.point, 3);
 
+    public pointLeft = Point.FromCartesianCoordinates(-100, 0);
+    public pointRight = Point.FromCartesianCoordinates(100, 0);
+    public segment = Segment.FromTwoPoints(this.pointLeft, this.pointRight);
+    public bisector = this.segment.getBisector();
+
     private slidesText = [
         `It's very easy to make some words **bold**
 and other words *italic* with Markdown.

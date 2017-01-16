@@ -9,6 +9,7 @@ import {ObjectEditorModule} from './object-editor/object-editor.module';
 import {UiModule} from './ui/ui.module';
 import {PlanimetricsModule} from './planimetrics/planimetrics.module';
 import {StereometricsModule} from './stereometrics/stereometrics.module';
+import {NotebookModule} from './notebook/notebook.module';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import {StereometricsModule} from './stereometrics/stereometrics.module';
         UiModule,
         PlanimetricsModule,
         StereometricsModule,
+        NotebookModule,
         RouterModule.forRoot([
             {
                 path: 'courses',
