@@ -82,8 +82,18 @@ lrn-notebook {
           content: "Figure " counter(figureCounter) ". ";
           font-weight: bold;
           font-style: normal;
-          //font-variant: small-caps;
         }
+      }
+    }
+
+    dl {
+
+      dt {
+        font-weight: bold;
+      }
+
+      dd {
+        margin-bottom: 1.5ex;
       }
     }
   }
