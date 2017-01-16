@@ -10,6 +10,7 @@ lrn-notebook {
   width: 100%;
   height: 100%;
   font-size: 1.24em;
+  color: rgba(black, .86);
 
   .wrapper {
     box-sizing: border-box;
@@ -35,6 +36,15 @@ lrn-notebook {
       $border: solid 1px rgba(black, .7);
       border-top: $border;
       border-bottom: $border;
+    }
+
+    code {
+      display: inline-block;
+      background-color: rgba(black, .1);
+      box-shadow: 0 0 0 .2em rgba(black, .1);
+      margin-left: .2em;
+      margin-right: .2em;
+      border-radius: 2px;
     }
 
     figure {
@@ -72,7 +82,7 @@ lrn-notebook {
           content: "Figure " counter(figureCounter) ". ";
           font-weight: bold;
           font-style: normal;
-          font-variant: small-caps;
+          //font-variant: small-caps;
         }
       }
     }
