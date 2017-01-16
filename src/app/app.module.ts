@@ -10,6 +10,7 @@ import {UiModule} from './ui/ui.module';
 import {PlanimetricsModule} from './planimetrics/planimetrics.module';
 import {StereometricsModule} from './stereometrics/stereometrics.module';
 import {NotebookModule} from './notebook/notebook.module';
+import {KatexModule} from './katex/katex.module';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import {NotebookModule} from './notebook/notebook.module';
         PlanimetricsModule,
         StereometricsModule,
         NotebookModule,
+        KatexModule,
         RouterModule.forRoot([
             {
                 path: 'courses',

@@ -12,7 +12,7 @@
     @include z-depth-2dp;
     align-items: center;
 
-    span {
+    > span {
       display: inline-block;
       margin-left: 12px;
       color: rgba(black, .86);
