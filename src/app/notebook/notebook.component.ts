@@ -6,7 +6,7 @@ import {
     QueryList,
     AfterContentInit,
     ElementRef,
-    ViewChild
+    ViewChild, HostBinding
 } from '@angular/core';
 import {
     H1Directive,
@@ -48,6 +48,20 @@ export class NotebookComponent implements OnInit, AfterContentInit {
     @ViewChild('article') public article: ElementRef;
 
     public isVisibleTableOfContent: boolean = false;
+
+    @HostBinding('class') public themeName: 'white' | 'sepia' | 'dark' = 'white';
+
+    public setWhiteTheme(): void {
+        this.themeName = 'white';
+    }
+
+    public setSepiaTheme(): void {
+        this.themeName = 'sepia';
+    }
+
+    public setDarkTheme(): void {
+        this.themeName = 'dark';
+    }
 
     public toggleTableOfContentVisibility() {
         this.isVisibleTableOfContent = !this.isVisibleTableOfContent;

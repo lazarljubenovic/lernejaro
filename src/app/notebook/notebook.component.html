@@ -7,12 +7,15 @@
   </div>
   <div class="flex-spacer"></div>
   <div class="buttons">
+    <button (click)="setWhiteTheme()"><i class="fa fa-paint-brush"></i></button>
+    <button (click)="setSepiaTheme()"><i class="fa fa-paint-brush"></i></button>
+    <button (click)="setDarkTheme()"><i class="fa fa-paint-brush"></i></button>
     <button (click)="toggleTableOfContentVisibility()"><i class="fa fa-list-ol"></i></button>
     <button><i class="fa fa-cogs"></i></button>
   </div>
 </header>
 
-<article class="wrapper" #article>
+<article [class]="'wrapper'" #article>
   <div class="table-of-content" [class.hidden]="!isVisibleTableOfContent">
     <lrn-table-of-content [tree]="tableOfContents"></lrn-table-of-content>
   </div>
