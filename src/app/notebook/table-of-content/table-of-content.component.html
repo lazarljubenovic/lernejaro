@@ -1,1 +1,3 @@
-<lrn-table-of-content-node [node]="tree?.getRoot()"></lrn-table-of-content-node>
+<ol>
+  <li lrnTableOfContentNode *ngFor="let child of tree?.getRoot().getChildren()" [node]="child"></li>
+</ol>

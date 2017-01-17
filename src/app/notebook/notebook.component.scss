@@ -17,6 +17,42 @@ lrn-notebook {
   color: rgba(black, .86);
   font-family: Roboto, sans-serif;
 
+  .table-of-content {
+    position: fixed;
+    left: 24px;
+    top: calc(24px + #{$header-height});
+    width: calc(50% - 24px - 786px / 2 - 100px); // 786 = article width
+    z-index: 10;
+
+    &.hidden {
+      display: none;
+    }
+
+    @media (max-width: 1400px) {
+      background-color: rgba(white, .94);
+      top: $header-height + 1em;
+      left: 0;
+      bottom: 1em;
+      width: auto;
+      max-width: 33%;
+      @include z-depth-3dp;
+      padding: 1em;
+      padding-left: 2em;
+      margin-left: -1em;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 700px) {
+      margin-left: 0;
+      padding: 1em;
+      left: 1em;
+      right: 1em;
+      width: auto;
+      max-width: none;
+      background-color: rgba(white, .92);
+    }
+  }
+
   header {
     position: fixed;
     top: 0;
@@ -65,11 +101,12 @@ lrn-notebook {
         border: none;
         outline: none;
         font-size: inherit;
-        width: $header-height / 2;
+        width: $header-height * .66;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
+        margin-right: $header-height * .66 * .33;
 
         &:hover {
           color: rgba(black, .6);

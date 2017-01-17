@@ -43,6 +43,12 @@ export class NotebookComponent implements OnInit, AfterContentInit {
 
     @ViewChild('article') public article: ElementRef;
 
+    public isVisibleTableOfContent: boolean = true;
+
+    public toggleTableOfContentVisibility() {
+        this.isVisibleTableOfContent = !this.isVisibleTableOfContent;
+    }
+
     constructor(private elementRef: ElementRef) {
     }
 

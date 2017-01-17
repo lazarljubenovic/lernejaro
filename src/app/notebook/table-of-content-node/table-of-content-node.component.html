@@ -1,6 +1,4 @@
-<ul>
-  <li>
-    <span>{{node.getData()}}</span>
-    <lrn-table-of-content-node *ngFor="let child of node.getChildren()" [node]="child"></lrn-table-of-content-node>
-  </li>
-</ul>
+<span>{{node.getData()}}</span>
+<ol>
+  <li lrnTableOfContentNode *ngFor="let child of node.getChildren()" [node]="child"></li>
+</ol>

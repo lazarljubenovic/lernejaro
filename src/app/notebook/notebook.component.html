@@ -7,14 +7,17 @@
   </div>
   <div class="flex-spacer"></div>
   <div class="buttons">
-    <button><i class="fa fa-ellipsis-v"></i></button>
+    <button (click)="toggleTableOfContentVisibility()"><i class="fa fa-list-ol"></i></button>
+    <button><i class="fa fa-cogs"></i></button>
   </div>
 </header>
 
 <article class="wrapper" #article>
-  <lrn-table-of-content [tree]="tableOfContents"></lrn-table-of-content>
+  <div class="table-of-content" [class.hidden]="!isVisibleTableOfContent">
+    <lrn-table-of-content [tree]="tableOfContents"></lrn-table-of-content>
+  </div>
 
   <ng-content></ng-content>
 </article>
 
-<button [lrnButton]="'fab'"><i class="fa fa-cog"></i></button>
+<!--<button [lrnButton]="'fab'"><i class="fa fa-cog"></i></button>-->
