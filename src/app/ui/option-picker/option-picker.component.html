@@ -1,0 +1,9 @@
+<ng-container *ngIf="type == 'radio-button'">
+  <lrn-radio-button *ngFor="let option of options"
+                    [name]="name"
+                    [label]="option.label"
+                    [value]="option.value"
+                    [currentValue]="value"
+                    (currentValueChange)="onSelect(option.value)"
+  ></lrn-radio-button>
+</ng-container>
