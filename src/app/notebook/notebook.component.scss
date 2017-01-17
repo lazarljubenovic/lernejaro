@@ -211,5 +211,15 @@ lrn-notebook {
         margin-bottom: 1.5ex;
       }
     }
+
+    :target {
+
+      &:before {
+        content: "";
+        display: block;
+        height: 80px;
+        margin-top: -80px;
+      }
+    }
   }
 }

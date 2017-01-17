@@ -1,4 +1,4 @@
-<span>{{node.getData()}}</span>
+<span><a [href]="'#' + node.getData().id">{{node.getData().title}}</a></span>
 <ol>
   <li lrnTableOfContentNode *ngFor="let child of node.getChildren()" [node]="child"></li>
 </ol>

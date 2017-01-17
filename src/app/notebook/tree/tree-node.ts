@@ -7,6 +7,8 @@ export class TreeNode<Type> {
 
     protected data: Type;
     protected level: number;
+    protected index: number;
+    protected pathEnumeration: number[];
     protected parent: TreeNode<Type>;
     protected children: TreeNode<Type>[];
 
@@ -15,14 +17,27 @@ export class TreeNode<Type> {
         this.data = data;
         if (parent) {
             this.level = parent.level + 1;
+            this.index = parent.children.length + 1;
+            this.pathEnumeration = [...parent.pathEnumeration, this.index];
         } else {
             this.level = 1;
+            this.index = 1;
+            this.pathEnumeration = [0];
         }
         this.children = [];
     }
 
+    public getPathEnumeration(): string {
+        return this.pathEnumeration.slice(1).join('_');
+    }
+
     public getData(): Type {
         return this.data;
+    }
+
+    public setData(data: Type): this {
+        this.data = data;
+        return this;
     }
 
     public getLevel(): number {
@@ -39,11 +54,6 @@ export class TreeNode<Type> {
 
     public addChild(data: Type): this {
         this.children.push(new TreeNode(this, data));
-        return this;
-    }
-
-    public prependChild(data: Type): this {
-        this.children.unshift(new TreeNode(this, data));
         return this;
     }
 

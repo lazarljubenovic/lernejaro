@@ -19,6 +19,10 @@ import {
 } from './directives/heading-directives';
 import {Tree} from './tree/tree';
 import {TreeNode} from './tree/tree-node';
+import {
+    TreeTableOfContent,
+    TreeNodeTableOfContent, NodeDataTableOfContent
+} from './table-of-content/table-of-content-tree-node.interface';
 
 @Component({
     selector: 'lrn-notebook',
@@ -39,11 +43,11 @@ export class NotebookComponent implements OnInit, AfterContentInit {
 
     public notebookTitle: string;
 
-    public tableOfContents: Tree<string>;
+    public tableOfContents: TreeTableOfContent;
 
     @ViewChild('article') public article: ElementRef;
 
-    public isVisibleTableOfContent: boolean = true;
+    public isVisibleTableOfContent: boolean = false;
 
     public toggleTableOfContentVisibility() {
         this.isVisibleTableOfContent = !this.isVisibleTableOfContent;
@@ -53,8 +57,8 @@ export class NotebookComponent implements OnInit, AfterContentInit {
     }
 
     private prepareTableOfContents(): void {
-        this.tableOfContents = new Tree(new TreeNode<string>(null, this.notebookTitle));
-        let currentNode: TreeNode<string> = this.tableOfContents.getRoot();
+        this.tableOfContents = new Tree<NodeDataTableOfContent>(new TreeNode<NodeDataTableOfContent>(null, {title: this.notebookTitle, id: 'top'}));
+        let currentNode: TreeNodeTableOfContent = this.tableOfContents.getRoot();
 
         const childrenArray: HTMLElement[] = <any>Array.from(this.article.nativeElement.children);
         const n = childrenArray.length;
@@ -82,21 +86,31 @@ export class NotebookComponent implements OnInit, AfterContentInit {
                     continue;
             }
 
+            const title = child.textContent;
+            let id = 'unknown';
+            let nodeData = {title, id};
+
             if (childLevel > currentNode.getLevel()) {
-                currentNode.addChild(child.textContent);
+                currentNode.addChild(nodeData);
                 currentNode = currentNode.getLastChild();
             } else if (childLevel == currentNode.getLevel()) {
                 currentNode = currentNode.getParent();
-                currentNode.addChild(child.textContent);
+                currentNode.addChild(nodeData);
                 currentNode = currentNode.getLastChild();
             } else {
                 const difference = currentNode.getLevel() - childLevel + 1;
                 for (let i = 0; i < difference; i++) {
                     currentNode = currentNode.getParent();
                 }
-                currentNode.addChild(child.textContent);
+                currentNode.addChild(nodeData);
                 currentNode = currentNode.getLastChild();
             }
+
+            id = currentNode.getPathEnumeration() + "_" + title.replace(/ /g, '_');
+            child.id = id;
+
+            nodeData = {title, id};
+            currentNode.setData(nodeData);
         }
     }
 
