@@ -11,6 +11,8 @@ import {PlanimetricsModule} from './planimetrics/planimetrics.module';
 import {StereometricsModule} from './stereometrics/stereometrics.module';
 import {NotebookModule} from './notebook/notebook.module';
 import {KatexModule} from './katex/katex.module';
+import { QuizComponent } from './quiz/quiz.component';
+import {QuizModule} from './quiz/quiz.module';
 
 @NgModule({
     declarations: [
@@ -26,6 +28,7 @@ import {KatexModule} from './katex/katex.module';
         StereometricsModule,
         NotebookModule,
         KatexModule,
+        QuizModule,
         RouterModule.forRoot([
             {
                 path: 'courses',

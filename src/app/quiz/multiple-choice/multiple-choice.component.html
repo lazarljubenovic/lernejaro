@@ -1,0 +1,11 @@
+<lrn-card>
+  <div class="question">
+    <ng-content></ng-content>
+  </div>
+
+  <div class="multiple-choices">
+    <lrn-option-picker [options]="options" (valueChange)="onChoicePick($event)"></lrn-option-picker>
+  </div>
+</lrn-card>
+
+

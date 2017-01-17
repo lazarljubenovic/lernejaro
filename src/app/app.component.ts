@@ -27,22 +27,22 @@ export class AppComponent {
         }).reduce((acc, curr) => acc.concat(curr), []);
     }).reduce((acc, curr) => acc.concat(curr), []);
 
-    public options: {value: string, label: string}[] = [
-        {
-            value: 'first',
-            label: 'This is the first option',
-        },
-        {
-            value: 'second',
-            label: 'This is the second option',
-        },
-        {
-            value: 'third',
-            label: 'This is the third and final option',
-        },
+    public choices = [
+        'red',
+        'green',
+        'blue',
+        'cyan',
+        'magenta',
+        'yellow',
     ];
 
-    public current = '';
+    public onAnswerChoose(value: {correct: boolean, answer: string}) {
+        this.givenAnswer = value.answer;
+        this.correct = value.correct;
+    }
+
+    public givenAnswer: string;
+    public correct: boolean;
 
     // public test = {
     //     a: 2,

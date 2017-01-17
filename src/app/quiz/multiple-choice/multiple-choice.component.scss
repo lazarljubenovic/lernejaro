@@ -1,0 +1,17 @@
+:host {
+  display: block;
+
+  lrn-card {
+    margin-left: -2em;
+    margin-right: -2em;
+  }
+
+  .question {
+    padding: 1.5em;
+    border-bottom: solid 1px rgba(black, .06);
+  }
+
+  .multiple-choices {
+    padding: 1.5em;
+  }
+}

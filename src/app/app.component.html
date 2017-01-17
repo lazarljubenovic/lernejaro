@@ -21,9 +21,15 @@
     <b>Vestibulum lacinia arcu eget nulla</b>. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit.
   </p>
 
-  <lrn-option-picker [options]="options" [name]="'numbers'" [(value)]="current"></lrn-option-picker>
+  <!--<lrn-option-picker [options]="options" [name]="'numbers'" [(value)]="current"></lrn-option-picker>-->
 
-  <pre>{{current}}</pre>
+  <lrn-multiple-choice [choices]="choices" (answerChoose)="onAnswerChoose($event)">
+    Which color is <b>the</b> prettiest?
+  </lrn-multiple-choice>
+
+  <pre>{{correct}}</pre>
+
+  <pre>{{givenAnswer}}</pre>
 
   <!--<figure class="left">-->
     <!--<img src="https://unsplash.it/400/300/?random">-->
