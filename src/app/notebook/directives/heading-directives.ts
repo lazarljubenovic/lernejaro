@@ -1,19 +1,18 @@
 import {Directive, ElementRef, Injectable, AfterContentInit} from '@angular/core';
 
 @Injectable()
-export abstract class HDirective {
+export abstract class HDirective implements AfterContentInit {
     constructor(protected elementRef: ElementRef) {}
-}
-
-@Directive({selector: 'h1'})
-export class H1Directive extends HDirective implements AfterContentInit {
 
     public title: string;
 
     ngAfterContentInit() {
         this.title = this.elementRef.nativeElement.textContent;
     }
+}
 
+@Directive({selector: 'h1'})
+export class H1Directive extends HDirective {
 }
 
 @Directive({selector: 'h2'})

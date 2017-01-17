@@ -4,7 +4,9 @@ import {
     ViewEncapsulation,
     ContentChildren,
     QueryList,
-    AfterContentInit
+    AfterContentInit,
+    ElementRef,
+    ViewChild
 } from '@angular/core';
 import {
     H1Directive,
@@ -15,6 +17,8 @@ import {
     H6Directive,
     HDirective
 } from './directives/heading-directives';
+import {Tree} from './tree/tree';
+import {TreeNode} from './tree/tree-node';
 
 @Component({
     selector: 'lrn-notebook',
@@ -35,7 +39,59 @@ export class NotebookComponent implements OnInit, AfterContentInit {
 
     public notebookTitle: string;
 
-    constructor() {
+    public tableOfContents: Tree<string>;
+
+    @ViewChild('article') public article: ElementRef;
+
+    constructor(private elementRef: ElementRef) {
+    }
+
+    private prepareTableOfContents(): void {
+        this.tableOfContents = new Tree(new TreeNode<string>(null, this.notebookTitle));
+        let currentNode: TreeNode<string> = this.tableOfContents.getRoot();
+
+        const childrenArray: HTMLElement[] = <any>Array.from(this.article.nativeElement.children);
+        const n = childrenArray.length;
+        for (let i = 0; i < n; i++) {
+            const child: HTMLElement =  childrenArray[i];
+
+            let childLevel: number;
+            switch (child.nodeName.toLowerCase()) {
+                case 'h2':
+                    childLevel = 2;
+                    break;
+                case 'h3':
+                    childLevel = 3;
+                    break;
+                case 'h4':
+                    childLevel = 4;
+                    break;
+                case 'h5':
+                    childLevel = 5;
+                    break;
+                case 'h6':
+                    childLevel = 6;
+                    break;
+                default:
+                    continue;
+            }
+
+            if (childLevel > currentNode.getLevel()) {
+                currentNode.addChild(child.textContent);
+                currentNode = currentNode.getLastChild();
+            } else if (childLevel == currentNode.getLevel()) {
+                currentNode = currentNode.getParent();
+                currentNode.addChild(child.textContent);
+                currentNode = currentNode.getLastChild();
+            } else {
+                const difference = currentNode.getLevel() - childLevel + 1;
+                for (let i = 0; i < difference; i++) {
+                    currentNode = currentNode.getParent();
+                }
+                currentNode.addChild(child.textContent);
+                currentNode = currentNode.getLastChild();
+            }
+        }
     }
 
     ngOnInit() {
@@ -47,6 +103,8 @@ export class NotebookComponent implements OnInit, AfterContentInit {
             .map(queryList => queryList.toArray());
 
         this.notebookTitle = this.heading1.toArray()[0].title;
+
+        this.prepareTableOfContents();
     }
 
 }

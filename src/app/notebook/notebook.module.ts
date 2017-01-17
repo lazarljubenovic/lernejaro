@@ -10,6 +10,8 @@ import {
     H2Directive
 } from './directives/heading-directives';
 import {UiModule} from '../ui/ui.module';
+import { TableOfContentComponent } from './table-of-content/table-of-content.component';
+import { TableOfContentNodeComponent } from './table-of-content-node/table-of-content-node.component';
 
 @NgModule({
     imports: [
@@ -24,6 +26,8 @@ import {UiModule} from '../ui/ui.module';
         H4Directive,
         H5Directive,
         H6Directive,
+        TableOfContentComponent,
+        TableOfContentNodeComponent,
     ],
     exports: [
         NotebookComponent,

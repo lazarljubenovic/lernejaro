@@ -11,7 +11,9 @@
   </div>
 </header>
 
-<article class="wrapper">
+<article class="wrapper" #article>
+  <lrn-table-of-content [tree]="tableOfContents"></lrn-table-of-content>
+
   <ng-content></ng-content>
 </article>
 
