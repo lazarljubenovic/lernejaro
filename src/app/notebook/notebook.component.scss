@@ -1,3 +1,7 @@
+@import '../global';
+
+$header-height: 3em;
+
 body {
   counter-reset: figureCounter;
 }
@@ -11,8 +15,75 @@ lrn-notebook {
   height: 100%;
   font-size: 1.24em;
   color: rgba(black, .86);
+  font-family: Roboto, sans-serif;
+
+  header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    min-height: $header-height;
+    background-color: rgba(white, .96);
+    @include z-depth-2dp;
+    display: flex;
+
+    .icon {
+      background-color: material-color('red', '500');
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: $header-height;
+      @include all-background-colors;
+
+      > i {
+        font-size: 1.5em;
+      }
+    }
+
+    .title-and-subtitle {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      margin-left: 1em;
+      font-weight: 300;
+
+      .title {
+        @include all-text-colors('700');
+      }
+    }
+
+    .flex-spacer {
+      flex: 1 0 0;
+    }
+
+    .buttons {
+      display: flex;
+
+      button {
+        background: transparent;
+        color: rgba(black, .3);
+        border: none;
+        outline: none;
+        font-size: inherit;
+        width: $header-height / 2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        &:hover {
+          color: rgba(black, .6);
+        }
+
+        i {
+          padding-top: .33ex;
+        }
+      }
+    }
+  }
 
   .wrapper {
+    padding-top: $header-height;
     box-sizing: border-box;
     padding-left: 1em;
     padding-right: 1em;
@@ -32,7 +103,6 @@ lrn-notebook {
       padding-top: 1ex;
       padding-bottom: 1ex;
       font-size: 1.1em;
-      font-family: sans-serif;
       $border: solid 1px rgba(black, .7);
       border-top: $border;
       border-bottom: $border;
@@ -60,6 +130,10 @@ lrn-notebook {
         text-align: left;
         float: left;
         margin-right: 1em;
+
+        @media (min-width: 1000px) {
+          margin-left: -100px;
+        }
       }
 
       &.right {
@@ -68,6 +142,10 @@ lrn-notebook {
         float: right;
         margin-left: 1em;
         align-items: flex-end;
+
+        @media (min-width: 1000px) {
+          margin-right: -100px;
+        }
       }
 
       figcaption {

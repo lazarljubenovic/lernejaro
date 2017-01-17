@@ -14,10 +14,18 @@ $font: Roboto, sans-serif;
   }
 }
 
-@mixin all-border-colors($variant: 500, $border-style: solid, $border-width: 1px) {
+@mixin all-border-colors($variant: '500', $border-style: solid, $border-width: 1px) {
   @each $color in get-color-strings() {
     &.#{$color} {
       border: $border-style $border-width material-color($color, $variant);
+    }
+  }
+}
+
+@mixin all-text-colors($variant: '500') {
+  @each $color in get-color-strings() {
+    &.#{$color} {
+      color: material-color($color, $variant);
     }
   }
 }

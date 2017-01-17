@@ -4,6 +4,7 @@ import {InputComponent} from './input/input.component';
 import {FormsModule} from '@angular/forms';
 import { GetColorNamePipe } from './get-color-name.pipe';
 import { CardComponent } from './card/card.component';
+import { ButtonComponent } from './button/button.component';
 
 @NgModule({
     imports: [
@@ -14,11 +15,13 @@ import { CardComponent } from './card/card.component';
         InputComponent,
         GetColorNamePipe,
         CardComponent,
+        ButtonComponent,
     ],
     exports: [
         InputComponent,
         GetColorNamePipe,
         CardComponent,
+        ButtonComponent,
     ],
 })
 export class UiModule {

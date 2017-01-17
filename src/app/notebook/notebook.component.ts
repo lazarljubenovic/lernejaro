@@ -33,6 +33,8 @@ export class NotebookComponent implements OnInit, AfterContentInit {
 
     public headings: HDirective[][];
 
+    public notebookTitle: string;
+
     constructor() {
     }
 
@@ -43,6 +45,8 @@ export class NotebookComponent implements OnInit, AfterContentInit {
         this.headings = [
             this.heading1, this.heading2, this.heading3, this.heading4, this.heading5, this.heading6]
             .map(queryList => queryList.toArray());
+
+        this.notebookTitle = this.heading1.toArray()[0].title;
     }
 
 }

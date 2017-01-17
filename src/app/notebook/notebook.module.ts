@@ -9,10 +9,12 @@ import {
     H3Directive,
     H2Directive
 } from './directives/heading-directives';
+import {UiModule} from '../ui/ui.module';
 
 @NgModule({
     imports: [
         CommonModule,
+        UiModule,
     ],
     declarations: [
         NotebookComponent,

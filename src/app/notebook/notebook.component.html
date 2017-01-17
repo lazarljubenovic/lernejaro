@@ -1,3 +1,18 @@
-<div class="wrapper">
+<header>
+  <div class="icon red">
+    <i class="fa fa-flask"></i>
+  </div>
+  <div class="title-and-subtitle">
+    <div class="title red">{{notebookTitle}}</div>
+  </div>
+  <div class="flex-spacer"></div>
+  <div class="buttons">
+    <button><i class="fa fa-ellipsis-v"></i></button>
+  </div>
+</header>
+
+<article class="wrapper">
   <ng-content></ng-content>
-</div>
+</article>
+
+<button [lrnButton]="'fab'"><i class="fa fa-cog"></i></button>
