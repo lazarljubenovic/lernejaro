@@ -1,4 +1,4 @@
 <label>
-  <input type="radio" [name]="name" [value]="value" [ngModel]="currentValue" (ngModelChange)="currentValueChange.emit($event)">
-  <span>{{label}}</span>
+  <input type="radio" [name]="name" [value]="value" [ngModel]="currentValue" (ngModelChange)="emitCurrentValueChange()">
+  <span><ng-content></ng-content></span>
 </label>

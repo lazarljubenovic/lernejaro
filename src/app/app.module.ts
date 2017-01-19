@@ -13,6 +13,7 @@ import {NotebookModule} from './notebook/notebook.module';
 import {KatexModule} from './katex/katex.module';
 import { QuizComponent } from './quiz/quiz.component';
 import {QuizModule} from './quiz/quiz.module';
+import {UniqueIdService} from './unique-id.service';
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import {QuizModule} from './quiz/quiz.module';
     ],
     providers: [
         MarkdownParserService,
+        UniqueIdService,
     ],
     bootstrap: [
         AppComponent,

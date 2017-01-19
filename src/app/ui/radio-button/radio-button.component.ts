@@ -1,4 +1,5 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, Optional} from '@angular/core';
+import {RadioButtonGroupComponent} from '../radio-button-group/radio-button-group.component';
 
 @Component({
     selector: 'lrn-radio-button',
@@ -7,17 +8,22 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 })
 export class RadioButtonComponent implements OnInit {
 
-    @Input() public label: string;
-
     @Input() public name: string;
-
     @Input() public value: string;
-
-    @Output() public currentValueChange = new EventEmitter<void>();
-
     @Input() public currentValue: string;
+    @Output() public currentValueChange = new EventEmitter<string>();
 
-    constructor() {
+    public radioButtonGroup: RadioButtonGroupComponent;
+
+    public emitCurrentValueChange() {
+        this.currentValueChange.emit(this.currentValue);
+        if (this.radioButtonGroup) {
+            this.radioButtonGroup.value = this.value;
+        }
+    }
+
+    constructor(@Optional() radioButtonGroup: RadioButtonGroupComponent) {
+        this.radioButtonGroup = radioButtonGroup;
     }
 
     ngOnInit() {

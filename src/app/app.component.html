@@ -21,15 +21,37 @@
     <b>Vestibulum lacinia arcu eget nulla</b>. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit.
   </p>
 
-  <!--<lrn-option-picker [options]="options" [name]="'numbers'" [(value)]="current"></lrn-option-picker>-->
+  <!--<lrn-radio-button [value]="'value'" [name]="'name'" [currentValue]="'value'">-->
+    <!--<b>This</b> <i>is</i> <lrn-katex [math]="'sparta^2'"></lrn-katex>!-->
+  <!--</lrn-radio-button>-->
+<!---->
+  <!--<lrn-option-picker>-->
+    <!--<lrn-option [value]="1">Prva opcija</lrn-option>-->
+    <!--<lrn-option [value]="2">Druga opcija</lrn-option>-->
+    <!--<lrn-option [value]="3">Treća opcija</lrn-option>-->
+  <!--</lrn-option-picker>-->
+<!---->
+  <!--<lrn-multiple-choice [choices]="choices" (answerChoose)="onAnswerChoose($event)">-->
+    <!--Which color is <b>the</b> prettiest?-->
+  <!--</lrn-multiple-choice>-->
+<!---->
+  <!--<pre>{{correct}}</pre>-->
+<!---->
+  <!--<pre>{{givenAnswer}}</pre>-->
 
-  <lrn-multiple-choice [choices]="choices" (answerChoose)="onAnswerChoose($event)">
-    Which color is <b>the</b> prettiest?
-  </lrn-multiple-choice>
+  <lrn-radio-button-group (valueChange)="givenAnswer = $event">
+    <lrn-radio-button value="1">Any kind of text can go here.</lrn-radio-button>
+    <lrn-radio-button value="2">You can <b>format</b> it <i>in any way</i> you <u>like</u>.</lrn-radio-button>
+    <lrn-radio-button value="3">Even <lrn-katex [math]="'\\displaystyle\\int_0^1\\text{math}^2'"></lrn-katex> works here.</lrn-radio-button>
+  </lrn-radio-button-group>
 
-  <pre>{{correct}}</pre>
+  <lrn-radio-button-group (valueChange)="givenAnswer = $event">
+    <lrn-radio-button value="1">Any kind of text can go here.</lrn-radio-button>
+    <lrn-radio-button value="2">You can <b>format</b> it <i>in any way</i> you <u>like</u>.</lrn-radio-button>
+    <lrn-radio-button value="3">Even <lrn-katex [math]="'\\displaystyle\\int_0^1\\text{math}^2'"></lrn-katex> works here.</lrn-radio-button>
+  </lrn-radio-button-group>
 
-  <pre>{{givenAnswer}}</pre>
+  <pre>Given answer: {{givenAnswer}}</pre>
 
   <!--<figure class="left">-->
     <!--<img src="https://unsplash.it/400/300/?random">-->
