@@ -6,7 +6,7 @@ import {
     EventEmitter,
     forwardRef,
     Component,
-    AfterViewInit
+    AfterViewInit, ViewEncapsulation
 } from '@angular/core';
 import {UniqueIdService} from '../../unique-id.service';
 import {RadioButtonComponent} from '../radio-button/radio-button.component';
@@ -16,6 +16,7 @@ import {ControlValueAccessor} from '@angular/forms';
     selector: 'lrn-radio-button-group',
     template: `<div class="wrapper"><ng-content></ng-content></div>`,
     styleUrls: ['./radio-button-group.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class RadioButtonGroupComponent implements ControlValueAccessor, AfterViewInit {
 

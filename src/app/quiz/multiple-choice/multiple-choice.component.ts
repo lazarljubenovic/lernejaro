@@ -5,9 +5,10 @@ import {
     ContentChildren,
     QueryList,
     AfterContentInit,
-    AfterViewInit, TemplateRef
+    AfterViewInit, TemplateRef, Input
 } from '@angular/core';
 import {ChoiceComponent} from './choice/choice.component';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'lrn-multiple-choice',
@@ -19,12 +20,13 @@ export class MultipleChoiceComponent implements AfterContentInit, AfterViewInit 
     @ContentChildren(ChoiceComponent)
     public choicesQueryList: QueryList<ChoiceComponent>;
 
+    @Input() public shuffle: boolean = true;
+
     public choices: {template: TemplateRef<any>, isCorrect: boolean, value: string}[];
 
     public correctChoiceValue: string;
 
     public onChoicePick(answerValue: string) {
-        console.log('in multiple choice component', answerValue);
         const correct = this.correctChoiceValue == answerValue;
         this.answerChoose.emit({correct, answer: answerValue});
     }
@@ -42,6 +44,9 @@ export class MultipleChoiceComponent implements AfterContentInit, AfterViewInit 
                 value: choiceComponent.value,
             };
         });
+        if (this.shuffle) {
+            this.choices = _.shuffle(this.choices);
+        }
         this.correctChoiceValue = this.choices.find(choice => choice.isCorrect).value;
     }
 
