@@ -5,8 +5,8 @@ import {
     Output,
     EventEmitter,
     forwardRef,
-    AfterContentInit,
-    Component
+    Component,
+    AfterViewInit
 } from '@angular/core';
 import {UniqueIdService} from '../../unique-id.service';
 import {RadioButtonComponent} from '../radio-button/radio-button.component';
@@ -17,7 +17,7 @@ import {ControlValueAccessor} from '@angular/forms';
     template: `<div class="wrapper"><ng-content></ng-content></div>`,
     styleUrls: ['./radio-button-group.component.scss'],
 })
-export class RadioButtonGroupComponent implements ControlValueAccessor, AfterContentInit {
+export class RadioButtonGroupComponent implements ControlValueAccessor, AfterViewInit {
 
     private _value: string = null;
 
@@ -55,9 +55,9 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, AfterCon
         this.valueChange.emit(this._value);
     }
 
-    public ngAfterContentInit() {
+    public ngAfterViewInit() {
         if (!this.name) {
-            this.name = this.uniqueIdService.getUniqueId();
+            setTimeout(() => this.name = this.uniqueIdService.getUniqueId('radio-button-group-name-'));
         }
     }
 

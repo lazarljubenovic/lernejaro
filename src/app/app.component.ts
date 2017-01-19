@@ -27,22 +27,7 @@ export class AppComponent {
         }).reduce((acc, curr) => acc.concat(curr), []);
     }).reduce((acc, curr) => acc.concat(curr), []);
 
-    public choices = [
-        'red',
-        'green',
-        'blue',
-        'cyan',
-        'magenta',
-        'yellow',
-    ];
-
-    public onAnswerChoose(value: {correct: boolean, answer: string}) {
-        this.givenAnswer = value.answer;
-        this.correct = value.correct;
-    }
-
-    public givenAnswer: string;
-    public correct: boolean;
+    public answer = null;
 
     // public test = {
     //     a: 2,

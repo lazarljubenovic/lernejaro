@@ -39,19 +39,30 @@
 <!---->
   <!--<pre>{{givenAnswer}}</pre>-->
 
-  <lrn-radio-button-group (valueChange)="givenAnswer = $event">
-    <lrn-radio-button value="1">Any kind of text can go here.</lrn-radio-button>
-    <lrn-radio-button value="2">You can <b>format</b> it <i>in any way</i> you <u>like</u>.</lrn-radio-button>
-    <lrn-radio-button value="3">Even <lrn-katex [math]="'\\displaystyle\\int_0^1\\text{math}^2'"></lrn-katex> works here.</lrn-radio-button>
-  </lrn-radio-button-group>
+  <!--<lrn-radio-button-group (valueChange)="givenAnswer = $event">-->
+    <!--<lrn-radio-button value="1">Any kind of text can go here.</lrn-radio-button>-->
+    <!--<lrn-radio-button value="2">You can <b>format</b> it <i>in any way</i> you <u>like</u>.</lrn-radio-button>-->
+    <!--<lrn-radio-button value="3">Even <lrn-katex [math]="'\\displaystyle\\int_0^1\\text{math}^2'"></lrn-katex> works here.</lrn-radio-button>-->
+  <!--</lrn-radio-button-group>-->
+<!---->
+  <!--<lrn-radio-button-group (valueChange)="givenAnswer = $event">-->
+    <!--<lrn-radio-button value="1">Any kind of text can go here.</lrn-radio-button>-->
+    <!--<lrn-radio-button value="2">You can <b>format</b> it <i>in any way</i> you <u>like</u>.</lrn-radio-button>-->
+    <!--<lrn-radio-button value="3">Even <lrn-katex [math]="'\\displaystyle\\int_0^1\\text{math}^2'"></lrn-katex> works here.</lrn-radio-button>-->
+  <!--</lrn-radio-button-group>-->
 
-  <lrn-radio-button-group (valueChange)="givenAnswer = $event">
-    <lrn-radio-button value="1">Any kind of text can go here.</lrn-radio-button>
-    <lrn-radio-button value="2">You can <b>format</b> it <i>in any way</i> you <u>like</u>.</lrn-radio-button>
-    <lrn-radio-button value="3">Even <lrn-katex [math]="'\\displaystyle\\int_0^1\\text{math}^2'"></lrn-katex> works here.</lrn-radio-button>
-  </lrn-radio-button-group>
+  <lrn-multiple-choice (answerChoose)="answer = $event">
+    <lrn-question>
+      Calculate <lrn-katex [math]="'\\det A'"></lrn-katex> if given
+      <lrn-katex [display]="'block'" [math]="'A = \\begin{bmatrix}1 & 2 & 3 \\\\ 4 & 5 & 6 \\\\ 7 & 8 & 9 \\end{bmatrix}.'"></lrn-katex>
+    </lrn-question>
+    <lrn-choice lrnCorrect><lrn-katex [math]="'\\det A = 0'"></lrn-katex></lrn-choice>
+    <lrn-choice><lrn-katex [math]="'\\det A = 12'"></lrn-katex></lrn-choice>
+    <lrn-choice><lrn-katex [math]="'\\det A = 24'"></lrn-katex></lrn-choice>
+    <lrn-choice><lrn-katex [math]="'\\det A = 48'"></lrn-katex></lrn-choice>
+  </lrn-multiple-choice>
 
-  <pre>Given answer: {{givenAnswer}}</pre>
+  <pre>Answer: {{answer | json}}</pre>
 
   <!--<figure class="left">-->
     <!--<img src="https://unsplash.it/400/300/?random">-->

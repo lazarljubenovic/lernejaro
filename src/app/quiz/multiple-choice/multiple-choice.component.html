@@ -1,10 +1,13 @@
 <lrn-card>
   <div class="question">
-    <ng-content></ng-content>
+    <ng-content select="lrn-question"></ng-content>
   </div>
-
-  <div class="multiple-choices">
-    <lrn-option-picker [options]="options" (valueChange)="onChoicePick($event)"></lrn-option-picker>
+  <div class="choices">
+    <lrn-radio-button-group (valueChange)="onChoicePick($event)">
+      <lrn-radio-button *ngFor="let choice of choices; let i = index" [value]="choice.value">
+        <template [ngTemplateOutlet]="choice.template"></template>
+      </lrn-radio-button>
+    </lrn-radio-button-group>
   </div>
 </lrn-card>
 

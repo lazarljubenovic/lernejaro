@@ -1,29 +1,32 @@
-import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
-import * as _ from 'lodash';
+import {
+    Component,
+    EventEmitter,
+    Output,
+    ContentChildren,
+    QueryList,
+    AfterContentInit,
+    AfterViewInit, TemplateRef
+} from '@angular/core';
+import {ChoiceComponent} from './choice/choice.component';
 
 @Component({
     selector: 'lrn-multiple-choice',
     templateUrl: './multiple-choice.component.html',
     styleUrls: ['./multiple-choice.component.scss']
 })
-export class MultipleChoiceComponent implements OnInit {
+export class MultipleChoiceComponent implements AfterContentInit, AfterViewInit {
 
-    public options: {value: string, label: string}[];
+    @ContentChildren(ChoiceComponent)
+    public choicesQueryList: QueryList<ChoiceComponent>;
 
-    @Input()
-    public set choices(value: string[]) {
-        this.correctAnswer = value[0];
-        this.options = _.shuffle(value).map((choice, i) => ({
-            value: choice,
-            label: choice,
-        }));
-    }
+    public choices: {template: TemplateRef<any>, isCorrect: boolean, value: string}[];
 
-    public correctAnswer: string;
+    public correctChoiceValue: string;
 
-    public onChoicePick(answer: string) {
-        const correct = this.correctAnswer == answer;
-        this.answerChoose.emit({correct, answer});
+    public onChoicePick(answerValue: string) {
+        console.log('in multiple choice component', answerValue);
+        const correct = this.correctChoiceValue == answerValue;
+        this.answerChoose.emit({correct, answer: answerValue});
     }
 
     @Output() public answerChoose = new EventEmitter<{correct: boolean, answer: string}>();
@@ -31,7 +34,18 @@ export class MultipleChoiceComponent implements OnInit {
     constructor() {
     }
 
-    ngOnInit() {
+    ngAfterContentInit() {
+        this.choices = this.choicesQueryList.toArray().map(choiceComponent => {
+            return {
+                template: choiceComponent.template,
+                isCorrect: choiceComponent.isCorrect(),
+                value: choiceComponent.value,
+            };
+        });
+        this.correctChoiceValue = this.choices.find(choice => choice.isCorrect).value;
+    }
+
+    ngAfterViewInit() {
     }
 
 }

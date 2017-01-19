@@ -1,5 +1,7 @@
 import {Component, OnInit, Input, Output, EventEmitter, Optional} from '@angular/core';
 import {RadioButtonGroupComponent} from '../radio-button-group/radio-button-group.component';
+import {UniqueIdService} from '../../unique-id.service';
+import {ChoiceComponent} from '../../quiz/multiple-choice/choice/choice.component';
 
 @Component({
     selector: 'lrn-radio-button',
@@ -8,8 +10,16 @@ import {RadioButtonGroupComponent} from '../radio-button-group/radio-button-grou
 })
 export class RadioButtonComponent implements OnInit {
 
+    private _value: string;
+
     @Input() public name: string;
-    @Input() public value: string;
+    @Input() public set value(newValue: string) {
+        this._value = newValue;
+    };
+
+    public get value(): string {
+        return this._value;
+    }
     @Input() public currentValue: string;
     @Output() public currentValueChange = new EventEmitter<string>();
 
@@ -22,11 +32,16 @@ export class RadioButtonComponent implements OnInit {
         }
     }
 
-    constructor(@Optional() radioButtonGroup: RadioButtonGroupComponent) {
+    constructor(@Optional() radioButtonGroup: RadioButtonGroupComponent,
+                private _uniqueIdService: UniqueIdService) {
         this.radioButtonGroup = radioButtonGroup;
     }
 
     ngOnInit() {
+        // If no value is given, create unique
+        if (this.value == null) {
+            this.value = this._uniqueIdService.getUniqueId('radio-button-');
+        }
     }
 
 }
