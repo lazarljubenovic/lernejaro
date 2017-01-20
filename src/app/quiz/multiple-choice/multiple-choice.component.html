@@ -1,6 +1,6 @@
 <lrn-card>
   <div class="question">
-    <ng-content select="lrn-question"></ng-content>
+    <b>Question:</b> <ng-content select="lrn-question"></ng-content>
   </div>
   <div class="choices">
     <lrn-radio-button-group (valueChange)="onChoicePick($event)">

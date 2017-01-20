@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Directive} from '@angular/core';
 import {Point} from './planimetryts/geometry-objects/point';
 import {Line} from './planimetryts/geometry-objects/line';
 import {Segment} from './planimetryts/geometry-objects/segment';

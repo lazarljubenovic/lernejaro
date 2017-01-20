@@ -17,39 +17,15 @@
     <!--<figcaption>This is a longer figure caption on a floated image. It is never longer in width than the picture.</figcaption>-->
   <!--</figure>-->
 
+  <lrn-fill-in-the-blank (answerChange)="answer = $event">
+    Dijkstra's algorithm is an algorithm for finding the <lrn-blank [answer]="'shortest'" [hint]="'what kind of'"></lrn-blank> paths between nodes in a graph.
+  </lrn-fill-in-the-blank>
+
+  <pre>Answer: {{answer | json}}</pre>
+
   <p>Curabitur tortor. Pellentesque <lrn-katex [math]="'c = \\pm\\sqrt{a^2 + b^2} + \\int_0^e \\log_2 \\left(\\sin\\left(x^{e^{\\sqrt{3}}}\\right)\\right) \\, \\mathrm dx'" [display]="'block'"></lrn-katex> nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem.
     <b>Vestibulum lacinia arcu eget nulla</b>. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit.
   </p>
-
-  <!--<lrn-radio-button [value]="'value'" [name]="'name'" [currentValue]="'value'">-->
-    <!--<b>This</b> <i>is</i> <lrn-katex [math]="'sparta^2'"></lrn-katex>!-->
-  <!--</lrn-radio-button>-->
-<!---->
-  <!--<lrn-option-picker>-->
-    <!--<lrn-option [value]="1">Prva opcija</lrn-option>-->
-    <!--<lrn-option [value]="2">Druga opcija</lrn-option>-->
-    <!--<lrn-option [value]="3">Treća opcija</lrn-option>-->
-  <!--</lrn-option-picker>-->
-<!---->
-  <!--<lrn-multiple-choice [choices]="choices" (answerChoose)="onAnswerChoose($event)">-->
-    <!--Which color is <b>the</b> prettiest?-->
-  <!--</lrn-multiple-choice>-->
-<!---->
-  <!--<pre>{{correct}}</pre>-->
-<!---->
-  <!--<pre>{{givenAnswer}}</pre>-->
-
-  <!--<lrn-radio-button-group (valueChange)="givenAnswer = $event">-->
-    <!--<lrn-radio-button value="1">Any kind of text can go here.</lrn-radio-button>-->
-    <!--<lrn-radio-button value="2">You can <b>format</b> it <i>in any way</i> you <u>like</u>.</lrn-radio-button>-->
-    <!--<lrn-radio-button value="3">Even <lrn-katex [math]="'\\displaystyle\\int_0^1\\text{math}^2'"></lrn-katex> works here.</lrn-radio-button>-->
-  <!--</lrn-radio-button-group>-->
-<!---->
-  <!--<lrn-radio-button-group (valueChange)="givenAnswer = $event">-->
-    <!--<lrn-radio-button value="1">Any kind of text can go here.</lrn-radio-button>-->
-    <!--<lrn-radio-button value="2">You can <b>format</b> it <i>in any way</i> you <u>like</u>.</lrn-radio-button>-->
-    <!--<lrn-radio-button value="3">Even <lrn-katex [math]="'\\displaystyle\\int_0^1\\text{math}^2'"></lrn-katex> works here.</lrn-radio-button>-->
-  <!--</lrn-radio-button-group>-->
 
   <lrn-multiple-choice (answerChoose)="answer = $event">
     <lrn-question>
@@ -61,8 +37,6 @@
     <lrn-choice><lrn-katex [math]="'\\det A = 24'"></lrn-katex></lrn-choice>
     <lrn-choice><lrn-katex [math]="'\\det A = 48'"></lrn-katex></lrn-choice>
   </lrn-multiple-choice>
-
-  <pre>Answer: {{answer | json}}</pre>
 
   <!--<figure class="left">-->
     <!--<img src="https://unsplash.it/400/300/?random">-->

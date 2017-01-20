@@ -15,6 +15,7 @@ import * as KaTeX from 'katex';
     // styleUrls: ['../node_modules/katex/dist/katex.css'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    interpolation: ['[[', ']]'],
 })
 export class KatexComponent implements OnChanges {
 

@@ -27,6 +27,7 @@ export class InputComponent implements OnInit {
         if (this.type == 'number') {
             newValue = Number.parseFloat(newValue);
         }
+        this.value = newValue;
         this.valueChange.emit(newValue);
     }
 

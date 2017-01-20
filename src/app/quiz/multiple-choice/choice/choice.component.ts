@@ -1,13 +1,5 @@
-import {
-    Component,
-    OnInit,
-    TemplateRef,
-    ViewChild,
-    AfterContentInit,
-    ContentChild
-} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {UniqueIdService} from '../../../unique-id.service';
-import {RadioButtonComponent} from '../../../ui/radio-button/radio-button.component';
 
 @Component({
     selector: 'lrn-choice',
