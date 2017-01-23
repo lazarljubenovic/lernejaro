@@ -1,0 +1,108 @@
+@import '../../global';
+
+
+$tan20: 0.36397023426;
+
+$color: material-color('teal');
+$left-width: 66%;
+$right-width: 100% - $left-width;
+
+$line-margin: 48px;
+
+$line-thin-width: 2px;
+
+lrn-title-slide {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: $color;
+  position: relative;
+  font-size: 2em;
+
+  .background-picture {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    height: auto;
+    $x: $tan20 * 100vh;
+    width: calc(#{$right-width} + #{$x / 2});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+
+    .fade {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: linear-gradient(to top, rgba(black, .8), transparent);
+      height: 50%;
+    }
+  }
+
+  .background-card {
+    position: absolute;
+    right: $right-width;
+    top: -100vh;
+    bottom: -100vh;
+    width: 200vw;
+    height: auto;
+    background-color: rgba(white, 1);
+    @include z-depth-24dp;
+    transform-origin: 100% 50%;
+    transform: rotate(20deg);
+  }
+
+  .content {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+
+    .title-and-author {
+      box-sizing: border-box;
+      height: auto;
+      width: $left-width;
+      top: $line-margin;
+      left: $line-margin;
+      bottom: $line-margin;
+      position: absolute;
+
+      .left-vertical-line {
+        position: absolute;
+        width: $line-thin-width;
+        background: $color;
+      }
+
+      .title {
+        font-size: 3.6em;
+        font-weight: 300;
+        padding: .33em;
+        border-left: solid .33ex $color;
+
+        b, strong {
+          font-weight: 500;
+        }
+      }
+
+      .author {
+        position: absolute;
+        padding: 1ex;
+        bottom: 0;
+        font-size: 1.5em;
+        text-transform: uppercase;
+        font-weight: 300;
+      }
+    }
+
+    .description {
+      position: absolute;
+      bottom: $line-margin;
+      right: $line-margin;
+      padding: 1ex;
+      color: white;
+    }
+  }
+
+}

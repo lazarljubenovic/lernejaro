@@ -1,0 +1,24 @@
+<div class="wrapper">
+  <div class="background-picture"
+       [style.background-image]="'url(' + backgroundImageUrl + ')'"
+  >
+    <div class="fade"></div>
+  </div>
+  <div class="background-card"></div>
+
+  <div class="content">
+    <div class="title-and-author">
+      <div class="left-vertical-line"></div>
+
+      <div class="title">
+        <template [ngTemplateOutlet]="title"></template>
+      </div>
+      <div class="author">{{author}}</div>
+    </div>
+
+    <div class="description">
+      <template [ngTemplateOutlet]="description"></template>
+    </div>
+  </div>
+
+</div>

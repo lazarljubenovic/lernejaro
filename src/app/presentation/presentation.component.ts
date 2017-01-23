@@ -7,9 +7,10 @@ import {
     ViewChild,
     ElementRef,
     Renderer,
-    AfterContentInit, HostListener
-} from "@angular/core";
-import {SlideComponent} from "./slide/slide.component";
+    AfterContentInit,
+    HostListener
+} from '@angular/core';
+import {SlideComponent} from './slide/slide.component';
 
 @Component({
     selector: 'lrn-presentation',
@@ -23,7 +24,7 @@ export class PresentationComponent implements OnInit, AfterContentInit {
     @Input()
     public set currentSlideIndex(currentSlideIndex: number) {
         this._currentSlideIndex = currentSlideIndex;
-        this.updateView();
+        // this.updateView();
     };
 
     public get currentSlideIndex(): number {
@@ -77,7 +78,7 @@ export class PresentationComponent implements OnInit, AfterContentInit {
 
     @HostListener('window:keypress', ['$event.key'])
     public onKeyPress(key: string) {
-        switch (key.toLocaleLowerCase()) {
+        switch (key.toLowerCase()) {
             case 'j':
                 this.goToNext();
                 break;
@@ -94,7 +95,7 @@ export class PresentationComponent implements OnInit, AfterContentInit {
     }
 
     ngAfterContentInit() {
-        this.updateView();
+        // this.updateView();
     }
 
 }

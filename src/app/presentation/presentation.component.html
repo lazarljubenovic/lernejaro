@@ -1,10 +1,24 @@
-<div #outlet></div>
-<ng-content select="lrn-slide"></ng-content>
+<template #description>
+  This is a <b>custom</b> <i>description</i>.
+</template>
 
-<div class="footer">
-  <ul class="navigation">
-    <li (click)="goToPrevious()">Previous</li>
-    <li>{{ currentSlideIndex }}</li>
-    <li (click)="goToNext()">Next</li>
-  </ul>
-</div>
+<template #title>
+  Functions <b>in form</b> of <lrn-katex [math]="'\\displaystyle\\int_0^e\\log_e(x)\\,\\mathrm dx'"></lrn-katex>
+</template>
+
+<lrn-title-slide [author]="'Lazar Ljubenović'"
+                 [description]="description"
+                 [title]="title"
+></lrn-title-slide>
+
+<!--<div #outlet></div>-->
+<!---->
+<!--<ng-content select="lrn-slide"></ng-content>-->
+<!---->
+<!--<div class="footer">-->
+  <!--<ul class="navigation">-->
+    <!--<li (click)="goToPrevious()">Previous</li>-->
+    <!--<li>{{ currentSlideIndex }}</li>-->
+    <!--<li (click)="goToNext()">Next</li>-->
+  <!--</ul>-->
+<!--</div>-->
