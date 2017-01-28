@@ -15,59 +15,55 @@ import {Triangle} from '../../planimetryts/geometry-objects/triangle';
 })
 export class IntroducingGeometryComponent implements OnInit {
 
-    public point: Point = Point.FromCartesianCoordinates(2, 3).strokeColor(MaterialColor.BLUE).fillColor(MaterialColor.GREEN).label('A');
-    public line: Line = Line.FromGeneralForm(10, 20, 30).strokeColor(MaterialColor.RED).fillColor(MaterialColor.YELLOW).label('l');
-    public circle: Circle = Circle.FromGeneralForm(0, 1, 2).strokeColor(MaterialColor.AMBER).fillColor(MaterialColor.INDIGO).label('k');
-    public segment: Segment = Segment.FromTwoPoints(Point.FromCartesianCoordinates(1, 2), Point.FromCartesianCoordinates(3, 4)).strokeColor(MaterialColor.INDIGO).fillColor(MaterialColor.LIGHT_BLUE).label('a');
+    public point: Point = Point.FromCartesianCoordinates(2, 3)
+        .strokeColor(MaterialColor.BLUE)
+        .fillColor(MaterialColor.GREEN)
+        .label('A');
+
+    public line: Line = Line.FromGeneralForm(10, 20, 30)
+        .strokeColor(MaterialColor.RED)
+        .fillColor(MaterialColor.YELLOW)
+        .label('l');
+
+    public circle: Circle = Circle.FromGeneralForm(0, 1, 2)
+        .strokeColor(MaterialColor.AMBER)
+        .fillColor(MaterialColor.INDIGO)
+        .label('k');
+
+    public segment: Segment = Segment
+        .FromTwoPoints(Point.FromCartesianCoordinates(1, 2), Point.FromCartesianCoordinates(3, 4))
+        .strokeColor(MaterialColor.INDIGO)
+        .fillColor(MaterialColor.LIGHT_BLUE)
+        .label('a');
 
     public objects: GeometryObject[];
 
     public interactivePoints: Point[] = [
-        Point.FromCartesianCoordinates(-30, -200)
+        Point.FromCartesianCoordinates(-200, -200)
             .label('A').strokeColor(MaterialColor.AMBER),
-        Point.FromCartesianCoordinates(30, -200)
+        Point.FromCartesianCoordinates(200, -200)
             .label('B').strokeColor(MaterialColor.AMBER),
-        Point.FromCartesianCoordinates(0, -170)
-            .label('C').strokeColor(MaterialColor.AMBER),
-        // Point.FromCartesianCoordinates(0, 0).label('X').strokeColor(MaterialColor.LIGHT_GREEN),
-        // Point.FromCartesianCoordinates(+290, 0).label('Y').strokeColor(MaterialColor.LIGHT_GREEN),
+        // Point.FromCartesianCoordinates(0, 200)
+        //     .label('C').strokeColor(MaterialColor.AMBER),
     ];
 
     public evaluateObjects(...points: Point[]): void {
-        const [A, B, C] = points;
-        //
-        // const triangle = Polygon.FromVertices(A, B, C)
-        //     .fillColor(MaterialColor.RED)
-        //     .strokeColor(MaterialColor.RED);
-        //
-        // const mirrorTriangles = triangle
-        //     .radialSymmetry(X, 8).map(triangle => triangle
-        //         .fillColor(MaterialColor.TEAL)
-        //         .strokeColor(MaterialColor.TEAL));
-        //
-        // this.objects = [triangle, ...mirrorTriangles];
+        const [A, B] = points;
 
-        const polygon = Polygon.FromVertices(A, B, C);
-        const segmentAB = Segment.FromTwoPoints(A, B);
-        const bisectorA: Line = Line.GetBisector(A, B, C).strokeColor(MaterialColor.RED);
-        const bisectorB: Line = Line.GetBisector(B, A, C).strokeColor(MaterialColor.GREEN);
-        const bisectorC: Line = Line.GetBisector(C, A, B).strokeColor(MaterialColor.BLUE);
-        const intersection: Point = Line.GetIntersection(bisectorA, bisectorB).strokeColor(MaterialColor.PINK);
-        const inscribedCircle = Circle.FromCenterAndLine(intersection, segmentAB.getLine());
+        // const polygon = Polygon.FromVertices(A, B, C);
+        // const segmentAB = Segment.FromTwoPoints(A, B);
+        // const bisectorA: Line = Line.GetBisector(A, B, C).strokeColor(MaterialColor.RED);
+        // const bisectorB: Line = Line.GetBisector(B, A, C).strokeColor(MaterialColor.GREEN);
+        // const bisectorC: Line = Line.GetBisector(C, A, B).strokeColor(MaterialColor.BLUE);
+        // const intersection: Point = Line.GetIntersection(bisectorA, bisectorB).strokeColor(MaterialColor.PINK);
+        // const inscribedCircle = Circle.FromCenterAndLine(intersection, segmentAB.getLine());
 
-        this.objects = [bisectorA, bisectorB, bisectorC, inscribedCircle, polygon, intersection];
+        // this.objects = [bisectorA, bisectorB, bisectorC, inscribedCircle, polygon, intersection];
 
-        let eqTrianglePoints, eqTriangle;
-        try {
-            eqTrianglePoints = polygon.segments().map(segment => {
-                return Circle.GetIntersectionsWithLine(inscribedCircle, Line.FromSegment(segment))[0].label('X');
-            });
-            eqTriangle = Triangle.FromVertices(...eqTrianglePoints).fillColor(MaterialColor.PINK);
-            this.objects = [...this.objects, eqTriangle, ...eqTrianglePoints];
-        } catch (e) {
-            console.log(e);
-        }
+        const originalCircle = Circle.FromCenterAndPoint(A, B).strokeColor(MaterialColor.RED);
+        const skewedCircle = originalCircle.clone().shearX(2).strokeColor(MaterialColor.BLUE);
 
+        this.objects = [originalCircle, skewedCircle];
     }
 
     public onInteractivePointsChange(points: Point[]): void {

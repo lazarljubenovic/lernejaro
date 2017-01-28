@@ -204,7 +204,7 @@ export class CanvasRenderer extends Renderer {
         const clone = circle.clone().applyMatrix(this._appliedMatrix);
         const c = clone.getGeneralForm();
         this.ctx.save();
-        this.ctx.strokeStyle = 'black';
+        this.ctx.strokeStyle = this.getColor(circle.strokeColor(), 500);
         this.ctx.lineWidth = 1;
         this.ctx.beginPath();
         this.ctx.arc(c.p, c.q, c.r, 0, 2 * Math.PI);
