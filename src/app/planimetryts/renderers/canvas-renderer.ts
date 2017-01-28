@@ -10,6 +10,7 @@ import {Subject} from 'rxjs';
 import {Polygon} from '../geometry-objects/polygon';
 import {MaterialColor} from './color';
 import {MaterialColor as MaterialColorEnum} from '../geometry-objects/material-colors';
+import {Ellipse} from '../geometry-objects/ellipse';
 
 
 function getCursorPosition(canvas, event): Coordinate {
@@ -85,8 +86,9 @@ export class CanvasRenderer extends Renderer {
 
         this.setIdentityMatrix();
 
-        this.applyMatrix(Matrix.Homogeneous.StretchY(-1));
-        this.applyMatrix(Matrix.Homogeneous.Translate(300, 300));
+        // this.applyMatrix(Matrix.Homogeneous.StretchY(-1));
+        // this.applyMatrix(Matrix.Homogeneous.Translate(300, 300));
+        // this.applyMatrix(Matrix.Homogeneous.Stretch(.1));
 
         this.createGrid();
     }
@@ -140,6 +142,7 @@ export class CanvasRenderer extends Renderer {
     protected renderPoint(point: Point) {
         const clone = point.clone().applyMatrix(this._appliedMatrix);
         const {x, y} = clone.getCartesianCoordinates();
+        console.log(x, y);
         this.ctx.save();
         let fillColor = point.strokeColor();
         if (fillColor == null) {
@@ -200,6 +203,9 @@ export class CanvasRenderer extends Renderer {
         this.ctx.restore();
     }
 
+    /**
+     * @deprecated
+     */
     protected renderCircle(circle: Circle): void {
         const clone = circle.clone().applyMatrix(this._appliedMatrix);
         const c = clone.getGeneralForm();
@@ -208,6 +214,22 @@ export class CanvasRenderer extends Renderer {
         this.ctx.lineWidth = 1;
         this.ctx.beginPath();
         this.ctx.arc(c.p, c.q, c.r, 0, 2 * Math.PI);
+        this.ctx.stroke();
+        this.ctx.closePath();
+        this.ctx.restore();
+    }
+
+    protected renderEllipse(ellipse: Ellipse): void {
+        const clone = ellipse.clone().applyMatrix(this._appliedMatrix);
+        const [a, b] = clone.getRadii();
+        const angle = clone.getAngle();
+        const {x, y} = clone.getCenter().getCartesianCoordinates();
+        console.log('ellipse', x, y, a, b, angle);
+        this.ctx.save();
+        this.ctx.strokeStyle = this.getColor(ellipse.strokeColor(), 500);
+        this.ctx.lineWidth = 1;
+        this.ctx.beginPath();
+        this.ctx.ellipse(x, y, a, b, angle, 0, 2 * Math.PI);
         this.ctx.stroke();
         this.ctx.closePath();
         this.ctx.restore();

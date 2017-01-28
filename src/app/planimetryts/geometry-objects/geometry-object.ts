@@ -94,7 +94,7 @@ export abstract class GeometryObject {
         return this.reconstructFromPoints(...points);
     }
 
-    protected applyMatrixWithRespectTo(matrix: number[][], point: Point): this {
+    private applyMatrixWithRespectTo(matrix: number[][], point: Point): this {
         const {x, y} = point.getCartesianCoordinates();
         return this
             .translate(-x, -y)

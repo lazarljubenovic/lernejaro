@@ -7,6 +7,7 @@ import {MaterialColor} from '../../planimetryts/geometry-objects/material-colors
 import {Segment} from '../../planimetryts/geometry-objects/segment';
 import {Circle} from '../../planimetryts/geometry-objects/circle';
 import {Triangle} from '../../planimetryts/geometry-objects/triangle';
+import {Ellipse} from '../../planimetryts/geometry-objects/ellipse';
 
 @Component({
     selector: 'lrn-introducing-geometry',
@@ -60,10 +61,20 @@ export class IntroducingGeometryComponent implements OnInit {
 
         // this.objects = [bisectorA, bisectorB, bisectorC, inscribedCircle, polygon, intersection];
 
-        const originalCircle = Circle.FromCenterAndPoint(A, B).strokeColor(MaterialColor.RED);
-        const skewedCircle = originalCircle.clone().shearX(2).strokeColor(MaterialColor.BLUE);
+        // const originalCircle = Circle.FromCenterAndPoint(A, B).strokeColor(MaterialColor.RED);
+        // const skewedCircle = originalCircle.clone().shearX(2).strokeColor(MaterialColor.BLUE);
 
-        this.objects = [originalCircle, skewedCircle];
+        const ellipse = Ellipse.FromCanonicalForm(80, 80)
+            .translate(-300, -300)
+            .strokeColor(MaterialColor.INDIGO);
+
+        const rotatedEllipse = ellipse.clone().rotate(Math.PI / 4)
+            .strokeColor(MaterialColor.PINK);
+
+        const skewedEllipse = ellipse.clone().shearX(1.0000001)
+            .strokeColor(MaterialColor.TEAL);
+
+        this.objects = [ellipse, rotatedEllipse, skewedEllipse];
     }
 
     public onInteractivePointsChange(points: Point[]): void {

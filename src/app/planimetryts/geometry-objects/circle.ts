@@ -4,6 +4,9 @@ import {Line} from './line';
 import {Equation, areEqualFloats, isZero} from '../util';
 import {Segment} from './segment';
 
+/**
+ * @deprecated
+ */
 export class Circle extends GeometryObject {
 
     public static AreEqual(circle1: Circle, circle2: Circle): boolean {

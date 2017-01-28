@@ -4,6 +4,7 @@ import {Line} from '../geometry-objects/line';
 import {Segment} from '../geometry-objects/segment';
 import {Circle} from '../geometry-objects/circle';
 import {Polygon} from '../geometry-objects/polygon';
+import {Ellipse} from '../geometry-objects/ellipse';
 
 export abstract class Renderer {
 
@@ -13,7 +14,12 @@ export abstract class Renderer {
 
     protected abstract renderSegment(segment: Segment);
 
+    /**
+     * @deprecated
+     */
     protected abstract renderCircle(circle: Circle);
+
+    protected abstract renderEllipse(ellipse: Ellipse);
 
     protected abstract renderPolygon(polygon: Polygon);
 
@@ -52,6 +58,9 @@ export abstract class Renderer {
                     break;
                 case 'polygon':
                     this.renderPolygon(<Polygon>object);
+                    break;
+                case 'ellipse':
+                    this.renderEllipse(<Ellipse>object);
                     break;
             }
             this.afterEachObjectRender(object);
