@@ -4,6 +4,7 @@ import {Segment} from '../geometry-objects/segment';
 import {Circle} from '../geometry-objects/circle';
 import {Line} from '../geometry-objects/line';
 import {Polygon} from '../geometry-objects/polygon';
+import {Ellipse} from '../geometry-objects/ellipse';
 
 export class ConsoleRenderer extends Renderer {
 
@@ -24,10 +25,20 @@ export class ConsoleRenderer extends Renderer {
         console.log(`Segment from (${s[0].x}, ${s[0].y}) to (${s[1].x}, ${s[1].y})`);
     }
 
+    /**
+     * @deprecated
+     */
     public renderCircle(circle: Circle): void {
         const c = circle.center().getCartesianCoordinates();
         const r = circle.radius();
         console.log(`Circle with center at (${c.x}, ${c.y}) and radius of ${r}`);
+    }
+
+    public renderEllipse(ellipse: Ellipse): void {
+        const [a, b] = ellipse.getRadii();
+        const angle = ellipse.getAngle();
+        const {x, y} = ellipse.getCenter().getCartesianCoordinates();
+        console.log(`Ellipse with center at (${x}, ${y}), radii ${a} and ${b}, rotated for ${angle}`);
     }
 
     public renderPolygon(polygon: Polygon): void {

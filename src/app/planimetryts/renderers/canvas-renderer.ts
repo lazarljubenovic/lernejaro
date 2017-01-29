@@ -86,9 +86,8 @@ export class CanvasRenderer extends Renderer {
 
         this.setIdentityMatrix();
 
-        // this.applyMatrix(Matrix.Homogeneous.StretchY(-1));
-        // this.applyMatrix(Matrix.Homogeneous.Translate(300, 300));
-        // this.applyMatrix(Matrix.Homogeneous.Stretch(.1));
+        this.applyMatrix(Matrix.Homogeneous.StretchY(-1));
+        this.applyMatrix(Matrix.Homogeneous.Translate(300, 300));
 
         this.createGrid();
     }
@@ -142,7 +141,6 @@ export class CanvasRenderer extends Renderer {
     protected renderPoint(point: Point) {
         const clone = point.clone().applyMatrix(this._appliedMatrix);
         const {x, y} = clone.getCartesianCoordinates();
-        console.log(x, y);
         this.ctx.save();
         let fillColor = point.strokeColor();
         if (fillColor == null) {
@@ -224,7 +222,6 @@ export class CanvasRenderer extends Renderer {
         const [a, b] = clone.getRadii();
         const angle = clone.getAngle();
         const {x, y} = clone.getCenter().getCartesianCoordinates();
-        console.log('ellipse', x, y, a, b, angle);
         this.ctx.save();
         this.ctx.strokeStyle = this.getColor(ellipse.strokeColor(), 500);
         this.ctx.lineWidth = 1;

@@ -27,15 +27,21 @@ export class Ellipse extends GeometryObject {
         }
     }
 
+
     public static FromMatrix(matrix: number[][]): Ellipse {
-        // TODO this currently assumes that given matrix is correct
-        const A = matrix[0][0];
-        const B = 2 * matrix[0][1];
-        const C = matrix[1][1];
-        const D = 2 * matrix[0][2];
-        const E = 2 * matrix[1][2];
-        const F = matrix[2][2];
-        return Ellipse.FromGeneralForm(A, B, C, D, E, F);
+        if (areEqualFloats(matrix[0][1], matrix[1][0])
+            && areEqualFloats(matrix[0][2], matrix[2][0])
+            && areEqualFloats(matrix[1][2], matrix[2][1])) {
+            const A = matrix[0][0];
+            const B = 2 * matrix[0][1];
+            const C = matrix[1][1];
+            const D = 2 * matrix[0][2];
+            const E = 2 * matrix[1][2];
+            const F = matrix[2][2];
+            return Ellipse.FromGeneralForm(A, B, C, D, E, F);
+        } else {
+            throw new Error(`Matrix does not meet requirements for ellipse.`);
+        }
     }
 
     private A: number;
@@ -55,7 +61,7 @@ export class Ellipse extends GeometryObject {
         this.F = F;
     }
 
-    public isEllipse(): boolean {
+    private isEllipse(): boolean {
         const [A, B, C, D, E, F] = [this.A, this.B, this.C, this.D, this.E, this.F];
         const firstCondition: boolean = B ** 2 - 4 * A * C < 0; // TODO float comparison
         // const determinant: number = A * C * F + B * E * D / 4 - (C * D ** 2 + A * E ** 2 + F * B ** 2) / 2;
@@ -158,18 +164,11 @@ export class Ellipse extends GeometryObject {
     }
 
     public getArea(): number {
-        throw 'TODO'; // TODO
+        const [a, b] = this.getRadii();
+        return Math.PI * a * b;
     }
 
     public getPerimeter(): number {
-        throw 'TODO'; // TODO
-    }
-
-    public getFocalParameter(): number {
-        throw 'TODO'; // TODO
-    }
-
-    public getEccentricity(): number {
         throw 'TODO'; // TODO
     }
 
