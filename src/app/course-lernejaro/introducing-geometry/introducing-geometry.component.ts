@@ -65,13 +65,13 @@ export class IntroducingGeometryComponent implements OnInit {
         // const skewedCircle = originalCircle.clone().shearX(2).strokeColor(MaterialColor.BLUE);
 
         const ellipse = Ellipse.FromCanonicalForm(80, 80)
-            .translate(-300, -300)
+            .translate(A.x(), A.y())
             .strokeColor(MaterialColor.INDIGO);
 
         const rotatedEllipse = ellipse.clone().rotate(Math.PI / 4)
             .strokeColor(MaterialColor.PINK);
 
-        const skewedEllipse = ellipse.clone().shearX(1.0000001)
+        const skewedEllipse = ellipse.clone().shearX(0.33)
             .strokeColor(MaterialColor.TEAL);
 
         this.objects = [ellipse, rotatedEllipse, skewedEllipse];

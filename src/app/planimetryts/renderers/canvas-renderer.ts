@@ -44,12 +44,10 @@ export class CanvasRenderer extends Renderer {
         return [...this._appliedMatrix.map(el => [...el])];
     }
 
-    public get inverseMatrix(): number[][] {
-        return [...this._inverseMatrix.map(el => [...el])];
-    }
-
     private setIdentityMatrix() {
-        this._appliedMatrix = this._inverseMatrix = Matrix.GetIdentity(3);
+        const I = Matrix.GetIdentity(3);
+        this._appliedMatrix = I;
+        this._inverseMatrix = I;
     }
 
     public applyMatrix(matrix: number[][], leftMul: boolean = true): this {
@@ -218,7 +216,7 @@ export class CanvasRenderer extends Renderer {
     }
 
     protected renderEllipse(ellipse: Ellipse): void {
-        const clone = ellipse.clone().applyMatrix(this._appliedMatrix);
+        const clone = ellipse.clone().applyMatrix(this._inverseMatrix);
         const [a, b] = clone.getRadii();
         const angle = clone.getAngle();
         const {x, y} = clone.getCenter().getCartesianCoordinates();
