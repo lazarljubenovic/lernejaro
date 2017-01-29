@@ -35,7 +35,6 @@ export class Ellipse extends GeometryObject {
         const D = 2 * matrix[0][2];
         const E = 2 * matrix[1][2];
         const F = matrix[2][2];
-        console.log(matrix, A, B, C, D, E, F);
         return Ellipse.FromGeneralForm(A, B, C, D, E, F);
     }
 
@@ -70,7 +69,7 @@ export class Ellipse extends GeometryObject {
 
     public getRadii(): number[] {
         if (!this.isEllipse()) {
-            throw new Error(`Cannot get radii of ellipse if this is not ellipse`);
+            throw new Error(`Cannot get radii since this is not ellipse`);
         }
         const [A, B, C, D, E, F] = [this.A, this.B, this.C, this.D, this.E, this.F];
         const discriminant: number = B ** 2 - 4 * A * C;
@@ -92,7 +91,6 @@ export class Ellipse extends GeometryObject {
         const yUp = 2 * A * E - B * D;
         const x = xUp / discriminant;
         const y = yUp / discriminant;
-        console.log(A, B, C, D, E, F, '=> center', x, y);
         return Point.FromCartesianCoordinates(x, y);
     }
 
@@ -153,10 +151,8 @@ export class Ellipse extends GeometryObject {
     }
 
     protected applyMatrixWithRespectToCenter(matrix: number[][]): this {
-        console.log('transformation matrix', matrix);
         const matrixT: number[][] = Matrix.Transpose(matrix);
         const newMatrix = Matrix.Multiply(matrixT, Matrix.Multiply(this.getMatrix(), matrix));
-        console.log('result matrix', newMatrix);
         const newEllipse = Ellipse.FromMatrix(newMatrix);
         return this.copyFrom(newEllipse);
     }

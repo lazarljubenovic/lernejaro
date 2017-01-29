@@ -1,28 +1,25 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {StereometricsComponent} from './stereometrics.component';
 
-import { StereometricsComponent } from './stereometrics.component';
+xdescribe('StereometricsComponent', () => {
+    let component: StereometricsComponent;
+    let fixture: ComponentFixture<StereometricsComponent>;
 
-describe('StereometricsComponent', () => {
-  let component: StereometricsComponent;
-  let fixture: ComponentFixture<StereometricsComponent>;
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [StereometricsComponent]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ StereometricsComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(() => {
+        fixture = TestBed.createComponent(StereometricsComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(StereometricsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

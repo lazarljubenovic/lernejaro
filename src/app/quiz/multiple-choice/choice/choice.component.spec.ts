@@ -1,28 +1,25 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
+import {ChoiceComponent} from './choice.component';
 
-import { ChoiceComponent } from './choice.component';
+xdescribe('ChoiceComponent', () => {
+    let component: ChoiceComponent;
+    let fixture: ComponentFixture<ChoiceComponent>;
 
-describe('ChoiceComponent', () => {
-  let component: ChoiceComponent;
-  let fixture: ComponentFixture<ChoiceComponent>;
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ChoiceComponent]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ChoiceComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(() => {
+        fixture = TestBed.createComponent(ChoiceComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ChoiceComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });
