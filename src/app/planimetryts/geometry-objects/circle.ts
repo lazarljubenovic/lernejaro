@@ -2,7 +2,6 @@ import {Point} from './point';
 import {GeometryObject} from './geometry-object';
 import {Line} from './line';
 import {Equation, areEqualFloats, isZero} from '../util';
-import {Segment} from './segment';
 
 /**
  * @deprecated
@@ -60,7 +59,7 @@ export class Circle extends GeometryObject {
 
             const A = l.k ** 2 + 1;
             const B = 2 * l.k * l.n - 2 * c.x - 2 * c.y * l.k;
-            const C = c.x ** 2 + l.n ** 2 + c.y ** 2 - 2 * l.n * c. y - r ** 2;
+            const C = c.x ** 2 + l.n ** 2 + c.y ** 2 - 2 * l.n * c.y - r ** 2;
             const x: number[] = Equation.Quadratic.solve(A, B, C);
 
             return x.map(x => {

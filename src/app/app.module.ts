@@ -14,6 +14,7 @@ import {KatexModule} from './katex/katex.module';
 import { QuizComponent } from './quiz/quiz.component';
 import {QuizModule} from './quiz/quiz.module';
 import {UniqueIdService} from './unique-id.service';
+import {FitTextModule} from './fit-text/fit-text.module';
 
 @NgModule({
     declarations: [
@@ -30,6 +31,7 @@ import {UniqueIdService} from './unique-id.service';
         NotebookModule,
         KatexModule,
         QuizModule,
+        FitTextModule,
         RouterModule.forRoot([
             {
                 path: 'courses',
