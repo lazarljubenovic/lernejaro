@@ -2,6 +2,7 @@
 
 
 $tan20: 0.36397023426;
+$tan70: 2.74747741945;
 
 $color: material-color('teal');
 $left-width: 66%;
@@ -35,10 +36,11 @@ lrn-title-slide {
 
     .fade {
       position: absolute;
-      bottom: 0;
+      top: 0;
       width: 100%;
-      background: linear-gradient(to top, rgba(black, .8), transparent);
-      height: 50%;
+      //background: linear-gradient(to top, rgba(black, .8), transparent);
+      background: linear-gradient(to bottom, rgba(black, .8), transparent);
+      height: 100%;
     }
   }
 
@@ -103,8 +105,29 @@ lrn-title-slide {
       position: absolute;
       bottom: $line-margin;
       right: $line-margin;
-      padding: 1ex;
       color: white;
+
+      .card-clip {
+        width: calc(100vw - #{$line-margin});
+        height: calc(100vh - #{$line-margin});
+        display: block;
+        float: left;
+        $padding: $line-margin;
+        shape-outside: polygon(0 0, calc(66vw + #{50vh / $tan70} + #{$padding})  0, calc(66vw - #{50vh / $tan70} + #{$line-margin / $tan70} + #{$padding}) 100%, 0 100%);
+      }
+
+      .text-wrapper {
+        //display: flex;
+        //height: 100%;
+        //background-color: red;
+        //align-items: flex-end;
+        text-align: right;
+        padding-top: $line-margin;
+
+        > span {
+
+        }
+      }
     }
   }
 
