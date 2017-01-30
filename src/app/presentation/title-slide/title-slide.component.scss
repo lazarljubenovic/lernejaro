@@ -80,10 +80,25 @@ lrn-title-slide {
       .title {
         box-sizing: border-box;
         font-weight: 300;
-        padding: 24px;
-        border-left: solid 12px $color;
         width: 100%;
         height: 80%;
+        padding-left: 48px;
+
+        // Created dynamically by lrnFitText directive
+        span {
+          position: relative;
+
+          &:before {
+            content: '';
+            position: absolute;
+            background-color: $color;
+            width: 24px;
+            top: 0;
+            bottom: 0;
+            left: -48px;
+            height: 100%;
+          }
+        }
 
         b, strong {
           font-weight: 500;
@@ -107,6 +122,7 @@ lrn-title-slide {
       color: white;
 
       .card-clip {
+        pointer-events: none;
         width: calc(100vw - #{$line-margin});
         height: calc(100vh - #{$line-margin});
         display: block;
