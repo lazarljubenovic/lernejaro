@@ -54,12 +54,18 @@ export class FitTextDirective implements OnInit, AfterViewInit, OnDestroy {
             const span = rootNode.children[0];
             const style = window.getComputedStyle(span);
 
-            let box = rootNode.getBoundingClientRect();
+            const box = rootNode.getBoundingClientRect();
+            console.log(box.width, box.height);
+            const boxStyle = window.getComputedStyle(rootNode);
+            const boxWidth = box.width - parseFloat(boxStyle.paddingRight) - parseFloat(boxStyle.paddingLeft);
+            const boxHeight = box.height - parseFloat(boxStyle.paddingTop) - parseFloat(boxStyle.paddingBottom);
+            console.log(boxWidth, boxHeight);
+
             let rect = span.getBoundingClientRect();
             let currentFontSizePx: number = this.minSizePx;
             while (currentFontSizePx++ < this.maxSizePx) {
                 rect = span.getBoundingClientRect();
-                if (rect.width < box.width && rect.height < box.height) {
+                if (rect.width < boxWidth && rect.height < boxHeight) {
                     span.style.fontSize = `${currentFontSizePx + 1}px`;
                 } else {
                     span.style.fontSize = `${currentFontSizePx - 1}px`;
