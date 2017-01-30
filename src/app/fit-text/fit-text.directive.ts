@@ -1,4 +1,7 @@
-import {Directive, TemplateRef, ElementRef, OnInit, EmbeddedViewRef} from '@angular/core';
+import {
+    Directive, TemplateRef, ElementRef, OnInit, EmbeddedViewRef,
+    ViewContainerRef
+} from '@angular/core';
 
 @Directive({selector: '[lrnFitText]'})
 export class FitTextDirective implements OnInit {
@@ -8,25 +11,35 @@ export class FitTextDirective implements OnInit {
     private originalWidth: number;
     private originalHeight: number;
 
-    constructor(private templateRef: TemplateRef<any>, private elementRef: ElementRef) {
+    constructor(private templateRef: TemplateRef<Object>,
+                private elementRef: ElementRef,
+                private viewContainerRef: ViewContainerRef) {
+        console.log('fix text constructor');
     }
 
     public ngOnInit(): void {
-        // TODO Wrap content in a <span> here instead of in consumer code
+        this.view = this.viewContainerRef.createEmbeddedView(this.templateRef);
 
-        const el: HTMLElement = this.elementRef.nativeElement;
-        this.view = this.templateRef.createEmbeddedView({});
-        this.view.rootNodes.forEach(rootNode => {
-            el.parentNode.insertBefore(rootNode, el);
+        console.log(this.view.rootNodes);
+
+        // Wrap contents into a span
+        this.view.rootNodes.forEach(parent => {
+            const spanWrapper = document.createElement('span');
+            while (parent.firstChild) {
+                spanWrapper.appendChild(parent.firstChild);
+            }
+            parent.appendChild(spanWrapper);
         });
 
         this.view.rootNodes.forEach(rootNode => {
+
+            console.log(rootNode);
             const span = rootNode.children[0];
+            console.log(span);
             const style = window.getComputedStyle(span);
 
             let box = rootNode.getBoundingClientRect();
             let rect = span.getBoundingClientRect();
-            console.log(box, rect);
             let i = 1000;
             while (true) {
                 let currentFontSize: number = parseFloat(style.fontSize);

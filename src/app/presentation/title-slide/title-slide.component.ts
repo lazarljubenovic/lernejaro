@@ -1,7 +1,4 @@
-import {
-    Component, OnInit, Input, TemplateRef,
-    ViewEncapsulation
-} from '@angular/core';
+import {Component, Input, TemplateRef, ViewEncapsulation} from '@angular/core';
 
 @Component({
     selector: 'lrn-title-slide',
@@ -9,7 +6,7 @@ import {
     styleUrls: ['./title-slide.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class TitleSlideComponent implements OnInit {
+export class TitleSlideComponent {
 
     @Input() author: string = 'Unknown Author';
 
@@ -19,10 +16,8 @@ export class TitleSlideComponent implements OnInit {
 
     @Input() backgroundImageUrl: string = 'https://unsplash.it/720?random';
 
-    constructor() {
-    }
-
     ngOnInit() {
+        console.log(this.title);
     }
 
 }

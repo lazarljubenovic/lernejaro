@@ -9,9 +9,11 @@
   <div class="content">
     <div class="title-and-author">
       <div class="left-vertical-line"></div>
-
-      <div class="title">
-        <template [ngTemplateOutlet]="title"></template>
+      <template [ngTemplateOutlet]="title"></template>
+      <div class="title" *lrnFitText>
+        <span>
+          title test
+        </span>
       </div>
       <div class="author">{{author}}</div>
     </div>

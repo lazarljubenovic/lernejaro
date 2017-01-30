@@ -5,11 +5,13 @@ import {PresentationComponent} from './presentation.component';
 import {SlideColumnComponent} from './slide-column/slide-column.component';
 import {TitleSlideComponent} from './title-slide/title-slide.component';
 import {KatexModule} from '../katex/katex.module';
+import {FitTextModule} from '../fit-text/fit-text.module';
 
 @NgModule({
     imports: [
         CommonModule,
         KatexModule,
+        FitTextModule,
     ],
     declarations: [
         PresentationComponent,
