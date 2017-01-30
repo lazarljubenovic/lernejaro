@@ -37,7 +37,10 @@ export class FitTextDirective implements OnInit, AfterViewInit, OnDestroy {
 
         // TODO Angular bug https://github.com/angular/angular/issues/14191
         window.addEventListener('resize', (event) => {
-            console.log(event);
+            this.update();
+        });
+
+        document['fonts'].ready.then(() => {
             this.update();
         });
     }
@@ -55,11 +58,9 @@ export class FitTextDirective implements OnInit, AfterViewInit, OnDestroy {
             const style = window.getComputedStyle(span);
 
             const box = rootNode.getBoundingClientRect();
-            console.log(box.width, box.height);
             const boxStyle = window.getComputedStyle(rootNode);
             const boxWidth = box.width - parseFloat(boxStyle.paddingRight) - parseFloat(boxStyle.paddingLeft);
             const boxHeight = box.height - parseFloat(boxStyle.paddingTop) - parseFloat(boxStyle.paddingBottom);
-            console.log(boxWidth, boxHeight);
 
             let rect = span.getBoundingClientRect();
             let currentFontSizePx: number = this.minSizePx;

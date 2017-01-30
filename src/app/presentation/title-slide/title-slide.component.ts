@@ -14,7 +14,7 @@ export class TitleSlideComponent {
 
     @Input() title: TemplateRef<any>;
 
-    @Input() backgroundImageUrl: string = 'https://unsplash.it/720?random';
+    @Input() backgroundImageUrl: string = 'https://unsplash.it/1080?image=987';
 
     ngOnInit() {
         console.log(this.title);
