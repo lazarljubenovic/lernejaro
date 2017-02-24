@@ -9,6 +9,7 @@ import {RadioButtonComponent} from './radio-button/radio-button.component';
 import {OptionPickerComponent} from './option-picker/option-picker.component';
 import {OptionComponent} from './option-picker/option/option.component';
 import { RadioButtonGroupComponent } from './radio-button-group/radio-button-group.component';
+import { ExpandingFabComponent } from './expanding-fab/expanding-fab.component';
 
 @NgModule({
     imports: [
@@ -24,6 +25,7 @@ import { RadioButtonGroupComponent } from './radio-button-group/radio-button-gro
         OptionPickerComponent,
         OptionComponent,
         RadioButtonGroupComponent,
+        ExpandingFabComponent,
     ],
     exports: [
         InputComponent,
@@ -34,6 +36,7 @@ import { RadioButtonGroupComponent } from './radio-button-group/radio-button-gro
         OptionComponent,
         RadioButtonComponent,
         RadioButtonGroupComponent,
+        ExpandingFabComponent,
     ],
 })
 export class UiModule {

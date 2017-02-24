@@ -1,0 +1,53 @@
+@import '../../global';
+
+$color: material-color('blue-grey', '900');
+
+$size: 64px;
+$margin: 36px;
+
+$cog-icon-size: $size / 2;
+
+:host {
+  position: fixed;
+  bottom: $margin;
+  right: $margin;
+}
+
+.visible {
+  background-color: $color;
+  border-radius: $size / 2;
+  @include square($size);
+  @include z-depth-3dp;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  overflow: hidden;
+
+  .icon {
+    @include force-square($size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    span {
+      color: rgba(white, .87);
+      font-size: $cog-icon-size;
+    }
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-wrap: none;
+    margin-left: $size - $cog-icon-size;
+
+    color: material-color('yellow');
+  }
+
+  &.expanded {
+    width: auto;
+  }
+
+}

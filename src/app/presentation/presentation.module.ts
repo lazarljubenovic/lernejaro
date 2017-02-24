@@ -6,12 +6,14 @@ import {SlideColumnComponent} from './slide-column/slide-column.component';
 import {TitleSlideComponent} from './title-slide/title-slide.component';
 import {KatexModule} from '../katex/katex.module';
 import {FitTextModule} from '../fit-text/fit-text.module';
+import {UiModule} from '../ui/ui.module';
 
 @NgModule({
     imports: [
         CommonModule,
         KatexModule,
         FitTextModule,
+        UiModule,
     ],
     declarations: [
         PresentationComponent,
