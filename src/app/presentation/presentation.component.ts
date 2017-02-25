@@ -8,9 +8,11 @@ import {
     ElementRef,
     Renderer,
     AfterContentInit,
-    HostListener, TemplateRef
+    HostListener,
+    TemplateRef
 } from '@angular/core';
 import {SlideComponent} from './slide/slide.component';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     selector: 'lrn-presentation',
@@ -58,6 +60,9 @@ export class PresentationComponent implements OnInit, AfterContentInit {
         // Attach only the current slide, after the outlet.
         const currentSlide = slidesArray[this.currentSlideIndex];
         this.renderer.attachViewAfter(outlet, [currentSlide]);
+
+        // Update route -- TODO ?
+        this.router.navigate(['.', {slide: this.currentSlideIndex}], {relativeTo: this.route});
     }
 
     public isFirstSlide(): boolean {
@@ -92,10 +97,21 @@ export class PresentationComponent implements OnInit, AfterContentInit {
         }
     }
 
-    constructor(private renderer: Renderer) {
+    constructor(private renderer: Renderer,
+                private route: ActivatedRoute,
+                private router: Router) {
+
     }
 
     ngOnInit() {
+        this.route.queryParams
+            .distinctUntilKeyChanged('slide')
+            .subscribe(params => {
+                const slide = params['slide'];
+                if (slide != null) {
+                    this.currentSlideIndex = params['slide'];
+                }
+            });
     }
 
     ngAfterContentInit() {

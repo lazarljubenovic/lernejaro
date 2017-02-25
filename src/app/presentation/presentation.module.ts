@@ -7,10 +7,12 @@ import {TitleSlideComponent} from './title-slide/title-slide.component';
 import {KatexModule} from '../katex/katex.module';
 import {FitTextModule} from '../fit-text/fit-text.module';
 import {UiModule} from '../ui/ui.module';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
     imports: [
         CommonModule,
+        RouterModule,
         KatexModule,
         FitTextModule,
         UiModule,
