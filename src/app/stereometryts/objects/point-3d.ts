@@ -5,8 +5,6 @@ import {Matrix} from '../../planimetryts/geometry-objects/matrix';
 
 export class Point3D extends StereometryObject {
 
-    public static CENTER: Point3D = Point3D.FromCartesianCoordinates(0, 0, 0);
-
     public static AreEqual(point1: Point3D, point2: Point3D): boolean {
         return areEqualFloats(point1._x, point2._x)
             && areEqualFloats(point1._y, point2._y)
@@ -115,6 +113,8 @@ export class Point3D extends StereometryObject {
     public static AsVectorFromTwoPoints(start: Point3D, end: Point3D): Point3D {
         return Point3D.Subtract(end, start);
     }
+
+    public static CENTER: Point3D = Point3D.FromCartesianCoordinates(0, 0, 0);
 
     protected _x: number;
     protected _y: number;
