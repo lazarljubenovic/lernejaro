@@ -148,7 +148,13 @@ export class NotebookComponent implements OnInit, AfterContentInit {
             this.heading6
         ].map(queryList => queryList.toArray());
 
-        this.notebookTitle = this.heading1.toArray()[0].title;
+        const heading1 = this.heading1.toArray()[0];
+        if (heading1) {
+            this.notebookTitle = heading1.title;
+        } else {
+            throw new Error(`Every notebook must have a title. Include a <h1>Title</h1> inside ` +
+                `your <lrn-notebook></lrn-notebook>.`);
+        }
 
         this.prepareTableOfContents();
     }

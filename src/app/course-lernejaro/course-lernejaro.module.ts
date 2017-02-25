@@ -20,6 +20,10 @@ import {ChartModule} from '../chart/chart.module';
 import {IntroducingChartsComponent} from './introducing-charts/introducing-charts.component';
 import {FormsModule} from '@angular/forms';
 import {UiModule} from '../ui/ui.module';
+import {IntroducingNotebookComponent} from './introducing-notebook/introducing-notebook.component';
+import {NotebookModule} from '../notebook/notebook.module';
+import {KatexModule} from '../katex/katex.module';
+import {QuizModule} from '../quiz/quiz.module';
 
 @NgModule({
     imports: [
@@ -34,6 +38,9 @@ import {UiModule} from '../ui/ui.module';
         PlanimetricsModule,
         ChartModule,
         UiModule,
+        NotebookModule,
+        KatexModule,
+        QuizModule,
         RouterModule.forChild([
             {
                 path: '',
@@ -67,6 +74,26 @@ import {UiModule} from '../ui/ui.module';
                 path: '10-Charts',
                 component: IntroducingChartsComponent,
             },
+            {
+                path: '11-Class',
+                component: null,
+            },
+            {
+                path: '12-Pseudocode',
+                component: null,
+            },
+            {
+                path: '13-Console',
+                component: null,
+            },
+            {
+                path: '14-Latex',
+                component: null,
+            },
+            {
+                path: '15-Notebook',
+                component: IntroducingNotebookComponent,
+            },
         ]),
     ],
     declarations: [
@@ -78,6 +105,7 @@ import {UiModule} from '../ui/ui.module';
         IntroducingBitmapsComponent,
         IntroducingGeometryComponent,
         IntroducingChartsComponent,
+        IntroducingNotebookComponent,
     ]
 })
 export class CourseLernejaroModule {

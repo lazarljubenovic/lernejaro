@@ -72,7 +72,7 @@ export const LESSONS: Lesson[] = [
     },
     {
         id: '11',
-        name: 'Class Diagrams & Co',
+        name: 'Class',
         color: LessonColor.Cyan,
         icon: LessonIcon.Trash,
     },
@@ -93,5 +93,12 @@ export const LESSONS: Lesson[] = [
         name: 'Latex',
         color: LessonColor.Green,
         icon: LessonIcon.Trophy,
+    },
+    {
+        id: '15',
+        name: 'Notebook',
+        color: LessonColor.Blue,
+        icon: LessonIcon.Calendar,
+        isUnlocked: true,
     },
 ];
