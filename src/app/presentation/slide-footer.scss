@@ -1,0 +1,50 @@
+@import '../global';
+@import '../imports';
+@import './vars';
+
+.footer {
+  height: 68px;
+  background-color: material-color($color-name, '900');
+  display: flex;
+  align-items: center;
+
+  ul.navigation {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    color: rgba(white, .86);
+    margin: 0;
+    padding: 0 1em;
+    box-sizing: border-box;
+
+    li {
+      padding: 0;
+      margin: 0 .6em;
+
+      &.current-slide-index {
+        margin-left: 2em;
+        margin-right: 2em;
+      }
+
+      // TODO Draw this out in a mixin, this is reusable
+      button {
+        width: 3em;
+        height: 3em;
+        // TODO Write a mixin for button reset
+        background-color: transparent;
+        outline: none;
+        border: none;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+        border-radius: 50%;
+        color: $white;
+
+        &:focus,
+        &:hover {
+          background-color: rgba(white, .06);
+        }
+      }
+    }
+  }
+}

@@ -73,6 +73,15 @@ export class PresentationComponent implements OnInit, AfterContentInit {
         return this.currentSlideIndex == this.slideComponents.length - 1;
     }
 
+    // TODO Add host listener for keyboard shortcuts
+    public goToFirst() {
+        this.currentSlideIndex = 0;
+    }
+
+    public goToLast() {
+        this.currentSlideIndex = this.slideComponents.length - 1;
+    }
+
     public goToNext() {
         if (!this.isLastSlide()) {
             this.currentSlideIndex++;

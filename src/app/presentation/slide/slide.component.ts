@@ -19,11 +19,8 @@ export interface ColumnOptions {
 })
 export class SlideComponent implements OnInit {
 
-    @Input()
-    public title: string = 'Untitled';
-
-    @Input()
-    public subtitle: string;
+    @Input() public title: string = 'Untitled';
+    @Input() public subtitle: string;
 
     @ContentChildren(SlideColumnComponent)
     public slideColumnComponents: QueryList<SlideColumnComponent>;

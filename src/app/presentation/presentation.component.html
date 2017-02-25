@@ -1,7 +1,7 @@
 <!-- TODO Wait for component-outlet in 4.0.0 -->
 <!--<lrn-title-slide [author]="author"-->
-                 <!--[description]="description"-->
-                 <!--[title]="title"-->
+<!--[description]="description"-->
+<!--[title]="title"-->
 <!--&gt;</lrn-title-slide>-->
 
 <div #outlet></div>
@@ -10,8 +10,20 @@
 
 <div class="footer">
   <ul class="navigation">
-    <li (click)="goToPrevious()">Previous</li>
-    <li>{{ currentSlideIndex }}</li>
-    <li (click)="goToNext()">Next</li>
+    <li>
+      <button (click)="goToFirst()"><i class="fa fa-fast-backward"></i></button>
+    </li>
+    <li>
+      <button (click)="goToPrevious()"><i class="fa fa-step-backward"></i></button>
+    </li>
+    <li class="current-slide-index">{{currentSlideIndex + 1}} / {{slideComponents.length}}</li>
+    <li>
+      <button (click)="goToNext()"><i class="fa fa-step-forward"></i></button>
+    </li>
+    <li>
+      <button (click)="goToLast()"><i class="fa fa-fast-forward"></i></button>
+    </li>
   </ul>
 </div>
+
+<lrn-expanding-fab>loser krankheit was ist das</lrn-expanding-fab>

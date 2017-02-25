@@ -1,4 +1,4 @@
-<div class="visible" [class.expanded]="isExpanded">
+<div [class.expanded]="isExpanded" [class]="'visible ' + color">
   <div class="icon" (click)="toggle()">
     <span><i class="fa fa-cog"></i></span>
   </div>

@@ -2,8 +2,11 @@
 
 $font: Roboto, sans-serif;
 
+$white: rgba(white, .86);
+$black: rgba(black, .86);
+
 @function get-color-strings() {
-  @return 'red' 'pink' 'purple' 'deep-purple' 'indigo' 'blue' 'light-blue' 'cyan' 'teal' 'green' 'light-green' 'lime' 'yellow' 'amber' 'orange' 'deep-orange' 'brown' 'grey' 'blue-grey'
+  @return 'red' 'pink' 'purple' 'deep-purple' 'indigo' 'blue' 'light-blue' 'cyan' 'teal' 'green' 'light-green' 'lime' 'yellow' 'amber' 'orange' 'deep-orange'
 }
 
 @mixin all-background-colors($variant: '500') {
