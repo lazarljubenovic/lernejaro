@@ -8,7 +8,7 @@ import {
     ElementRef,
     Renderer,
     AfterContentInit,
-    HostListener
+    HostListener, TemplateRef
 } from '@angular/core';
 import {SlideComponent} from './slide/slide.component';
 
@@ -19,12 +19,16 @@ import {SlideComponent} from './slide/slide.component';
 })
 export class PresentationComponent implements OnInit, AfterContentInit {
 
+    @Input() public author: string | TemplateRef<any>;
+    @Input() public description: string | TemplateRef<any>;
+    @Input() public title: string | TemplateRef<any>;
+
     private _currentSlideIndex: number = 0;
 
     @Input()
     public set currentSlideIndex(currentSlideIndex: number) {
         this._currentSlideIndex = currentSlideIndex;
-        // this.updateView();
+        this.updateView();
     };
 
     public get currentSlideIndex(): number {
@@ -95,7 +99,7 @@ export class PresentationComponent implements OnInit, AfterContentInit {
     }
 
     ngAfterContentInit() {
-        // this.updateView();
+        this.updateView();
     }
 
 }

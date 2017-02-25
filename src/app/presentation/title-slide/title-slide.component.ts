@@ -8,13 +8,15 @@ import {Component, Input, TemplateRef, ViewEncapsulation} from '@angular/core';
 })
 export class TitleSlideComponent {
 
-    @Input() author: string = 'Unknown Author';
-
-    @Input() description: TemplateRef<any>;
-
-    @Input() title: TemplateRef<any>;
+    @Input() author: string | TemplateRef<any> = 'Unknown Author';
+    @Input() description: string | TemplateRef<any>;
+    @Input() title: string | TemplateRef<any>;
 
     @Input() backgroundImageUrl: string = 'https://unsplash.it/1080?image=987';
+
+    public typeOf(something: any): string {
+        return typeof something;
+    }
 
     ngOnInit() {
         console.log(this.title);

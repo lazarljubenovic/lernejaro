@@ -10,16 +10,27 @@
     <div class="title-and-author">
       <div class="left-vertical-line"></div>
       <div class="title" *lrnFitText>
-        <template [ngTemplateOutlet]="title"></template>
+        <ng-container *ngIf="typeOf(title) == 'string'">{{title}}</ng-container>
+        <ng-container *ngIf="typeOf(title) != 'string'">
+          <template [ngTemplateOutlet]="title"></template>
+        </ng-container>
       </div>
-      <div class="author">{{author}}</div>
+      <div class="author">
+        <ng-container *ngIf="typeOf(author) == 'string'">{{author}}</ng-container>
+        <ng-container *ngIf="typeOf(author) != 'string'">
+          <template [ngTemplateOutlet]="author"></template>
+        </ng-container>
+      </div>
     </div>
 
     <div class="description">
       <div class="card-clip"></div>
       <div class="text-wrapper">
         <span>
-          <template [ngTemplateOutlet]="description"></template>
+          <ng-container *ngIf="typeOf(description) == 'string'">{{description}}</ng-container>
+          <ng-container *ngIf="typeOf(description) != 'string'">
+            <template [ngTemplateOutlet]="description"></template>
+          </ng-container>
         </span>
       </div>
     </div>
