@@ -5,7 +5,7 @@
   <div class="choices">
     <lrn-radio-button-group (valueChange)="onChoicePick($event)">
       <lrn-radio-button *ngFor="let choice of choices; let i = index" [value]="choice.value">
-        <template [ngTemplateOutlet]="choice.template"></template>
+        <ng-template [ngTemplateOutlet]="choice.template"></ng-template>
       </lrn-radio-button>
     </lrn-radio-button-group>
   </div>

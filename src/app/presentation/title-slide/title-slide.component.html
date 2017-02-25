@@ -12,13 +12,13 @@
       <div class="title" *lrnFitText>
         <ng-container *ngIf="typeOf(title) == 'string'">{{title}}</ng-container>
         <ng-container *ngIf="typeOf(title) != 'string'">
-          <template [ngTemplateOutlet]="title"></template>
+          <ng-template [ngTemplateOutlet]="title"></ng-template>
         </ng-container>
       </div>
       <div class="author">
         <ng-container *ngIf="typeOf(author) == 'string'">{{author}}</ng-container>
         <ng-container *ngIf="typeOf(author) != 'string'">
-          <template [ngTemplateOutlet]="author"></template>
+          <ng-template [ngTemplateOutlet]="author"></ng-template>
         </ng-container>
       </div>
     </div>
@@ -29,7 +29,7 @@
         <span>
           <ng-container *ngIf="typeOf(description) == 'string'">{{description}}</ng-container>
           <ng-container *ngIf="typeOf(description) != 'string'">
-            <template [ngTemplateOutlet]="description"></template>
+            <ng-template [ngTemplateOutlet]="description"></ng-template>
           </ng-container>
         </span>
       </div>
