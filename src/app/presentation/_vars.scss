@@ -3,3 +3,6 @@
 
 $color-name: 'teal';
 $color: material-color($color-name);
+
+$acc-color-name: 'yellow';
+$acc-color: material-color($acc-color-name, 'a400');

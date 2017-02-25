@@ -4,6 +4,8 @@
 <!--[title]="title"-->
 <!--&gt;</lrn-title-slide>-->
 
+<lrn-progress-bar [height]="'.5ex'" [total]="slideComponents.length - 1" [current]="currentSlideIndex"></lrn-progress-bar>
+
 <div #outlet></div>
 
 <ng-content select="lrn-slide"></ng-content>
@@ -16,7 +18,11 @@
     <li>
       <button (click)="goToPrevious()"><i class="fa fa-step-backward"></i></button>
     </li>
-    <li class="current-slide-index">{{currentSlideIndex + 1}} / {{slideComponents.length}}</li>
+    <li class="slide-index">
+      <span class="current">{{currentSlideIndex + 1}}</span>
+      /
+      <span class="total">{{slideComponents.length}}</span>
+    </li>
     <li>
       <button (click)="goToNext()"><i class="fa fa-step-forward"></i></button>
     </li>

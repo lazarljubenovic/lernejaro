@@ -10,6 +10,7 @@ import {OptionPickerComponent} from './option-picker/option-picker.component';
 import {OptionComponent} from './option-picker/option/option.component';
 import { RadioButtonGroupComponent } from './radio-button-group/radio-button-group.component';
 import { ExpandingFabComponent } from './expanding-fab/expanding-fab.component';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component';
 
 @NgModule({
     imports: [
@@ -26,6 +27,7 @@ import { ExpandingFabComponent } from './expanding-fab/expanding-fab.component';
         OptionComponent,
         RadioButtonGroupComponent,
         ExpandingFabComponent,
+        ProgressBarComponent,
     ],
     exports: [
         InputComponent,
@@ -37,6 +39,7 @@ import { ExpandingFabComponent } from './expanding-fab/expanding-fab.component';
         RadioButtonComponent,
         RadioButtonGroupComponent,
         ExpandingFabComponent,
+        ProgressBarComponent,
     ],
 })
 export class UiModule {

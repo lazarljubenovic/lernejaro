@@ -21,9 +21,18 @@
       padding: 0;
       margin: 0 .6em;
 
-      &.current-slide-index {
+      &.slide-index {
         margin-left: 2em;
         margin-right: 2em;
+
+        .current {
+          color: $acc-color;
+          font-weight: bold;
+        }
+
+        .total {
+          color: rgba(white, .5);
+        }
       }
 
       // TODO Draw this out in a mixin, this is reusable

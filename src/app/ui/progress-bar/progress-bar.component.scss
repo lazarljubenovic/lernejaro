@@ -1,0 +1,7 @@
+@import '../../imports';
+@import '../../global';
+// TODO merge these fucking imports
+
+.filled {
+  @include all-background-colors('a400');
+}
