@@ -7,7 +7,7 @@ export class Ellipse extends GeometryObject {
 
     public static FromCanonicalForm(a: number, b: number): Ellipse {
         if (isZero(a) || isZero(b)) {
-            throw new Error(`a or b cannot be equal to 0. Given values: a = ${a}, b = ${b}`)
+            throw new Error(`a or b cannot be equal to 0. Given values: a = ${a}, b = ${b}`);
         }
         const [A, C, F] = [b ** 2, a ** 2, -(a ** 2 * b ** 2)];
         return Ellipse.FromGeneralForm(A, 0, C, 0, 0, F);
@@ -23,7 +23,8 @@ export class Ellipse extends GeometryObject {
         if (something.isEllipse()) {
             return something;
         } else {
-            throw new Error(`Parameters [A, B, C, D, E, F] = [${A}, ${B}, ${C}, ${D}, ${E}, ${F}] do not form an ellipse`);
+            throw new Error(`Parameters [A, B, C, D, E, F] = ` +
+                `[${A}, ${B}, ${C}, ${D}, ${E}, ${F}] do not form an ellipse`);
         }
     }
 
@@ -62,11 +63,8 @@ export class Ellipse extends GeometryObject {
     }
 
     private isEllipse(): boolean {
-        const [A, B, C, D, E, F] = [this.A, this.B, this.C, this.D, this.E, this.F];
-        const firstCondition: boolean = B ** 2 - 4 * A * C < 0; // TODO float comparison
-        // const determinant: number = A * C * F + B * E * D / 4 - (C * D ** 2 + A * E ** 2 + F * B ** 2) / 2;
-        // const secondCondition: boolean = C * determinant < 0;
-        return firstCondition; // && secondCondition;
+        const [A, B, C] = [this.A, this.B, this.C];
+        return B ** 2 - 4 * A * C < 0; // TODO float comparison
     }
 
     public isCircle(): boolean {
@@ -91,7 +89,7 @@ export class Ellipse extends GeometryObject {
     }
 
     public getCenter(): Point {
-        const [A, B, C, D, E, F] = [this.A, this.B, this.C, this.D, this.E, this.F];
+        const [A, B, C, D, E] = [this.A, this.B, this.C, this.D, this.E];
         const discriminant: number = B ** 2 - 4 * A * C;
         const xUp = 2 * C * D - B * E;
         const yUp = 2 * A * E - B * D;
@@ -104,7 +102,7 @@ export class Ellipse extends GeometryObject {
      * Gets angle between main ellipse axis and positive orientation or x-axis, in radians.
      */
     public getAngle(): number {
-        const [A, B, C, D, E, F] = [this.A, this.B, this.C, this.D, this.E, this.F];
+        const [A, B, C] = [this.A, this.B, this.C];
         if (isZero(B) && (A <= C || areEqualFloats(A, C))) {
             return 0;
         } else if (isZero(B) && A > C) {

@@ -1,4 +1,7 @@
-import {Component, OnInit, Input, EventEmitter, Output, ElementRef, ViewChild} from '@angular/core';
+import {
+    Component, OnInit, Input, EventEmitter, Output, ElementRef, ViewChild,
+    AfterViewInit
+} from '@angular/core';
 import {StereometryObject} from '../stereometryts/stereometry-object';
 import {Point3D} from '../stereometryts/objects/point-3d';
 import {RendererService} from './renderer.service';
@@ -9,7 +12,7 @@ import {CanvasRenderer3D} from '../stereometryts/renderers/canvas-renderer-3d';
     templateUrl: './stereometrics.component.html',
     styleUrls: ['./stereometrics.component.scss']
 })
-export class StereometricsComponent implements OnInit {
+export class StereometricsComponent implements OnInit, AfterViewInit {
 
     @Input() public objects: StereometryObject[];
     @Input() public interactivePoints: Point3D[];

@@ -6,7 +6,8 @@ import {
     QueryList,
     AfterContentInit,
     ElementRef,
-    ViewChild, HostBinding
+    ViewChild,
+    HostBinding
 } from '@angular/core';
 import {
     H1Directive,
@@ -21,7 +22,8 @@ import {Tree} from './tree/tree';
 import {TreeNode} from './tree/tree-node';
 import {
     TreeTableOfContent,
-    TreeNodeTableOfContent, NodeDataTableOfContent
+    TreeNodeTableOfContent,
+    NodeDataTableOfContent
 } from './table-of-content/table-of-content-tree-node.interface';
 
 @Component({
@@ -71,13 +73,18 @@ export class NotebookComponent implements OnInit, AfterContentInit {
     }
 
     private prepareTableOfContents(): void {
-        this.tableOfContents = new Tree<NodeDataTableOfContent>(new TreeNode<NodeDataTableOfContent>(null, {title: this.notebookTitle, id: 'top'}));
+        this.tableOfContents = new Tree<NodeDataTableOfContent>(
+            new TreeNode<NodeDataTableOfContent>(
+                null, {
+                    title: this.notebookTitle,
+                    id: 'top'
+                }));
         let currentNode: TreeNodeTableOfContent = this.tableOfContents.getRoot();
 
         const childrenArray: HTMLElement[] = <any>Array.from(this.article.nativeElement.children);
         const n = childrenArray.length;
         for (let i = 0; i < n; i++) {
-            const child: HTMLElement =  childrenArray[i];
+            const child: HTMLElement = childrenArray[i];
 
             let childLevel: number;
             switch (child.nodeName.toLowerCase()) {
@@ -113,7 +120,7 @@ export class NotebookComponent implements OnInit, AfterContentInit {
                 currentNode = currentNode.getLastChild();
             } else {
                 const difference = currentNode.getLevel() - childLevel + 1;
-                for (let i = 0; i < difference; i++) {
+                for (let j = 0; j < difference; j++) {
                     currentNode = currentNode.getParent();
                 }
                 currentNode.addChild(nodeData);
@@ -133,8 +140,13 @@ export class NotebookComponent implements OnInit, AfterContentInit {
 
     ngAfterContentInit() {
         this.headings = [
-            this.heading1, this.heading2, this.heading3, this.heading4, this.heading5, this.heading6]
-            .map(queryList => queryList.toArray());
+            this.heading1,
+            this.heading2,
+            this.heading3,
+            this.heading4,
+            this.heading5,
+            this.heading6
+        ].map(queryList => queryList.toArray());
 
         this.notebookTitle = this.heading1.toArray()[0].title;
 

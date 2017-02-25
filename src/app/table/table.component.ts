@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation, Input, OnChanges, HostBinding} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation, Input, OnChanges} from '@angular/core';
 
 @Component({
     selector: 'lrn-table',

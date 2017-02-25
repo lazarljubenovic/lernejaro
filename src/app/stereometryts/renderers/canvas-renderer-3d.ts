@@ -5,15 +5,15 @@ import {Plane3D} from '../objects/plane-3d';
 import {Segment3D} from '../objects/segment-3d';
 import {Matrix} from '../../planimetryts/geometry-objects/matrix';
 import {MaterialColor} from '../../planimetryts/renderers/color';
+// tslint:disable-next-line
 import {MaterialColor as MaterialColorEnum} from '../../planimetryts/geometry-objects/material-colors';
-import {Point} from '../../planimetryts/geometry-objects/point'; // TODO this is retarded
 
 export class CanvasRenderer3D extends Renderer3D {
 
     private ctx: CanvasRenderingContext2D;
 
-    private width: number = 600;
-    private height: number = 600;
+    // private width: number = 600;
+    // private height: number = 600;
 
     private getColor = MaterialColor;
 
@@ -21,8 +21,8 @@ export class CanvasRenderer3D extends Renderer3D {
     private viewMatrix: number[][];
     private canvasMatrix: number[][];
 
-    private inverseProjectionMatrix: number[][];
-    private inverseViewMatrix: number[][];
+    // private inverseProjectionMatrix: number[][];
+    // private inverseViewMatrix: number[][];
 
     private setIdentityView() {
         this.viewMatrix = Matrix.ThreeD.Homogeneous.Identity();
@@ -44,13 +44,14 @@ export class CanvasRenderer3D extends Renderer3D {
         this.ctx.lineJoin = 'round';
     }
 
-    private applyMatrix(matrix: number[][], leftMul: boolean = true): void {
-        if (leftMul) {
-            this.viewMatrix = Matrix.Multiply(matrix, this.viewMatrix);
-        } else {
-            this.viewMatrix = Matrix.Multiply(this.viewMatrix, matrix);
-        }
-    }
+    // TODO Unused method
+    // private applyMatrix(matrix: number[][], leftMul: boolean = true): void {
+    //     if (leftMul) {
+    //         this.viewMatrix = Matrix.Multiply(matrix, this.viewMatrix);
+    //     } else {
+    //         this.viewMatrix = Matrix.Multiply(this.viewMatrix, matrix);
+    //     }
+    // }
 
     constructor(canvas: HTMLCanvasElement) {
         super();
@@ -84,14 +85,14 @@ export class CanvasRenderer3D extends Renderer3D {
         this.ctx.save();
         let fillColor = point.strokeColor();
         if (fillColor == null) {
-            fillColor = MaterialColorEnum.BLUE_GREY; // should be class member
+            fillColor = MaterialColorEnum.BLUE_GREY; // TODO should be class member
         }
-        this.ctx.fillStyle = this.getColor(fillColor, 400);
+        this.ctx.fillStyle = this.getColor(fillColor, 400).css();
         let strokeColor = point.strokeColor();
         if (strokeColor == null) {
-            strokeColor = MaterialColorEnum.BLUE_GREY; // should be class member
+            strokeColor = MaterialColorEnum.BLUE_GREY; // TODO should be class member
         }
-        this.ctx.strokeStyle = this.getColor(strokeColor, 800);
+        this.ctx.strokeStyle = this.getColor(strokeColor, 800).css();
         this.ctx.beginPath();
         this.ctx.arc(x, y, 3, 0, 2 * Math.PI);
         this.ctx.fill();

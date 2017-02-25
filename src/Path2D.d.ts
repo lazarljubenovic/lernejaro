@@ -1,3 +1,4 @@
+/* tslint:disable */
 // http://stackoverflow.com/questions/34109921/using-path2d-in-a-typescript-project-is-not-resolved
 // Class
 interface Path2D {
@@ -20,7 +21,7 @@ interface Path2DConstructor {
     new (path: Path2D, fillRule?: string): Path2D;
     prototype: Path2D;
 }
-declare let Path2D: Path2DConstructor;
+// declare let Path2D: Path2DConstructor;
 
 // Extend Window
 interface Window { Path2D: Path2DConstructor; }

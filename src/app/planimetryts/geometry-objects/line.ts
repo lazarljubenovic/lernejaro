@@ -6,10 +6,6 @@ import {Segment} from './segment';
 
 export class Line extends GeometryObject {
 
-    public static X_AXIS: Line = Line.HorizontalThroughPoint(0);
-    public static Y_AXIS: Line = Line.VerticalThroughPoint(0);
-    public static Y_EQUALS_X: Line = Line.FromExplicitForm(1, 0);
-
     public static AreEqual(line1: Line, line2: Line): boolean {
         if (!Line.AreParallel(line1, line2)) {
             return false;
@@ -55,7 +51,7 @@ export class Line extends GeometryObject {
     }
 
     public static FromPointAndAngle(point: Point, angleRad: number): Line {
-        if (areEqualFloats(angleRad, Math.PI /2)) {
+        if (areEqualFloats(angleRad, Math.PI / 2)) {
             return Line.VerticalThroughPoint(point);
         }
         const k = Math.tan(angleRad);
@@ -227,6 +223,10 @@ export class Line extends GeometryObject {
         }
     }
 
+    public static X_AXIS: Line = Line.HorizontalThroughPoint(0);
+    public static Y_AXIS: Line = Line.VerticalThroughPoint(0);
+    public static Y_EQUALS_X: Line = Line.FromExplicitForm(1, 0);
+
     private _A: number;
     private _B: number;
     private _C: number;
@@ -250,7 +250,7 @@ export class Line extends GeometryObject {
                 'explicit': this.getExplicitForm(),
                 'segment': this.getSegmentForm(),
             }
-        }
+        };
     }
 
     public readJson(json): this {

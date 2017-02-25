@@ -1,4 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
+// tslint:disable-next-line
 import {GeometryObjectController} from '../../geometry-object-controllers/geometry-object-controller';
 
 @Pipe({name: 'destruct'})

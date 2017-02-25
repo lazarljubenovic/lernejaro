@@ -1,7 +1,6 @@
 import {degreeToRadian, radianToDegree} from '../util';
 import {GeometryObject} from './geometry-object';
 import {Point} from './point';
-import {Line} from './line';
 
 export enum AngleDecoration {
     NONE,
@@ -48,7 +47,7 @@ export class Angle extends GeometryObject {
             kind: 'angle',
             defaultValue: 'three-points',
             value: {}
-        }
+        };
     }
 
     public readJson(json): this {

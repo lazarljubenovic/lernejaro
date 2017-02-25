@@ -58,7 +58,9 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, AfterVie
 
     public ngAfterViewInit() {
         if (!this.name) {
-            setTimeout(() => this.name = this.uniqueIdService.getUniqueId('radio-button-group-name-'));
+            setTimeout(() => {
+                this.name = this.uniqueIdService.getUniqueId('radio-button-group-name-');
+            });
         }
     }
 

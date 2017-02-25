@@ -50,7 +50,7 @@ export class IconComponent implements OnInit, OnChanges {
                 id = 'umbrella';
                 break;
             case LessonIcon.Wrench:
-                id ='wrench';
+                id = 'wrench';
                 break;
             case LessonIcon.Trash:
                 id = 'trash';
@@ -59,7 +59,8 @@ export class IconComponent implements OnInit, OnChanges {
                 id = 'star';
                 break;
             default:
-                id = 'folder'
+                // TODO
+                id = 'folder';
         }
         this.fontAwesomeIconId = 'fa fa-' + id;
     }

@@ -18,8 +18,4 @@ export class TitleSlideComponent {
         return typeof something;
     }
 
-    ngOnInit() {
-        console.log(this.title);
-    }
-
 }

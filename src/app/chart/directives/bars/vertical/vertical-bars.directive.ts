@@ -40,11 +40,12 @@ export class VerticalBarsDirective extends ChartStrategyBase {
     /**
      * Area for actual bars (not scale, not labels)
      */
-    private getBarsArea(): Rectangle {
-        const [x, y] = [20, 20];
-        const {w, h} = this.getCanvasRect();
-        return {x, y, w: w - 40, h: h - 40};
-    }
+    // TODO Unused
+    // private getBarsArea(): Rectangle {
+    //     const [x, y] = [20, 20];
+    //     const {w, h} = this.getCanvasRect();
+    //     return {x, y, w: w - 40, h: h - 40};
+    // }
 
     private getNotches(bars: VerticalBar[]): number[] {
         // TODO We need a method for automatically calculating a nice step if none is given
@@ -88,10 +89,12 @@ export class VerticalBarsDirective extends ChartStrategyBase {
         const spaceBetween: number = 10;
 
         // These parameters are calculated by the ones given above
-        const barWidth: number = (w - 2 * spaceAround - (bars.length + 1) * spaceBetween) / bars.length;
+        const barWidth: number =
+            (w - 2 * spaceAround - (bars.length + 1) * spaceBetween) / bars.length;
 
         const maxValue = Math.max(...bars.map(bar => bar.value));
-        const normalizingRatio = h / topNotch; // TODO probably multiply this further by a constant eg 9/10
+        // TODO probably multiply this further by a constant eg 9/10
+        const normalizingRatio = h / topNotch;
 
         let currentX = spaceAround + spaceBetween;
 
@@ -113,7 +116,7 @@ export class VerticalBarsDirective extends ChartStrategyBase {
 
     private renderScaleArea(notches: number[], boundingBox: Rectangle): void {
         const ctx = this.canvas.getContext('2d');
-        const {x, y, w, h} = boundingBox;
+        const {w, h} = boundingBox;
 
         const step = h / (notches.length);
         let currentY = step;
@@ -121,7 +124,7 @@ export class VerticalBarsDirective extends ChartStrategyBase {
         ctx.save();
 
         ctx.setTransform(1, 0, 0, 1, 0, 0);
-        //ctx.translate(1, 1);
+        // ctx.translate(1, 1);
 
         notches.reverse().slice(1).forEach(notch => {
             ctx.textAlign = 'right';
@@ -129,7 +132,7 @@ export class VerticalBarsDirective extends ChartStrategyBase {
 
             ctx.fillText(notch.toString(), w - 5, currentY);
             ctx.beginPath();
-            //ctx.arc(w - 5, currentY, 3, 0, Math.PI * 2);
+            // ctx.arc(w - 5, currentY, 3, 0, Math.PI * 2);
             ctx.stroke();
             ctx.closePath();
             currentY += step;

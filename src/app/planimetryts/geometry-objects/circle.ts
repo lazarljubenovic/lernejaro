@@ -51,18 +51,18 @@ export class Circle extends GeometryObject {
             const A = 1;
             const B = -2 * c.y;
             const C = (x - c.x) ** 2 - r ** 2 + c.y ** 2;
-            const y: number[] = Equation.Quadratic.solve(A, B, C);
+            const ys: number[] = Equation.Quadratic.solve(A, B, C);
 
-            return y.map(y => Point.FromCartesianCoordinates(x, y));
+            return ys.map(y => Point.FromCartesianCoordinates(x, y));
         } else {
             const l = line.getExplicitForm();
 
             const A = l.k ** 2 + 1;
             const B = 2 * l.k * l.n - 2 * c.x - 2 * c.y * l.k;
             const C = c.x ** 2 + l.n ** 2 + c.y ** 2 - 2 * l.n * c.y - r ** 2;
-            const x: number[] = Equation.Quadratic.solve(A, B, C);
+            const xs: number[] = Equation.Quadratic.solve(A, B, C);
 
-            return x.map(x => {
+            return xs.map(x => {
                 const y = l.k * x + l.n;
                 return Point.FromCartesianCoordinates(x, y);
             });

@@ -1,10 +1,11 @@
 import {
     Component,
-    OnInit,
     ViewEncapsulation,
     Input,
     ChangeDetectionStrategy,
-    OnChanges, ViewChild, ElementRef, ContentChild, ContentChildren
+    OnChanges,
+    ViewChild,
+    ElementRef
 } from '@angular/core';
 import * as KaTeX from 'katex';
 

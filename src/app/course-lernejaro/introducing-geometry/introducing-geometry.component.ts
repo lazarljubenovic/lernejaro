@@ -2,11 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {GeometryObject} from '../../planimetryts/geometry-objects/geometry-object';
 import {Point} from '../../planimetryts/geometry-objects/point';
 import {Line} from '../../planimetryts/geometry-objects/line';
-import {Polygon} from '../../planimetryts/geometry-objects/polygon';
 import {MaterialColor} from '../../planimetryts/geometry-objects/material-colors';
 import {Segment} from '../../planimetryts/geometry-objects/segment';
 import {Circle} from '../../planimetryts/geometry-objects/circle';
-import {Triangle} from '../../planimetryts/geometry-objects/triangle';
 import {Ellipse} from '../../planimetryts/geometry-objects/ellipse';
 
 @Component({
@@ -56,7 +54,8 @@ export class IntroducingGeometryComponent implements OnInit {
         // const bisectorA: Line = Line.GetBisector(A, B, C).strokeColor(MaterialColor.RED);
         // const bisectorB: Line = Line.GetBisector(B, A, C).strokeColor(MaterialColor.GREEN);
         // const bisectorC: Line = Line.GetBisector(C, A, B).strokeColor(MaterialColor.BLUE);
-        // const intersection: Point = Line.GetIntersection(bisectorA, bisectorB).strokeColor(MaterialColor.PINK);
+        // const intersection: Point = Line.GetIntersection(bisectorA, bisectorB)
+        // .strokeColor(MaterialColor.PINK);
         // const inscribedCircle = Circle.FromCenterAndLine(intersection, segmentAB.getLine());
 
         // this.objects = [bisectorA, bisectorB, bisectorC, inscribedCircle, polygon, intersection];

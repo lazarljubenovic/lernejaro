@@ -22,7 +22,7 @@ export namespace Matrix {
     export function GetIdentity(dimension: number): number[][] {
         return Array(dimension).fill(null)
             .map((_, i) => Array(dimension).fill(null)
-                .map((_, j) => i == j ? 1 : 0));
+                .map((__, j) => i == j ? 1 : 0));
     }
 
     /**
@@ -68,7 +68,7 @@ export namespace Matrix {
                     row.every(cell => {
                         return typeof cell == 'number';
                     });
-            })
+            });
         } catch (e) {
             return false;
         }
@@ -170,6 +170,7 @@ export namespace Matrix {
                         [0, 0, 0, 1],
                     ];
                 }
+
                 export function Above(): number[][] {
                     return [
                         [1, 0, 0, 0],
@@ -178,6 +179,7 @@ export namespace Matrix {
                         [0, 0, 0, 1],
                     ];
                 }
+
                 export function Side(): number[][] {
                     return [
                         [0, 0, 0, 0],
@@ -197,9 +199,10 @@ export namespace Matrix {
                         [1, 0, 0, 0],
                         [0, 1, 0, 0],
                         [0, 0, 1, 0],
-                        [0, 0, 1/d, 0],
+                        [0, 0, 1 / d, 0],
                     ];
                 }
+
                 export function PlaneAtCenter(d: number): number[][] {
                     if (isZero(d)) {
                         throw `d cannot be 0`;
@@ -208,7 +211,7 @@ export namespace Matrix {
                         [1, 0, 0, 0],
                         [0, 1, 0, 0],
                         [0, 0, 0, 0],
-                        [0, 0, 1/d, 1],
+                        [0, 0, 1 / d, 1],
                     ];
                 }
             }
@@ -226,9 +229,11 @@ export namespace Matrix {
                         [0, 0, 0, 1],
                     ];
                 }
+
                 export function Cavalier(): number[][] {
                     return Oblique.General(Math.PI / 2, 1);
                 }
+
                 export function Cabinet(): number[][] {
                     return Oblique.General(Math.atan(2), 0.5);
                 }

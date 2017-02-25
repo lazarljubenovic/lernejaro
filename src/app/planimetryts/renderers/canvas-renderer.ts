@@ -3,7 +3,6 @@ import {Point} from '../geometry-objects/point';
 import {Segment} from '../geometry-objects/segment';
 import {Circle} from '../geometry-objects/circle';
 import {Line} from '../geometry-objects/line';
-import {ConsoleRenderer} from './console-renderer';
 import {GeometryObject} from '../geometry-objects/geometry-object';
 import {Matrix} from '../geometry-objects/matrix';
 import {Subject} from 'rxjs';
@@ -22,13 +21,13 @@ function getCursorPosition(canvas, event): Coordinate {
 
 export class CanvasRenderer extends Renderer {
 
-    private secondaryRenderer: Renderer = new ConsoleRenderer();
+    // private secondaryRenderer: Renderer = new ConsoleRenderer();
     private getColor = MaterialColor;
 
     private canvas: HTMLCanvasElement;
     private ctx: CanvasRenderingContext2D;
 
-    private topLeft: Coordinate;
+    // private topLeft: Coordinate;
     private width: number = 600;
     private height: number = 600;
 
@@ -121,8 +120,12 @@ export class CanvasRenderer extends Renderer {
 
     protected beforeObjectsRender(objects: GeometryObject[]) {
         this.clear();
-        this._drawGrid && this.drawGrid();
-        this._drawAxis && this.drawAxis();
+        if (this._drawGrid) {
+            this.drawGrid();
+        }
+        if (this._drawAxis) {
+            this.drawAxis();
+        }
     }
 
     protected renderLabel(label: string, position: Coordinate) {
@@ -142,14 +145,14 @@ export class CanvasRenderer extends Renderer {
         this.ctx.save();
         let fillColor = point.strokeColor();
         if (fillColor == null) {
-            fillColor = MaterialColorEnum.BLUE_GREY; // should be class member
+            fillColor = MaterialColorEnum.BLUE_GREY; // TODO should be class member
         }
-        this.ctx.fillStyle = this.getColor(fillColor, 400);
+        this.ctx.fillStyle = this.getColor(fillColor, 400).css();
         let strokeColor = point.strokeColor();
         if (strokeColor == null) {
-            strokeColor = MaterialColorEnum.BLUE_GREY; // should be class member
+            strokeColor = MaterialColorEnum.BLUE_GREY; // TODO should be class member
         }
-        this.ctx.strokeStyle = this.getColor(strokeColor, 800);
+        this.ctx.strokeStyle = this.getColor(strokeColor, 800).css();
         this.ctx.lineWidth = 1;
         this.ctx.beginPath();
         this.ctx.arc(x, y, 3, 0, 2 * Math.PI);
@@ -189,7 +192,7 @@ export class CanvasRenderer extends Renderer {
         if (strokeColor == null) {
             strokeColor = MaterialColorEnum.BLUE_GREY; // should be class member
         }
-        this.ctx.strokeStyle = this.getColor(strokeColor, 700);
+        this.ctx.strokeStyle = this.getColor(strokeColor, 700).css();
         this.ctx.lineWidth = 1;
         this.ctx.beginPath();
         this.ctx.moveTo(start.x, start.y);
@@ -206,7 +209,7 @@ export class CanvasRenderer extends Renderer {
         const clone = circle.clone().applyMatrix(this._appliedMatrix);
         const c = clone.getGeneralForm();
         this.ctx.save();
-        this.ctx.strokeStyle = this.getColor(circle.strokeColor(), 500);
+        this.ctx.strokeStyle = this.getColor(circle.strokeColor(), 500).css();
         this.ctx.lineWidth = 1;
         this.ctx.beginPath();
         this.ctx.arc(c.p, c.q, c.r, 0, 2 * Math.PI);
@@ -221,7 +224,7 @@ export class CanvasRenderer extends Renderer {
         const angle = clone.getAngle();
         const {x, y} = clone.getCenter().getCartesianCoordinates();
         this.ctx.save();
-        this.ctx.strokeStyle = this.getColor(ellipse.strokeColor(), 500);
+        this.ctx.strokeStyle = this.getColor(ellipse.strokeColor(), 500).css();
         this.ctx.lineWidth = 1;
         this.ctx.beginPath();
         this.ctx.ellipse(x, y, a, b, angle, 0, 2 * Math.PI);
@@ -235,13 +238,16 @@ export class CanvasRenderer extends Renderer {
         const vertices = polygon.vertices();
 
         this.ctx.beginPath();
-        let {x: x0, y: y0} = vertices[0].clone().applyMatrix(this._appliedMatrix).getCartesianCoordinates();
+        const {x: x0, y: y0} = vertices[0].clone()
+            .applyMatrix(this._appliedMatrix).getCartesianCoordinates();
         this.ctx.moveTo(x0, y0);
-        const p = vertices.forEach(vertex => {
-            let {x, y} = vertex.clone().applyMatrix(this._appliedMatrix).getCartesianCoordinates();
+        vertices.forEach(vertex => {
+            const {x, y} = vertex.clone()
+                .applyMatrix(this._appliedMatrix).getCartesianCoordinates();
             this.ctx.lineTo(x, y);
         });
-        let {x: xn, y: yn} = vertices[0].clone().applyMatrix(this._appliedMatrix).getCartesianCoordinates();
+        const {x: xn, y: yn} = vertices[0].clone()
+            .applyMatrix(this._appliedMatrix).getCartesianCoordinates();
         this.ctx.lineTo(xn, yn);
 
         // Stroke - default if nothing given
@@ -249,13 +255,13 @@ export class CanvasRenderer extends Renderer {
         if (strokeColor == null) {
             strokeColor = MaterialColorEnum.BLUE_GREY; // should be class member
         }
-        this.ctx.strokeStyle = this.getColor(strokeColor, 700);
+        this.ctx.strokeStyle = this.getColor(strokeColor, 700).css();
         this.ctx.stroke();
 
         // Fill - nothing if nothing given
         let fillColor = polygon.fillColor();
         if (fillColor != null) {
-            this.ctx.fillStyle = this.getColor(fillColor, 500);
+            this.ctx.fillStyle = this.getColor(fillColor, 500).css();
             const oldAlpha = this.ctx.globalAlpha;
             this.ctx.globalAlpha = .1;
             this.ctx.fill();

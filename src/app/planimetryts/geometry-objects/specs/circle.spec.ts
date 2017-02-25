@@ -146,10 +146,10 @@ describe(`Circle`, () => {
 
         it(`should create a circle from a center and a line`, () => {
             const line = Line.Y_EQUALS_X;
-            const center = Point.FromCartesianCoordinates(4, 2);
-            const actual = Circle.FromCenterAndLine(center, line);
-            const expected = Circle.FromCenterAndRadius(center, Math.SQRT2);
-            expect(actual).toEqual(expected);
+            const center2 = Point.FromCartesianCoordinates(4, 2);
+            const actual = Circle.FromCenterAndLine(center2, line);
+            const expected2 = Circle.FromCenterAndRadius(center2, Math.SQRT2);
+            expect(actual).toEqual(expected2);
         });
     });
 

@@ -1,7 +1,6 @@
 import {Line} from '../line';
 import {Point} from '../point';
 import {areEqualFloats, isZero} from '../../util';
-import {ZlibOptions} from 'zlib';
 import {MaterialColor} from '../material-colors';
 
 const customEqualities = function (first: any, second: any) {
@@ -476,7 +475,7 @@ describe(`Line`, () => {
         expect(line.containsPoint(point)).toBe(false);
     });
 
-    it (`should report that a point is not on a vertical line`, () => {
+    it(`should report that a point is not on a vertical line`, () => {
         const point = Point.FromCartesianCoordinates(2, 2);
         const line = Line.VerticalThroughPoint(1);
         expect(line.containsPoint(point)).toBe(false);
@@ -504,7 +503,7 @@ describe(`Line`, () => {
         expect(line.pointsAreOnSameSide(point1, point2)).toBe(false);
 
         const point3 = Point.FromCartesianCoordinates(2, 2);
-        expect(line.pointsAreOnSameSide(point1, point2)).toBe(false);
+        expect(line.pointsAreOnSameSide(point1, point3)).toBe(false);
     });
 
     it(`should report that points are on the same side of horizontal line`, () => {

@@ -1,7 +1,6 @@
 import {Component, OnInit, Input, Output, EventEmitter, Optional} from '@angular/core';
 import {RadioButtonGroupComponent} from '../radio-button-group/radio-button-group.component';
 import {UniqueIdService} from '../../unique-id.service';
-import {ChoiceComponent} from '../../quiz/multiple-choice/choice/choice.component';
 
 @Component({
     selector: 'lrn-radio-button',
@@ -13,13 +12,16 @@ export class RadioButtonComponent implements OnInit {
     private _value: string;
 
     @Input() public name: string;
-    @Input() public set value(newValue: string) {
+
+    @Input()
+    public set value(newValue: string) {
         this._value = newValue;
     };
 
     public get value(): string {
         return this._value;
     }
+
     @Input() public currentValue: string;
     @Output() public currentValueChange = new EventEmitter<string>();
 

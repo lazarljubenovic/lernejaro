@@ -9,7 +9,7 @@ function ViewData() {
             targetAny.$$viewData = [];
         }
         targetAny.$$viewData.push(key);
-    }
+    };
 }
 
 export abstract class StereometryObject {
@@ -85,7 +85,7 @@ export abstract class StereometryObject {
 
     public applyMatrix(matrix: number[][], point?: Point3D): this {
         if (arguments.length == 1 || point == null) {
-            return this.applyMatrixWithRespectToCenter(matrix)
+            return this.applyMatrixWithRespectToCenter(matrix);
         } else if (arguments.length == 2) {
             return this.applyMatrixWithRespectTo(matrix, point);
         } else {

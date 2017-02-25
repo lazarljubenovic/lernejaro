@@ -4,15 +4,19 @@ import {Circle} from './circle';
 
 export class Triangle extends Polygon {
 
-    public static EquilateralFromCenterAndSideLength(center: Point, side: number): Triangle {
+    public static EquilateralFromCenterAndSideLength(center: Point,
+                                                     side: number): Triangle {
         throw "TODO";
     }
 
-    public static EquilateralFromCenterAndCircumradius(center: Point, circumradius: number): Triangle {
+    public static EquilateralFromCenterAndCircumradius(center: Point,
+                                                       circumradius: number): Triangle {
         throw "TODO";
     }
 
-    public static EquilateralFromCenterAndCircumscribedRadius(center: Point, circumscribedRadius: number): Triangle {
+    public static
+    EquilateralFromCenterAndCircumscribedRadius(center: Point,
+                                                circumscribedRadius: number): Triangle {
         throw "TODO";
     }
 

@@ -5,16 +5,14 @@ import {
     AfterViewInit,
     Renderer,
     OnChanges,
-    HostListener, ViewChild
+    HostListener
 } from '@angular/core';
 import {ChartService} from '../../chart.service';
 
-@Directive({
-    selector: 'lrn-chart-directive-internal',
-})
+@Directive({selector: 'lrn-chart-directive-internal'})
 export class ChartDirective implements OnInit, AfterViewInit, OnChanges {
 
-    private canvas: HTMLCanvasElement;
+    // private canvas: HTMLCanvasElement;
 
     constructor(private chartService: ChartService,
                 public elRef: ElementRef,

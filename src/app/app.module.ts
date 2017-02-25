@@ -4,17 +4,28 @@ import {FormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {MarkdownParserService} from './markdown/markdown-parser.service';
-import {RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {ObjectEditorModule} from './object-editor/object-editor.module';
 import {UiModule} from './ui/ui.module';
 import {PlanimetricsModule} from './planimetrics/planimetrics.module';
 import {StereometricsModule} from './stereometrics/stereometrics.module';
 import {NotebookModule} from './notebook/notebook.module';
 import {KatexModule} from './katex/katex.module';
-import { QuizComponent } from './quiz/quiz.component';
 import {QuizModule} from './quiz/quiz.module';
 import {UniqueIdService} from './unique-id.service';
 import {FitTextModule} from './fit-text/fit-text.module';
+
+export const ROUTES: Routes = [
+    {
+        path: 'courses',
+        children: [
+            {
+                path: 'lernejaro',
+                loadChildren: './course-lernejaro/course-lernejaro.module#CourseLernejaroModule',
+            }
+        ]
+    }
+];
 
 @NgModule({
     declarations: [
@@ -32,17 +43,7 @@ import {FitTextModule} from './fit-text/fit-text.module';
         KatexModule,
         QuizModule,
         FitTextModule,
-        RouterModule.forRoot([
-            {
-                path: 'courses',
-                children: [
-                    {
-                        path: 'lernejaro',
-                        loadChildren: './course-lernejaro/course-lernejaro.module#CourseLernejaroModule',
-                    }
-                ]
-            }
-        ])
+        RouterModule.forRoot(ROUTES),
     ],
     providers: [
         MarkdownParserService,

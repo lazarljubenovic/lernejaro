@@ -2,20 +2,19 @@ import {Directive, ContentChildren, QueryList, ElementRef, forwardRef} from '@an
 import {ChartDataDirective} from '../../chart-data.directive';
 import {ChartService} from '../../chart.service';
 import {getByString} from '../../../planimetryts/renderers/color';
-import {ChartComponent} from '../../chart/chart.component';
 import {ChartStrategyBase} from '../chart-strategy-base';
 
 function getColor(name: string, variant: string = '500'): string {
     return getByString(name, variant).hex();
 }
 
-function polarToCartesian(center: {x: number, y: number},
-                          r: number,
-                          phi: number): {x: number, y: number} {
-    const c = Math.cos(phi);
-    const s = Math.sin(phi);
-    return {x: c * r + center.x, y: c * r + center.y};
-}
+// function polarToCartesian(center: {x: number, y: number},
+//                           r: number,
+//                           phi: number): {x: number, y: number} {
+//     const c = Math.cos(phi);
+//     const s = Math.sin(phi);
+//     return {x: c * r + center.x, y: c * r + center.y};
+// }
 
 @Directive({
     selector: '[pie]',
@@ -39,7 +38,7 @@ export class PieDirective extends ChartStrategyBase {
         const {x, y, w, h} = this.getCanvasRect();
         const radius: number = Math.min(w, h) / 2 - 2;
 
-        const c = {x: x + w / 2, y: y + h /2};
+        const c = {x: x + w / 2, y: y + h / 2};
         const ctx = this.canvas.getContext('2d');
 
         const total = data.reduce((acc, curr) => acc + curr.value, 0);

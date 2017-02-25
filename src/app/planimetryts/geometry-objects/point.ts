@@ -5,8 +5,6 @@ import {GeometryObject} from './geometry-object';
 
 export class Point extends GeometryObject {
 
-    public static CENTER: Point = Point.FromCartesianCoordinates(0, 0);
-
     public static AreEqual(point1: Point, point2: Point): boolean {
         return areEqualFloats(point1.x(), point2.x())
             && areEqualFloats(point1.y(), point2.y());
@@ -20,6 +18,8 @@ export class Point extends GeometryObject {
     public static FromCartesianCoordinates(x: number, y: number, label?: string): Point {
         return new Point(x, y, label);
     }
+
+    public static CENTER: Point = Point.FromCartesianCoordinates(0, 0);
 
     /**
      * Works for both regular and homogeneous matrix coordinates.
@@ -101,7 +101,7 @@ export class Point extends GeometryObject {
                 'cartesian': this.getCartesianCoordinates(),
                 'polar': this.getPolarCoordinates(),
             }
-        }
+        };
     }
 
     public readJson(json): this {

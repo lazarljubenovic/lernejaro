@@ -1,16 +1,16 @@
-import {Directive, Input} from '@angular/core';
+import {Directive, Input, OnInit, OnChanges} from '@angular/core';
 import {ChartService} from './chart.service';
 
 @Directive({
     selector: 'lrn-chart-data',
 })
-export class ChartDataDirective {
+export class ChartDataDirective implements OnChanges, OnInit {
 
     @Input() public color: string;
     @Input() public value: number;
     @Input() public label: string;
 
-    private done: boolean = false;
+    private done = false;
 
     constructor(private chartService: ChartService) {
     }

@@ -1,8 +1,6 @@
-import {Component, Directive} from '@angular/core';
+import {Component} from '@angular/core';
 import {Point} from './planimetryts/geometry-objects/point';
-import {Line} from './planimetryts/geometry-objects/line';
 import {Segment} from './planimetryts/geometry-objects/segment';
-import {Circle} from './planimetryts/geometry-objects/circle';
 import {Point3D} from './stereometryts/objects/point-3d';
 import {MaterialColor} from './planimetryts/geometry-objects/material-colors';
 
@@ -19,9 +17,9 @@ export class AppComponent {
 
     public points = Array(n).fill(null).map((_, y) => {
         colorIndex++;
-        return Array(n).fill(null).map((_, x) => {
-            return Array(n).fill(null).map((_, z) => {
-                const [i, j, k] = [x - n / 2, y - n / 2, z - n / 2].map(_ => 50 * _);
+        return Array(n).fill(null).map((__, x) => {
+            return Array(n).fill(null).map((___, z) => {
+                const [i, j, k] = [x - n / 2, y - n / 2, z - n / 2].map(____ => 50 * ____);
                 return Point3D.FromCartesianCoordinates(i, j, k).strokeColor(colors[colorIndex]);
             });
         }).reduce((acc, curr) => acc.concat(curr), []);
@@ -130,7 +128,8 @@ if (isAwesome){
 // - [_x] This is a complete item
 // - [ ] This is an incomplete item
 //
-// When you include a task list in the first comment of an Issue, you will see a helpful progress bar in your list of issues. It works in Pull Requests, too!
+// When you include a task list in the first comment of an Issue, you will see a helpful progress
+// bar in your list of issues. It works in Pull Requests, too!
 //
 // And, of course emoji! :sparkles: :camel: :boom:
 // `,
@@ -141,6 +140,6 @@ if (isAwesome){
             text,
             code: '```\n' + text + '\n```',
         };
-    })
+    });
 
 }

@@ -38,8 +38,7 @@ export class MarkdownParserService {
             const gobbledText = this.gobble(text);
             const markedText: string = marked(gobbledText);
             return this.encloseInTag(markedText, 'div', 'slide-inner', false);
-        }
-        else {
+        } else {
             return '';
         }
     }
@@ -48,7 +47,7 @@ export class MarkdownParserService {
         marked.setOptions({
             smartypants: true,
             gfm: true,
-        })
+        });
     }
 
 }

@@ -1,4 +1,4 @@
-import {Component, OnInit, ContentChild, Input, AfterContentInit} from '@angular/core';
+import {Component, OnInit, Input, AfterContentInit} from '@angular/core';
 
 @Component({
     selector: 'lrn-quiz',

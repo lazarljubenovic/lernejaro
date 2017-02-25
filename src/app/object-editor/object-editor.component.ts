@@ -33,7 +33,7 @@ export class ObjectEditorComponent implements OnInit, OnChanges {
 
     @Output() public objectChange = new EventEmitter<{[key: string]: any}>();
 
-    private onChange(key: string, value: any): void {
+    public onChange(key: string, value: any): void {
         let change = {};
         change[key] = value;
         const object = Object.assign({}, this._object, change);

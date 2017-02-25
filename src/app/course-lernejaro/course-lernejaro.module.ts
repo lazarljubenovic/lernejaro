@@ -7,6 +7,7 @@ import {RouterModule} from '@angular/router';
 import {MarkdownModule} from '../markdown/markdown.module';
 import {PresentationModule} from '../presentation/presentation.module';
 import {MarkdownMarkupComponent} from './markdown-markup/markdown-markup.component';
+// tslint:disable-next-line
 import {IntroducingFlowchartsComponent} from './introducing-flowcharts/introducing-flowcharts.component';
 import {FlowchartModule} from '../flowchart/flowchart.module';
 import {IntroducingTablesComponent} from './introducing-tables/introducing-tables.component';

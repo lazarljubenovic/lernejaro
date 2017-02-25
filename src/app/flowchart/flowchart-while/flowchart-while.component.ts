@@ -6,7 +6,7 @@ import {FlowchartArrow} from '../flowchart-arrow.interface';
     selector: 'lrn-flowchart-while',
     templateUrl: './flowchart-while.component.html',
     styleUrls: ['./flowchart-while.component.scss'],
-    //changeDetection: ChangeDetectionStrategy.OnPush,
+    // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FlowchartWhileComponent implements OnInit, AfterViewInit {
 
@@ -29,10 +29,12 @@ export class FlowchartWhileComponent implements OnInit, AfterViewInit {
     ngAfterViewInit() {
         setTimeout(() => {
             const blockWidth = this.block.nativeElement.getBoundingClientRect().width;
-            const conditionWidth = this.conditionComponent.elementRef.nativeElement.getBoundingClientRect().width;
+            const conditionWidth = this.conditionComponent.elementRef
+                .nativeElement.getBoundingClientRect().width;
             const width = Math.max(blockWidth, conditionWidth);
             const topDistance = this.thisBlock.nativeElement.getBoundingClientRect().top
-                + this.conditionComponent.elementRef.nativeElement.getBoundingClientRect().height / 2;
+                + this.conditionComponent.elementRef.nativeElement
+                    .getBoundingClientRect().height / 2;
             const bottom = this.thisBlock.nativeElement.getBoundingClientRect().bottom;
             this.noArrow = {
                 begin: topDistance,

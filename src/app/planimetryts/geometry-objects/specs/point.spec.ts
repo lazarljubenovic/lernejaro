@@ -2,7 +2,6 @@ import {Point} from '../point';
 import {Line} from '../line';
 import {areEqualFloats} from '../../util';
 import {MaterialColor} from '../material-colors';
-import {WithLatestFromSignature} from 'rxjs/operator/withLatestFrom';
 
 const pointEquality = function (first: any, second: any) {
     if (first.kind == 'point' && second.kind == 'point') {
@@ -74,8 +73,8 @@ describe(`Point`, () => {
 
     it(`should chain method calls`, () => {
         const point1 = Point.FromCartesianCoordinates(1, 2, 'label')
-            .x(3).y(4).label('lebal');
-        const point2 = Point.FromCartesianCoordinates(3, 4, 'lebal');
+            .x(3).y(4).label('foo');
+        const point2 = Point.FromCartesianCoordinates(3, 4, 'foo');
         expect(point1).toEqual(point2);
     });
 

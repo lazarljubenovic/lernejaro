@@ -9,6 +9,7 @@ import {ObjectEditorModule} from '../object-editor/object-editor.module';
 import {FormsModule} from '@angular/forms';
 import {UiModule} from '../ui/ui.module';
 import {LinePipe} from './controls/pipes/line.pipe';
+// tslint:disable-next-line
 import {PlanimetricsControlComponent} from './controls/planimetrics-control/planimetrics-control.component';
 import {KindPipe} from './controls/planimetrics-control/pipes/kind.pipe';
 import {LabelPipe} from './controls/planimetrics-control/pipes/label.pipe';

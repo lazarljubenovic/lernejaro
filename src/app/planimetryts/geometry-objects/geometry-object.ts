@@ -10,7 +10,7 @@ function ViewData() {
             targetAny.$$viewData = [];
         }
         targetAny.$$viewData.push(key);
-    }
+    };
 }
 
 
@@ -104,7 +104,7 @@ export abstract class GeometryObject {
 
     public applyMatrix(matrix: number[][], point?: Point): this {
         if (arguments.length == 1 || point == null) {
-            return this.applyMatrixWithRespectToCenter(matrix)
+            return this.applyMatrixWithRespectToCenter(matrix);
         } else if (arguments.length == 2) {
             return this.applyMatrixWithRespectTo(matrix, point);
         } else {
@@ -173,8 +173,8 @@ Expected 1 or 2 but given ${arguments.length}`;
     }
 
     public radialSymmetry(point: Point, count: number): GeometryObject[] {
-        const angle = 2 * Math.PI / count;
-        return Array(count).fill(0).map((_, i) => i * angle).map(angle => {
+        const baseAngle = 2 * Math.PI / count;
+        return Array(count).fill(0).map((_, i) => i * baseAngle).map(angle => {
             return this.cloneValues().rotate(angle, point);
         });
     }

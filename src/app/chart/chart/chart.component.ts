@@ -3,10 +3,12 @@ import {
     OnInit,
     Input,
     ElementRef,
-    Renderer,
     ViewChild,
     ViewEncapsulation,
-    Self, ContentChildren, QueryList
+    Self,
+    ContentChildren,
+    QueryList,
+    AfterViewInit
 } from '@angular/core';
 import {ChartService} from '../chart.service';
 import {ChartDirective} from '../internal/chart/chart.directive';
@@ -20,7 +22,7 @@ import {ChartDataDirective} from '../chart-data.directive';
     encapsulation: ViewEncapsulation.None,
     providers: [ChartService],
 })
-export class ChartComponent implements OnInit {
+export class ChartComponent implements OnInit, AfterViewInit {
 
     @Input() public title: string;
     @Input() public displayLegend: boolean = false;

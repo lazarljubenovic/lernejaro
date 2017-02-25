@@ -20,6 +20,6 @@ export function WrapGeometryObjectIntoController(obj: GeometryObject): GeometryO
         case 'circle':
             return new CircleController(<Circle>obj);
         default:
-            debugger;
+            throw new Error(`Unknown kind ${obj.kind}`);
     }
 }

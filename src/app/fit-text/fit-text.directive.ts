@@ -55,12 +55,14 @@ export class FitTextDirective implements OnInit, AfterViewInit, OnDestroy {
     private update() {
         this.view.rootNodes.forEach(rootNode => {
             const span = rootNode.children[0];
-            const style = window.getComputedStyle(span);
+            // const style = window.getComputedStyle(span); // TODO Why did I have this?
 
             const box = rootNode.getBoundingClientRect();
             const boxStyle = window.getComputedStyle(rootNode);
-            const boxWidth = box.width - parseFloat(boxStyle.paddingRight) - parseFloat(boxStyle.paddingLeft);
-            const boxHeight = box.height - parseFloat(boxStyle.paddingTop) - parseFloat(boxStyle.paddingBottom);
+            const boxWidth = box.width - parseFloat(boxStyle.paddingRight) -
+                parseFloat(boxStyle.paddingLeft);
+            const boxHeight = box.height - parseFloat(boxStyle.paddingTop) -
+                parseFloat(boxStyle.paddingBottom);
 
             let rect = span.getBoundingClientRect();
             let currentFontSizePx: number = this.minSizePx;

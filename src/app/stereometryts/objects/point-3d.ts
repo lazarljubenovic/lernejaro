@@ -82,7 +82,8 @@ export class Point3D extends StereometryObject {
         return Math.sqrt(dx * dx + dy * dy + dz * dz);
     }
 
-    public static GetPointAtRatio(point1: Point3D, point2: Point3D, m: number, n: number = 1): Point3D {
+    public static GetPointAtRatio(point1: Point3D, point2: Point3D,
+                                  m: number, n: number = 1): Point3D {
         const x = (n * point1._x + m * point2._x) / (m + n);
         const y = (n * point1._y + m * point2._y) / (m + n);
         const z = (n * point1._z + m * point2._z) / (m + n);

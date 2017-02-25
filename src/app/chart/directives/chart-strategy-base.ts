@@ -1,5 +1,5 @@
 import {ChartService} from '../chart.service';
-import {QueryList, AfterViewInit, OnInit} from '@angular/core';
+import {QueryList, AfterViewInit} from '@angular/core';
 import {ChartDataDirective} from '../chart-data.directive';
 
 export interface Rectangle {

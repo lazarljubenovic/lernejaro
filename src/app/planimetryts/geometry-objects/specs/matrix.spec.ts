@@ -160,15 +160,15 @@ describe(`Matrix`, () => {
             const m = [[0, -1], [1, 0]];
             const n = Matrix.Rotate(Math.PI / 2);
             m.forEach((_, i) => {
-                _.forEach((_, j) => {
-                    expect(_).toBeCloseTo(n[i][j]);
+                _.forEach((__, j) => {
+                    expect(__).toBeCloseTo(n[i][j]);
                 });
             });
         });
 
         it(`shearing along X axis`, () => {
             const m = [[1, 2], [0, 1]];
-            expect(Matrix.ShearX(2));
+            expect(Matrix.ShearX(2)).toEqual(m);
         });
 
         it(`shearing along Y axis`, () => {
@@ -212,15 +212,15 @@ describe(`Matrix`, () => {
             const m = [[0, -1, 0], [1, 0, 0], [0, 0, 1]];
             const n = Matrix.Homogeneous.Rotate(Math.PI / 2);
             m.forEach((_, i) => {
-                _.forEach((_, j) => {
-                    expect(_).toBeCloseTo(n[i][j]);
+                _.forEach((__, j) => {
+                    expect(__).toBeCloseTo(n[i][j]);
                 });
             });
         });
 
         it(`shearing along X axis`, () => {
             const m = [[1, 2, 0], [0, 1, 0], [0, 0, 1]];
-            expect(Matrix.Homogeneous.ShearX(2));
+            expect(Matrix.Homogeneous.ShearX(2)).toEqual(m);
         });
 
         it(`shearing along Y axis`, () => {

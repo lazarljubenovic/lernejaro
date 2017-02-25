@@ -15,7 +15,7 @@ import {FlowchartConditionComponent} from '../flowchart-condition/flowchart-cond
     selector: 'lrn-flowchart-if',
     templateUrl: './flowchart-if.component.html',
     styleUrls: ['./flowchart-if.component.scss'],
-    //changeDetection: ChangeDetectionStrategy.OnPush,
+    // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FlowchartIfComponent implements OnInit, AfterViewInit {
 
@@ -48,7 +48,8 @@ export class FlowchartIfComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
             const thenBlock = this.thenComponent.elRef.nativeElement.getBoundingClientRect();
             const elseBlock = this.elseComponent.elRef.nativeElement.getBoundingClientRect();
-            const condBlock = this.conditionComponent.elementRef.nativeElement.getBoundingClientRect();
+            const condBlock =
+                this.conditionComponent.elementRef.nativeElement.getBoundingClientRect();
             const maxBlock = thenBlock.width > elseBlock.width ? thenBlock : elseBlock;
             const minBlock = thenBlock.width < elseBlock.width ? thenBlock : elseBlock;
             const middle = condBlock.left + condBlock.width / 2;

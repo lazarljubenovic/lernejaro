@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, ChangeDetectionStrategy} from '@angular/core';
+import {Component, OnInit, Input, ChangeDetectionStrategy, OnChanges} from '@angular/core';
 
 @Component({
     selector: 'lrn-flowchart-line',
@@ -6,7 +6,7 @@ import {Component, OnInit, Input, ChangeDetectionStrategy} from '@angular/core';
     styleUrls: ['./flowchart-line.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FlowchartLineComponent implements OnInit {
+export class FlowchartLineComponent implements OnInit, OnChanges {
 
     @Input() x1: number;
     @Input() y1: number;

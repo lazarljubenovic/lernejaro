@@ -8,8 +8,6 @@ import {Ellipse} from '../geometry-objects/ellipse';
 
 export class ConsoleRenderer extends Renderer {
 
-    private ctx: CanvasRenderingContext2D;
-
     public renderPoint(point: Point): void {
         const p = point.getCartesianCoordinates();
         console.log(`Point ${point.label()} (${p.x}, ${p.y})`);
@@ -38,7 +36,8 @@ export class ConsoleRenderer extends Renderer {
         const [a, b] = ellipse.getRadii();
         const angle = ellipse.getAngle();
         const {x, y} = ellipse.getCenter().getCartesianCoordinates();
-        console.log(`Ellipse with center at (${x}, ${y}), radii ${a} and ${b}, rotated for ${angle}`);
+        console.log(`Ellipse with center at (${x}, ${y}), ` +
+            `radii ${a} and ${b}, rotated for ${angle}`);
     }
 
     public renderPolygon(polygon: Polygon): void {
