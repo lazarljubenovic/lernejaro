@@ -15,3 +15,10 @@ lrn-progress-bar {
   position: absolute;
   top: 0;
 }
+
+// Theming
+@each $theme in ('light' 'dark') {
+  :host-context(.lrn-theme-#{$theme}) {
+    background-color: get_theme($theme, 'back');
+  }
+}

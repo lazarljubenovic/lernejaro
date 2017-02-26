@@ -37,7 +37,7 @@ $light-theme-hint-text-color: rgba(black, .38);
 $light-theme-dividers-text-color: rgba(black, .12);
 
 $light-theme-front-background-color: #ffffff;
-$light-theme-background-background-color: #fafafa;
+$light-theme-back-background-color: #fafafa;
 $light-theme-app-bar-background-color: #f5f5f5;
 $light-theme-status-bar-background-color: #e0e0e0;
 
@@ -47,7 +47,7 @@ $dark-theme-hint-text-color: rgba(white, .5);
 $dark-theme-dividers-text-color: rgba(white, .12);
 
 $dark-theme-front-background-color: #424242;
-$dark-theme-background-background-color: #303030;
+$dark-theme-back-background-color: #303030;
 $dark-theme-app-bar-background-color: #212121;
 $dark-theme-status-bar-background-color: #000000;
 
@@ -60,7 +60,7 @@ $map-light-theme-text-colors: (
 
 $map-light-theme-background-colors: (
   'front': $light-theme-front-background-color,
-  'background': $light-theme-background-background-color,
+  'back': $light-theme-back-background-color,
   'app-bar': $light-theme-app-bar-background-color,
   'status-bar': $light-theme-status-bar-background-color,
 );
@@ -74,7 +74,7 @@ $map-dark-theme-text-colors: (
 
 $map-dark-theme-background-colors: (
   'front': $dark-theme-front-background-color,
-  'background': $dark-theme-background-background-color,
+  'back': $dark-theme-back-background-color,
   'app-bar': $dark-theme-app-bar-background-color,
   'status-bar': $dark-theme-status-bar-background-color,
 );
@@ -289,6 +289,26 @@ $map-background-color-to-text-color: (
   }
 }
 
+@function get-theme($theme-name: 'light', $type: 'front') {
+  @if ($theme-name == 'light') {
+    @return map_get($map-light-theme-colors, $type);
+  } @else if($theme-name == 'dark' ){
+    @return map_get($map-dark-theme-colors, $type);
+  } @else {
+    @error 'theme-name must be "light" or "dark"';
+  }
+}
+
+@function inverse-theme-name($theme-name: 'light') {
+  @if ($theme-name == 'light') {
+    @return 'dark';
+  } @else if($theme-name == 'dark' ){
+    @return 'light';
+  } @else {
+    @error 'theme-name must be "light" or "dark"';
+  }
+}
+
 @mixin all-background-colors($variant: '500') {
   @each $color in get-color-strings() {
     &.#{$color} {
@@ -333,4 +353,11 @@ $map-background-color-to-text-color: (
 @mixin force-square($size) {
   @include force-width($size);
   @include force-height($size);
+}
+
+// $theme-name: 'light' or 'dark'
+@mixin card-basic($theme-name: 'light', $z-depth-dp: 2) {
+  background-color: get-theme($theme-name, 'front');
+  @include z-depth($z-depth-dp);
+  border-radius: 3px;
 }

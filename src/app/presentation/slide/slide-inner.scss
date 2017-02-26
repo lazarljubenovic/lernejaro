@@ -7,13 +7,10 @@
 
   pre {
     padding: 1em;
-    background-color: rgba(black, .86);
-    color: white;
-    border-radius: 6px;
     overflow-y: auto;
 
     > code {
-      background-color: transparent;
+      background-color: transparent!important;
     }
   }
 
@@ -26,14 +23,16 @@
 
   code {
     display: inline-block;
-    background-color: rgba(black, .08);
     padding: .3ex .3em;
     border-radius: 3px;
   }
 
   blockquote {
-    border-radius: 12px;
-    padding: 1ex 1em;
+    padding: 1em;
+    margin: 0;
+
+    p:first-child { margin-top: 0; }
+    p:last-child { margin-bottom: 0; }
   }
 }
 
@@ -42,9 +41,25 @@
   .lrn-theme-color-#{$color-string} lrn-slide {
     .slide-inner {
 
+      code {
+        background-color: rgba(material-color($color-string, '500'), .1);
+      }
+    }
+  }
+}
+
+@each $theme in ('light' 'dark') {
+  .lrn-theme-#{$theme} lrn-slide {
+    .slide-inner {
+      color: get-theme($theme, 'primary');
+
+      pre {
+        @include card-basic(inverse-theme-name($theme));
+        color: get-theme(inverse-theme-name($theme), 'primary');
+      }
+
       blockquote {
-        background-color: material-color($color-string, '100');
-        color: get-color($color-string, '50' 'primary');
+        @include card-basic($theme);
       }
     }
   }
