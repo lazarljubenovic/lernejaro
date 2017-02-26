@@ -7,6 +7,7 @@ import {QuestionComponent} from './question/question.component';
 import { CorrectDirective } from './multiple-choice/choice/correct.directive';
 import { FillInTheBlankComponent } from './fill-in-the-blank/fill-in-the-blank.component';
 import { BlankComponent } from './fill-in-the-blank/blank/blank.component';
+import {QuizComponent} from './quiz.component';
 
 @NgModule({
     imports: [
@@ -20,6 +21,7 @@ import { BlankComponent } from './fill-in-the-blank/blank/blank.component';
         CorrectDirective,
         FillInTheBlankComponent,
         BlankComponent,
+        QuizComponent,
     ],
     exports: [
         MultipleChoiceComponent,
@@ -28,6 +30,7 @@ import { BlankComponent } from './fill-in-the-blank/blank/blank.component';
         CorrectDirective,
         FillInTheBlankComponent,
         BlankComponent,
+        QuizComponent,
     ],
 })
 export class QuizModule {

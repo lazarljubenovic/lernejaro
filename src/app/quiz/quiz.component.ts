@@ -1,5 +1,7 @@
 import {Component, OnInit, Input, AfterContentInit} from '@angular/core';
 
+// TODO do we actually need this as a component? i forgot
+
 @Component({
     selector: 'lrn-quiz',
     templateUrl: './quiz.component.html',

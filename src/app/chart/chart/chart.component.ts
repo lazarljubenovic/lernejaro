@@ -8,7 +8,8 @@ import {
     Self,
     ContentChildren,
     QueryList,
-    AfterViewInit
+    AfterViewInit,
+    Optional
 } from '@angular/core';
 import {ChartService} from '../chart.service';
 import {ChartDirective} from '../internal/chart/chart.directive';
@@ -58,7 +59,11 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
     constructor(private chartService: ChartService,
                 private elRef: ElementRef,
-                @Self() private strategy: ChartStrategyBase) {
+                // TODO No idea why AOT fails without optional
+                @Self() @Optional() private strategy: ChartStrategyBase) {
+        if (!strategy) {
+            throw new Error(`You have to specify what kind of chart you want to render.`);
+        }
     }
 
     ngOnInit() {
