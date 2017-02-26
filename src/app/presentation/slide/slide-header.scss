@@ -5,8 +5,7 @@
 .slide-header {
   margin: 0;
   padding: 1.2em;
-  color: $white;
-  background-color: $color;
+  background-color: material-color($color-name, '700');
   @include z-depth(4);
   display: flex;
   justify-content: space-between;
@@ -19,13 +18,14 @@
     .title {
       font-weight: 300;
       font-size: 3.6em;
-      color: white;
+      color: get-color($color-name, '700', 'primary');
     }
 
     .subtitle {
       font-weight: 300;
       font-size: 1.6em;
       margin-left: .16em;
+      color: get-color($color-name, '700', 'secondary');
     }
   }
 
