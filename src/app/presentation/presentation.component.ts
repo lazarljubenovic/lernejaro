@@ -24,6 +24,8 @@ export class PresentationComponent implements OnInit, AfterContentInit {
     @Input() public author: string | TemplateRef<any>;
     @Input() public description: string | TemplateRef<any>;
     @Input() public title: string | TemplateRef<any>;
+    @Input() public logo: string | TemplateRef<any> =
+        'https://akimg0.ask.fm/assets/149/346/095/normal/elfaklogo.png';
 
     private _currentSlideIndex: number = 0;
 
@@ -37,8 +39,7 @@ export class PresentationComponent implements OnInit, AfterContentInit {
         return this._currentSlideIndex;
     }
 
-    @ViewChild('outlet')
-    public outlet: ElementRef;
+    @ViewChild('outlet') public outlet: ElementRef;
 
     @ContentChildren(SlideComponent)
     public slideComponents: QueryList<SlideComponent>;
@@ -49,6 +50,9 @@ export class PresentationComponent implements OnInit, AfterContentInit {
         if (this.slideComponents == null) {
             return;
         }
+
+        // Give logo data to all slides
+        this.slideComponents.forEach(slide => slide.logo = this.logo);
 
         const slidesArray = this.slideComponents
             .map(element => element.elementRef.nativeElement);

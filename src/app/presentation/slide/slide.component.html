@@ -1,6 +1,16 @@
-<div class="slide-title">
-  <span class="title">{{title}}</span>
-  <span class="subtitle">{{subtitle}}&nbsp;</span>
+<div class="slide-header">
+  <div class="title-and-subtitle">
+    <span class="title">{{title}}</span>
+    <span class="subtitle">{{subtitle}}&nbsp;</span>
+  </div>
+  <div class="logo">
+    <ng-template [ngIf]="typeOf(logo) == 'string'">
+      <div class="image" [style.background-image]="'url(' + logo + ')'"></div>
+    </ng-template>
+    <ng-template [ngIf]="typeOf(logo) != 'string'">
+
+    </ng-template>
+  </div>
 </div>
 
 <div class="slide-inner"
