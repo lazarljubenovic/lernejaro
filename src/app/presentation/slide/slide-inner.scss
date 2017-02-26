@@ -1,6 +1,5 @@
 @import '../../imports';
 @import '../../global';
-@import './vars';
 
 .slide-inner {
   font-size: 1.6em;
@@ -33,9 +32,20 @@
   }
 
   blockquote {
-    color: $color;
-    background-color: rgba($color, .06);
     border-radius: 12px;
     padding: 1ex 1em;
+  }
+}
+
+// Theming
+@each $color-string in get-color-strings() {
+  .lrn-theme-color-#{$color-string} lrn-slide {
+    .slide-inner {
+
+      blockquote {
+        background-color: material-color($color-string, '100');
+        color: get-color($color-string, '50' 'primary');
+      }
+    }
   }
 }

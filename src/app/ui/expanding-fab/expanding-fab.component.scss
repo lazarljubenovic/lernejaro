@@ -13,8 +13,23 @@ $cog-icon-size: $size / 2;
   right: $margin;
 }
 
+// Theming
+@each $color-string in get-color-strings() {
+  :host-context(.lrn-theme-color-#{$color-string}) {
+    $background-color-string: get-accent-color-string-for($color-string);
+    color: get-color($background-color-string, 'a400', 'hint');
+
+    .visible {
+      background-color: material-color($background-color-string, 'a400');
+
+      .icon {
+        color: get-color($background-color-string, 'a400', 'primary');
+      }
+    }
+  }
+}
+
 .visible {
-  @include all-background-colors('a400');
   color: $black; // TODO Make a mixin that will generate dark/light color based on background color
   border-radius: $size / 2;
   @include square($size);
@@ -42,7 +57,6 @@ $cog-icon-size: $size / 2;
     align-items: center;
     text-wrap: none;
     margin-left: $size - $cog-icon-size;
-    color: $color;
   }
 
   &.expanded {

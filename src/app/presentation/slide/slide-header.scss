@@ -1,11 +1,27 @@
 @import '../../imports';
 @import '../../global';
-@import './vars';
+
+// Theming
+@each $color-string in get-color-strings() {
+  .lrn-theme-color-#{$color-string} lrn-slide {
+
+    .slide-header {
+      background-color: material-color($color-string, '500');
+
+      .title {
+        color: get-color($color-string, '500', 'primary');
+      }
+
+      .subtitle {
+        color: get-color($color-string, '500', 'secondary');
+      }
+    }
+  }
+}
 
 .slide-header {
   margin: 0;
   padding: 1.2em;
-  background-color: material-color($color-name, '700');
   @include z-depth(4);
   display: flex;
   justify-content: space-between;
@@ -18,20 +34,16 @@
     .title {
       font-weight: 300;
       font-size: 3.6em;
-      color: get-color($color-name, '700', 'primary');
     }
-
     .subtitle {
       font-weight: 300;
       font-size: 1.6em;
       margin-left: .16em;
-      color: get-color($color-name, '700', 'secondary');
     }
   }
 
   .logo {
-    width: 6em;
-    height: 6em;
+    @include square(6em);
 
     .image {
       // TODO mixin

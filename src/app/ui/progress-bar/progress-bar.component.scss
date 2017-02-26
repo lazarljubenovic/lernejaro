@@ -2,6 +2,11 @@
 @import '../../global';
 // TODO merge these fucking imports
 
-.filled {
-  @include all-background-colors('a400');
+// Theming
+@each $color-string in get-color-strings() {
+  :host-context(.lrn-theme-color-#{$color-string}) {
+    .filled {
+      background-color: material-color(get-accent-color-string-for($color-string), 'a400');
+    }
+  }
 }

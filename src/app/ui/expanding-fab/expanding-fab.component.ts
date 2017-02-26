@@ -7,8 +7,6 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 export class ExpandingFabComponent implements OnInit {
 
-    @Input() public color: string = 'yellow';
-
     public isExpanded: boolean = false;
 
     public toggle() {

@@ -9,7 +9,7 @@ $black: rgba(black, .86);
   @return 'red' 'pink' 'purple' 'deep-purple' 'indigo' 'blue' 'light-blue' 'cyan' 'teal' 'green' 'light-green' 'lime' 'yellow' 'amber' 'orange' 'deep-orange'
 }
 
-@function get-accent-color-for($color, $variant: 'a400') {
+@function get-accent-color-string-for($color) {
   $map: (
     'red': 'light-green',
     'pink': 'lime',
@@ -28,7 +28,7 @@ $black: rgba(black, .86);
     'orange': 'orange',
     'deep-orange': 'lime',
   );
-  @return material-color(map-get($map, $color), $variant);
+  @return map-get($map, $color);
 }
 
 $light-theme-primary-text-color: rgba(black, .87);
@@ -279,11 +279,13 @@ $map-background-color-to-text-color: (
 );
 
 // $background-color: string
-@function get-color($background-color: 'blue', $variant: '500', $type: null) {
+@function get-color($background-color-string: 'blue', $variant: '500', $type: null) {
   @if ($type == null) {
-    @return map_get(map_get($map-background-color-to-text-color, $background-color), $variant);
+    @return map_get(map_get($map-background-color-to-text-color, $background-color-string), $variant);
   } @else {
-    @return map_get(map_get(map_get($map-background-color-to-text-color, $background-color), $variant), $type);
+    $text-color-string: map_get($map-background-color-to-text-color, $background-color-string);
+    $theme-string: map_get($text-color-string, $variant);
+    @return map_get($theme-string, $type);
   }
 }
 

@@ -1,10 +1,9 @@
 @import '../global';
 @import '../imports';
-@import './vars';
+
 
 .footer {
   height: 68px;
-  background-color: material-color($color-name, '900');
   display: flex;
   align-items: center;
 
@@ -12,7 +11,6 @@
     list-style-type: none;
     display: flex;
     align-items: center;
-    color: rgba(white, .86);
     margin: 0;
     padding: 0 1em;
     box-sizing: border-box;
@@ -20,38 +18,61 @@
     li {
       padding: 0;
       margin: 0 .6em;
+    }
+  }
 
-      &.slide-index {
-        margin-left: 2em;
-        margin-right: 2em;
+  .slide-index {
+    margin-left: 2em;
+    margin-right: 2em;
+
+    .current {
+      font-weight: bold;
+    }
+  }
+
+  // TODO Draw this out in a mixin ("flat badge-button"?), this is reusable
+  button {
+    width: 3em;
+    height: 3em;
+    // TODO Write a mixin for button reset
+    background-color: transparent;
+    outline: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+}
+
+// Theming
+@each $color-string in get-color-strings() {
+  :host-context(.lrn-theme-color-#{$color-string}) {
+    $accent-color-string: get-accent-color-string-for($color-string);
+
+    .footer {
+      background-color: material-color($color-string, '500');
+    }
+
+    .navigation {
+      color: get-color($color-string, '500', 'hint');
+
+      .slide-index {
+        color: get-color($color-string, '500', 'primary');
 
         .current {
-          color: $acc-color;
-          font-weight: bold;
-        }
-
-        .total {
-          color: rgba(white, .5);
+          //color: get-color($color-string, '500', 'primary');
+          color: material-color($accent-color-string, 'a700');
         }
       }
 
-      // TODO Draw this out in a mixin, this is reusable
       button {
-        width: 3em;
-        height: 3em;
-        // TODO Write a mixin for button reset
-        background-color: transparent;
-        outline: none;
-        border: none;
-        margin: 0;
-        padding: 0;
-        cursor: pointer;
-        border-radius: 50%;
-        color: $white;
+        color: get-color($color-string, '500', 'hint');
 
         &:focus,
         &:hover {
-          background-color: rgba(white, .06);
+          // TODO Check the spec about hovering/focusing on icons
+          background-color: material-color($color-string, '600');
         }
       }
     }
