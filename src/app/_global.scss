@@ -292,7 +292,7 @@ $map-background-color-to-text-color: (
 @function get-theme($theme-name: 'light', $type: 'front') {
   @if ($theme-name == 'light') {
     @return map_get($map-light-theme-colors, $type);
-  } @else if($theme-name == 'dark' ){
+  } @else if ($theme-name == 'dark') {
     @return map_get($map-dark-theme-colors, $type);
   } @else {
     @error 'theme-name must be "light" or "dark"';
@@ -302,7 +302,7 @@ $map-background-color-to-text-color: (
 @function inverse-theme-name($theme-name: 'light') {
   @if ($theme-name == 'light') {
     @return 'dark';
-  } @else if($theme-name == 'dark' ){
+  } @else if ($theme-name == 'dark') {
     @return 'light';
   } @else {
     @error 'theme-name must be "light" or "dark"';
@@ -360,4 +360,73 @@ $map-background-color-to-text-color: (
   background-color: get-theme($theme-name, 'front');
   @include z-depth($z-depth-dp);
   border-radius: 3px;
+}
+
+@mixin button-flat-badge($background-color-string: 'light', $color-variant: '500', $size: 2.5em) {
+  font-size: inherit;
+  @include square($size);
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  background-color: transparent;
+  cursor: pointer;
+  @if ($background-color-string == 'light') {
+    color: map_get($map-light-theme-colors, 'hint');
+  } @else if ($background-color-string == 'dark') {
+    color: map_get($map-dark-theme-colors, 'hint');
+  } @else {
+    color: get-color($background-color-string, $color-variant, 'primary');
+  }
+
+  &:focus,
+  &:hover {
+    background-color: rgba(white, .2); // TODO Probably don't want this always white
+  }
+}
+
+// TODO Make a fucking framework outta this
+//@mixin grid-container($number-of-columns: 3,
+//                      $element-width: null,
+//                      $gutter-width: null,
+//                      $gutter-height: $gutter-width
+//) {
+//  $number-of-gutters: $number-of-columns - 1;
+//  $width: calc((100% - #{$number-of-gutters * $gutter-width}) / #{$number-of-columns});
+//  $margin-right: $gutter-width;
+//  $margin-bottom: $gutter-height;
+//  display: flex;
+//  flex-wrap: wrap;
+//
+//  > * {
+//    width: $width;
+//
+//    &:not(:nth-child(#{$number-of-columns}n)) {
+//      margin-right: $margin-right;
+//    }
+//  }
+//}
+
+@mixin grid-container-fixed-size($number-of-columns, $element-width, $element-height, $gutter-width, $gutter-height) {
+  width: $number-of-columns * ($element-width + $gutter-width) - $gutter-width;
+  display: flex;
+  flex-wrap: wrap;
+
+  > * {
+    width: $element-width;
+    height: $element-height;
+    margin-bottom: $gutter-height; // removed for last elements below
+
+    &:not(:nth-child(#{$number-of-columns}n)) {
+      margin-right: $gutter-width;
+    }
+
+    @for $k from 1 through $number-of-columns {
+      @for $i from 1 through $k {
+        $inv-i: $k + 1 - $i;
+        &:nth-last-child(#{$i}):nth-child(#{$number-of-columns}n + #{$inv-i}) {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
 }

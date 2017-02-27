@@ -27,6 +27,11 @@ export class PresentationComponent implements OnInit, AfterContentInit {
     @Input() public logo: string | TemplateRef<any> =
         'https://akimg0.ask.fm/assets/149/346/095/normal/elfaklogo.png';
 
+    // TODO This should be provided app-wide (probably a service from the UI module should handle
+    // it), but definitely not here, this is not specific to presentation
+    @Input() public theme: string = 'dark';
+    @Input() public themeColor: string = 'amber';
+
     private _currentSlideIndex: number = 0;
 
     @Input()
@@ -43,6 +48,46 @@ export class PresentationComponent implements OnInit, AfterContentInit {
 
     @ContentChildren(SlideComponent)
     public slideComponents: QueryList<SlideComponent>;
+
+    public showPalettePicker: boolean = false;
+
+    // TODO This should be a separate component
+    // and this array should actually be injected or something
+    public colors = [
+        'red',
+        'pink',
+        'purple',
+        'deep-purple',
+        'indigo',
+        'blue',
+        'light-blue',
+        'cyan',
+        'teal',
+        'green',
+        'light-green',
+        'lime',
+        'yellow',
+        'amber',
+        'orange',
+        'deep-orange',
+    ];
+
+    // TODO type this properly, those are not strings but actual strings 'blue' 'orange' etc
+    public selectColor(color: string = this.themeColor) {
+        document.body.className = document.body.className
+            .replace(/lrn-theme-color-.*?(\s|$)/, '')
+            .trim();
+        this.themeColor = color;
+        document.body.classList.add(`lrn-theme-color-${this.themeColor}`);
+    }
+
+    // TODO see above
+    public selectTheme(theme: string = this.theme) {
+        document.body.classList.remove(`lrn-theme-light`);
+        document.body.classList.remove(`lrn-theme-dark`);
+        this.theme = theme;
+        document.body.classList.add(`lrn-theme-${this.theme}`);
+    }
 
     private updateView(): void {
         // Called when setting another currentSlideIndex. The first time this
@@ -113,7 +158,8 @@ export class PresentationComponent implements OnInit, AfterContentInit {
     constructor(private renderer: Renderer,
                 private route: ActivatedRoute,
                 private router: Router) {
-
+        this.selectColor();
+        this.selectTheme();
     }
 
     ngOnInit() {

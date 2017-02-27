@@ -2,20 +2,14 @@
 
 $color: material-color('blue-grey', '900');
 
+// TODO make these ems, exs
 $size: 64px;
 $margin: 36px;
-
 $cog-icon-size: $size / 2;
-
-:host {
-  position: fixed;
-  bottom: $margin;
-  right: $margin;
-}
 
 // Theming
 @each $color-string in get-color-strings() {
-  :host-context(.lrn-theme-color-#{$color-string}) {
+  .lrn-theme-color-#{$color-string} lrn-expanding-fab {
     $background-color-string: get-accent-color-string-for($color-string);
     color: get-color($background-color-string, 'a400', 'hint');
 
@@ -25,29 +19,46 @@ $cog-icon-size: $size / 2;
       .icon {
         color: get-color($background-color-string, 'a400', 'primary');
       }
+
+      .content {
+
+        > button {
+          @include button-flat-badge($background-color-string, 'a400');
+        }
+      }
     }
   }
 }
 
-.visible {
-  color: $black; // TODO Make a mixin that will generate dark/light color based on background color
-  border-radius: $size / 2;
-  @include square($size);
-  @include z-depth-3dp;
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  overflow: hidden;
+lrn-expanding-fab {
+  position: fixed;
+  bottom: $margin;
+  right: $margin;
 
-  .icon {
-    @include force-square($size);
+  .visible {
+    color: $black; // TODO Make a mixin that will generate dark/light color based on background color
+    border-radius: $size / 2;
+    @include square($size);
+    @include z-depth-3dp;
     display: flex;
+    flex-direction: row-reverse;
     align-items: center;
-    justify-content: center;
-    cursor: pointer;
+    overflow: hidden;
 
-    span {
-      font-size: $cog-icon-size;
+    .icon {
+      @include force-square($size);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      span {
+        font-size: $cog-icon-size;
+      }
+    }
+
+    &.expanded {
+      width: auto;
     }
   }
 
@@ -56,11 +67,13 @@ $cog-icon-size: $size / 2;
     justify-content: center;
     align-items: center;
     text-wrap: none;
-    margin-left: $size - $cog-icon-size;
-  }
+    padding-left: 1.33em;
 
-  &.expanded {
-    width: auto;
-  }
+    > * + * {
+      margin-left: .66em;
+    }
 
+    > button {
+    }
+  }
 }

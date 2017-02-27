@@ -15,7 +15,7 @@ import {RouterModule} from '@angular/router';
         RouterModule,
         KatexModule,
         FitTextModule,
-        UiModule,
+        UiModule.forRoot(),
     ],
     declarations: [
         PresentationComponent,
