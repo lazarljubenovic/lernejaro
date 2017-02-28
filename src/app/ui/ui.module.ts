@@ -13,7 +13,9 @@ import {ExpandingFabComponent} from './expanding-fab/expanding-fab.component';
 import {ProgressBarComponent} from './progress-bar/progress-bar.component';
 import {ModalComponent} from './modal/modal.component';
 import {ModalService} from './modal/modal.service';
-import { PalettePickerComponent } from './palette-picker/palette-picker.component';
+import {PalettePickerComponent} from './palette-picker/palette-picker.component';
+import {LrnPalette} from './palette';
+import {PaletteConfigService} from './palette-config.service';
 import {PaletteService} from './palette.service';
 
 @NgModule({
@@ -51,12 +53,16 @@ import {PaletteService} from './palette.service';
     ]
 })
 export class UiModule {
-    public static forRoot(): ModuleWithProviders {
+    public static forRoot(palette: LrnPalette): ModuleWithProviders {
         return {
             ngModule: UiModule,
             providers: [
                 ModalService,
                 PaletteService,
+                {
+                    provide: PaletteConfigService,
+                    useValue: palette,
+                },
             ],
         };
     }

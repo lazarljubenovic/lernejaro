@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PaletteService} from '../palette.service';
+import {LrnPaletteColor, LrnPaletteTheme} from '../palette';
 
 @Component({
     selector: 'lrn-palette-picker',
@@ -7,11 +8,6 @@ import {PaletteService} from '../palette.service';
     styleUrls: ['palette-picker.component.scss']
 })
 export class PalettePickerComponent implements OnInit {
-
-    // TODO This should be provided app-wide (probably a service from the UI module should handle
-    // it), but definitely not here, this is not specific to presentation
-    // public theme: string = 'light';
-    // public themeColor: string = 'indigo';
 
     // TODO This should be a separate component
     // and this array should actually be injected or something
@@ -34,13 +30,11 @@ export class PalettePickerComponent implements OnInit {
         'deep-orange',
     ];
 
-    // TODO type this properly, those are not strings but actual strings 'blue' 'orange' etc
-    public selectColor(color: string = this.palette.color) {
+    public selectColor(color: LrnPaletteColor = this.palette.color) {
         this.palette.selectColor(color);
     }
 
-    // TODO see above
-    public selectTheme(theme: string = this.palette.theme) {
+    public selectTheme(theme: LrnPaletteTheme = this.palette.theme) {
         this.palette.selectTheme(theme);
     }
 

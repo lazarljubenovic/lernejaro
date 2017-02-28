@@ -1,34 +1,38 @@
-import {Injectable} from '@angular/core';
+import {Injectable, OnDestroy} from '@angular/core';
+import {LrnPalette, LrnPaletteColor, LrnPaletteTheme} from './palette';
+import {PaletteConfigService} from './palette-config.service';
 
 @Injectable()
-export class PaletteService {
+export class PaletteService implements OnDestroy {
 
-    // TODO inject these default values from forRoot for UI module
-    // public theme$ = new BehaviorSubject<string>('light'); // TODO proper type as string union
-    // public color$ = new BehaviorSubject<string>('indigo'); // TODO proper type as string union
+    ngOnDestroy(): void {
+        // Force creation of service eagerly so the app doesn't remain colorless
+    }
 
-    public theme: string = 'light';
-    public color: string = 'indigo';
+    // public theme$ = new BehaviorSubject<LrnPaletteTheme>('light');
+    // public color$ = new BehaviorSubject<LrnPaletteColor>('indigo');
 
-    // TODO type this properly, those are not strings but actual strings 'blue' 'orange' etc
-    public selectColor(color: string) {
+    public color: LrnPaletteColor;
+    public theme: LrnPaletteTheme;
+
+    constructor(public paletteConfig: PaletteConfigService) {
+        this.selectTheme(paletteConfig.theme);
+        this.selectColor(paletteConfig.color);
+    }
+
+    public selectColor(color: LrnPaletteColor = this.color) {
         document.body.className = document.body.className
             .replace(/lrn-theme-color-.*?(\s|$)/, '')
             .trim();
         document.body.classList.add(`lrn-theme-color-${color}`);
-        // TODO this string should be created from the service
         this.color = color;
     }
 
-    // TODO see above
-    public selectTheme(theme: string) {
+    public selectTheme(theme: LrnPaletteTheme = this.theme) {
         document.body.classList.remove(`lrn-theme-light`);
         document.body.classList.remove(`lrn-theme-dark`);
         document.body.classList.add(`lrn-theme-${theme}`);
         this.theme = theme;
-    }
-
-    constructor() {
     }
 
 

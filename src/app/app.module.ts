@@ -36,7 +36,7 @@ export const ROUTES: Routes = [
         FormsModule,
         HttpModule,
         ObjectEditorModule,
-        UiModule,
+        UiModule.forRoot({theme: 'light', color: 'yellow'}),
         PlanimetricsModule,
         StereometricsModule,
         NotebookModule,
