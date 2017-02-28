@@ -13,6 +13,8 @@ import {ExpandingFabComponent} from './expanding-fab/expanding-fab.component';
 import {ProgressBarComponent} from './progress-bar/progress-bar.component';
 import {ModalComponent} from './modal/modal.component';
 import {ModalService} from './modal/modal.service';
+import { PalettePickerComponent } from './palette-picker/palette-picker.component';
+import {PaletteService} from './palette.service';
 
 @NgModule({
     imports: [
@@ -31,6 +33,7 @@ import {ModalService} from './modal/modal.service';
         ExpandingFabComponent,
         ProgressBarComponent,
         ModalComponent,
+        PalettePickerComponent,
     ],
     exports: [
         InputComponent,
@@ -44,6 +47,7 @@ import {ModalService} from './modal/modal.service';
         ExpandingFabComponent,
         ProgressBarComponent,
         ModalComponent,
+        PalettePickerComponent,
     ]
 })
 export class UiModule {
@@ -52,6 +56,7 @@ export class UiModule {
             ngModule: UiModule,
             providers: [
                 ModalService,
+                PaletteService,
             ],
         };
     }

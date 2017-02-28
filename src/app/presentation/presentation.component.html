@@ -37,15 +37,5 @@
 </lrn-expanding-fab>
 
 <lrn-modal *ngIf="showPalettePicker" (close)="showPalettePicker = false">
-
-  <div class="palette-picker">
-    <ul class="color-picker">
-      <li *ngFor="let color of colors" [class]="color" [class.selected]="color == themeColor" (click)="selectColor(color)">
-    </ul>
-    <ul class="theme-picker">
-      <li class="light" (click)="selectTheme('light')" [class.selected]="theme == 'light'">
-      <li class="dark" (click)="selectTheme('dark')" [class.selected]="theme == 'dark'">
-    </ul>
-  </div>
-
+  <lrn-palette-picker></lrn-palette-picker>
 </lrn-modal>

@@ -15,52 +15,6 @@ lrn-progress-bar {
   top: 0;
 }
 
-.palette-picker {
-  padding: 2.5em;
-  display: flex;
-
-  > * + * {
-    margin-left: 1em;
-  }
-
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-
-    li {
-      margin: 0;
-      padding: 0;
-      border-radius: 3px;
-      // TODO create variable for border-radius value (or a few different: large, medium, small)
-      cursor: pointer;
-      transform: scale(1);
-      transition: all .2s ease;
-
-      &.selected {
-        transform: scale(1.15);
-      }
-    }
-  }
-
-  .color-picker {
-    @include grid-container-fixed-size(4, 4em, 4em, 1em, 1em);
-
-    li {
-      @include all-background-colors('500');
-    }
-  }
-
-  .theme-picker {
-    @include grid-container-fixed-size(1, 4em, 9em, 1em, 1em);
-
-    li {
-      &.light { background-color: $light-theme-status-bar-background-color; }
-      &.dark { background-color: $dark-theme-status-bar-background-color; }
-    }
-  }
-}
-
 // Theming
 @each $theme in ('light' 'dark') {
   :host-context(.lrn-theme-#{$theme}) {
