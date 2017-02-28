@@ -122,7 +122,6 @@ export class PresentationComponent implements OnInit, AfterContentInit {
         return this.currentSlideIndex == this.slideComponents.length - 1;
     }
 
-    // TODO Add host listener for keyboard shortcuts
     public goToFirst() {
         this.currentSlideIndex = 0;
     }
@@ -143,14 +142,24 @@ export class PresentationComponent implements OnInit, AfterContentInit {
         }
     }
 
+    // TODO Try to refactor this so you dont need this function but do some keypress.l magic in
+    // their respective functions
     @HostListener('window:keypress', ['$event.key'])
     public onKeyPress(key: string) {
         switch (key.toLowerCase()) {
-            case 'j':
-                this.goToNext();
+            case 'l':
+                this.goToLast();
                 break;
             case 'k':
+            case ']':
+                this.goToNext();
+                break;
+            case 'j':
+            case '[':
                 this.goToPrevious();
+                break;
+            case 'h':
+                this.goToFirst();
                 break;
         }
     }
