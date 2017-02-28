@@ -24,6 +24,7 @@ import {IntroducingNotebookComponent} from './introducing-notebook/introducing-n
 import {NotebookModule} from '../notebook/notebook.module';
 import {KatexModule} from '../katex/katex.module';
 import {QuizModule} from '../quiz/quiz.module';
+import {TaxonomyModule} from '../taxonomy/taxonomy.module';
 
 @NgModule({
     imports: [
@@ -41,6 +42,7 @@ import {QuizModule} from '../quiz/quiz.module';
         NotebookModule,
         KatexModule,
         QuizModule,
+        TaxonomyModule,
         RouterModule.forChild([
             {
                 path: '',

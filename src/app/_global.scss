@@ -385,27 +385,6 @@ $map-background-color-to-text-color: (
 }
 
 // TODO Make a fucking framework outta this
-//@mixin grid-container($number-of-columns: 3,
-//                      $element-width: null,
-//                      $gutter-width: null,
-//                      $gutter-height: $gutter-width
-//) {
-//  $number-of-gutters: $number-of-columns - 1;
-//  $width: calc((100% - #{$number-of-gutters * $gutter-width}) / #{$number-of-columns});
-//  $margin-right: $gutter-width;
-//  $margin-bottom: $gutter-height;
-//  display: flex;
-//  flex-wrap: wrap;
-//
-//  > * {
-//    width: $width;
-//
-//    &:not(:nth-child(#{$number-of-columns}n)) {
-//      margin-right: $margin-right;
-//    }
-//  }
-//}
-
 @mixin grid-container-fixed-size($number-of-columns, $element-width, $element-height, $gutter-width, $gutter-height) {
   width: $number-of-columns * ($element-width + $gutter-width) - $gutter-width;
   display: flex;
@@ -427,6 +406,46 @@ $map-background-color-to-text-color: (
           margin-bottom: 0;
         }
       }
+    }
+  }
+}
+
+@mixin grid-container-fluid($number-of-columns: 3, $gutter-width: 1em, $gutter-height: 1em) {
+  $number-of-gutters: $number-of-columns - 1;
+  $width: calc((100% - #{$number-of-gutters * $gutter-width}) / #{$number-of-columns});
+  $margin-right: $gutter-width;
+  $margin-bottom: $gutter-height;
+  display: flex;
+  flex-wrap: wrap;
+
+  > * {
+    width: $width;
+
+    &:not(:nth-child(#{$number-of-columns}n)) {
+      margin-right: $margin-right;
+    }
+
+    // TODO this is stolen fom the mixin above, name this somehow
+    @for $k from 1 through $number-of-columns {
+      @for $i from 1 through $k {
+        $inv-i: $k + 1 - $i;
+        &:nth-last-child(#{$i}):nth-child(#{$number-of-columns}n + #{$inv-i}) {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+@mixin grid-container-fluid-single-row-variable-columns($gutter-width: 1em) {
+  display: flex;
+
+  > * {
+    flex-grow: 1;
+    flex-basis: 0;
+
+    &:not(:last-child) {
+      margin-right: $gutter-width;
     }
   }
 }
