@@ -17,6 +17,7 @@ import {PalettePickerComponent} from './palette-picker/palette-picker.component'
 import {LrnPalette} from './palette';
 import {PaletteConfigService} from './palette-config.service';
 import {PaletteService} from './palette.service';
+import { LogoComponent } from './logo/logo.component';
 
 @NgModule({
     imports: [
@@ -36,6 +37,7 @@ import {PaletteService} from './palette.service';
         ProgressBarComponent,
         ModalComponent,
         PalettePickerComponent,
+        LogoComponent,
     ],
     exports: [
         InputComponent,
@@ -50,6 +52,7 @@ import {PaletteService} from './palette.service';
         ProgressBarComponent,
         ModalComponent,
         PalettePickerComponent,
+        LogoComponent,
     ]
 })
 export class UiModule {
