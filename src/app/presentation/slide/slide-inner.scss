@@ -3,7 +3,7 @@
 
 .slide-inner {
   width: 100%;
-  flex-basis: 0;
+  height: calc(100vh - #{$slide-footer-height + $slide-header-height});
   box-sizing: border-box;
   font-size: 1.6em;
   padding: 1.6em 2.4em;
