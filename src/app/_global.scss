@@ -355,6 +355,16 @@ $map-background-color-to-text-color: (
   @include force-height($size);
 }
 
+@mixin background-image($width, $height: $width, $border-radius: null) {
+  width: $width;
+  height: $height;
+  background-size: cover;
+  background-position: center center;
+  @if ($border-radius != null) {
+    border-radius: $border-radius;
+  }
+}
+
 // $theme-name: 'light' or 'dark'
 @mixin card-basic($theme-name: 'light', $z-depth-dp: 2) {
   background-color: get-theme($theme-name, 'front');

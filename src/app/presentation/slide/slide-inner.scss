@@ -2,6 +2,9 @@
 @import '../../global';
 
 .slide-inner {
+  width: 100%;
+  flex-basis: 0;
+  box-sizing: border-box;
   font-size: 1.6em;
   padding: 1.6em 2.4em;
 
