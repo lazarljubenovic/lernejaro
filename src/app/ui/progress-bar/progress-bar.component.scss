@@ -1,6 +1,4 @@
-@import '../../imports';
 @import '../../global';
-// TODO merge these fucking imports
 
 // Theming
 @each $color-string in get-color-strings() {

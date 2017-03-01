@@ -1,8 +1,7 @@
-@import '../../imports';
 @import '../../global';
 
 // Theming
-// TODO @at root + mixin with @content PLZ
+// TODO @at root + mixin with @content PLZ (looks like this is still not possible)
 @each $theme-string in ('light' 'dark') {
   .lrn-theme-#{$theme-string} {
     lrn-taxonomy > lrn-taxonomy-item {
