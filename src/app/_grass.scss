@@ -1,0 +1,102 @@
+/// Based on the number of columns, we can use selectors to match the last row of the grid.
+/// This also makes sure to cover cases when the gid is not perfect.
+///
+/// ```
+/// X X X X   X X X X    X X X X   X X X X
+/// X X X X   X X X X    X X X X   X X X X
+/// O O O O   O O O      O O       O
+/// ```
+///
+/// In the examples above, O's are selected.
+///
+/// @param $number-of-columns The number of columns the that the grid has.
+@mixin _remove-margin-bottom-from-last-elements-in-grid($number-of-columns) {
+  @for $k from 1 through $number-of-columns {
+    @for $i from 1 through $k {
+      $inv-i: $k + 1 - $i;
+      &:nth-last-child(#{$i}):nth-child(#{$number-of-columns}n + #{$inv-i}) {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+/// Create a grid where all elements have fixed, predetermined size.
+/// The mixin will take care of sizing the parent.
+///
+/// This does **not** handle the "unaligned" children at the end.
+///
+/// @param $number-of-columns The number of columns for the grid
+/// @param $element-width The width of each element in the grid
+/// @param $element-height The height of each element in the grid
+/// @param $gutter-width The horizontal distance between two neighbors
+/// @param $gutter-height The vertical distance between two neighbors
+///
+/// @example scss Creating a 4x4 color palette with 16 colors, each color being a 3em square; distance .5em.
+///   .palette {
+///     @include grid-container-fixed-size(4, 3em, 3em, .5em, .5em);
+///     > * {
+///       border-radius: 3px;
+///     }
+///   }
+///
+///
+@mixin grid-container-fixed-size($number-of-columns, $element-width, $element-height, $gutter-width, $gutter-height) {
+  width: $number-of-columns * ($element-width + $gutter-width) - $gutter-width;
+  display: flex;
+  flex-wrap: wrap;
+
+  > * {
+    width: $element-width;
+    height: $element-height;
+    margin-bottom: $gutter-height; // removed for last elements below
+
+    &:not(:nth-child(#{$number-of-columns}n)) {
+      margin-right: $gutter-width;
+    }
+
+    @include _remove-margin-bottom-from-last-elements-in-grid($number-of-columns);
+  }
+}
+
+@mixin grid-container-fluid($number-of-columns: 3, $gutter-width: 1em, $gutter-height: 1em) {
+  $number-of-gutters: $number-of-columns - 1;
+  $width: calc((100% - #{$number-of-gutters * $gutter-width}) / #{$number-of-columns});
+  $margin-right: $gutter-width;
+  $margin-bottom: $gutter-height;
+  display: flex;
+  flex-wrap: wrap;
+
+  > * {
+    width: $width;
+
+    &:not(:nth-child(#{$number-of-columns}n)) {
+      margin-right: $margin-right;
+    }
+
+    @include _remove-margin-bottom-from-last-elements-in-grid($number-of-columns);
+  }
+}
+
+/// No matter how many elements there are, they will be forced into a single column.
+/// All elements will have the same width, regardless of the size.
+/// If different sizes are needed based on the elements' contents, just use flex directly.
+///
+/// @param $gutter-width The distance between two neighbors
+///
+/// @example Aligning cards in a row, spaced by .5em.
+///   .container {
+///     @include grid-container-fluid-row-variable-columns(.5em);
+///   }
+@mixin grid-container-fluid-single-row-variable-columns($gutter-width: 1em) {
+  display: flex;
+
+  > * {
+    flex-grow: 1;
+    flex-basis: 0;
+
+    &:not(:last-child) {
+      margin-right: $gutter-width;
+    }
+  }
+}
