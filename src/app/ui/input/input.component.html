@@ -1,9 +1,11 @@
 <div class="wrapper">
   <label [class.focus]="focus"
-         [class.overlay-label]="(value === '' || value === undefined || value === null) && !focus"
+         [class.overlay-label]="(value == '' || value == null) && !focus"
   >
     <input [type]="type"
-           [ngModel]="value"
+           [name]="name"
+           [step]="step"
+           [ngModel]="value | step : decimals"
            (ngModelChange)="onChange($event)"
            (focus)="onFocus()"
            (blur)="onBlur()"

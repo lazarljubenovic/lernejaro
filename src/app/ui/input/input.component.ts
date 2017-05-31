@@ -9,6 +9,12 @@ export class InputComponent implements OnInit {
 
     @Input() public label: string;
     @Input() public type: string;
+    @Input() public name: string;
+    @Input() public step: number;
+    @Input() public decimals: number;
+
+    @Input() public disableFloatingLabel: boolean = false;
+
     @Input() public value: any;
     @Output() public valueChange = new EventEmitter<any>();
 

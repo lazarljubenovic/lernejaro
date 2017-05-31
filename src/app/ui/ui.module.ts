@@ -18,6 +18,7 @@ import {LrnPalette} from './palette';
 import {PaletteConfigService} from './palette-config.service';
 import {PaletteService} from './palette.service';
 import { LogoComponent } from './logo/logo.component';
+import { StepPipe } from './input/step.pipe';
 
 @NgModule({
     imports: [
@@ -38,6 +39,7 @@ import { LogoComponent } from './logo/logo.component';
         ModalComponent,
         PalettePickerComponent,
         LogoComponent,
+        StepPipe,
     ],
     exports: [
         InputComponent,

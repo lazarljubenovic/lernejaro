@@ -15,10 +15,32 @@
     <b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</b>. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.
   </p>
 
-  <figure class="right">
-    <img src="https://unsplash.it/200/200/?random">
-    <figcaption>This is a longer figure caption on a floated image. It is never longer in width than the picture.</figcaption>
-  </figure>
+  <lrn-multiple-views>
+    <lrn-view [model]="complexNumber"
+              (modelChange)="complexNumber = $event"
+              [title]="'Algebraic'"
+    >
+      <lrn-katex [math]="'z = a + ib'"></lrn-katex>
+      z =
+      <lrn-view-input name="realPart" type="number" [decimals]="2"></lrn-view-input>
+      + i
+      <lrn-view-input name="imaginaryPart" type="number" [decimals]="2"></lrn-view-input>
+    </lrn-view>
+    <lrn-view [model]="algebraicToEuler(complexNumber)"
+              (modelChange)="complexNumber = eulerToAlgebraic($event)"
+              [title]="'Euler'"
+    >
+      z =
+      <lrn-view-input name="modulo" type="number" [decimals]="2"></lrn-view-input>
+      + e ^
+      <lrn-view-input name="argument" type="number" [decimals]="2"></lrn-view-input>
+    </lrn-view>
+  </lrn-multiple-views>
+
+  <!--<figure class="right">-->
+    <!--<img src="https://unsplash.it/200/200/?random">-->
+    <!--<figcaption>This is a longer figure caption on a floated image. It is never longer in width than the picture.</figcaption>-->
+  <!--</figure>-->
 
   <lrn-fill-in-the-blank (answerChange)="answer = $event">
     Dijkstra's algorithm is an algorithm for finding the
