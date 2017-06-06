@@ -1,14 +1,14 @@
 import {
-    Component,
-    OnInit,
     AfterViewInit,
-    ViewChild,
-    ElementRef,
-    Input,
     ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    EventEmitter,
+    Input,
     OnChanges,
+    OnInit,
     Output,
-    EventEmitter
+    ViewChild
 } from '@angular/core';
 import {CanvasRenderer} from '../planimetryts/renderers/canvas-renderer';
 import {RendererService} from './renderer.service';
@@ -24,8 +24,8 @@ import {areEqualFloats} from '../planimetryts/util';
 })
 export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
 
-    @Input() public objects: GeometryObject[];
-    @Input() public interactivePoints: Point[];
+    @Input() public objects: GeometryObject[] = [];
+    @Input() public interactivePoints: Point[] = [];
 
     @Output() public interactivePointsChange = new EventEmitter<Point[]>();
 
@@ -85,7 +85,7 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
         this.currentPoint = this.getPointAt(x, y);
     }
 
-    private onMouseDrag(offset: {logic: Offset, canvas: Offset}) {
+    private onMouseDrag(offset: { logic: Offset, canvas: Offset }) {
         if (this.currentPoint != null) {
             const {dx, dy} = offset.logic;
             this.currentPoint.x(x => x + dx).y(y => y + dy);

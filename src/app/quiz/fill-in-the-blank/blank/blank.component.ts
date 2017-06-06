@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FillInTheBlankComponent} from '../fill-in-the-blank.component';
 
 @Component({
@@ -8,7 +8,16 @@ import {FillInTheBlankComponent} from '../fill-in-the-blank.component';
 })
 export class BlankComponent implements OnInit {
 
-    @Input() public answer: string;
+    private _answer: string[];
+
+    @Input()
+    public set answer(newValue: string | string[]) {
+        if (Array.isArray(newValue)) {
+            this._answer = newValue;
+        } else {
+            this._answer = [newValue];
+        }
+    }
 
     @Input() public hint: string = 'Type your answer';
 
@@ -20,7 +29,7 @@ export class BlankComponent implements OnInit {
     }
 
     ngOnInit() {
-        this._fillInTheBlankComponent.correctAnswer = this.answer;
+        this._fillInTheBlankComponent.correctAnswers = this._answer;
     }
 
 }

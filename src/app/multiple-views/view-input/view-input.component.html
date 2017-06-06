@@ -1,7 +1,16 @@
-<lrn-input [value]="value"
+<lrn-input *ngIf="!latex"
+           [value]="value"
            (valueChange)="valueChange.emit($event)"
            [type]="type"
            [name]="name"
            [step]="step"
            [decimals]="decimals"
 ></lrn-input>
+
+<lrn-latex-input-number *ngIf="latex"
+                        [value]="value"
+                        (valueChange)="valueChange.emit($event)"
+                        [label]="name"
+                        [name]="name"
+                        [decimals]="decimals"
+></lrn-latex-input-number>

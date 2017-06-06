@@ -6,6 +6,7 @@ import {MaterialColor} from '../../planimetryts/geometry-objects/material-colors
 import {Segment} from '../../planimetryts/geometry-objects/segment';
 import {Circle} from '../../planimetryts/geometry-objects/circle';
 import {Ellipse} from '../../planimetryts/geometry-objects/ellipse';
+import {Polygon} from '../../planimetryts/geometry-objects/polygon';
 
 @Component({
     selector: 'lrn-introducing-geometry',
@@ -17,23 +18,12 @@ export class IntroducingGeometryComponent implements OnInit {
     public point: Point = Point.FromCartesianCoordinates(2, 3)
         .strokeColor(MaterialColor.BLUE)
         .fillColor(MaterialColor.GREEN)
-        .label('A');
+        .label('Z');
 
     public line: Line = Line.FromGeneralForm(10, 20, 30)
         .strokeColor(MaterialColor.RED)
         .fillColor(MaterialColor.YELLOW)
         .label('l');
-
-    public circle: Circle = Circle.FromGeneralForm(0, 1, 2)
-        .strokeColor(MaterialColor.AMBER)
-        .fillColor(MaterialColor.INDIGO)
-        .label('k');
-
-    public segment: Segment = Segment
-        .FromTwoPoints(Point.FromCartesianCoordinates(1, 2), Point.FromCartesianCoordinates(3, 4))
-        .strokeColor(MaterialColor.INDIGO)
-        .fillColor(MaterialColor.LIGHT_BLUE)
-        .label('a');
 
     public objects: GeometryObject[];
 
@@ -42,38 +32,40 @@ export class IntroducingGeometryComponent implements OnInit {
             .label('A').strokeColor(MaterialColor.AMBER),
         Point.FromCartesianCoordinates(200, -200)
             .label('B').strokeColor(MaterialColor.AMBER),
-        // Point.FromCartesianCoordinates(0, 200)
-        //     .label('C').strokeColor(MaterialColor.AMBER),
+        Point.FromCartesianCoordinates(0, 200)
+            .label('C').strokeColor(MaterialColor.AMBER),
+        this.point,
     ];
 
     public evaluateObjects(...points: Point[]): void {
-        const [A, B] = points;
+        const [A, B, C] = points;
 
-        // const polygon = Polygon.FromVertices(A, B, C);
-        // const segmentAB = Segment.FromTwoPoints(A, B);
-        // const bisectorA: Line = Line.GetBisector(A, B, C).strokeColor(MaterialColor.RED);
-        // const bisectorB: Line = Line.GetBisector(B, A, C).strokeColor(MaterialColor.GREEN);
-        // const bisectorC: Line = Line.GetBisector(C, A, B).strokeColor(MaterialColor.BLUE);
-        // const intersection: Point = Line.GetIntersection(bisectorA, bisectorB)
-        // .strokeColor(MaterialColor.PINK);
-        // const inscribedCircle = Circle.FromCenterAndLine(intersection, segmentAB.getLine());
+        const polygon = Polygon.FromVertices(A, B, C)
+            .strokeColor(MaterialColor.DEEP_PURPLE)
+            .fillColor(MaterialColor.DEEP_PURPLE);
+
+        const segmentAB = Segment.FromTwoPoints(A, B);
+        const bisectorA: Line = Line.GetBisector(A, B, C).strokeColor(MaterialColor.RED);
+        const bisectorB: Line = Line.GetBisector(B, A, C).strokeColor(MaterialColor.GREEN);
+        const bisectorC: Line = Line.GetBisector(C, A, B).strokeColor(MaterialColor.BLUE);
+
+        const intersection: Point = Line
+            .GetIntersection(bisectorA, bisectorB)
+            .strokeColor(MaterialColor.PINK)
+            .fillColor(MaterialColor.PINK);
+
+        // const inscribedCircle = Ellipse.Circle
+        //     .FromCenterAndRadius(Point.FromCartesianCoordinates(-200, 100), 10);
+            // .FromCenterAndLine(intersection, segmentAB.getLine())
+            // .translateY(10);
+
+        const ellipse = Ellipse.Circle.FromGeneralForm(1, 2, 3);
+
+        const circle = Circle.FromCenterAndLine(intersection, segmentAB.getLine())
+            .strokeColor(MaterialColor.GREEN);
 
         // this.objects = [bisectorA, bisectorB, bisectorC, inscribedCircle, polygon, intersection];
-
-        // const originalCircle = Circle.FromCenterAndPoint(A, B).strokeColor(MaterialColor.RED);
-        // const skewedCircle = originalCircle.clone().shearX(2).strokeColor(MaterialColor.BLUE);
-
-        const ellipse = Ellipse.FromCanonicalForm(80, 80)
-            .translate(A.x(), A.y())
-            .strokeColor(MaterialColor.INDIGO);
-
-        const rotatedEllipse = ellipse.clone().rotate(Math.PI / 4)
-            .strokeColor(MaterialColor.PINK);
-
-        const skewedEllipse = ellipse.clone().shearX(0.33)
-            .strokeColor(MaterialColor.TEAL);
-
-        this.objects = [ellipse, rotatedEllipse, skewedEllipse];
+        this.objects = [circle, polygon, intersection, ellipse];
     }
 
     public onInteractivePointsChange(points: Point[]): void {

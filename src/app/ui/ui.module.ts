@@ -19,6 +19,9 @@ import {PaletteConfigService} from './palette-config.service';
 import {PaletteService} from './palette.service';
 import { LogoComponent } from './logo/logo.component';
 import { StepPipe } from './input/step.pipe';
+import { LatexInputNumberComponent } from './latex-input-number/latex-input-number.component';
+import { CardHeaderComponent } from './card/card-header/card-header.component';
+import { CardFooterComponent } from './card/card-footer/card-footer.component';
 
 @NgModule({
     imports: [
@@ -40,6 +43,9 @@ import { StepPipe } from './input/step.pipe';
         PalettePickerComponent,
         LogoComponent,
         StepPipe,
+        LatexInputNumberComponent,
+        CardHeaderComponent,
+        CardFooterComponent,
     ],
     exports: [
         InputComponent,
@@ -55,6 +61,7 @@ import { StepPipe } from './input/step.pipe';
         ModalComponent,
         PalettePickerComponent,
         LogoComponent,
+        LatexInputNumberComponent,
     ]
 })
 export class UiModule {

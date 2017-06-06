@@ -54,7 +54,7 @@ describe(`Ellipse`, () => {
             expect(creatingHyperbola).toThrow();
         });
 
-        it(`should throw if given parameters do not form an ellipse (parabola`, () => {
+        it(`should throw if given parameters do not form an ellipse (parabola)`, () => {
             const creatingParabola = () => Ellipse.FromGeneralForm(1, 0, 0, 0, 1, -1);
             expect(creatingParabola).toThrow();
         });
@@ -113,8 +113,36 @@ describe(`Ellipse`, () => {
                 [4, 5, 6],
                 [7, 8, 9],
             ];
-            const creatingNonesense = () => Ellipse.FromMatrix(matrix);
-            expect(creatingNonesense).toThrow();
+            const creatingNonsense = () => Ellipse.FromMatrix(matrix);
+            expect(creatingNonsense).toThrow();
+        });
+
+    });
+
+    describe(`Circle`, () => {
+
+        describe(`FromCenterAndRadius`, () => {
+
+            const center = Point.FromCartesianCoordinates(1, 2);
+            const radius = 3;
+            const circle = Ellipse.Circle.FromCenterAndRadius(center, radius);
+
+            it(`should be equal with the equivalent ellipse`, () => {
+                const ellipse = Ellipse.FromGeneralForm(1, 0, 1, -2, -4, -4);
+                expect(Ellipse.AreEqual(circle, ellipse)).toBe(true);
+            });
+            it(`should have a zero angle`, () => {
+                expect(circle.getAngle()).toBeCloseTo(0);
+            });
+
+            it(`should properly set center`, () => {
+                expect(circle.getCenter()).toEqual(center);
+            });
+
+            it(`should get the same radius twice`, () => {
+                expect(circle.getRadii().sort()).toEqual([3, 3].sort());
+            });
+
         });
 
     });
@@ -131,9 +159,20 @@ describe(`Ellipse`, () => {
             expect(ellipse.isCircle()).toBe(false);
         });
 
+        it(`should return true when ellipse is created as a circle`, () => {
+            const center = Point.FromCartesianCoordinates(1, 2);
+            const ellipse = Ellipse.Circle.FromCenterAndRadius(center, 3);
+            expect(ellipse.isCircle()).toBe(true);
+        });
+
     });
 
     describe(`getRadii`, () => {
+
+        it(`should get radii for a circle`, () => {
+            const ellipse = Ellipse.Circle.FromGeneralForm(1, 2, 3);
+            expect(ellipse.getRadii().sort()).toEqual([3, 3].sort());
+        });
 
         it(`should get radii for standard ellipse`, () => {
             const ellipse = Ellipse.FromCanonicalForm(1, 2);
@@ -187,6 +226,11 @@ describe(`Ellipse`, () => {
             expect(ellipse.getMatrix()).toEqual(expected);
         });
 
+        it(`should get matrix for a cicle`, () => {
+            const circle = Ellipse.Circle.FromGeneralForm(1, 2, 3);
+            const expected = []
+        });
+
         it(`should get matrix for a rotated ellipse`, () => {
             const ellipse = Ellipse.FromGeneralForm(29 / 2, -21, 29 / 2, 0, 0, -100);
             const expected = [
@@ -223,6 +267,41 @@ describe(`Ellipse`, () => {
         it(`should get perimeter of a rotated ellipse`, () => {
             const ellipse = Ellipse.FromGeneralForm(29 / 2, 21, 29 / 2, 0, 0, -100);
             expect(ellipse.getPerimeter()).toBeCloseTo(23.0131);
+        });
+
+    });
+
+    describe(`transformation`, () => {
+
+        describe(`translate`, () => {
+
+            it(`should translate a circle`, () => {
+                const ellipse = Ellipse.Circle.FromGeneralForm(1, 2, 3);
+                const actual = ellipse.translate(1, 1);
+                const expected = Ellipse.Circle.FromGeneralForm(2, 3, 3);
+                expect(Ellipse.AreEqual(actual, expected))
+                    .toBe(true, `Center ${actual.getCenter().getCartesianCoordinates().x} ${actual.getCenter().getCartesianCoordinates().y}`);
+            });
+
+        });
+
+        describe(`rotation`, () => {
+
+            it(`should rotate a centered circle`, () => {
+                const circle = Ellipse.Circle.FromGeneralForm(0, 0, 10);
+                const actual = circle.rotate(1);
+                expect(Ellipse.AreEqual(circle, actual))
+                    .toBe(true, `Center ${actual.getCenter().getCartesianCoordinates().x} ${actual.getCenter().getCartesianCoordinates().y}`);
+            });
+
+            it(`should rotate a circle`, () => {
+                const circle = Ellipse.Circle.FromGeneralForm(1, 2, 3);
+                const actual = circle.rotate(Math.PI / 2);
+                const expected = Ellipse.Circle.FromGeneralForm(-2, 1, 3);
+                expect(Ellipse.AreEqual(actual, expected))
+                    .toBe(true, `Center ${actual.getCenter().getCartesianCoordinates().x} ${actual.getCenter().getCartesianCoordinates().y}`);
+            });
+
         });
 
     });

@@ -11,7 +11,7 @@ export class PointController extends GeometryObjectController {
 
     private cartesianReconstructStrategy(obj: {x: number, y: number}): Point {
         const {x, y} = obj;
-        return Point.FromCartesianCoordinates(x, y);
+        return Point.FromCartesianCoordinates(x, y).copyViewDataFrom(this.point);
     }
 
     private polarDeconstructStrategy(): {r: number, φ: number} {
@@ -20,17 +20,17 @@ export class PointController extends GeometryObjectController {
 
     private polarReconstructStrategy(obj: {r: number, φ: number}): Point {
         const {r, φ} = obj;
-        return Point.FromPolarCoordinates(r, φ);
+        return Point.FromPolarCoordinates(r, φ).copyViewDataFrom(this.point);
     }
 
     private cartesianStrategy: Strategy = {
         destruct: this.cartesianDestructStrategy.bind(this),
-        reconstruct: this.cartesianReconstructStrategy,
+        reconstruct: this.cartesianReconstructStrategy.bind(this),
     };
 
     private polarStrategy: Strategy = {
         destruct: this.polarDeconstructStrategy.bind(this),
-        reconstruct: this.polarReconstructStrategy,
+        reconstruct: this.polarReconstructStrategy.bind(this),
     };
 
     constructor(point: Point) {

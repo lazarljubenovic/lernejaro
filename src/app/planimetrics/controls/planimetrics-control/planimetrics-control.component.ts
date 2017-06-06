@@ -23,7 +23,6 @@ export class PlanimetricsControlComponent implements OnInit {
 
     public onChange(strategyName: string, object: any): void {
         const newObject = this.controller.reconstruct(strategyName, object);
-        console.log(strategyName, object, newObject);
         this.objectChange.next(newObject);
     }
 

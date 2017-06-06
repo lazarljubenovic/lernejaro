@@ -1,6 +1,9 @@
 import {GeometryObjectController, Strategy} from '../geometry-object-controller';
 import {Circle} from '../../../../planimetryts/geometry-objects/circle';
 
+/**
+ * @deprecated
+ */
 export class CircleController extends GeometryObjectController {
 
     private circle: Circle;
@@ -11,12 +14,12 @@ export class CircleController extends GeometryObjectController {
 
     private generalReconstructStrategy(obj: {p: number, q: number, r: number}): Circle {
         const {p, q, r} = obj;
-        return Circle.FromGeneralForm(p, q, r);
+        return Circle.FromGeneralForm(p, q, r).copyViewDataFrom(this.circle);
     }
 
     private generalStrategy: Strategy = {
         destruct: this.generalDestructStrategy.bind(this),
-        reconstruct: this.generalReconstructStrategy,
+        reconstruct: this.generalReconstructStrategy.bind(this),
     };
 
     constructor(circle: Circle) {

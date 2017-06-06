@@ -101,4 +101,11 @@ export const LESSONS: Lesson[] = [
         icon: LessonIcon.Calendar,
         isUnlocked: true,
     },
+    {
+        id: '16',
+        name: 'Kvizo',
+        color: LessonColor.DeepOrange,
+        icon: LessonIcon.Cog,
+        isUnlocked: true,
+    }
 ];

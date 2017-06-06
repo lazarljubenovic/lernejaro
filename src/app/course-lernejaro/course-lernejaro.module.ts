@@ -27,6 +27,7 @@ import {QuizModule} from '../quiz/quiz.module';
 import {TaxonomyModule} from '../taxonomy/taxonomy.module';
 import {DisplayQuoteModule} from '../display-quote/display-quote.module';
 import {MultipleViewsModule} from '../multiple-views/multiple-views.module';
+import { IntroducingKvizoComponent } from './introducing-kvizo/introducing-kvizo.component';
 
 @NgModule({
     imports: [
@@ -100,6 +101,10 @@ import {MultipleViewsModule} from '../multiple-views/multiple-views.module';
                 path: '15-Notebook',
                 component: IntroducingNotebookComponent,
             },
+            {
+                path: '16-Kvizo',
+                component: IntroducingKvizoComponent,
+            },
         ]),
     ],
     declarations: [
@@ -112,6 +117,7 @@ import {MultipleViewsModule} from '../multiple-views/multiple-views.module';
         IntroducingGeometryComponent,
         IntroducingChartsComponent,
         IntroducingNotebookComponent,
+        IntroducingKvizoComponent,
     ]
 })
 export class CourseLernejaroModule {

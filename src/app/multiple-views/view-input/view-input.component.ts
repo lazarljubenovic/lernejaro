@@ -11,6 +11,7 @@ export class ViewInputComponent implements OnInit {
     @Input() public name: string;
     @Input() public step: number = 1;
     @Input() public decimals: number = 2;
+    @Input() public latex: boolean = false;
 
     @Input() public value: any;
     @Output() public valueChange = new EventEmitter<any>();

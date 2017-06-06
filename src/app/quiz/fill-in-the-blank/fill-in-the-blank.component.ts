@@ -15,12 +15,12 @@ import {
 })
 export class FillInTheBlankComponent implements OnInit, AfterContentInit {
 
-    public correctAnswer: string;
+    public correctAnswers: string[];
 
     @Output() public answerChange = new EventEmitter<{correct: boolean, answer: string}>();
 
     public onAnswerChange(answer: string): void {
-        const correct = answer == this.correctAnswer;
+        const correct = this.correctAnswers.indexOf(answer) > -1;
         this.answerChange.emit({answer, correct});
     }
 

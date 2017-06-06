@@ -1,4 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, ContentChild} from '@angular/core';
+import {CardHeaderComponent} from './card-header/card-header.component';
 
 @Component({
     selector: 'lrn-card',
@@ -8,6 +9,10 @@ import {Component, OnInit, Input} from '@angular/core';
 export class CardComponent implements OnInit {
 
     @Input() public padding: number = 0;
+
+    @Input() public header: string = null;
+
+    @ContentChild(CardHeaderComponent) public cardHeader: CardHeaderComponent;
 
     constructor() {
     }

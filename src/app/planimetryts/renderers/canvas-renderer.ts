@@ -39,6 +39,9 @@ export class CanvasRenderer extends Renderer {
     private _appliedMatrix: number[][];
     private _inverseMatrix: number[][];
 
+    private _rightAppliedMatrix: number[][];
+    private _rightInverseMatrix: number[][];
+
     public get appliedMatrix(): number[][] {
         return [...this._appliedMatrix.map(el => [...el])];
     }
@@ -47,6 +50,8 @@ export class CanvasRenderer extends Renderer {
         const I = Matrix.GetIdentity(3);
         this._appliedMatrix = I;
         this._inverseMatrix = I;
+        this._rightAppliedMatrix = I;
+        this._rightInverseMatrix = I;
     }
 
     public applyMatrix(matrix: number[][], leftMul: boolean = true): this {
@@ -54,9 +59,17 @@ export class CanvasRenderer extends Renderer {
         if (leftMul) {
             this._appliedMatrix = Matrix.Multiply(matrix, this._appliedMatrix);
             this._inverseMatrix = Matrix.Multiply(this._inverseMatrix, inverse);
+            // this._rightAppliedMatrix =
+            // Matrix.Multiply(this._rightAppliedMatrix, Matrix.Transpose(matrix));
+            // this._rightInverseMatrix =
+            // Matrix.Multiply(Matrix.Transpose(inverse), this._rightInverseMatrix);
         } else {
             this._appliedMatrix = Matrix.Multiply(this._appliedMatrix, matrix);
             this._inverseMatrix = Matrix.Multiply(inverse, this._inverseMatrix);
+            // this._rightAppliedMatrix =
+            // Matrix.Multiply(Matrix.Transpose(matrix), this._rightAppliedMatrix);
+            // this._rightInverseMatrix =
+            // Matrix.Multiply(this._rightInverseMatrix, Matrix.Transpose(inverse));
         }
         return this;
     }
@@ -83,8 +96,13 @@ export class CanvasRenderer extends Renderer {
 
         this.setIdentityMatrix();
 
-        this.applyMatrix(Matrix.Homogeneous.StretchY(-1));
-        this.applyMatrix(Matrix.Homogeneous.Translate(300, 300));
+        this
+            .applyMatrix(Matrix.Homogeneous.StretchY(-1))
+            // .applyMatrix(Matrix.Homogeneous.Stretch(.5))
+            .applyMatrix(Matrix.Homogeneous.Translate(300, 300))
+        ;
+
+        console.log(this._appliedMatrix);
 
         this.createGrid();
     }
@@ -181,8 +199,7 @@ export class CanvasRenderer extends Renderer {
     }
 
     protected renderSegment(segment: Segment): void {
-        const clone = segment.clone()
-            .applyMatrix(this._appliedMatrix);
+        const clone = segment.clone().applyMatrix(this._appliedMatrix);
         const [start, end] = clone.getPoints().map(point => {
             return point.getCartesianCoordinates();
         });
@@ -229,6 +246,17 @@ export class CanvasRenderer extends Renderer {
         this.ctx.beginPath();
         this.ctx.ellipse(x, y, a, b, angle, 0, 2 * Math.PI);
         this.ctx.stroke();
+
+        // Fill or do nothing if fill color not given
+        let fillColor = ellipse.fillColor();
+        if (fillColor != null) {
+            this.ctx.fillStyle = this.getColor(fillColor, 500).css();
+            const oldAlpha = this.ctx.globalAlpha;
+            this.ctx.globalAlpha = .1;
+            this.ctx.fill();
+            this.ctx.globalAlpha = oldAlpha;
+        }
+
         this.ctx.closePath();
         this.ctx.restore();
     }
@@ -258,7 +286,7 @@ export class CanvasRenderer extends Renderer {
         this.ctx.strokeStyle = this.getColor(strokeColor, 700).css();
         this.ctx.stroke();
 
-        // Fill - nothing if nothing given
+        // Fill or do nothing if fill color not given
         let fillColor = polygon.fillColor();
         if (fillColor != null) {
             this.ctx.fillStyle = this.getColor(fillColor, 500).css();

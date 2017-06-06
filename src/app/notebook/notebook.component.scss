@@ -121,7 +121,7 @@ lrn-notebook {
   }
 
   > .wrapper {
-    padding-top: $header-height;
+    padding-top: calc(#{$header-height} + #{4rem});
     box-sizing: border-box;
     padding-left: 1em;
     padding-right: 1em;
@@ -135,6 +135,11 @@ lrn-notebook {
     h5 { margin-top: 2.2211em; }
     h6 { margin-top: 3.0989em; }
 
+    // We don't need to display h1
+    > h1 {
+      display: none;
+    }
+
     // Summary directly below wrapper serves an abstract for the document.
     > summary {
       margin: 1em;
@@ -146,6 +151,19 @@ lrn-notebook {
       border-bottom: $border;
     }
 
+    // When using markdown, there's an additional <p> which adds weird margins
+    // Remove top and bottom margin, taking into account possibility that there are multiple <p>'s
+    > summary {
+
+      p:first-child {
+        margin-top: 0;
+      }
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+
     code {
       display: inline-block;
       background-color: rgba(black, .1);
@@ -153,6 +171,19 @@ lrn-notebook {
       margin-left: .2em;
       margin-right: .2em;
       border-radius: 2px;
+    }
+
+    pre {
+      display: block;
+      background-color: rgba(black, .1);
+      padding: .8rem 1.2em;
+
+      code {
+        display: inline;
+        background-color: transparent;
+        box-shadow: none;
+        border-radius: 0;
+      }
     }
 
     figure {
@@ -236,6 +267,6 @@ lrn-notebook {
 
   &.sepia {
     background-color: #fbf0d9;
-    color: #5F4B32;
+    color: #5f4b32;
   }
 }

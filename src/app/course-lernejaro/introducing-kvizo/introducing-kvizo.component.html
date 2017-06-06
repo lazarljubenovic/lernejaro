@@ -1,0 +1,26 @@
+<lrn-notebook>
+
+  <h1>Kvizo</h1>
+
+  <summary>
+    <lrn-markdown>
+      _Kvizo_ je modul u sklopu Lernejaro paketa za kreiranje **kratkih kviz-pitanja**. Nudi kreiranje pitanja tipa "ispuni praznine", pitanja sa više ponuđenih odgovara od kojih je tačan samo jedan ili više njih, i pitanja tipa "izbaci uljeza".
+    </lrn-markdown>
+  </summary>
+
+  <h2>Primer</h2>
+
+  <pre>
+&lt;lrn-fill-in-the-blank>
+  TajpSkript je programski jezik koji se ne kompajlira,
+  već &lt;lrn-blank [answer]="['transpajlira', 'se transpajlira']">&lt;/lrn-blank>.
+&lt;/lrn-fill-in-the-blank>
+  </pre>
+
+  <lrn-fill-in-the-blank (answerChange)="answer = $event">
+    TajpSkript je programski jezik koji se ne kompajlira, već <lrn-blank [answer]="['transpajlira', 'se transpajlira']"></lrn-blank>.
+  </lrn-fill-in-the-blank>
+
+  <pre>{{ answer | json }}</pre>
+
+</lrn-notebook>

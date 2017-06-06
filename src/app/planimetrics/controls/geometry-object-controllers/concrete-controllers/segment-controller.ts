@@ -24,12 +24,12 @@ export class SegmentController extends GeometryObjectController {
         const {x1, y1, x2, y2} = obj;
         const p1 = Point.FromCartesianCoordinates(x1, y1);
         const p2 = Point.FromCartesianCoordinates(x2, y2);
-        return Segment.FromTwoPoints(p1, p2);
+        return Segment.FromTwoPoints(p1, p2).copyViewDataFrom(this.segment);
     }
 
     private generalStrategy: Strategy = {
         destruct: this.generalDestructStrategy.bind(this),
-        reconstruct: this.generalReconstructStrategy,
+        reconstruct: this.generalReconstructStrategy.bind(this),
     };
 
     constructor(segment: Segment) {

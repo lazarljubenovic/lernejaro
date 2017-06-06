@@ -1,27 +1,28 @@
-<!--<div class="controls">-->
-  <!--<lrn-planimetrics-control [(object)]="point"-->
-                            <!--[strategies]="['cartesian', 'polar']"-->
-  <!--&gt;</lrn-planimetrics-control>-->
-<!---->
+<div class="controls">
+  <lrn-planimetrics-control [object]="point"
+                            (objectChange)="point = $event; onExternalChange()"
+                            [strategies]="['cartesian', 'polar']"
+  ></lrn-planimetrics-control>
+
   <!--<lrn-planimetrics-control [(object)]="line"-->
                             <!--[strategies]="['general', 'segment', 'explicit']"-->
   <!--&gt;</lrn-planimetrics-control>-->
-<!---->
+
   <!--<lrn-planimetrics-control [(object)]="segment"-->
                             <!--[strategies]="['general']"-->
   <!--&gt;</lrn-planimetrics-control>-->
-<!---->
+
   <!--<lrn-planimetrics-control [(object)]="circle"-->
                             <!--[strategies]="['general']"-->
   <!--&gt;</lrn-planimetrics-control>-->
-<!--</div>-->
-<!---->
+</div>
+
 <!--<br>-->
-<!---->
+
 <!--<pre>{{point | json}}</pre>-->
 <!--<pre>{{line | json}}</pre>-->
-<!---->
-<!--<br>-->
+
+<br>
 
 <div style="width: 600px; height: 600px; border: dashed 1px rgba(0, 0, 0, .4); margin: 2em; display: flex">
   <lrn-planimetrics style="width:600px;"

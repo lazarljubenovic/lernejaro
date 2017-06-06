@@ -1,10 +1,29 @@
 import {GeometryObject} from './geometry-object';
 import {Point} from './point';
-import {isZero, areEqualFloats} from '../util';
+import {areEqualFloats, isZero} from '../util';
+import {Line} from './line';
 import {Matrix} from './matrix';
 
 export class Ellipse extends GeometryObject {
 
+    public static AreEqual(ellipse1: Ellipse, ellipse2: Ellipse): boolean {
+        const {A: A1, B: B1, C: C1, D: D1, E: E1, F: F1} = ellipse1.getGeneralForm();
+        const {A: A2, B: B2, C: C2, D: D2, E: E2, F: F2} = ellipse2.getGeneralForm();
+        return areEqualFloats(A1, A2)
+            && areEqualFloats(B1, B2)
+            && areEqualFloats(C1, C2)
+            && areEqualFloats(D1, D2)
+            && areEqualFloats(E1, E2)
+            && areEqualFloats(F1, F2);
+    }
+
+    /**
+     * (x/a)² + (y/b)² = 1
+     * @param a
+     * @param b
+     * @returns {Ellipse}
+     * @constructor
+     */
     public static FromCanonicalForm(a: number, b: number): Ellipse {
         if (isZero(a) || isZero(b)) {
             throw new Error(`a or b cannot be equal to 0. Given values: a = ${a}, b = ${b}`);
@@ -13,6 +32,18 @@ export class Ellipse extends GeometryObject {
         return Ellipse.FromGeneralForm(A, 0, C, 0, 0, F);
     }
 
+    /**
+     * Ax² + Bxy + Cy² + Dx + Et + F = 0
+     *
+     * @param A Coefficient of x²
+     * @param B Coefficient of xy
+     * @param C Coefficient of y²
+     * @param D Coefficient of x
+     * @param E Coefficient of y
+     * @param F Coefficient of 1
+     * @returns {Ellipse}
+     * @constructor
+     */
     public static FromGeneralForm(A: number,
                                   B: number,
                                   C: number,
@@ -44,6 +75,35 @@ export class Ellipse extends GeometryObject {
             throw new Error(`Matrix does not meet requirements for ellipse.`);
         }
     }
+
+    public static Circle = {
+
+        FromCenterAndRadius(center: Point, radius: number): Ellipse {
+            const {x: p, y: q} = center.getCartesianCoordinates();
+            const r = radius;
+            return Ellipse.FromGeneralForm(1, 0, 1, -2 * p, -2 * q, p * p + q * q - r * r);
+        },
+
+        /**
+         * (x - p)² + (y - q)² = r²
+         *
+         * @param p
+         * @param q
+         * @param r
+         * @returns {Ellipse}
+         * @constructor
+         */
+            FromGeneralForm(p: number, q: number, r: number): Ellipse {
+            const center = Point.FromCartesianCoordinates(p, q);
+            return Ellipse.Circle.FromCenterAndRadius(center, r);
+        },
+
+        FromCenterAndLine(center: Point, line: Line): Ellipse {
+            const radius = Point.GetDistanceBetweenLineAndPoint(line, center);
+            return Ellipse.Circle.FromCenterAndRadius(center, radius);
+        }
+
+    };
 
     private A: number;
     private B: number;
@@ -114,7 +174,7 @@ export class Ellipse extends GeometryObject {
         }
     }
 
-    public getGeneralForm(): {A: number, B: number, C: number, D: number, E: number, F: number} {
+    public getGeneralForm(): { A: number, B: number, C: number, D: number, E: number, F: number } {
         const [A, B, C, D, E, F] = [this.A, this.B, this.C, this.D, this.E, this.F];
         return {A, B, C, D, E, F};
     }
