@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {FitTextDirective} from './fit-text.directive';
+import {NgModule} from '@angular/core'
+import {CommonModule} from '@angular/common'
+import {FitTextDirective} from './fit-text.directive'
 
 @NgModule({
     imports: [

@@ -1,8 +1,8 @@
-import {Point3D} from '../objects/point-3d';
-import {Line3D} from '../objects/line-3d';
-import {Plane3D} from '../objects/plane-3d';
-import {Segment3D} from '../objects/segment-3d';
-import {StereometryObject} from '../stereometry-object';
+import {Point3D} from '../objects/point-3d'
+import {Line3D} from '../objects/line-3d'
+import {Plane3D} from '../objects/plane-3d'
+import {Segment3D} from '../objects/segment-3d'
+import {StereometryObject} from '../stereometry-object'
 
 export abstract class Renderer3D {
 
@@ -31,27 +31,27 @@ export abstract class Renderer3D {
     }
 
     public render(objects: StereometryObject[]) {
-        this.beforeObjectsRender(objects);
+        this.beforeObjectsRender(objects)
         objects.forEach(object => {
-            this.beforeEachObjectRender(object);
-            console.log(object);
+            this.beforeEachObjectRender(object)
+            console.log(object)
             switch (object.kind) {
                 case 'point':
-                    this.renderPoint3D(<Point3D>object);
-                    break;
+                    this.renderPoint3D(<Point3D>object)
+                    break
                 case 'plane':
-                    this.renderLine3D(<Line3D>object);
-                    break;
+                    this.renderLine3D(<Line3D>object)
+                    break
                 case 'line':
-                    this.renderLine3D(<Line3D>object);
-                    break;
+                    this.renderLine3D(<Line3D>object)
+                    break
                 case 'segment':
-                    this.renderSegment3D(<Segment3D>object);
-                    break;
+                    this.renderSegment3D(<Segment3D>object)
+                    break
             }
-            this.afterEachObjectRender(object);
-        });
-        this.afterObjectsRender(objects);
+            this.afterEachObjectRender(object)
+        })
+        this.afterObjectsRender(objects)
     }
 
 }

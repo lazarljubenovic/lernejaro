@@ -1,4 +1,4 @@
-import {Component, Input, TemplateRef, ViewEncapsulation} from '@angular/core';
+import {Component, Input, TemplateRef, ViewEncapsulation} from '@angular/core'
 
 @Component({
     selector: 'lrn-title-slide',
@@ -8,14 +8,14 @@ import {Component, Input, TemplateRef, ViewEncapsulation} from '@angular/core';
 })
 export class TitleSlideComponent {
 
-    @Input() author: string | TemplateRef<any> = 'Unknown Author';
-    @Input() description: string | TemplateRef<any>;
-    @Input() title: string | TemplateRef<any>;
+    @Input() author: string | TemplateRef<any> = 'Unknown Author'
+    @Input() description: string | TemplateRef<any>
+    @Input() title: string | TemplateRef<any>
 
-    @Input() backgroundImageUrl: string = 'https://unsplash.it/1080?image=987';
+    @Input() backgroundImageUrl: string = 'https://unsplash.it/1080?image=987'
 
     public typeOf(something: any): string {
-        return typeof something;
+        return typeof something
     }
 
 }

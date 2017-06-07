@@ -8,15 +8,15 @@ import {
     AfterViewInit,
     OnDestroy,
     Input
-} from '@angular/core';
+} from '@angular/core'
 
 @Directive({selector: '[lrnFitText]'})
 export class FitTextDirective implements OnInit, AfterViewInit, OnDestroy {
 
-    private view: EmbeddedViewRef<{}>;
+    private view: EmbeddedViewRef<{}>
 
-    @Input() public minSizePx: number = 1;
-    @Input() public maxSizePx: number = 1000;
+    @Input() public minSizePx: number = 1
+    @Input() public maxSizePx: number = 1000
 
     constructor(private templateRef: TemplateRef<Object>,
                 private elementRef: ElementRef,
@@ -24,29 +24,29 @@ export class FitTextDirective implements OnInit, AfterViewInit, OnDestroy {
     }
 
     public ngOnInit(): void {
-        this.view = this.viewContainerRef.createEmbeddedView(this.templateRef);
+        this.view = this.viewContainerRef.createEmbeddedView(this.templateRef)
 
         // Wrap contents into a span
         this.view.rootNodes.forEach(parent => {
-            const spanWrapper = document.createElement('span');
+            const spanWrapper = document.createElement('span')
             while (parent.firstChild) {
-                spanWrapper.appendChild(parent.firstChild);
+                spanWrapper.appendChild(parent.firstChild)
             }
-            parent.appendChild(spanWrapper);
-        });
+            parent.appendChild(spanWrapper)
+        })
 
         // TODO Angular bug https://github.com/angular/angular/issues/14191
         window.addEventListener('resize', (event) => {
-            this.update();
-        });
+            this.update()
+        })
 
         document['fonts'].ready.then(() => {
-            this.update();
-        });
+            this.update()
+        })
     }
 
     public ngAfterViewInit(): void {
-        this.update();
+        this.update()
     }
 
     // TODO go up and down
@@ -54,28 +54,28 @@ export class FitTextDirective implements OnInit, AfterViewInit, OnDestroy {
 
     private update() {
         this.view.rootNodes.forEach(rootNode => {
-            const span = rootNode.children[0];
+            const span = rootNode.children[0]
             // const style = window.getComputedStyle(span); // TODO Why did I have this?
 
-            const box = rootNode.getBoundingClientRect();
-            const boxStyle = window.getComputedStyle(rootNode);
+            const box = rootNode.getBoundingClientRect()
+            const boxStyle = window.getComputedStyle(rootNode)
             const boxWidth = box.width - parseFloat(boxStyle.paddingRight) -
-                parseFloat(boxStyle.paddingLeft);
+                parseFloat(boxStyle.paddingLeft)
             const boxHeight = box.height - parseFloat(boxStyle.paddingTop) -
-                parseFloat(boxStyle.paddingBottom);
+                parseFloat(boxStyle.paddingBottom)
 
-            let rect = span.getBoundingClientRect();
-            let currentFontSizePx: number = this.minSizePx;
+            let rect = span.getBoundingClientRect()
+            let currentFontSizePx: number = this.minSizePx
             while (currentFontSizePx++ < this.maxSizePx) {
-                rect = span.getBoundingClientRect();
+                rect = span.getBoundingClientRect()
                 if (rect.width < boxWidth && rect.height < boxHeight) {
-                    span.style.fontSize = `${currentFontSizePx + 1}px`;
+                    span.style.fontSize = `${currentFontSizePx + 1}px`
                 } else {
-                    span.style.fontSize = `${currentFontSizePx - 1}px`;
-                    break;
+                    span.style.fontSize = `${currentFontSizePx - 1}px`
+                    break
                 }
             }
-        });
+        })
     }
 
     public ngOnDestroy() {

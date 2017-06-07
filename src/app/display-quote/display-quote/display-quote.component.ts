@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, Input, ViewEncapsulation} from '@angular/core'
 
 @Component({
     selector: 'lrn-display-quote',
@@ -8,7 +8,7 @@ import {Component, OnInit, Input, ViewEncapsulation} from '@angular/core';
 })
 export class DisplayQuoteComponent implements OnInit {
 
-    @Input() public imageUrl: string;
+    @Input() public imageUrl: string
 
     constructor() {
     }

@@ -1,9 +1,8 @@
 import {
     Component, OnInit, ViewChildren, AfterViewInit, OnDestroy, QueryList,
     AfterContentInit, ContentChildren, ViewEncapsulation
-} from '@angular/core';
-import {TaxonomyItemComponent} from '../taxonomy-item/taxonomy-item.component';
-// tslint:disable-next-line
+} from '@angular/core'
+import {TaxonomyItemComponent} from '../taxonomy-item/taxonomy-item.component'
 
 @Component({
     selector: 'lrn-taxonomy',
@@ -14,7 +13,7 @@ import {TaxonomyItemComponent} from '../taxonomy-item/taxonomy-item.component';
 export class TaxonomyComponent implements OnInit, AfterViewInit, OnDestroy, AfterContentInit {
 
     @ContentChildren(TaxonomyItemComponent)
-    public taxonomyItems: QueryList<TaxonomyItemComponent>;
+    public taxonomyItems: QueryList<TaxonomyItemComponent>
 
     public constructor() {
     }
@@ -29,8 +28,8 @@ export class TaxonomyComponent implements OnInit, AfterViewInit, OnDestroy, Afte
         this.taxonomyItems.changes
             .startWith(this.taxonomyItems)
             .subscribe(queryList => {
-                console.log(queryList);
-            });
+                console.log(queryList)
+            })
     }
 
     public ngOnDestroy(): void {

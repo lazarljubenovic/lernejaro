@@ -1,25 +1,25 @@
 /* tslint:disable:no-unused-variable */
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {ObjectEditorComponent} from './object-editor.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing'
+import {ObjectEditorComponent} from './object-editor.component'
 
 xdescribe('ObjectEditorComponent', () => {
-    let component: ObjectEditorComponent;
-    let fixture: ComponentFixture<ObjectEditorComponent>;
+    let component: ObjectEditorComponent
+    let fixture: ComponentFixture<ObjectEditorComponent>
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [ObjectEditorComponent]
         })
-            .compileComponents();
-    }));
+            .compileComponents()
+    }))
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ObjectEditorComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    });
+        fixture = TestBed.createComponent(ObjectEditorComponent)
+        component = fixture.componentInstance
+        fixture.detectChanges()
+    })
 
     it('should create', () => {
-        expect(component).toBeTruthy();
-    });
-});
+        expect(component).toBeTruthy()
+    })
+})

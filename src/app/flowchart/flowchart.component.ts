@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterContentInit} from '@angular/core';
+import {Component, OnInit, AfterContentInit} from '@angular/core'
 
 @Component({
     selector: 'lrn-flowchart',

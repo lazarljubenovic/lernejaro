@@ -1,28 +1,28 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
+import { By } from '@angular/platform-browser'
+import { DebugElement } from '@angular/core'
 
-import { ExpandingFabComponent } from './expanding-fab.component';
+import { ExpandingFabComponent } from './expanding-fab.component'
 
 describe('ExpandingFabComponent', () => {
-  let component: ExpandingFabComponent;
-  let fixture: ComponentFixture<ExpandingFabComponent>;
+  let component: ExpandingFabComponent
+  let fixture: ComponentFixture<ExpandingFabComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ExpandingFabComponent ]
     })
-    .compileComponents();
-  }));
+    .compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExpandingFabComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(ExpandingFabComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

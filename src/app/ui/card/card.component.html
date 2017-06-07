@@ -1,12 +1,12 @@
-<article class="card-wrapper" [style.padding.rem]="padding">
-  <ng-container *ngIf="header != null || cardHeader != null">
-    <ng-container *ngIf="cardHeader != null">
-      <ng-content select="lrn-card-header"></ng-content>
-    </ng-container>
-    <lrn-card-header *ngIf="cardHeader == null">
-      <h1>{{ header }}</h1>
-    </lrn-card-header>
+<ng-container *ngIf="header != null || cardHeader != null">
+  <ng-container *ngIf="cardHeader != null">
+    <ng-content select="lrn-card-header"></ng-content>
   </ng-container>
-  <ng-content></ng-content>
-  <ng-content select="lrn-card-footer"></ng-content>
-</article>
+  <lrn-card-header *ngIf="cardHeader == null">
+    <h1>{{ header }}</h1>
+  </lrn-card-header>
+</ng-container>
+
+<ng-content select="lrn-card-content"></ng-content>
+
+<ng-content select="lrn-card-footer"></ng-content>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core'
 
 @Component({
     selector: 'lrn-introducing-charts',
@@ -12,13 +12,13 @@ export class IntroducingChartsComponent implements OnInit {
             value: 10,
             label: 'a',
         }
-    ];
+    ]
 
     public addData() {
         this.data.push({
             value: Math.floor(Math.random() * 50 + 1),
             label: Math.random().toString(36).slice(2, 6),
-        });
+        })
     }
 
     constructor() {

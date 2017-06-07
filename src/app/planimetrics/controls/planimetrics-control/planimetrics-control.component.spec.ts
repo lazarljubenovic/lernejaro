@@ -1,25 +1,25 @@
 /* tslint:disable:no-unused-variable */
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {PlanimetricsControlComponent} from './planimetrics-control.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing'
+import {PlanimetricsControlComponent} from './planimetrics-control.component'
 
 xdescribe('PlanimetricsControlComponent', () => {
-    let component: PlanimetricsControlComponent;
-    let fixture: ComponentFixture<PlanimetricsControlComponent>;
+    let component: PlanimetricsControlComponent
+    let fixture: ComponentFixture<PlanimetricsControlComponent>
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [PlanimetricsControlComponent]
         })
-            .compileComponents();
-    }));
+            .compileComponents()
+    }))
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(PlanimetricsControlComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    });
+        fixture = TestBed.createComponent(PlanimetricsControlComponent)
+        component = fixture.componentInstance
+        fixture.detectChanges()
+    })
 
     it('should create', () => {
-        expect(component).toBeTruthy();
-    });
-});
+        expect(component).toBeTruthy()
+    })
+})

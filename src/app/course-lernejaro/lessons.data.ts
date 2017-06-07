@@ -1,6 +1,6 @@
-import {LessonIcon} from '../lesson-navigator/lesson-icon.enum';
-import {LessonColor} from '../lesson-navigator/lesson-color.enum';
-import {Lesson} from '../lesson-navigator/lesson';
+import {LessonIcon} from '../lesson-navigator/lesson-icon.enum'
+import {LessonColor} from '../lesson-navigator/lesson-color.enum'
+import {Lesson} from '../lesson-navigator/lesson'
 
 export const LESSONS: Lesson[] = [
     {
@@ -108,4 +108,4 @@ export const LESSONS: Lesson[] = [
         icon: LessonIcon.Cog,
         isUnlocked: true,
     }
-];
+]

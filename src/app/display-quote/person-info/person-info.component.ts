@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, Input, ViewEncapsulation} from '@angular/core'
 
 @Component({
     selector: 'lrn-person-info',
@@ -8,8 +8,8 @@ import {Component, OnInit, Input, ViewEncapsulation} from '@angular/core';
 })
 export class PersonInfoComponent implements OnInit {
 
-    @Input() name: string;
-    @Input() lifeSpan: number[] = [];
+    @Input() name: string
+    @Input() lifeSpan: number[] = []
 
     constructor() {
     }

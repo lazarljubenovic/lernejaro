@@ -1,25 +1,25 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 
-import { QuoteTextComponent } from './quote-text.component';
+import { QuoteTextComponent } from './quote-text.component'
 
 describe('QuoteTextComponent', () => {
-  let component: QuoteTextComponent;
-  let fixture: ComponentFixture<QuoteTextComponent>;
+  let component: QuoteTextComponent
+  let fixture: ComponentFixture<QuoteTextComponent>
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ QuoteTextComponent ]
     })
-    .compileComponents();
-  }));
+    .compileComponents()
+  }))
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(QuoteTextComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    fixture = TestBed.createComponent(QuoteTextComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
 
   it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+    expect(component).toBeTruthy()
+  })
+})

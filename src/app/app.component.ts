@@ -1,12 +1,12 @@
-import {Component} from '@angular/core';
-import {Point} from './planimetryts/geometry-objects/point';
-import {Segment} from './planimetryts/geometry-objects/segment';
-import {Point3D} from './stereometryts/objects/point-3d';
-import {MaterialColor} from './planimetryts/geometry-objects/material-colors';
+import {Component} from '@angular/core'
+import {Point} from './planimetryts/geometry-objects/point'
+import {Segment} from './planimetryts/geometry-objects/segment'
+import {Point3D} from './stereometryts/objects/point-3d'
+import {MaterialColor} from './planimetryts/geometry-objects/material-colors'
 
-const n = 3;
-const colors = [MaterialColor.RED, MaterialColor.GREEN, MaterialColor.BLUE];
-let colorIndex = -1;
+const n = 3
+const colors = [MaterialColor.RED, MaterialColor.GREEN, MaterialColor.BLUE]
+let colorIndex = -1
 
 @Component({
     selector: 'app-root',
@@ -16,16 +16,16 @@ let colorIndex = -1;
 export class AppComponent {
 
     public points = Array(n).fill(null).map((_, y) => {
-        colorIndex++;
+        colorIndex++
         return Array(n).fill(null).map((__, x) => {
             return Array(n).fill(null).map((___, z) => {
-                const [i, j, k] = [x - n / 2, y - n / 2, z - n / 2].map(____ => 50 * ____);
-                return Point3D.FromCartesianCoordinates(i, j, k).strokeColor(colors[colorIndex]);
-            });
-        }).reduce((acc, curr) => acc.concat(curr), []);
-    }).reduce((acc, curr) => acc.concat(curr), []);
+                const [i, j, k] = [x - n / 2, y - n / 2, z - n / 2].map(____ => 50 * ____)
+                return Point3D.FromCartesianCoordinates(i, j, k).strokeColor(colors[colorIndex])
+            })
+        }).reduce((acc, curr) => acc.concat(curr), [])
+    }).reduce((acc, curr) => acc.concat(curr), [])
 
-    public answer = null;
+    public answer = null
 
     // public test = {
     //     a: 2,
@@ -41,10 +41,10 @@ export class AppComponent {
     // public segment = Segment.FromTwoPoints(this.point, this.point2);
     // public circle = Circle.FromCenterAndRadius(this.point, 3);
 
-    public pointLeft = Point.FromCartesianCoordinates(-100, 0);
-    public pointRight = Point.FromCartesianCoordinates(100, 0);
-    public segment = Segment.FromTwoPoints(this.pointLeft, this.pointRight);
-    public bisector = this.segment.getBisector();
+    public pointLeft = Point.FromCartesianCoordinates(-100, 0)
+    public pointRight = Point.FromCartesianCoordinates(100, 0)
+    public segment = Segment.FromTwoPoints(this.pointLeft, this.pointRight)
+    public bisector = this.segment.getBisector()
 
     private slidesText = [
         `It's very easy to make some words **bold**
@@ -133,13 +133,13 @@ if (isAwesome){
 //
 // And, of course emoji! :sparkles: :camel: :boom:
 // `,
-    ];
+    ]
 
     public slides = this.slidesText.map(text => {
         return {
             text,
             code: '```\n' + text + '\n```',
-        };
-    });
+        }
+    })
 
 }

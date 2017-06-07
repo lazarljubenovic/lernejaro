@@ -1,12 +1,43 @@
 @import '../../global';
 
-:host {
-  display: block;
+$padding-top: 1.2rem;
+$padding-left-right: 1rem;
+$padding-bottom: 1rem;
 
-  .card-wrapper {
-    display: block;
-    @include z-depth-2dp;
-    border-radius: 3px;
-    overflow: hidden;
+lrn-card {
+  display: block;
+  @include z-depth-2dp;
+  border-radius: 3px;
+  overflow: hidden;
+
+  > * > * {
+    padding-left: $padding-left-right;
+    padding-right: $padding-left-right;
+  }
+
+  > :first-child > * {
+    padding-top: $padding-top;
+  }
+
+  > :last-child > * {
+    padding-bottom:  $padding-bottom;
+  }
+
+  // Zero or one
+  lrn-card-header {
+    border-bottom: 1px solid rgba(black, .06);
+  }
+
+  // One or more
+  lrn-card-content {
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid rgba(black, .06);
+    }
+  }
+
+  // Zero or one
+  lrn-card-footer {
+    border-top: 1px solid rgba(black, .06);
   }
 }

@@ -6,8 +6,8 @@ import {
     Renderer,
     OnChanges,
     HostListener
-} from '@angular/core';
-import {ChartService} from '../../chart.service';
+} from '@angular/core'
+import {ChartService} from '../../chart.service'
 
 @Directive({selector: 'lrn-chart-directive-internal'})
 export class ChartDirective implements OnInit, AfterViewInit, OnChanges {
@@ -21,14 +21,14 @@ export class ChartDirective implements OnInit, AfterViewInit, OnChanges {
 
     @HostListener('window:resize')
     public onWindowResize() {
-        this.chartService.onSizeChange();
+        this.chartService.onSizeChange()
     }
 
     ngOnInit() {
-        const el = this.elRef.nativeElement;
-        this.renderer.setElementStyle(el, 'display', 'block');
-        this.renderer.setElementStyle(el, 'width', '100%');
-        this.renderer.setElementStyle(el, 'height', '100%');
+        const el = this.elRef.nativeElement
+        this.renderer.setElementStyle(el, 'display', 'block')
+        this.renderer.setElementStyle(el, 'width', '100%')
+        this.renderer.setElementStyle(el, 'height', '100%')
     }
 
     ngOnChanges() {

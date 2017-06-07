@@ -1,25 +1,25 @@
 /* tslint:disable:no-unused-variable */
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {MarkdownComponent} from './markdown.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing'
+import {MarkdownComponent} from './markdown.component'
 
 xdescribe('MarkdownComponent', () => {
-    let component: MarkdownComponent;
-    let fixture: ComponentFixture<MarkdownComponent>;
+    let component: MarkdownComponent
+    let fixture: ComponentFixture<MarkdownComponent>
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [MarkdownComponent]
         })
-            .compileComponents();
-    }));
+            .compileComponents()
+    }))
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(MarkdownComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    });
+        fixture = TestBed.createComponent(MarkdownComponent)
+        component = fixture.componentInstance
+        fixture.detectChanges()
+    })
 
     it('should create', () => {
-        expect(component).toBeTruthy();
-    });
-});
+        expect(component).toBeTruthy()
+    })
+})

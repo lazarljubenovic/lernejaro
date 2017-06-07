@@ -1,5 +1,5 @@
-import {Component, OnInit, Input, ChangeDetectionStrategy, OnChanges} from '@angular/core';
-import {LessonIcon} from '../lesson-navigator/lesson-icon.enum';
+import {Component, OnInit, Input, ChangeDetectionStrategy, OnChanges} from '@angular/core'
+import {LessonIcon} from '../lesson-navigator/lesson-icon.enum'
 
 @Component({
     selector: 'lrn-icon',
@@ -9,60 +9,60 @@ import {LessonIcon} from '../lesson-navigator/lesson-icon.enum';
 })
 export class IconComponent implements OnInit, OnChanges {
 
-    @Input() public icon: LessonIcon;
+    @Input() public icon: LessonIcon
 
-    public fontAwesomeIconId: string;
+    public fontAwesomeIconId: string
 
     constructor() {
     }
 
     ngOnChanges() {
-        let id: string;
+        let id: string
         switch (this.icon) {
             case LessonIcon.Calendar:
-                id = 'calendar';
-                break;
+                id = 'calendar'
+                break
             case LessonIcon.Circle:
-                id = 'circle';
-                break;
+                id = 'circle'
+                break
             case LessonIcon.Cog:
-                id = 'cog';
-                break;
+                id = 'cog'
+                break
             case LessonIcon.Cubes:
-                id = 'cubes';
-                break;
+                id = 'cubes'
+                break
             case LessonIcon.Eye:
-                id = 'eye';
-                break;
+                id = 'eye'
+                break
             case LessonIcon.Flask:
-                id = 'flask';
-                break;
+                id = 'flask'
+                break
             case LessonIcon.Trophy:
-                id = 'trophy';
-                break;
+                id = 'trophy'
+                break
             case LessonIcon.Lock:
-                id = 'lock';
-                break;
+                id = 'lock'
+                break
             case LessonIcon.Magnet:
-                id = 'magnet';
-                break;
+                id = 'magnet'
+                break
             case LessonIcon.Umbrella:
-                id = 'umbrella';
-                break;
+                id = 'umbrella'
+                break
             case LessonIcon.Wrench:
-                id = 'wrench';
-                break;
+                id = 'wrench'
+                break
             case LessonIcon.Trash:
-                id = 'trash';
-                break;
+                id = 'trash'
+                break
             case LessonIcon.Star:
-                id = 'star';
-                break;
+                id = 'star'
+                break
             default:
                 // TODO
-                id = 'folder';
+                id = 'folder'
         }
-        this.fontAwesomeIconId = 'fa fa-' + id;
+        this.fontAwesomeIconId = 'fa fa-' + id
     }
 
     ngOnInit() {

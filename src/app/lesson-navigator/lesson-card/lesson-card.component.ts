@@ -1,5 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {Lesson} from "../lesson";
+import {Component, OnInit, Input} from '@angular/core'
+import {Lesson} from "../lesson"
 
 @Component({
     selector: 'lrn-lesson-card',
@@ -8,7 +8,7 @@ import {Lesson} from "../lesson";
 })
 export class LessonCardComponent implements OnInit {
 
-    @Input() public lesson: Lesson;
+    @Input() public lesson: Lesson
 
     constructor() {
     }

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core'
 
 @Component({
     selector: 'lrn-introducing-bitmaps',
@@ -11,7 +11,7 @@ export class IntroducingBitmapsComponent implements OnInit {
         ['red', 'red', 'red', 'red', 'red'],
         ['green', 'green', 'blue', 'yellow', 'white'],
         ['rgba(21, 24, 46, .1)', '', '', '', ''],
-    ];
+    ]
 
     constructor() {
     }

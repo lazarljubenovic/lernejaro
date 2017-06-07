@@ -1,5 +1,5 @@
-import {Component, OnInit, Input, ViewEncapsulation} from '@angular/core';
-import {TreeNodeTableOfContent} from '../table-of-content/table-of-content-tree-node.interface';
+import {Component, OnInit, Input, ViewEncapsulation} from '@angular/core'
+import {TreeNodeTableOfContent} from '../table-of-content/table-of-content-tree-node.interface'
 
 @Component({
     selector: '[lrnTableOfContentNode]',
@@ -9,7 +9,7 @@ import {TreeNodeTableOfContent} from '../table-of-content/table-of-content-tree-
 })
 export class TableOfContentNodeComponent implements OnInit {
 
-    @Input() node: TreeNodeTableOfContent;
+    @Input() node: TreeNodeTableOfContent
 
     constructor() {
     }

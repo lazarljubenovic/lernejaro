@@ -1,5 +1,5 @@
-import {Directive} from '@angular/core';
-import {ChoiceComponent} from './choice.component';
+import {Directive} from '@angular/core'
+import {ChoiceComponent} from './choice.component'
 
 @Directive({
     selector: '[lrnCorrect]'
@@ -7,7 +7,7 @@ import {ChoiceComponent} from './choice.component';
 export class CorrectDirective {
 
     constructor(choice: ChoiceComponent) {
-        choice.setAsCorrect();
+        choice.setAsCorrect()
     }
 
 }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core'
 
 @Component({
     selector: 'lrn-latex-input-number',
@@ -7,12 +7,12 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class LatexInputNumberComponent implements OnInit {
 
-    @Input() public value: number;
-    @Output() public valueChange = new EventEmitter<number>();
+    @Input() public value: number
+    @Output() public valueChange = new EventEmitter<number>()
 
-    @Input() public name: number;
-    @Input() public label: string;
-    @Input() public decimals: number;
+    @Input() public name: number
+    @Input() public label: string
+    @Input() public decimals: number
 
     constructor() {
     }

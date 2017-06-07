@@ -1,4 +1,4 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core'
 
 @Component({
     selector: 'lrn-option',
@@ -7,7 +7,7 @@ import {Component, OnInit, Input} from '@angular/core';
 })
 export class OptionComponent implements OnInit {
 
-    @Input() public value: string;
+    @Input() public value: string
 
     constructor() {
     }

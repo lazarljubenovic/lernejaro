@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, HostBinding} from '@angular/core';
+import {Component, OnInit, Input, HostBinding} from '@angular/core'
 
 @Component({
     selector: 'lrn-progress-bar',
@@ -7,12 +7,12 @@ import {Component, OnInit, Input, HostBinding} from '@angular/core';
 })
 export class ProgressBarComponent implements OnInit {
 
-    @HostBinding('style.width') @Input() public width: string = '100%';
-    @HostBinding('style.height') @Input() public height: string = '1ex';
+    @HostBinding('style.width') @Input() public width: string = '100%'
+    @HostBinding('style.height') @Input() public height: string = '1ex'
 
-    @Input() public total: number = 100;
-    @Input() public current: number = 0;
-    @Input() public percent: number = null;
+    @Input() public total: number = 100
+    @Input() public current: number = 0
+    @Input() public percent: number = null
 
     constructor() {
     }

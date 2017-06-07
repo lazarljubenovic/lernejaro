@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, AfterContentInit} from '@angular/core';
+import {Component, OnInit, Input, AfterContentInit} from '@angular/core'
 
 // TODO do we actually need this as a component? i forgot
 
@@ -9,7 +9,7 @@ import {Component, OnInit, Input, AfterContentInit} from '@angular/core';
 })
 export class QuizComponent implements OnInit, AfterContentInit {
 
-    @Input() public shuffle: boolean = false;
+    @Input() public shuffle: boolean = false
 
     constructor() {
     }

@@ -1,10 +1,10 @@
-import {GeometryObject} from '../geometry-objects/geometry-object';
-import {Point} from '../geometry-objects/point';
-import {Line} from '../geometry-objects/line';
-import {Segment} from '../geometry-objects/segment';
-import {Circle} from '../geometry-objects/circle';
-import {Polygon} from '../geometry-objects/polygon';
-import {Ellipse} from '../geometry-objects/ellipse';
+import {GeometryObject} from '../geometry-objects/geometry-object'
+import {Point} from '../geometry-objects/point'
+import {Line} from '../geometry-objects/line'
+import {Segment} from '../geometry-objects/segment'
+import {Circle} from '../geometry-objects/circle'
+import {Polygon} from '../geometry-objects/polygon'
+import {Ellipse} from '../geometry-objects/ellipse'
 
 export abstract class Renderer {
 
@@ -40,32 +40,32 @@ export abstract class Renderer {
     }
 
     public render(objects: GeometryObject[]) {
-        this.beforeObjectsRender(objects);
+        this.beforeObjectsRender(objects)
         objects.forEach(object => {
-            this.beforeEachObjectRender(object);
+            this.beforeEachObjectRender(object)
             switch (object.kind) {
                 case 'point':
-                    this.renderPoint(<Point>object);
-                    break;
+                    this.renderPoint(<Point>object)
+                    break
                 case 'line':
-                    this.renderLine(<Line>object);
-                    break;
+                    this.renderLine(<Line>object)
+                    break
                 case 'segment':
-                    this.renderSegment(<Segment>object);
-                    break;
+                    this.renderSegment(<Segment>object)
+                    break
                 case 'circle':
-                    this.renderCircle(<Circle>object);
-                    break;
+                    this.renderCircle(<Circle>object)
+                    break
                 case 'polygon':
-                    this.renderPolygon(<Polygon>object);
-                    break;
+                    this.renderPolygon(<Polygon>object)
+                    break
                 case 'ellipse':
-                    this.renderEllipse(<Ellipse>object);
-                    break;
+                    this.renderEllipse(<Ellipse>object)
+                    break
             }
-            this.afterEachObjectRender(object);
-        });
-        this.afterObjectsRender(objects);
+            this.afterEachObjectRender(object)
+        })
+        this.afterObjectsRender(objects)
     }
 
 }

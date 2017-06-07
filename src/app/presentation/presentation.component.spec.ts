@@ -1,25 +1,25 @@
 /* tslint:disable:no-unused-variable */
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {PresentationComponent} from './presentation.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing'
+import {PresentationComponent} from './presentation.component'
 
 xdescribe('PresentationComponent', () => {
-    let component: PresentationComponent;
-    let fixture: ComponentFixture<PresentationComponent>;
+    let component: PresentationComponent
+    let fixture: ComponentFixture<PresentationComponent>
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [PresentationComponent]
         })
-            .compileComponents();
-    }));
+            .compileComponents()
+    }))
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(PresentationComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    });
+        fixture = TestBed.createComponent(PresentationComponent)
+        component = fixture.componentInstance
+        fixture.detectChanges()
+    })
 
     it('should create', () => {
-        expect(component).toBeTruthy();
-    });
-});
+        expect(component).toBeTruthy()
+    })
+})

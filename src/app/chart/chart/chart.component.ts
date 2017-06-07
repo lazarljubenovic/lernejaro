@@ -10,11 +10,11 @@ import {
     QueryList,
     AfterViewInit,
     Optional
-} from '@angular/core';
-import {ChartService} from '../chart.service';
-import {ChartDirective} from '../internal/chart/chart.directive';
-import {ChartStrategyBase} from '../directives/chart-strategy-base';
-import {ChartDataDirective} from '../chart-data.directive';
+} from '@angular/core'
+import {ChartService} from '../chart.service'
+import {ChartDirective} from '../internal/chart/chart.directive'
+import {ChartStrategyBase} from '../directives/chart-strategy-base'
+import {ChartDataDirective} from '../chart-data.directive'
 
 @Component({
     selector: 'lrn-chart',
@@ -25,36 +25,36 @@ import {ChartDataDirective} from '../chart-data.directive';
 })
 export class ChartComponent implements OnInit, AfterViewInit {
 
-    @Input() public title: string;
-    @Input() public displayLegend: boolean = false;
-    @Input() public titlePosition: 'above' | 'below' = 'above';
-    @Input() public legendPosition: 'left' | 'right' = 'right';
+    @Input() public title: string
+    @Input() public displayLegend: boolean = false
+    @Input() public titlePosition: 'above' | 'below' = 'above'
+    @Input() public legendPosition: 'left' | 'right' = 'right'
 
     // We need this for the legend
     @ContentChildren(ChartDataDirective)
-    public data: QueryList<ChartDataDirective>;
+    public data: QueryList<ChartDataDirective>
 
     @ViewChild(ChartDirective)
-    public chartDirective: ChartDirective;
+    public chartDirective: ChartDirective
 
     @ViewChild('chart')
-    public chartDiv: ElementRef;
+    public chartDiv: ElementRef
 
-    private canvas: HTMLCanvasElement;
+    private canvas: HTMLCanvasElement
 
     protected prepare(): void {
-        const element = this.chartDirective.elRef.nativeElement;
+        const element = this.chartDirective.elRef.nativeElement
         // create canvas if it doesn't exist
-        let canvas: HTMLCanvasElement = element.getElementsByTagName('canvas')[0];
+        let canvas: HTMLCanvasElement = element.getElementsByTagName('canvas')[0]
         if (!canvas) {
-            canvas = document.createElement('canvas');
+            canvas = document.createElement('canvas')
         }
-        this.canvas = canvas;
-        const rect = this.chartDiv.nativeElement.getBoundingClientRect();
-        const {width, height} = {width: rect.right - rect.left, height: rect.bottom - rect.top};
-        this.canvas.width = width;
-        this.canvas.height = height;
-        element.appendChild(this.canvas);
+        this.canvas = canvas
+        const rect = this.chartDiv.nativeElement.getBoundingClientRect()
+        const {width, height} = {width: rect.right - rect.left, height: rect.bottom - rect.top}
+        this.canvas.width = width
+        this.canvas.height = height
+        element.appendChild(this.canvas)
     }
 
     constructor(private chartService: ChartService,
@@ -62,7 +62,7 @@ export class ChartComponent implements OnInit, AfterViewInit {
                 // TODO No idea why AOT fails without optional
                 @Self() @Optional() private strategy: ChartStrategyBase) {
         if (!strategy) {
-            throw new Error(`You have to specify what kind of chart you want to render.`);
+            throw new Error(`You have to specify what kind of chart you want to render.`)
         }
     }
 
@@ -71,20 +71,20 @@ export class ChartComponent implements OnInit, AfterViewInit {
 
     ngAfterViewInit() {
         setTimeout(() => {
-            this.prepare();
-            this.strategy.canvas = this.canvas;
-            this.strategy.render();
-            this.strategy.isReady = true;
+            this.prepare()
+            this.strategy.canvas = this.canvas
+            this.strategy.render()
+            this.strategy.isReady = true
 
             this.chartService.reRender$.subscribe(() => {
-                this.strategy.render();
-            });
+                this.strategy.render()
+            })
 
             this.chartService.sizeChange$.subscribe(() => {
-                this.prepare();
-                this.strategy.render();
-            });
-        });
+                this.prepare()
+                this.strategy.render()
+            })
+        })
     }
 
 }

@@ -1,24 +1,24 @@
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {IntroducingNotebookComponent} from './introducing-notebook.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing'
+import {IntroducingNotebookComponent} from './introducing-notebook.component'
 
 xdescribe('IntroducingNotebookComponent', () => {
-    let component: IntroducingNotebookComponent;
-    let fixture: ComponentFixture<IntroducingNotebookComponent>;
+    let component: IntroducingNotebookComponent
+    let fixture: ComponentFixture<IntroducingNotebookComponent>
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [IntroducingNotebookComponent]
         })
-            .compileComponents();
-    }));
+            .compileComponents()
+    }))
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(IntroducingNotebookComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    });
+        fixture = TestBed.createComponent(IntroducingNotebookComponent)
+        component = fixture.componentInstance
+        fixture.detectChanges()
+    })
 
     it('should create', () => {
-        expect(component).toBeTruthy();
-    });
-});
+        expect(component).toBeTruthy()
+    })
+})

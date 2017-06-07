@@ -1,5 +1,5 @@
 export interface FlowchartArrow {
-    begin: number;
-    end: number;
-    offset: number;
+    begin: number
+    end: number
+    offset: number
 }

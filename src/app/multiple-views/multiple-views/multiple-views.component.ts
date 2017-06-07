@@ -1,5 +1,5 @@
-import {AfterContentInit, Component, ContentChildren, OnInit, QueryList} from '@angular/core';
-import {ViewComponent} from '../view/view.component';
+import {AfterContentInit, Component, ContentChildren, OnInit, QueryList} from '@angular/core'
+import {ViewComponent} from '../view/view.component'
 
 @Component({
     selector: 'lrn-multiple-views',
@@ -9,7 +9,7 @@ import {ViewComponent} from '../view/view.component';
 export class MultipleViewsComponent implements OnInit, AfterContentInit {
 
     @ContentChildren(ViewComponent)
-    public views: QueryList<ViewComponent>;
+    public views: QueryList<ViewComponent>
 
     constructor() {
     }

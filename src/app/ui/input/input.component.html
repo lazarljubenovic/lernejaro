@@ -10,7 +10,7 @@
            (focus)="onFocus()"
            (blur)="onBlur()"
     >
-    <span class="underline"></span>
+    <span [class]="'underline ' + color"></span>
     <span class="label"><span>{{label}}</span></span>
   </label>
 </div>

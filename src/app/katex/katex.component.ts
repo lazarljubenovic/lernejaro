@@ -6,8 +6,8 @@ import {
     OnChanges,
     ViewChild,
     ElementRef
-} from '@angular/core';
-import * as KaTeX from 'katex';
+} from '@angular/core'
+import * as KaTeX from 'katex'
 
 @Component({
     selector: 'lrn-katex',
@@ -20,10 +20,10 @@ import * as KaTeX from 'katex';
 })
 export class KatexComponent implements OnChanges {
 
-    @Input() public math: string;
-    @Input() public display: 'block' | 'inline' = 'inline';
+    @Input() public math: string
+    @Input() public display: 'block' | 'inline' = 'inline'
 
-    @ViewChild('result') public result: ElementRef;
+    @ViewChild('result') public result: ElementRef
 
     constructor() {
     }
@@ -31,8 +31,8 @@ export class KatexComponent implements OnChanges {
     ngOnChanges() {
         const options: KaTeX.KatexOptions = {
             displayMode: this.display == 'block',
-        };
-        KaTeX.render(this.math, this.result.nativeElement, options);
+        }
+        KaTeX.render(this.math, this.result.nativeElement, options)
     }
 
 }

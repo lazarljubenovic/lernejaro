@@ -1,6 +1,6 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {NotebookComponent} from './notebook.component';
+import {NgModule} from '@angular/core'
+import {CommonModule} from '@angular/common'
+import {NotebookComponent} from './notebook.component'
 import {
     H1Directive,
     H6Directive,
@@ -8,10 +8,10 @@ import {
     H4Directive,
     H3Directive,
     H2Directive
-} from './directives/heading-directives';
-import {UiModule} from '../ui/ui.module';
-import {TableOfContentComponent} from './table-of-content/table-of-content.component';
-import {TableOfContentNodeComponent} from './table-of-content-node/table-of-content-node.component';
+} from './directives/heading-directives'
+import {UiModule} from '../ui/ui.module'
+import {TableOfContentComponent} from './table-of-content/table-of-content.component'
+import {TableOfContentNodeComponent} from './table-of-content-node/table-of-content-node.component'
 
 @NgModule({
     imports: [

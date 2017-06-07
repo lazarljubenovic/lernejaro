@@ -1,14 +1,14 @@
-import {Injectable} from '@angular/core';
-import {CanvasRenderer3D} from '../stereometryts/renderers/canvas-renderer-3d';
-import {StereometryObject} from '../stereometryts/stereometry-object';
+import {Injectable} from '@angular/core'
+import {CanvasRenderer3D} from '../stereometryts/renderers/canvas-renderer-3d'
+import {StereometryObject} from '../stereometryts/stereometry-object'
 
 @Injectable()
 export class RendererService {
 
-    private renderer: CanvasRenderer3D;
+    private renderer: CanvasRenderer3D
 
     public setRenderer(renderer: CanvasRenderer3D): void {
-        this.renderer = renderer;
+        this.renderer = renderer
     }
 
     constructor() {
@@ -31,7 +31,7 @@ export class RendererService {
     }
 
     public render(objects: StereometryObject[]): void {
-        this.renderer.render(objects);
+        this.renderer.render(objects)
     }
 
 }

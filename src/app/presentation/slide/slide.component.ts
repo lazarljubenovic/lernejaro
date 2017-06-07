@@ -4,11 +4,11 @@ import {
     ElementRef,
     ViewEncapsulation,
     Input, ContentChildren, QueryList, TemplateRef
-} from "@angular/core";
-import {SlideColumnComponent} from "../slide-column/slide-column.component";
+} from "@angular/core"
+import {SlideColumnComponent} from "../slide-column/slide-column.component"
 
 export interface ColumnOptions {
-    verticalCenter?: boolean;
+    verticalCenter?: boolean
 }
 
 @Component({
@@ -19,15 +19,15 @@ export interface ColumnOptions {
 })
 export class SlideComponent implements OnInit {
 
-    @Input() public title: string = 'Untitled';
-    @Input() public subtitle: string;
-    @Input() public logo: string | TemplateRef<any>;
+    @Input() public title: string = 'Untitled'
+    @Input() public subtitle: string
+    @Input() public logo: string | TemplateRef<any>
 
     @ContentChildren(SlideColumnComponent)
-    public slideColumnComponents: QueryList<SlideColumnComponent>;
+    public slideColumnComponents: QueryList<SlideColumnComponent>
 
     public typeOf(something: any): string {
-        return typeof something;
+        return typeof something
     }
 
     constructor(public elementRef: ElementRef) {

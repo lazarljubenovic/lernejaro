@@ -1,18 +1,23 @@
-import {Component, OnInit, Input, ContentChild} from '@angular/core';
-import {CardHeaderComponent} from './card-header/card-header.component';
+// tslint:disable-next-line
+import {Component, ContentChild, ContentChildren, Input, OnInit, QueryList, ViewEncapsulation} from '@angular/core'
+import {CardHeaderComponent} from './card-header/card-header.component'
+import {CardFooterComponent} from './card-footer/card-footer.component'
+import {CardContentComponent} from './card-content/card-content.component'
 
 @Component({
     selector: 'lrn-card',
     templateUrl: './card.component.html',
-    styleUrls: ['./card.component.scss']
+    styleUrls: ['./card.component.scss'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class CardComponent implements OnInit {
 
-    @Input() public padding: number = 0;
+    @Input() public header: string = null
+    @ContentChild(CardHeaderComponent) public cardHeader: CardHeaderComponent
 
-    @Input() public header: string = null;
+    @ContentChild(CardFooterComponent) public cardFooter: CardFooterComponent
 
-    @ContentChild(CardHeaderComponent) public cardHeader: CardHeaderComponent;
+    @ContentChildren(CardContentComponent) public cardContents: QueryList<CardContentComponent>
 
     constructor() {
     }

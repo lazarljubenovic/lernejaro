@@ -4,23 +4,90 @@
 
   <summary>
     <lrn-markdown>
-      _Kvizo_ je modul u sklopu Lernejaro paketa za kreiranje **kratkih kviz-pitanja**. Nudi kreiranje pitanja tipa "ispuni praznine", pitanja sa više ponuđenih odgovara od kojih je tačan samo jedan ili više njih, i pitanja tipa "izbaci uljeza".
+      _Kvizo_ je modul u sklopu Lernejaro paketa za kreiranje **kratkih kviz-pitanja**. Nudi
+      kreiranje pitanja tipa "ispuni praznine", pitanja sa više ponuđenih odgovara od kojih je tačan
+      samo jedan ili više njih, i pitanja tipa "izbaci uljeza".
     </lrn-markdown>
   </summary>
 
-  <h2>Primer</h2>
+  <h2>Primer korišćenja</h2>
 
-  <pre>
-&lt;lrn-fill-in-the-blank>
-  TajpSkript je programski jezik koji se ne kompajlira,
-  već &lt;lrn-blank [answer]="['transpajlira', 'se transpajlira']">&lt;/lrn-blank>.
-&lt;/lrn-fill-in-the-blank>
-  </pre>
+  <p>
+    Najjednostavniji oblik je kada postoji samo jedan tačan odgovor.
+  </p>
 
-  <lrn-fill-in-the-blank (answerChange)="answer = $event">
-    TajpSkript je programski jezik koji se ne kompajlira, već <lrn-blank [answer]="['transpajlira', 'se transpajlira']"></lrn-blank>.
+  <pre>&lt;lrn-fill-in-the-blank>
+  TajpSkript je programski jezik koji se ne kompajlira, već
+  &lt;lrn-blank correct=transpajlira>&lt;/lrn-blank>.
+&lt;/lrn-fill-in-the-blank></pre>
+
+  <lrn-fill-in-the-blank (answerChange)="answer = $event" (answerSubmit)="submitted = $event">
+    TajpSkript je programski jezik koji se ne kompajlira, već
+    <lrn-blank correct=transpajlira></lrn-blank>
+    .
   </lrn-fill-in-the-blank>
 
-  <pre>{{ answer | json }}</pre>
+  <div style="display: flex; align-items: stretch; width: 100%; justify-content: space-between;">
+    <div style="width: 49%">
+      <p>Model na promenu:</p>
+      <pre>{{ answer | json }}</pre>
+    </div>
+    <div style="width: 49%">
+      <p>Model na slanje:</p>
+      <pre>{{ submitted | json }}</pre>
+    </div>
+  </div>
+
+  <h2>Detaljnija konfiguracija</h2>
+
+  <p>
+    Kao <code>correct</code> se može proslediti <strong>niz stringova</strong>. U tom slučaju se kao
+    tačan odgovor prihvata bilo koji od datih stringova.
+  </p>
+
+  <p>
+    Sem toga, moguće je proslediti i <strong>regeks</strong> ili <strong>funckiju</strong>.
+  </p>
+
+  <lrn-fill-in-the-blank (answerChange)="answer = $event">
+    Prvo i poslednje slovo abecede su
+    <lrn-blank [correct]="regexA"></lrn-blank>
+    i
+    <lrn-blank [correct]="regexZ"></lrn-blank>
+    .
+  </lrn-fill-in-the-blank>
+
+  <lrn-fill-in-the-blank (answerChange)="answer = $event">
+    Reč od devet slova, počinje na L je
+    <lrn-blank [correct]="isCorrectWord"></lrn-blank>
+    .
+  </lrn-fill-in-the-blank>
+
+  <p>
+    Opis reči koja nedostaje se može dati kroz ulaz <code>[hint]</code>.
+  </p>
+
+  <lrn-fill-in-the-blank>
+    Nebo je
+    <lrn-blank correct=plavo hint="koje boje"></lrn-blank>
+    .
+  </lrn-fill-in-the-blank>
+
+  <p>
+    Moguće je pretpatiti se na događaj promene praznih polja, kao i na događaj slanja odgovara (pritiskom na <kbd>Enter</kbd> dok je neko polje u fokusu ili klikom na dugme <i>odgovori</i>). Ovi izlazi su, respektivno, <code>(answerChange)</code> i <code>(answerSubmit)</code>.
+  </p>
+
+  <p>Objekat koji se prosleđuje uz događaj prestavlja niz objekata sledeće strukture.</p>
+
+  <pre>interface AnswerInfo {{'{'}}
+  answer: string,
+  name: string,
+  correct: boolean,
+  hint: string,
+{{'}'}}</pre>
+
+  <p>
+    <code>answer</code> je odgovor koji je čitalac upisao u polje sa imenom <code>name</code>. <code>name</code> će biti automatski generisan koristeći globalni jedintveni identifikator, ali se može i ručno podesiti koristeći ulaz <code>[name]</code> u <code>lrn-blank</code>. <code>correct</code> je logička promenljiva koja govori o tome da li je odgovor tačan, odnosno da li je ispunjen uslov tačnosti prosleđen kroz ulaz <code>[correct]</code>. <code>hint</code> je zadat pomoćna vrednost.
+  </p>
 
 </lrn-notebook>

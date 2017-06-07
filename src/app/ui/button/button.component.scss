@@ -1,17 +1,42 @@
 @import '../../global';
 
 button.lrnButton {
+  font-family: $font;
   border: 0;
   outline: 0;
-  @include z-depth-2dp;
-  @include all-background-colors;
   padding: 1ex 1em;
-  color: rgba(white, .86);
-  font-size: 14px;
+  font-size: .8em;
   font-weight: 600;
   text-transform: uppercase;
   cursor: pointer;
   border-radius: 3px;
+  transition: all .2s ease-out;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+  }
+
+  &.raised {
+    @include z-depth-2dp;
+    @include all-background-colors;
+    color: rgba(white, .86);
+
+    &:focus,
+    &:hover {
+      @include z-depth-4dp;
+    }
+  }
+
+  &.flat {
+    background-color: transparent;
+    @include all-text-colors;
+
+    &:focus,
+    &:hover {
+      @include all-text-colors('400');;
+    }
+  }
 
   &.fab {
     position: fixed;

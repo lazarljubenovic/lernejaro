@@ -1,5 +1,5 @@
-import {Component, OnInit, Input} from '@angular/core';
-import {Lesson} from './lesson';
+import {Component, OnInit, Input} from '@angular/core'
+import {Lesson} from './lesson'
 
 @Component({
     selector: 'lrn-lesson-navigator',
@@ -8,7 +8,7 @@ import {Lesson} from './lesson';
 })
 export class LessonNavigatorComponent implements OnInit {
 
-    @Input() public lessons: Lesson[];
+    @Input() public lessons: Lesson[]
 
     constructor() {
     }

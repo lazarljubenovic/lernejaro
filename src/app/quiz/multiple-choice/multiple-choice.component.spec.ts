@@ -1,25 +1,25 @@
 /* tslint:disable:no-unused-variable */
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {MultipleChoiceComponent} from './multiple-choice.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing'
+import {MultipleChoiceComponent} from './multiple-choice.component'
 
 xdescribe('MultipleChoiceComponent', () => {
-    let component: MultipleChoiceComponent;
-    let fixture: ComponentFixture<MultipleChoiceComponent>;
+    let component: MultipleChoiceComponent
+    let fixture: ComponentFixture<MultipleChoiceComponent>
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [MultipleChoiceComponent]
         })
-            .compileComponents();
-    }));
+            .compileComponents()
+    }))
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(MultipleChoiceComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    });
+        fixture = TestBed.createComponent(MultipleChoiceComponent)
+        component = fixture.componentInstance
+        fixture.detectChanges()
+    })
 
     it('should create', () => {
-        expect(component).toBeTruthy();
-    });
-});
+        expect(component).toBeTruthy()
+    })
+})

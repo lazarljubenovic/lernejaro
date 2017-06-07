@@ -1,4 +1,4 @@
-import {Component, OnInit, ChangeDetectionStrategy, OnChanges, Input} from '@angular/core';
+import {Component, OnInit, ChangeDetectionStrategy, OnChanges, Input} from '@angular/core'
 
 @Component({
     selector: 'lrn-bitmap',
@@ -8,7 +8,7 @@ import {Component, OnInit, ChangeDetectionStrategy, OnChanges, Input} from '@ang
 })
 export class BitmapComponent implements OnInit, OnChanges {
 
-    @Input() public bitmap: string[][] = [];
+    @Input() public bitmap: string[][] = []
 
     constructor() {
     }

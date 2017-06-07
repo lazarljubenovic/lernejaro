@@ -1,25 +1,25 @@
 /* tslint:disable:no-unused-variable */
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {FlowchartBlockComponent} from './flowchart-block.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing'
+import {FlowchartBlockComponent} from './flowchart-block.component'
 
 xdescribe('FlowchartBlockComponent', () => {
-    let component: FlowchartBlockComponent;
-    let fixture: ComponentFixture<FlowchartBlockComponent>;
+    let component: FlowchartBlockComponent
+    let fixture: ComponentFixture<FlowchartBlockComponent>
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [FlowchartBlockComponent]
         })
-            .compileComponents();
-    }));
+            .compileComponents()
+    }))
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(FlowchartBlockComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    });
+        fixture = TestBed.createComponent(FlowchartBlockComponent)
+        component = fixture.componentInstance
+        fixture.detectChanges()
+    })
 
     it('should create', () => {
-        expect(component).toBeTruthy();
-    });
-});
+        expect(component).toBeTruthy()
+    })
+})

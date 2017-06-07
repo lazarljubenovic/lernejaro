@@ -1,7 +1,7 @@
-import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
-import {Lesson} from '../lesson-navigator/lesson';
-import {CourseLernejaroLessonsService} from './course-lernejaro-lessons.service';
+import {Component, OnInit} from '@angular/core'
+import {Observable} from 'rxjs'
+import {Lesson} from '../lesson-navigator/lesson'
+import {CourseLernejaroLessonsService} from './course-lernejaro-lessons.service'
 
 @Component({
     selector: 'lrn-course-lernejaro',
@@ -10,7 +10,7 @@ import {CourseLernejaroLessonsService} from './course-lernejaro-lessons.service'
 })
 export class CourseLernejaroComponent implements OnInit {
 
-    public lessons: Observable<Lesson[]> = this._lessonsService.getAllLessons('1');
+    public lessons: Observable<Lesson[]> = this._lessonsService.getAllLessons('1')
 
     constructor(private _lessonsService: CourseLernejaroLessonsService) {
     }

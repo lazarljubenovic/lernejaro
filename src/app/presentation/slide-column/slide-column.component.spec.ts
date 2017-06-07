@@ -1,25 +1,25 @@
 /* tslint:disable:no-unused-variable */
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {SlideColumnComponent} from './slide-column.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing'
+import {SlideColumnComponent} from './slide-column.component'
 
 xdescribe('SlideColumnComponent', () => {
-    let component: SlideColumnComponent;
-    let fixture: ComponentFixture<SlideColumnComponent>;
+    let component: SlideColumnComponent
+    let fixture: ComponentFixture<SlideColumnComponent>
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [SlideColumnComponent]
         })
-            .compileComponents();
-    }));
+            .compileComponents()
+    }))
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(SlideColumnComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    });
+        fixture = TestBed.createComponent(SlideColumnComponent)
+        component = fixture.componentInstance
+        fixture.detectChanges()
+    })
 
     it('should create', () => {
-        expect(component).toBeTruthy();
-    });
-});
+        expect(component).toBeTruthy()
+    })
+})

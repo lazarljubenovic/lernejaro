@@ -1,25 +1,25 @@
 /* tslint:disable:no-unused-variable */
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {RadioButtonComponent} from './radio-button.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing'
+import {RadioButtonComponent} from './radio-button.component'
 
 xdescribe('RadioButtonComponent', () => {
-    let component: RadioButtonComponent;
-    let fixture: ComponentFixture<RadioButtonComponent>;
+    let component: RadioButtonComponent
+    let fixture: ComponentFixture<RadioButtonComponent>
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [RadioButtonComponent]
         })
-            .compileComponents();
-    }));
+            .compileComponents()
+    }))
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(RadioButtonComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    });
+        fixture = TestBed.createComponent(RadioButtonComponent)
+        component = fixture.componentInstance
+        fixture.detectChanges()
+    })
 
     it('should create', () => {
-        expect(component).toBeTruthy();
-    });
-});
+        expect(component).toBeTruthy()
+    })
+})

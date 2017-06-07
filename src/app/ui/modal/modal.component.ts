@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit, EventEmitter, Output} from '@angular/core'
 
 @Component({
     selector: 'lrn-modal',
@@ -7,11 +7,11 @@ import {Component, OnInit, EventEmitter, Output} from '@angular/core';
 })
 export class ModalComponent implements OnInit {
 
-    @Output() public close = new EventEmitter<void>();
+    @Output() public close = new EventEmitter<void>()
 
     public onClick(event: MouseEvent) {
         if (event.srcElement.className == 'full-screen') {
-            this.close.emit();
+            this.close.emit()
         }
     }
 

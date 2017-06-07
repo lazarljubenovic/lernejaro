@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {PaletteService} from '../palette.service';
-import {LrnPaletteColor, LrnPaletteTheme} from '../palette';
+import {Component, OnInit} from '@angular/core'
+import {PaletteService} from '../palette.service'
+import {LrnPaletteColor, LrnPaletteTheme} from '../palette'
 
 @Component({
     selector: 'lrn-palette-picker',
@@ -28,14 +28,14 @@ export class PalettePickerComponent implements OnInit {
         'amber',
         'orange',
         'deep-orange',
-    ];
+    ]
 
     public selectColor(color: LrnPaletteColor = this.palette.color) {
-        this.palette.selectColor(color);
+        this.palette.selectColor(color)
     }
 
     public selectTheme(theme: LrnPaletteTheme = this.palette.theme) {
-        this.palette.selectTheme(theme);
+        this.palette.selectTheme(theme)
     }
 
     constructor(private palette: PaletteService) {

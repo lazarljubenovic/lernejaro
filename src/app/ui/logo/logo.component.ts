@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core'
 
 @Component({
     selector: 'lrn-logo',
@@ -7,10 +7,10 @@ import {Component, OnInit} from '@angular/core';
 })
 export class LogoComponent implements OnInit {
 
-    public size: number = 100;
-    public cardSize: number = 60;
+    public size: number = 100
+    public cardSize: number = 60
 
-    public margin: number = (this.size - this.cardSize) / 2;
+    public margin: number = (this.size - this.cardSize) / 2
 
     constructor() {
     }

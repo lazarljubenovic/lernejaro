@@ -1,7 +1,7 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import {StereometricsComponent} from './stereometrics.component';
-import {RendererService} from './renderer.service';
+import {NgModule} from '@angular/core'
+import {CommonModule} from '@angular/common'
+import {StereometricsComponent} from './stereometrics.component'
+import {RendererService} from './renderer.service'
 
 @NgModule({
     imports: [

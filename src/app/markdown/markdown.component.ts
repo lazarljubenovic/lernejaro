@@ -1,8 +1,8 @@
 import {
     Component, OnInit, ViewChild, ElementRef,
     AfterContentInit, AfterViewInit
-} from '@angular/core';
-import {MarkdownParserService} from "./markdown-parser.service";
+} from '@angular/core'
+import {MarkdownParserService} from "./markdown-parser.service"
 
 @Component({
     selector: 'lrn-markdown',
@@ -12,13 +12,13 @@ import {MarkdownParserService} from "./markdown-parser.service";
 export class MarkdownComponent implements OnInit, AfterContentInit, AfterViewInit {
 
     @ViewChild('content')
-    public content: ElementRef;
+    public content: ElementRef
 
-    public markedText: string;
+    public markedText: string
 
     private update(): void {
-        const plain: string = this.content.nativeElement.innerHTML;
-        this.markedText = this.markdown.transform(plain);
+        const plain: string = this.content.nativeElement.innerHTML
+        this.markedText = this.markdown.transform(plain)
     }
 
     constructor(private markdown: MarkdownParserService) {
@@ -31,7 +31,7 @@ export class MarkdownComponent implements OnInit, AfterContentInit, AfterViewIni
     }
 
     ngAfterViewInit() {
-        setTimeout(() => this.update());
+        setTimeout(() => this.update())
     }
 
 }

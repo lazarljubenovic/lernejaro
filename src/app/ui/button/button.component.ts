@@ -5,7 +5,8 @@ import {
     HostBinding,
     ChangeDetectionStrategy,
     OnChanges, ViewEncapsulation
-} from '@angular/core';
+} from '@angular/core'
+import {PaletteService} from '../palette.service'
 
 @Component({
     selector: 'button[lrnButton]',
@@ -16,19 +17,20 @@ import {
 })
 export class ButtonComponent implements OnInit, OnChanges {
 
-    @Input('lrnButton') public type: 'raised' | 'flat' | 'fab' = 'raised';
-    @Input() public color: string = 'blue';
+    @Input('lrnButton') public style: 'raised' | 'flat' | 'fab' = 'raised'
+    public color: string = 'blue'
 
-    @HostBinding('class') public klass: string;
+    @HostBinding('class') public klass: string
 
-    constructor() {
+    constructor(private palette: PaletteService) {
+        this.color = palette.color
     }
 
     ngOnInit() {
     }
 
     ngOnChanges() {
-        this.klass = 'lrnButton ' + this.type + ' ' + this.color;
+        this.klass = 'lrnButton ' + (this.style || 'raised') + ' ' + this.color
     }
 
 }

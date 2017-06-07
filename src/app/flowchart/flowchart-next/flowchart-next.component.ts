@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, HostBinding} from '@angular/core';
+import {Component, OnInit, Input, HostBinding} from '@angular/core'
 
 @Component({
     selector: 'lrn-flowchart-next',
@@ -8,7 +8,7 @@ import {Component, OnInit, Input, HostBinding} from '@angular/core';
 export class FlowchartNextComponent implements OnInit {
 
     @HostBinding('class.invisible')
-    @Input() public invisible: boolean;
+    @Input() public invisible: boolean
 
     constructor() {
     }

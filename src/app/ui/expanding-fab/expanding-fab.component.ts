@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, Input, ViewEncapsulation} from '@angular/core'
 
 @Component({
     selector: 'lrn-expanding-fab',
@@ -8,10 +8,10 @@ import {Component, OnInit, Input, ViewEncapsulation} from '@angular/core';
 })
 export class ExpandingFabComponent implements OnInit {
 
-    public isExpanded: boolean = true;
+    public isExpanded: boolean = true
 
     public toggle() {
-        this.isExpanded = !this.isExpanded;
+        this.isExpanded = !this.isExpanded
     }
 
     constructor() {

@@ -1,5 +1,5 @@
-import {Pipe, PipeTransform} from '@angular/core';
-import {ChartService} from '../chart.service';
+import {Pipe, PipeTransform} from '@angular/core'
+import {ChartService} from '../chart.service'
 
 @Pipe({
     name: 'orDefaultColor'
@@ -11,9 +11,9 @@ export class OrDefaultColorPipe implements PipeTransform {
 
     transform(value: string, index: number, total: number): string {
         if (value) {
-            return value;
+            return value
         } else {
-            return this.chartService.getEquallySpacedColors(total)[index];
+            return this.chartService.getEquallySpacedColors(total)[index]
         }
     }
 

@@ -7,10 +7,10 @@ import {
     forwardRef,
     Component,
     AfterViewInit, ViewEncapsulation
-} from '@angular/core';
-import {UniqueIdService} from '../../unique-id.service';
-import {RadioButtonComponent} from '../radio-button/radio-button.component';
-import {ControlValueAccessor} from '@angular/forms';
+} from '@angular/core'
+import {UniqueIdService} from '../../unique-id.service'
+import {RadioButtonComponent} from '../radio-button/radio-button.component'
+import {ControlValueAccessor} from '@angular/forms'
 
 @Component({
     selector: 'lrn-radio-button-group',
@@ -20,47 +20,47 @@ import {ControlValueAccessor} from '@angular/forms';
 })
 export class RadioButtonGroupComponent implements ControlValueAccessor, AfterViewInit {
 
-    private _value: string = null;
+    private _value: string = null
 
-    private _name: string;
+    private _name: string
 
     @ContentChildren(forwardRef(() => RadioButtonComponent))
-    public _radioButtons: QueryList<RadioButtonComponent>;
+    public _radioButtons: QueryList<RadioButtonComponent>
 
     @Input()
     public set name(newName: string) {
-        this._name = newName;
-        this._updateRadioButtonNames();
+        this._name = newName
+        this._updateRadioButtonNames()
     }
 
     public get name(): string {
-        return this._name;
+        return this._name
     }
 
     @Input()
     public set value(newValue: string) {
         if (this._value != newValue) {
-            this._value = newValue;
-            this._updateRadioButtonValues();
-            this.emitValueChange();
+            this._value = newValue
+            this._updateRadioButtonValues()
+            this.emitValueChange()
         }
     }
 
     public get value(): string {
-        return this._value;
+        return this._value
     }
 
-    @Output() public valueChange = new EventEmitter<string>();
+    @Output() public valueChange = new EventEmitter<string>()
 
     private emitValueChange() {
-        this.valueChange.emit(this._value);
+        this.valueChange.emit(this._value)
     }
 
     public ngAfterViewInit() {
         if (!this.name) {
             setTimeout(() => {
-                this.name = this.uniqueIdService.getUniqueId('radio-button-group-name-');
-            });
+                this.name = this.uniqueIdService.getUniqueId('radio-button-group-name-')
+            })
         }
     }
 
@@ -78,13 +78,13 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, AfterVie
 
     private _updateRadioButtonNames(): void {
         if (this._radioButtons) {
-            this._radioButtons.forEach(radioButton => radioButton.name = this._name);
+            this._radioButtons.forEach(radioButton => radioButton.name = this._name)
         }
     }
 
     private _updateRadioButtonValues(): void {
         if (this._radioButtons) {
-            this._radioButtons.forEach(radioButton => radioButton.currentValue = this._value);
+            this._radioButtons.forEach(radioButton => radioButton.currentValue = this._value)
         }
     }
 

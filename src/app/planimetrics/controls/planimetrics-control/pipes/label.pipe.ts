@@ -1,4 +1,4 @@
-import {Pipe, PipeTransform} from '@angular/core';
+import {Pipe, PipeTransform} from '@angular/core'
 // tslint:disable-next-line
 import {GeometryObjectController} from '../../geometry-object-controllers/geometry-object-controller';
 
@@ -7,14 +7,14 @@ export class LabelPipe implements PipeTransform {
 
     transform(controller: GeometryObjectController): string {
         try {
-            const label = controller.getGeometryObject().label();
+            const label = controller.getGeometryObject().label()
             if (!label) {
-                return 'Unlabeled';
+                return 'Unlabeled'
             } else {
-                return label;
+                return label
             }
         } catch (e) {
-            return '';
+            return ''
         }
     }
 

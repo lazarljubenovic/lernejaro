@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core'
 
 @Component({
     selector: 'lrn-introducing-kvizo',
@@ -7,7 +7,15 @@ import {Component, OnInit} from '@angular/core';
 })
 export class IntroducingKvizoComponent implements OnInit {
 
-    public answer;
+    public answer = null
+    public submitted = null
+
+    public regexA = /^\s*a\s*$/i
+    public regexZ = /^\s*z\s*$/i
+
+    public isCorrectWord(word: string): boolean {
+        return word.length == 9 && word.charAt(0).toLowerCase() == 'l'
+    }
 
     constructor() {
     }

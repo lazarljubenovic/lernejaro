@@ -1,25 +1,25 @@
 /* tslint:disable:no-unused-variable */
-import {async, ComponentFixture, TestBed} from '@angular/core/testing';
-import {LessonNavigatorComponent} from './lesson-navigator.component';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing'
+import {LessonNavigatorComponent} from './lesson-navigator.component'
 
 xdescribe('LessonNavigatorComponent', () => {
-    let component: LessonNavigatorComponent;
-    let fixture: ComponentFixture<LessonNavigatorComponent>;
+    let component: LessonNavigatorComponent
+    let fixture: ComponentFixture<LessonNavigatorComponent>
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [LessonNavigatorComponent]
         })
-            .compileComponents();
-    }));
+            .compileComponents()
+    }))
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(LessonNavigatorComponent);
-        component = fixture.componentInstance;
-        fixture.detectChanges();
-    });
+        fixture = TestBed.createComponent(LessonNavigatorComponent)
+        component = fixture.componentInstance
+        fixture.detectChanges()
+    })
 
     it('should create', () => {
-        expect(component).toBeTruthy();
-    });
-});
+        expect(component).toBeTruthy()
+    })
+})

@@ -1,6 +1,6 @@
-import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
-import {GeometryObject} from '../../planimetryts/geometry-objects/geometry-object';
-import {Point} from '../../planimetryts/geometry-objects/point';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core'
+import {GeometryObject} from '../../planimetryts/geometry-objects/geometry-object'
+import {Point} from '../../planimetryts/geometry-objects/point'
 
 @Component({
     selector: 'lrn-planimetrics-table',
@@ -9,26 +9,26 @@ import {Point} from '../../planimetryts/geometry-objects/point';
 })
 export class PlanimetricsTableComponent implements OnInit {
 
-    private _interactivePoints: Point[];
+    private _interactivePoints: Point[]
 
-    @Input() public objects: GeometryObject[];
+    @Input() public objects: GeometryObject[]
 
     @Input()
     public set interactivePoints(value: Point[]) {
-        this._interactivePoints = value.map(p => p.clone());
+        this._interactivePoints = value.map(p => p.clone())
     }
 
     public get interactivePoints(): Point[] {
-        return this._interactivePoints;
+        return this._interactivePoints
     }
 
-    @Output() public interactivePointsChange = new EventEmitter<Point[]>();
+    @Output() public interactivePointsChange = new EventEmitter<Point[]>()
 
-    public testObj = {x: 10, y: 20, z: 30};
+    public testObj = {x: 10, y: 20, z: 30}
 
     public onObjectChange(obj, i) {
         this.interactivePointsChange.next(
-            [...this.interactivePoints.slice(0, i), obj, ...this.interactivePoints.slice(i + 1)]);
+            [...this.interactivePoints.slice(0, i), obj, ...this.interactivePoints.slice(i + 1)])
     }
 
     constructor() {
@@ -38,7 +38,7 @@ export class PlanimetricsTableComponent implements OnInit {
     }
 
     public trackBy(index: number, item: any): number {
-        return index;
+        return index
     }
 
 }

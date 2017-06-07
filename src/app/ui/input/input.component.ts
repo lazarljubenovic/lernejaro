@@ -1,4 +1,5 @@
-import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core'
+import {PaletteService} from '../palette.service'
 
 @Component({
     selector: 'lrn-input',
@@ -7,37 +8,40 @@ import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 })
 export class InputComponent implements OnInit {
 
-    @Input() public label: string;
-    @Input() public type: string;
-    @Input() public name: string;
-    @Input() public step: number;
-    @Input() public decimals: number;
+    @Input() public label: string
+    @Input() public type: string
+    @Input() public name: string
+    @Input() public step: number
+    @Input() public decimals: number
 
-    @Input() public disableFloatingLabel: boolean = false;
+    @Input() public disableFloatingLabel: boolean = false
 
-    @Input() public value: any;
-    @Output() public valueChange = new EventEmitter<any>();
+    @Input() public value: any
+    @Output() public valueChange = new EventEmitter<any>()
 
-    public focus: boolean = false;
+    public color: string
+
+    public focus: boolean = false
 
     public onFocus() {
-        this.focus = true;
+        this.focus = true
     }
 
     public onBlur() {
-        this.focus = false;
+        this.focus = false
     }
 
     public onChange(newValue) {
         // TODO: Why do we need this?
         if (this.type == 'number') {
-            newValue = Number.parseFloat(newValue);
+            newValue = Number.parseFloat(newValue)
         }
-        this.value = newValue;
-        this.valueChange.emit(newValue);
+        this.value = newValue
+        this.valueChange.emit(newValue)
     }
 
-    constructor() {
+    constructor(palette: PaletteService) {
+        this.color = palette.color
     }
 
     ngOnInit() {

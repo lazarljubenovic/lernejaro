@@ -1,7 +1,7 @@
 import {
     Component, OnInit, ElementRef, Input,
     ViewEncapsulation, HostBinding
-} from '@angular/core';
+} from '@angular/core'
 
 @Component({
     selector: 'lrn-slide-column',
@@ -13,7 +13,7 @@ export class SlideColumnComponent implements OnInit {
 
     @Input()
     @HostBinding('class.vertical-center')
-    public verticalCenter: boolean = true;
+    public verticalCenter: boolean = true
 
     constructor(public elementRef: ElementRef) {
     }
