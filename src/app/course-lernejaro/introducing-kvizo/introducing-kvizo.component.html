@@ -10,7 +10,7 @@
     </lrn-markdown>
   </summary>
 
-  <h2>Primer korišćenja</h2>
+  <h2>Fill in the blanks</h2>
 
   <p>
     Najjednostavniji oblik je kada postoji samo jedan tačan odgovor.
@@ -79,7 +79,7 @@
 
   <p>Objekat koji se prosleđuje uz događaj prestavlja niz objekata sledeće strukture.</p>
 
-  <pre>interface AnswerInfo {{'{'}}
+  <pre>{{'{'}}
   answer: string,
   name: string,
   correct: boolean,
@@ -88,6 +88,32 @@
 
   <p>
     <code>answer</code> je odgovor koji je čitalac upisao u polje sa imenom <code>name</code>. <code>name</code> će biti automatski generisan koristeći globalni jedintveni identifikator, ali se može i ručno podesiti koristeći ulaz <code>[name]</code> u <code>lrn-blank</code>. <code>correct</code> je logička promenljiva koja govori o tome da li je odgovor tačan, odnosno da li je ispunjen uslov tačnosti prosleđen kroz ulaz <code>[correct]</code>. <code>hint</code> je zadat pomoćna vrednost.
+  </p>
+
+  <h2>Multiple choice</h2>
+
+  <p>
+    Najjednostavniji oblik je kada se navede više odgovora, a jedan se obeleži kao tačan.
+  </p>
+
+  <lrn-multiple-choice (answerChoose)="multipleChoiceAnswer1 = $event">
+    <lrn-question>
+      Šta sledi posle 5?
+    </lrn-question>
+    <lrn-choice value="tri">3</lrn-choice>
+    <lrn-choice value="cetiri">4</lrn-choice>
+    <lrn-choice>5</lrn-choice>
+    <lrn-choice lrnCorrect>6</lrn-choice>
+  </lrn-multiple-choice>
+
+  <pre>{{ multipleChoiceAnswer1 | json }}</pre>
+
+  <p>
+    Odgovori se automatski mešaju. Ovo se može isključiti prosleđivanjem ulaza <code>[shuffle]="false"</code>.
+  </p>
+
+  <p>
+    Događaj daje objekat koji u sebi sadrži <code>value</code> izabrane opcije (može se ručno podesiti zaadvanjem ulaza <code>[value]</code> komponente <code>lrn-choice</code>, a podrazumevano je automatski generisana unikatna vrednost), kao i <code>correct</code>, logičku vrendost koja govori o tačnosti datog odgovora.
   </p>
 
 </lrn-notebook>

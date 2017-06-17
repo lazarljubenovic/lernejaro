@@ -17,6 +17,8 @@ export class IntroducingKvizoComponent implements OnInit {
         return word.length == 9 && word.charAt(0).toLowerCase() == 'l'
     }
 
+    public multipleChoiceAnswer1 = null
+
     constructor() {
     }
 

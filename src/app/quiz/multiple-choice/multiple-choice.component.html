@@ -1,14 +1,23 @@
-<lrn-card>
-  <div class="question">
-    <b>Question:</b> <ng-content select="lrn-question"></ng-content>
-  </div>
-  <div class="choices">
-    <lrn-radio-button-group (valueChange)="onChoicePick($event)">
-      <lrn-radio-button *ngFor="let choice of choices; let i = index" [value]="choice.value">
-        <ng-template [ngTemplateOutlet]="choice.template"></ng-template>
-      </lrn-radio-button>
-    </lrn-radio-button-group>
-  </div>
+<lrn-card [header]="header">
+
+  <lrn-card-content class="question">
+    <ng-content select="lrn-question"></ng-content>
+  </lrn-card-content>
+
+  <lrn-card-content class="choices">
+    <form [id]="formId" (submit)="onSubmit($event)">
+      <lrn-radio-button-group (valueChange)="onChoicePick($event)">
+        <lrn-radio-button *ngFor="let choice of choices; let i = index" [value]="choice.value">
+          <ng-template [ngTemplateOutlet]="choice.template"></ng-template>
+        </lrn-radio-button>
+      </lrn-radio-button-group>
+    </form>
+  </lrn-card-content>
+
+  <lrn-card-footer>
+    <button [lrnButton]="'flat'" type="submit" [attr.form]="formId">Odgovori</button>
+  </lrn-card-footer>
+
 </lrn-card>
 
 

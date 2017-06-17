@@ -1,39 +1,50 @@
-import {
-    Component,
-    EventEmitter,
-    Output,
-    ContentChildren,
-    QueryList,
-    AfterContentInit,
-    AfterViewInit, TemplateRef, Input
-} from '@angular/core'
+// tslint:disable-next-line
+import {AfterContentInit, AfterViewInit, Component, ContentChildren, EventEmitter, Input, OnInit, Output, QueryList, TemplateRef} from '@angular/core'
 import {ChoiceComponent} from './choice/choice.component'
 import * as _ from 'lodash'
+import {UniqueIdService} from '../../unique-id.service'
 
 @Component({
     selector: 'lrn-multiple-choice',
     templateUrl: './multiple-choice.component.html',
     styleUrls: ['./multiple-choice.component.scss']
 })
-export class MultipleChoiceComponent implements AfterContentInit, AfterViewInit {
+export class MultipleChoiceComponent implements AfterContentInit, AfterViewInit, OnInit {
 
     @ContentChildren(ChoiceComponent)
     public choicesQueryList: QueryList<ChoiceComponent>
 
     @Input() public shuffle: boolean = true
+    @Input() public header: string = 'Choose the correct answer'
+    @Input() public formId: string
 
-    public choices: {template: TemplateRef<any>, isCorrect: boolean, value: string}[]
+    private answer: string
+
+    public choices: { template: TemplateRef<any>, isCorrect: boolean, value: string }[]
 
     public correctChoiceValue: string
 
-    public onChoicePick(answerValue: string) {
-        const correct = this.correctChoiceValue == answerValue
-        this.answerChoose.emit({correct, answer: answerValue})
+    public onChoicePick(answer: string): void {
+        this.answer = answer
+        const correct = this.correctChoiceValue == answer
+        this.answerChoose.emit({correct, answer})
     }
 
-    @Output() public answerChoose = new EventEmitter<{correct: boolean, answer: string}>()
+    public onSubmit(event: Event): void {
+        event.preventDefault()
+        const answer = this.answer
+        const correct = this.correctChoiceValue == answer
+        this.answerSubmit.emit({correct, answer})
+    }
 
-    constructor() {
+    @Output() public answerChoose = new EventEmitter<{ correct: boolean, answer: string }>()
+    @Output() public answerSubmit = new EventEmitter<{ correct: boolean, answer: string }>()
+
+    constructor(private _uniqueId: UniqueIdService) {
+    }
+
+    ngOnInit() {
+        this.formId = this.formId || this._uniqueId.getUniqueId('multiple-choice-')
     }
 
     ngAfterContentInit() {

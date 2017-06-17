@@ -1,4 +1,4 @@
-import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core'
+import {Component, Input, OnInit, TemplateRef, ViewChild} from '@angular/core'
 import {UniqueIdService} from '../../../unique-id.service'
 
 @Component({
@@ -11,7 +11,7 @@ export class ChoiceComponent implements OnInit {
     @ViewChild('template', {read: TemplateRef})
     public template: TemplateRef<any>
 
-    public value: string
+    @Input() public value: string
 
     private _correct: boolean = false
 
