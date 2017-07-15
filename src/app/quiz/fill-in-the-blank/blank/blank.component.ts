@@ -1,4 +1,4 @@
-import {Component, forwardRef, Inject, Input, OnInit} from '@angular/core'
+import {Component, forwardRef, HostBinding, Inject, Input, OnInit} from '@angular/core'
 import {FillInTheBlankComponent} from '../fill-in-the-blank.component'
 import {UniqueIdService} from '../../../unique-id.service'
 import {AnswerInfo} from '../answer-info'
@@ -29,6 +29,8 @@ export class BlankComponent implements OnInit {
     @Input() public hint: string = 'Type your answer'
 
     @Input() public name: string
+
+    @Input() public width: number = 8
 
     public answer: string
 

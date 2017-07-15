@@ -4,41 +4,52 @@
 
   <summary>
     <lrn-markdown>
-      _Kvizo_ je modul u sklopu Lernejaro paketa za kreiranje **kratkih kviz-pitanja**. Nudi
-      kreiranje pitanja tipa "ispuni praznine", pitanja sa više ponuđenih odgovara od kojih je tačan
-      samo jedan ili više njih, i pitanja tipa "izbaci uljeza".
+      _Kvizo_ je modul u sklopu Lernejaro paketa za kreiranje kratkih kviz-pitanja.
+      Nudi kreiranje pitanja tipa "ispuni praznine" i pitanja sa više ponuđenih odgovara
+      od kojih je tačan samo jedan ili više njih.
     </lrn-markdown>
   </summary>
 
-  <h2>Fill in the blanks</h2>
+  Provera znanja je nezaobilazna stavka na putu do savladavanja materije.
+  Student treba da može da inkrementalno proveri svoje razumevanje pročitanog teksta.
+
+  <h2>Ispuni praznine</h2>
+
+  <p>
+    Ovo su pitanja otvorenog tipa gde se od studenta traži da dopuni rečenicu rečima
+    (ili frazama) koje nedostaju. Mogući su razni stepeni fleksibilnosti određivanja koji
+    je odgovor tačan: od jedinstvenog odgovora do proizvoljne funkcije koju predavač
+    može definisati.
+  </p>
 
   <p>
     Najjednostavniji oblik je kada postoji samo jedan tačan odgovor.
   </p>
 
   <pre>&lt;lrn-fill-in-the-blank>
-  TajpSkript je programski jezik koji se ne kompajlira, već
-  &lt;lrn-blank correct=transpajlira>&lt;/lrn-blank>.
+  Mačka kaže &lt;lrn-blank correct=mjau>&lt;/lrn-blank>.
 &lt;/lrn-fill-in-the-blank></pre>
 
-  <lrn-fill-in-the-blank (answerChange)="answer = $event" (answerSubmit)="submitted = $event">
-    TajpSkript je programski jezik koji se ne kompajlira, već
-    <lrn-blank correct=transpajlira></lrn-blank>
+  <lrn-fill-in-the-blank (answerChange)="answer1 = $event"
+                         (answerSubmit)="submitted1 = $event"
+  >
+    Mačka kaže
+    <lrn-blank correct=mjau></lrn-blank>
     .
   </lrn-fill-in-the-blank>
 
-  <div style="display: flex; align-items: stretch; width: 100%; justify-content: space-between;">
-    <div style="width: 49%">
+  <div lrnHorizontal>
+    <div lrnBox>
       <p>Model na promenu:</p>
-      <pre>{{ answer | json }}</pre>
+      <pre>{{ answer1 | json }}</pre>
     </div>
-    <div style="width: 49%">
+    <div lrnBox>
       <p>Model na slanje:</p>
-      <pre>{{ submitted | json }}</pre>
+      <pre>{{ submitted1 | json }}</pre>
     </div>
   </div>
 
-  <h2>Detaljnija konfiguracija</h2>
+  <h3>Detaljnija konfiguracija</h3>
 
   <p>
     Kao <code>correct</code> se može proslediti <strong>niz stringova</strong>. U tom slučaju se kao
@@ -46,22 +57,16 @@
   </p>
 
   <p>
-    Sem toga, moguće je proslediti i <strong>regeks</strong> ili <strong>funckiju</strong>.
+    Sem toga, moguće je proslediti i <strong>regeks</strong> ili <strong>funkciju</strong>.
   </p>
 
-  <lrn-fill-in-the-blank (answerChange)="answer = $event">
-    Prvo i poslednje slovo abecede su
-    <lrn-blank [correct]="regexA"></lrn-blank>
-    i
-    <lrn-blank [correct]="regexZ"></lrn-blank>
-    .
+  <lrn-fill-in-the-blank (answerChange)="answer2 = $event">
+    Rečenica
+    <lrn-blank [correct]="isPalindrome" width=10></lrn-blank>
+    je palindrom i ima preko 10 slova.
   </lrn-fill-in-the-blank>
 
-  <lrn-fill-in-the-blank (answerChange)="answer = $event">
-    Reč od devet slova, počinje na L je
-    <lrn-blank [correct]="isCorrectWord"></lrn-blank>
-    .
-  </lrn-fill-in-the-blank>
+  <pre lrnBox>{{ answer2 | json }}</pre>
 
   <p>
     Opis reči koja nedostaje se može dati kroz ulaz <code>[hint]</code>.
@@ -69,15 +74,18 @@
 
   <lrn-fill-in-the-blank>
     Nebo je
-    <lrn-blank correct=plavo hint="koje boje"></lrn-blank>
+    <lrn-blank [correct]="['plavo', 'plave boje']" hint="koje boje"></lrn-blank>
     .
   </lrn-fill-in-the-blank>
 
-  <p>
-    Moguće je pretpatiti se na događaj promene praznih polja, kao i na događaj slanja odgovara (pritiskom na <kbd>Enter</kbd> dok je neko polje u fokusu ili klikom na dugme <i>odgovori</i>). Ovi izlazi su, respektivno, <code>(answerChange)</code> i <code>(answerSubmit)</code>.
-  </p>
+  <h3>Osluškivanje promena i davanja konačnog odgovora</h3>
 
-  <p>Objekat koji se prosleđuje uz događaj prestavlja niz objekata sledeće strukture.</p>
+  <lrn-markdown>
+    Moguće je pretpatiti se na događaj promene praznih polja, kao i na događaj slanja odgovara (pritiskom na
+    <kbd>Enter</kbd> dok je neko polje u fokusu ili klikom na dugme _odgovori_). Ovi izlazi su, respektivno, `(answerChange)` i `(answerSubmit)`.
+
+    Objekat koji se prosleđuje uz događaj prestavlja niz objekata sledeće strukture.
+  </lrn-markdown>
 
   <pre>{{'{'}}
   answer: string,
@@ -86,9 +94,54 @@
   hint: string,
 {{'}'}}</pre>
 
-  <p>
-    <code>answer</code> je odgovor koji je čitalac upisao u polje sa imenom <code>name</code>. <code>name</code> će biti automatski generisan koristeći globalni jedintveni identifikator, ali se može i ručno podesiti koristeći ulaz <code>[name]</code> u <code>lrn-blank</code>. <code>correct</code> je logička promenljiva koja govori o tome da li je odgovor tačan, odnosno da li je ispunjen uslov tačnosti prosleđen kroz ulaz <code>[correct]</code>. <code>hint</code> je zadat pomoćna vrednost.
-  </p>
+  <lrn-markdown>
+    `answer` je odgovor koji je čitalac upisao u polje sa imenom `name`>. `name` će biti automatski generisan koristeći globalni jedintveni identifikator, ali se može i ručno podesiti koristeći ulaz `[name]` u `lrn-blank`. `correct` je logička promenljiva koja govori o tome da li je odgovor tačan, odnosno da li je ispunjen uslov tačnosti prosleđen kroz ulaz `[correct]`. `hint` je zadat pomoćna vrednost.
+
+    Dok će `(answerChange)` i `(answerSubmit)` biti okinuti za svaku promenu i svako slanje odgovra, samo **tačni** odgovori se mogu osluškivati kroz `(correctChange)` i `(correctSubmit)`, a samo **netačni** kroz `(wrongChange)` i `(wrongSubmit)`.
+  </lrn-markdown>
+
+  <lrn-fill-in-the-blank (answerChange)="muAnswer = $event"
+                         (answerSubmit)="muSubmitted = $event"
+                         (correctChange)="muCorrectAnswer = $event"
+                         (correctSubmit)="muCorrectSubmitted = $event"
+                         (wrongChange)="muWrongAnswer = $event"
+                         (wrongSubmit)="muWrongSubmitted = $event"
+  >
+    Krava kaže
+    <lrn-blank correct="mu"></lrn-blank>
+    .
+  </lrn-fill-in-the-blank>
+
+  <div lrnVertical>
+    <div lrnHorizontal>
+      <div lrnBox>
+        <p>Svaka promena</p>
+        <code>{{ muAnswer && muAnswer[0].answer | json }}</code>
+      </div>
+      <div lrnBox>
+        <p>Tačna promena</p>
+        <code>{{ muCorrectAnswer && muCorrectAnswer[0].answer | json }}</code>
+      </div>
+      <div lrnBox>
+        <p>Netačna promena</p>
+        <code>{{ muWrongAnswer && muWrongAnswer[0].answer | json }}</code>
+      </div>
+    </div>
+    <div lrnHorizontal>
+      <div lrnBox>
+        <p>Svako slanje</p>
+        <code>{{ muSubmitted && muSubmitted[0].answer | json }}</code>
+      </div>
+      <div lrnBox>
+        <p>Tačno slanje</p>
+        <code>{{ muCorrectSubmitted && muCorrectSubmitted[0].answer | json }}</code>
+      </div>
+      <div lrnBox>
+        <p>Netačno slanje</p>
+        <code>{{ muWrongSubmitted && muWrongSubmitted[0].answer | json }}</code>
+      </div>
+    </div>
+  </div>
 
   <h2>Multiple choice</h2>
 
@@ -96,24 +149,58 @@
     Najjednostavniji oblik je kada se navede više odgovora, a jedan se obeleži kao tačan.
   </p>
 
-  <lrn-multiple-choice (answerChoose)="multipleChoiceAnswer1 = $event">
+  <lrn-multiple-choice (answerChange)="multipleChoice1.answer = $event"
+                       (answerSubmit)="multipleChoice1.submitted = $event"
+  >
     <lrn-question>
-      Šta sledi posle 5?
+      Koji je prvi dan u nedelji?
     </lrn-question>
-    <lrn-choice value="tri">3</lrn-choice>
-    <lrn-choice value="cetiri">4</lrn-choice>
-    <lrn-choice>5</lrn-choice>
-    <lrn-choice lrnCorrect>6</lrn-choice>
+    <lrn-choice value="mon" lrnCorrect>Ponedeljak</lrn-choice>
+    <lrn-choice value="tue">Utorak</lrn-choice>
+    <lrn-choice value="wed">Sreda</lrn-choice>
+    <lrn-choice value="thu">Četvrtak</lrn-choice>
   </lrn-multiple-choice>
 
-  <pre>{{ multipleChoiceAnswer1 | json }}</pre>
+  <div lrnHorizontal>
+    <div lrnBox>
+      <p>Model na promenu</p>
+      <pre>{{ multipleChoice1.answer | json }}</pre>
+    </div>
+    <div lrnBox>
+      <p>Model na slanje</p>
+      <pre>{{ multipleChoice1.submitted | json }}</pre>
+    </div>
+  </div>
 
   <p>
-    Odgovori se automatski mešaju. Ovo se može isključiti prosleđivanjem ulaza <code>[shuffle]="false"</code>.
+    Odgovori se automatski mešaju. Ovo se može isključiti prosleđivanjem ulaza
+    <code>[shuffle]="false"</code>.
   </p>
 
   <p>
-    Događaj daje objekat koji u sebi sadrži <code>value</code> izabrane opcije (može se ručno podesiti zaadvanjem ulaza <code>[value]</code> komponente <code>lrn-choice</code>, a podrazumevano je automatski generisana unikatna vrednost), kao i <code>correct</code>, logičku vrendost koja govori o tačnosti datog odgovora.
+    Događaj daje objekat koji u sebi sadrži
+    <code>value</code> izabrane opcije (može se ručno podesiti zadavanjem ulaza
+    <code>[value]</code> komponente
+    <code>lrn-choice</code>, a podrazumevano je automatski generisana unikatna vrednost), kao i
+    <code>correct</code>, logičku vrendost koja govori o tačnosti datog odgovora.
   </p>
+
+  <p>
+    Moguće je navesti i više tačnih odgovora.
+  </p>
+
+  <lrn-multiple-choice (answerChange)="whatDoesTheFoxSay.current = $event"
+                       (answerSubmit)="whatDoesTheFoxSay.submitted = $event"
+  >
+    <lrn-question>What does the fox say?</lrn-question>
+    <lrn-choice lrnCorrect>A-hee-ahee ha-hee!</lrn-choice>
+    <lrn-choice lrnCorrect>Hatee-hatee-hatee-ho!</lrn-choice>
+    <lrn-choice>Wa-pa-pa-pa-pa-pa-pow!</lrn-choice>
+    <lrn-choice>Fraka-kaka-kaka-kaka-kow!</lrn-choice>
+    <lrn-choice>Jacha-chacha-chacha-chow!</lrn-choice>
+    <lrn-choice>Tchoff-tchoff-tchoffo-tchoffo-tchoff!</lrn-choice>
+  </lrn-multiple-choice>
+
+  <pre>{{ whatDoesTheFoxSay.current | json }}</pre>
 
 </lrn-notebook>

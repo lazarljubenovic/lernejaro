@@ -9,41 +9,29 @@ import {UniqueIdService} from '../../unique-id.service'
 })
 export class RadioButtonComponent implements OnInit {
 
-    private _value: string
+    @Input() public value: string = this._uniqueIdService.getUniqueId('radio-button-')
 
     @Input() public name: string
-
-    @Input()
-    public set value(newValue: string) {
-        this._value = newValue
-    };
-
-    public get value(): string {
-        return this._value
-    }
 
     @Input() public currentValue: string
     @Output() public currentValueChange = new EventEmitter<string>()
 
-    public radioButtonGroup: RadioButtonGroupComponent
-
     public emitCurrentValueChange() {
         this.currentValueChange.emit(this.currentValue)
-        if (this.radioButtonGroup) {
+        if (this.radioButtonGroup != null) {
             this.radioButtonGroup.value = this.value
         }
     }
 
-    constructor(@Optional() radioButtonGroup: RadioButtonGroupComponent,
+    constructor(@Optional() public radioButtonGroup: RadioButtonGroupComponent,
                 private _uniqueIdService: UniqueIdService) {
-        this.radioButtonGroup = radioButtonGroup
     }
 
     ngOnInit() {
         // If no value is given, create unique
-        if (this.value == null) {
-            this.value = this._uniqueIdService.getUniqueId('radio-button-')
-        }
+        // if (this.value == null) {
+        //     this.value = this._uniqueIdService.getUniqueId('radio-button-')
+        // }
     }
 
 }

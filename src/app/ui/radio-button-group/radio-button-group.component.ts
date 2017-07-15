@@ -1,12 +1,13 @@
 import {
+    AfterViewInit,
+    Component,
     ContentChildren,
-    QueryList,
-    Input,
-    Output,
     EventEmitter,
     forwardRef,
-    Component,
-    AfterViewInit, ViewEncapsulation
+    Input,
+    Output,
+    QueryList,
+    ViewEncapsulation,
 } from '@angular/core'
 import {UniqueIdService} from '../../unique-id.service'
 import {RadioButtonComponent} from '../radio-button/radio-button.component'
@@ -14,7 +15,10 @@ import {ControlValueAccessor} from '@angular/forms'
 
 @Component({
     selector: 'lrn-radio-button-group',
-    template: `<div class="wrapper"><ng-content></ng-content></div>`,
+    template: `
+        <div class="wrapper">
+            <ng-content></ng-content>
+        </div>`,
     styleUrls: ['./radio-button-group.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
@@ -77,13 +81,13 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, AfterVie
     }
 
     private _updateRadioButtonNames(): void {
-        if (this._radioButtons) {
+        if (this._radioButtons != null) {
             this._radioButtons.forEach(radioButton => radioButton.name = this._name)
         }
     }
 
     private _updateRadioButtonValues(): void {
-        if (this._radioButtons) {
+        if (this._radioButtons != null) {
             this._radioButtons.forEach(radioButton => radioButton.currentValue = this._value)
         }
     }

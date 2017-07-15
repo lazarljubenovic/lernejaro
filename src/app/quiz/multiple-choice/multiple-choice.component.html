@@ -6,11 +6,16 @@
 
   <lrn-card-content class="choices">
     <form [id]="formId" (submit)="onSubmit($event)">
-      <lrn-radio-button-group (valueChange)="onChoicePick($event)">
+      <lrn-radio-button-group (valueChange)="onChoicePick($event)" *ngIf="hasSingleCorrectAnswer">
         <lrn-radio-button *ngFor="let choice of choices; let i = index" [value]="choice.value">
           <ng-template [ngTemplateOutlet]="choice.template"></ng-template>
         </lrn-radio-button>
       </lrn-radio-button-group>
+      <lrn-checkbox-group (valueChange)="onChoicePick($event)" *ngIf="!hasSingleCorrectAnswer">
+        <lrn-checkbox *ngFor="let choice of choices; let i = index" [value]="choice.value">
+          <ng-template [ngTemplateOutlet]="choice.template"></ng-template>
+        </lrn-checkbox>
+      </lrn-checkbox-group>
     </form>
   </lrn-card-content>
 

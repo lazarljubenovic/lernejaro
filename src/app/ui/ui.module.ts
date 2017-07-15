@@ -1,4 +1,4 @@
-import {NgModule, ModuleWithProviders} from '@angular/core'
+import {ModuleWithProviders, NgModule} from '@angular/core'
 import {CommonModule} from '@angular/common'
 import {InputComponent} from './input/input.component'
 import {FormsModule} from '@angular/forms'
@@ -17,12 +17,14 @@ import {PalettePickerComponent} from './palette-picker/palette-picker.component'
 import {LrnPalette} from './palette'
 import {PaletteConfigService} from './palette-config.service'
 import {PaletteService} from './palette.service'
-import { LogoComponent } from './logo/logo.component'
-import { StepPipe } from './input/step.pipe'
-import { LatexInputNumberComponent } from './latex-input-number/latex-input-number.component'
-import { CardHeaderComponent } from './card/card-header/card-header.component'
-import { CardFooterComponent } from './card/card-footer/card-footer.component'
-import { CardContentComponent } from './card/card-content/card-content.component'
+import {LogoComponent} from './logo/logo.component'
+import {StepPipe} from './input/step.pipe'
+import {LatexInputNumberComponent} from './latex-input-number/latex-input-number.component'
+import {CardHeaderComponent} from './card/card-header/card-header.component'
+import {CardFooterComponent} from './card/card-footer/card-footer.component'
+import {CardContentComponent} from './card/card-content/card-content.component'
+import {CheckboxComponent} from './checkbox/checkbox.component'
+import {CheckboxGroupComponent} from './checkbox-group/checkbox-group.component'
 
 @NgModule({
     imports: [
@@ -48,6 +50,8 @@ import { CardContentComponent } from './card/card-content/card-content.component
         CardHeaderComponent,
         CardFooterComponent,
         CardContentComponent,
+        CheckboxComponent,
+        CheckboxGroupComponent,
     ],
     exports: [
         InputComponent,
@@ -67,7 +71,9 @@ import { CardContentComponent } from './card/card-content/card-content.component
         CardHeaderComponent,
         CardFooterComponent,
         CardContentComponent,
-    ]
+        CheckboxComponent,
+        CheckboxGroupComponent,
+    ],
 })
 export class UiModule {
     public static forRoot(palette: LrnPalette): ModuleWithProviders {

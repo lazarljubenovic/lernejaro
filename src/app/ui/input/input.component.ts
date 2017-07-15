@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core'
+import {Component, OnInit, Input, EventEmitter, Output, HostBinding} from '@angular/core'
 import {PaletteService} from '../palette.service'
 
 @Component({
@@ -13,6 +13,9 @@ export class InputComponent implements OnInit {
     @Input() public name: string
     @Input() public step: number
     @Input() public decimals: number
+
+    @HostBinding('style.width.em')
+    @Input() public width: number = 10
 
     @Input() public disableFloatingLabel: boolean = false
 

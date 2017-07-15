@@ -14,6 +14,8 @@ import {KatexModule} from './katex/katex.module'
 import {QuizModule} from './quiz/quiz.module'
 import {UniqueIdService} from './unique-id.service'
 import {FitTextModule} from './fit-text/fit-text.module'
+import {LayoutModule} from './layout/layout.module'
+import {LoggerService} from './logger.service'
 
 export const ROUTES: Routes = [
     {
@@ -22,9 +24,9 @@ export const ROUTES: Routes = [
             {
                 path: 'lernejaro',
                 loadChildren: './course-lernejaro/course-lernejaro.module#CourseLernejaroModule',
-            }
-        ]
-    }
+            },
+        ],
+    },
 ]
 
 @NgModule({
@@ -43,11 +45,13 @@ export const ROUTES: Routes = [
         KatexModule,
         QuizModule,
         FitTextModule,
+        LayoutModule,
         RouterModule.forRoot(ROUTES),
     ],
     providers: [
         MarkdownParserService,
         UniqueIdService,
+        LoggerService,
     ],
     bootstrap: [
         AppComponent,

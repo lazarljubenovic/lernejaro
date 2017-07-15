@@ -1,17 +1,18 @@
 import {
     AfterContentInit,
     Component,
-    ContentChildren,
+    ContentChildren, ElementRef,
     EventEmitter,
     forwardRef,
     Inject,
     Input,
     OnInit,
     Output,
-    QueryList
+    QueryList,
 } from '@angular/core'
 import {ViewInputComponent} from '../view-input/view-input.component'
 import {MultipleViewsComponent} from '../multiple-views/multiple-views.component'
+import {LoggerService} from '../../logger.service'
 
 @Component({
     selector: 'lrn-view',
@@ -51,8 +52,11 @@ export class ViewComponent implements OnInit, AfterContentInit {
     }
 
     constructor(@Inject(forwardRef(() => MultipleViewsComponent))
-                private _foo: MultipleViewsComponent) {
-        console.log('foo', this._foo)
+                private _foo: MultipleViewsComponent,
+                private logger: LoggerService,
+                private elementRef: ElementRef,
+    ) {
+        // console.log('foo', this._foo)
     }
 
     ngOnInit() {
@@ -61,8 +65,8 @@ export class ViewComponent implements OnInit, AfterContentInit {
     ngAfterContentInit() {
         this.viewInputs.forEach(viewInput => {
             if (!(viewInput.name in this.model)) {
-                console.warn(`view with model ${this.model} contains an input ` +
-                    `with an unknown name ${viewInput.name}`)
+                this.logger.error(`View with model ${this.model} contains an input ` +
+                    `with an unknown name ${viewInput.name}.`, this.elementRef.nativeElement)
             }
             viewInput.valueChange.subscribe(newValue => {
                 const newModel = {...this.model, [viewInput.name]: newValue}
