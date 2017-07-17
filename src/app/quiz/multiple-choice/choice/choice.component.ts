@@ -23,7 +23,7 @@ export class ChoiceComponent implements OnInit {
     return this._correct
   }
 
-  @Input() public feedback: string
+  @Input() public feedback: string = null
 
   constructor(uniqueIdService: UniqueIdService) {
     this.value = uniqueIdService.getUniqueId('lrn-choice-radio-button-')

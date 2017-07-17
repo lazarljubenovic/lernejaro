@@ -51,9 +51,8 @@ export class MultipleChoiceComponent implements AfterContentInit, AfterViewInit,
     this.icon = 'check'
   }
 
-  @Input() feedback: Function = (info: MultipleChoiceInfo) => {
-    return null
-  }
+  private defaultFeedbackFunction = (info: MultipleChoiceInfo) => null
+  @Input() feedback: Function = this.defaultFeedbackFunction
 
   private feedbackString: string
 
@@ -159,7 +158,15 @@ export class MultipleChoiceComponent implements AfterContentInit, AfterViewInit,
   private tryToConcludeFeedbackFromChildren() {
     // Can be done only for single answers
     if (!this.hasSingleCorrectAnswer) {
-      console.log('not has hsingle answr')
+      return
+    }
+
+    const existsChoiceWithFeedbackString = this.choicesQueryList.toArray()
+      .some(choice => choice.feedback != null)
+
+    if (this.feedback != this.defaultFeedbackFunction && existsChoiceWithFeedbackString) {
+      this.logger.warn(`If [feedback] function is given to <multiple-choice>, [feedback] ` +
+        `inputs on children will be ignored.`, this.elementRef.nativeElement)
       return
     }
 
@@ -167,8 +174,6 @@ export class MultipleChoiceComponent implements AfterContentInit, AfterViewInit,
       const chosenChoice = this.choicesQueryList.find(choice => choice.value == answer)
       return (chosenChoice && chosenChoice.feedback) || null
     }
-
-    console.log(this.feedback)
   }
 
 
