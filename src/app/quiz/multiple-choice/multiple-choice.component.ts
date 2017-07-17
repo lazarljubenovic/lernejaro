@@ -111,9 +111,9 @@ export class MultipleChoiceComponent implements AfterContentInit, AfterViewInit,
     this.feedbackString = this.feedback(info)
     const correct = info.correct
     if (correct) {
-      this.setWrongIcon()
-    } else {
       this.setCorrectIcon()
+    } else {
+      this.setWrongIcon()
     }
     this.submitted = true
   }
