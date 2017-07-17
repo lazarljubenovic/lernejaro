@@ -177,6 +177,7 @@ lrn-notebook {
       background-color: rgba(black, .1);
       padding: .8rem 1.2em;
       box-sizing: border-box;
+      overflow-x: auto;
 
       code {
         display: inline;

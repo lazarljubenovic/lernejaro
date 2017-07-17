@@ -3,6 +3,8 @@ lrn-card-header {
 
   .card-header-wrapper {
     padding-bottom: .8rem;
+    display: flex;
+    justify-content: space-between;
 
     h1 {
       margin-top: 0;

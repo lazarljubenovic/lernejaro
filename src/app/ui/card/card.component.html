@@ -4,6 +4,7 @@
   </ng-container>
   <lrn-card-header *ngIf="cardHeader == null">
     <h1>{{ header }}</h1>
+    <ng-content select="lrn-card-badge"></ng-content>
   </lrn-card-header>
 </ng-container>
 

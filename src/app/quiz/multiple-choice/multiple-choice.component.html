@@ -1,5 +1,9 @@
 <lrn-card [header]="header">
 
+  <lrn-card-badge>
+    <lrn-icon [icon]="icon"></lrn-icon>
+  </lrn-card-badge>
+
   <lrn-card-content class="question">
     <ng-content select="lrn-question"></ng-content>
   </lrn-card-content>
@@ -17,6 +21,10 @@
         </lrn-checkbox>
       </lrn-checkbox-group>
     </form>
+  </lrn-card-content>
+
+  <lrn-card-content *ngIf="feedbackString != null">
+    {{ feedbackString }}
   </lrn-card-content>
 
   <lrn-card-footer>

@@ -25,68 +25,77 @@ import {CardFooterComponent} from './card/card-footer/card-footer.component'
 import {CardContentComponent} from './card/card-content/card-content.component'
 import {CheckboxComponent} from './checkbox/checkbox.component'
 import {CheckboxGroupComponent} from './checkbox-group/checkbox-group.component'
+import {CardBadgeComponent} from './card/card-badge/card-badge.component'
+import {ChipComponent} from './chip/chip.component'
+import {IconComponent} from './icon/icon.component'
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-    ],
-    declarations: [
-        InputComponent,
-        GetColorNamePipe,
-        CardComponent,
-        ButtonComponent,
-        RadioButtonComponent,
-        OptionPickerComponent,
-        OptionComponent,
-        RadioButtonGroupComponent,
-        ExpandingFabComponent,
-        ProgressBarComponent,
-        ModalComponent,
-        PalettePickerComponent,
-        LogoComponent,
-        StepPipe,
-        LatexInputNumberComponent,
-        CardHeaderComponent,
-        CardFooterComponent,
-        CardContentComponent,
-        CheckboxComponent,
-        CheckboxGroupComponent,
-    ],
-    exports: [
-        InputComponent,
-        GetColorNamePipe,
-        CardComponent,
-        ButtonComponent,
-        OptionPickerComponent,
-        OptionComponent,
-        RadioButtonComponent,
-        RadioButtonGroupComponent,
-        ExpandingFabComponent,
-        ProgressBarComponent,
-        ModalComponent,
-        PalettePickerComponent,
-        LogoComponent,
-        LatexInputNumberComponent,
-        CardHeaderComponent,
-        CardFooterComponent,
-        CardContentComponent,
-        CheckboxComponent,
-        CheckboxGroupComponent,
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+  ],
+  declarations: [
+    InputComponent,
+    GetColorNamePipe,
+    CardComponent,
+    ButtonComponent,
+    RadioButtonComponent,
+    OptionPickerComponent,
+    OptionComponent,
+    RadioButtonGroupComponent,
+    ExpandingFabComponent,
+    ProgressBarComponent,
+    ModalComponent,
+    PalettePickerComponent,
+    LogoComponent,
+    StepPipe,
+    LatexInputNumberComponent,
+    CardHeaderComponent,
+    CardFooterComponent,
+    CardContentComponent,
+    CheckboxComponent,
+    CheckboxGroupComponent,
+    CardBadgeComponent,
+    ChipComponent,
+    IconComponent,
+  ],
+  exports: [
+    InputComponent,
+    GetColorNamePipe,
+    CardComponent,
+    ButtonComponent,
+    OptionPickerComponent,
+    OptionComponent,
+    RadioButtonComponent,
+    RadioButtonGroupComponent,
+    ExpandingFabComponent,
+    ProgressBarComponent,
+    ModalComponent,
+    PalettePickerComponent,
+    LogoComponent,
+    LatexInputNumberComponent,
+    CardHeaderComponent,
+    CardFooterComponent,
+    CardContentComponent,
+    CheckboxComponent,
+    CheckboxGroupComponent,
+    CardBadgeComponent,
+    ChipComponent,
+    IconComponent,
+  ],
 })
 export class UiModule {
-    public static forRoot(palette: LrnPalette): ModuleWithProviders {
-        return {
-            ngModule: UiModule,
-            providers: [
-                ModalService,
-                PaletteService,
-                {
-                    provide: PaletteConfigService,
-                    useValue: palette,
-                },
-            ],
-        }
+  public static forRoot(palette: LrnPalette): ModuleWithProviders {
+    return {
+      ngModule: UiModule,
+      providers: [
+        ModalService,
+        PaletteService,
+        {
+          provide: PaletteConfigService,
+          useValue: palette,
+        },
+      ],
     }
+  }
 }

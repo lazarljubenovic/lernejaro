@@ -1,8 +1,8 @@
-<lrn-card>
+<lrn-card [header]="header">
 
-  <lrn-card-header>
-    <h1>{{ header }}</h1>
-  </lrn-card-header>
+  <lrn-card-badge>
+    <lrn-icon [icon]="icon"></lrn-icon>
+  </lrn-card-badge>
 
   <lrn-card-content class="wrapper">
     <div class="content">
@@ -12,8 +12,14 @@
     </div>
   </lrn-card-content>
 
+  <lrn-card-content *ngIf="feedbackStrings.length != 0">
+    <ul *ngFor="let string of feedbackStrings">
+      <li>{{ string }}</li>
+    </ul>
+  </lrn-card-content>
+
   <lrn-card-footer>
-    <button [lrnButton]="'flat'" type="submit" [attr.form]="formId">Odgovori</button>
+    <button lrnButton="flat" type="submit" [attr.form]="formId">Odgovori</button>
     <!--<button [lrnButton]="'flat'" type="button" [attr.form]="formId">Pokaži tačan odgovor</button>-->
   </lrn-card-footer>
 

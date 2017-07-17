@@ -69,14 +69,20 @@
   <pre lrnBox>{{ answer2 | json }}</pre>
 
   <p>
-    Opis reči koja nedostaje se može dati kroz ulaz <code>[hint]</code>.
+    Opis reči koja nedostaje se može dati kroz ulaz <code>[hint]</code>. Naslov pitanja (podrazumevano <i>Fill in the blank</i>) menja se  kroz ulaz <code>[header]</code>.
   </p>
 
-  <lrn-fill-in-the-blank>
+  <lrn-fill-in-the-blank header="Priroda i društvo">
     Nebo je
     <lrn-blank [correct]="['plavo', 'plave boje']" hint="koje boje"></lrn-blank>
     .
   </lrn-fill-in-the-blank>
+
+  <lrn-markdown>
+    Povratnu informaciju je moguće prilagoditi prosleđivanjem funkcije kroz ulaz `[feedback]`. Funkcija vraća `string` na osnovu dva parametra, `isCorrect: boolean` i `givenAnswer: string`. Podrazumevana funkcija je data u nastavku.
+  </lrn-markdown>
+
+  <pre>{{ defaultFeedbackFunctionString }}</pre>
 
   <h3>Osluškivanje promena i davanja konačnog odgovora</h3>
 
@@ -202,5 +208,18 @@
   </lrn-multiple-choice>
 
   <pre>{{ whatDoesTheFoxSay.current | json }}</pre>
+
+  <h3>Povratne informacije</h3>
+
+  <p>
+    Svaki studentov odgovor bi trebalo da bude propraćen odgovarajućom povratnom informacijom. Predavač treba da bude u stanju da predvidi zbog čega bi student odgovorio netačno na pitanje, i da da obrazloženje zašto je takav odgovor netačan. Ovo se prvenstveno odnosi na pitanja sa više ponuđenih odgovora, zbog predvidivosti netačnih odgovora (kada su pitanja otvorenog tipa, mnogo je teže predvideti sve moguće odgovore). Povratnu informaciju bi trebalo pružiti i u slučaju tačnog odgovora, u vidu nekih dodatnih informacija relevantnim za pitanje.
+  </p>
+
+  <lrn-multiple-choice>
+    <lrn-question>Koje godine je počeo Prvi svetski rat?</lrn-question>
+    <lrn-choice lrnCorrect feedback="Tačan datum početka Prvog svetskog rata je 28. jul 1914. godine.">1914</lrn-choice>
+    <lrn-choice feedback="Tada se završio.">1918</lrn-choice>
+    <lrn-choice feedback="Tada je počeo Drugi svetski rat">1939</lrn-choice>
+  </lrn-multiple-choice>
 
 </lrn-notebook>
