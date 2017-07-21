@@ -10,17 +10,23 @@ lrn-card {
   border-radius: 3px;
   overflow: hidden;
 
-  > * > * {
+  * {
+    box-sizing: border-box;
+  }
+
+  > lrn-card-content,
+  > lrn-card-header,
+  > lrn-card-footer {
     padding-left: $padding-left-right;
     padding-right: $padding-left-right;
   }
 
-  > :first-child > * {
+  > lrn-card-header {
     padding-top: $padding-top;
   }
 
-  > :last-child > * {
-    padding-bottom:  $padding-bottom;
+  > lrn-card-footer {
+    padding-bottom: $padding-bottom;
   }
 
   // Zero or one
