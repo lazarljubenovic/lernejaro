@@ -1,8 +1,6 @@
-
-
-<lrn-planimetrics style="width:600px;"
-                  [objects]="objects"
-                  [interactivePoints]="interactivePoints"
-                  (interactivePointsChange)="onInteractivePointsChange($event)"
-></lrn-planimetrics>
-
+<div lrnFullScreen lrnCenter>
+  <lrn-planimetrics [objects]="objects"
+                    [interactivePoints]="interactivePoints"
+                    (interactivePointsChange)="onInteractivePointsChange($event)"
+  ></lrn-planimetrics>
+</div>
