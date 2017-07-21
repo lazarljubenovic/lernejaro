@@ -1,7 +1,15 @@
-<div lrnFullScreen="rgba(0, 0, 0, .02)" lrnCenter>
-  <lrn-card>
-    <lrn-planimetrics [(interactivePoints)]="interactivePoints"
-                      [evaluate]="evaluate"
-    ></lrn-planimetrics>
-  </lrn-card>
-</div>
+<lrn-presentation [author]="'Lazar Ljubenović'"
+                  [title]="'Introducing Geoemtry Component'"
+>
+
+  <lrn-slide [title]="'Basic example'">
+    <div lrnCenter>
+      <lrn-card>
+        <lrn-planimetrics [(interactivePoints)]="interactivePoints"
+                          [evaluate]="evaluate"
+        ></lrn-planimetrics>
+      </lrn-card>
+    </div>
+  </lrn-slide>
+
+</lrn-presentation>
