@@ -35,7 +35,8 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() @HostBinding('style.height.px') height: number = 600
 
   public getPointAt(x: number, y: number, eps: number = 6): Point {
-    return this.interactivePoints
+    return (this.objects as Point[])
+      .filter(object => object.kind == 'point')
       .filter((point: Point) => {
         return areEqualFloats(point.x(), x, eps)
           && areEqualFloats(point.y(), y, eps)

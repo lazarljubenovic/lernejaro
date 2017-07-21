@@ -21,7 +21,8 @@ export class IntroducingGeometryComponent {
   public evaluate(points: Point[]): GeometryObject[] {
     const [A, B] = points
     const segment = Segment.FromTwoPoints(A, B)
-    return [segment, A, B]
+    const midpoint = Point.GetPointBetween(A, B).label('M').strokeColor(MaterialColor.BLUE)
+    return [segment, midpoint, A]
   }
 
 }
