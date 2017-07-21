@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core'
+import {Component} from '@angular/core'
 import {GeometryObject} from '../../planimetryts/geometry-objects/geometry-object'
 import {Point} from '../../planimetryts/geometry-objects/point'
 import {MaterialColor} from '../../planimetryts/geometry-objects/material-colors'
@@ -9,9 +9,7 @@ import {Segment} from '../../planimetryts/geometry-objects/segment'
   templateUrl: './introducing-geometry.component.html',
   styleUrls: ['./introducing-geometry.component.scss'],
 })
-export class IntroducingGeometryComponent implements OnInit {
-
-  public objects: GeometryObject[]
+export class IntroducingGeometryComponent {
 
   public interactivePoints: Point[] = [
     Point.FromCartesianCoordinates(-200, -200)
@@ -20,22 +18,10 @@ export class IntroducingGeometryComponent implements OnInit {
       .label('B').strokeColor(MaterialColor.AMBER),
   ]
 
-  public evaluateObjects(...points: Point[]): void {
-    const [A, B] = this.interactivePoints
+  public evaluate(points: Point[]): GeometryObject[] {
+    const [A, B] = points
     const segment = Segment.FromTwoPoints(A, B)
-    this.objects = [segment]
-  }
-
-  public onInteractivePointsChange(points: Point[]): void {
-    this.interactivePoints = [...points]
-    this.evaluateObjects(...points)
-  }
-
-  constructor() {
-    this.evaluateObjects(...this.interactivePoints)
-  }
-
-  ngOnInit() {
+    return [segment, A, B]
   }
 
 }

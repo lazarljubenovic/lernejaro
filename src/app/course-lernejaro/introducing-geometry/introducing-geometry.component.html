@@ -1,8 +1,7 @@
 <div lrnFullScreen lrnCenter>
   <lrn-card>
-    <lrn-planimetrics [objects]="objects"
-                      [interactivePoints]="interactivePoints"
-                      (interactivePointsChange)="onInteractivePointsChange($event)"
+    <lrn-planimetrics [(interactivePoints)]="interactivePoints"
+                      [evaluate]="evaluate"
     ></lrn-planimetrics>
   </lrn-card>
 </div>
