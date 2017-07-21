@@ -9,5 +9,7 @@ export class FullScreenDirective {
   @HostBinding('style.bottom') public bottom: number = 0
   @HostBinding('style.width') public width: string = '100%'
   @HostBinding('style.height') public height: string = '100vh'
-  @Input() @HostBinding('style.background-color') public backgroundColor: string = 'white'
+
+  @Input('lrnFullScreen') @HostBinding('style.background-color')
+  public backgroundColor: string = 'white'
 }
