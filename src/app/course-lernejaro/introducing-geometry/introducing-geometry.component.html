@@ -2,8 +2,10 @@
                   [title]="'Introducing Geoemtry Component'"
 >
 
-  <lrn-slide [title]="'Basic example'">
-    <div lrnCenter>
+  <lrn-slide [title]="'Basic example'"
+             [subtitle]="'Line with a midpoint'"
+  >
+    <div lrnMaximize lrnCenter>
       <lrn-card>
         <lrn-planimetrics [(interactivePoints)]="interactivePoints"
                           [evaluate]="evaluate"

@@ -5,6 +5,7 @@ import {BoxDirective} from './box.directive'
 import {VerticalDirective} from './vertical.directive'
 import {FullScreenDirective} from './full-screen.directive'
 import {CenterDirective} from './center.directive'
+import {MaximizeDirective} from './maximize.directive'
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import {CenterDirective} from './center.directive'
     VerticalDirective,
     FullScreenDirective,
     CenterDirective,
+    MaximizeDirective,
   ],
   exports: [
     BoxDirective,
@@ -23,6 +25,7 @@ import {CenterDirective} from './center.directive'
     VerticalDirective,
     FullScreenDirective,
     CenterDirective,
+    MaximizeDirective,
   ],
 })
 export class LayoutModule {
