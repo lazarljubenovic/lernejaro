@@ -68,7 +68,8 @@ export class PresentationComponent implements OnInit, AfterContentInit {
     const currentSlide = slidesArray[this.currentSlideIndex]
     this.renderer.attachViewAfter(outlet, [currentSlide])
 
-    // Update route -- TODO ?
+    // Update route
+    // TODO: What if multiple presentations on the same screen?
     const slide = this.currentSlideIndex + 1
     this.router.navigate(['.', {slide}], {relativeTo: this.route})
   }
@@ -130,17 +131,23 @@ export class PresentationComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit() {
-    this.route.params
-      .distinctUntilKeyChanged('slide')
-      .subscribe(params => {
-        const slide = params['slide']
-        if (slide != null) {
-          this.currentSlideIndex = params['slide'] - 1
-        }
-      })
   }
 
   ngAfterContentInit() {
+    this.route.params
+      .distinctUntilKeyChanged('slide')
+      .subscribe(params => {
+        const slideIndex = +params['slide'] - 1
+        if (slideIndex != null && !isNaN(slideIndex)) {
+          if (slideIndex >= this.slideComponents.length) {
+            this.goToFirst()
+          } else {
+            this.currentSlideIndex = slideIndex
+          }
+        } else {
+          this.goToFirst()
+        }
+      })
     this.updateView()
   }
 

@@ -10,41 +10,43 @@ import {FormsModule} from '@angular/forms'
 import {UiModule} from '../ui/ui.module'
 import {LinePipe} from './controls/pipes/line.pipe'
 // tslint:disable-next-line
-import {PlanimetricsControlComponent} from './controls/planimetrics-control/planimetrics-control.component';
+import {PlanimetricsControlComponent} from './controls/planimetrics-control/planimetrics-control.component'
 import {KindPipe} from './controls/planimetrics-control/pipes/kind.pipe'
 import {LabelPipe} from './controls/planimetrics-control/pipes/label.pipe'
 import {FillColorPipe} from './controls/planimetrics-control/pipes/fill-color.pipe'
 import {StrokeColorPipe} from './controls/planimetrics-control/pipes/stroke-color.pipe'
 import {DestructPipe} from './controls/planimetrics-control/pipes/destruct.pipe'
+import {RandomService} from './random.service'
 
 @NgModule({
-    imports: [
-        CommonModule,
-        FormsModule,
-        UiModule,
-        TableModule,
-        ObjectEditorModule,
-    ],
-    declarations: [
-        PlanimetricsComponent,
-        PlanimetricsTableComponent,
-        ObjectRowComponent,
-        LinePipe,
-        PlanimetricsControlComponent,
-        KindPipe,
-        LabelPipe,
-        FillColorPipe,
-        StrokeColorPipe,
-        DestructPipe,
-    ],
-    exports: [
-        PlanimetricsComponent,
-        PlanimetricsTableComponent,
-        PlanimetricsControlComponent,
-    ],
-    providers: [
-        RendererService,
-    ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    UiModule,
+    TableModule,
+    ObjectEditorModule,
+  ],
+  declarations: [
+    PlanimetricsComponent,
+    PlanimetricsTableComponent,
+    ObjectRowComponent,
+    LinePipe,
+    PlanimetricsControlComponent,
+    KindPipe,
+    LabelPipe,
+    FillColorPipe,
+    StrokeColorPipe,
+    DestructPipe,
+  ],
+  exports: [
+    PlanimetricsComponent,
+    PlanimetricsTableComponent,
+    PlanimetricsControlComponent,
+  ],
+  providers: [
+    RendererService,
+    RandomService,
+  ],
 })
 export class PlanimetricsModule {
 }

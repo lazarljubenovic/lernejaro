@@ -5,6 +5,15 @@ import {Segment} from '../../planimetryts/geometry-objects/segment'
 import {Triangle} from 'app/planimetryts/geometry-objects/triangle'
 import {Line} from 'app/planimetryts/geometry-objects/line'
 import {Circle} from '../../planimetryts/geometry-objects/circle'
+import {GeometryObject} from '../../planimetryts/geometry-objects/geometry-object'
+import {RandomService} from '../../planimetrics/random.service'
+
+interface Example {
+  title: string
+  subtitle: string
+  interactivePoints: Point[]
+  evaluate: (interactivePoints: Point[]) => GeometryObject[]
+}
 
 @Component({
   selector: 'lrn-introducing-geometry',
@@ -13,8 +22,15 @@ import {Circle} from '../../planimetryts/geometry-objects/circle'
 })
 export class IntroducingGeometryComponent {
 
-  public examples = [
+  // constructor(private random: RandomService) {
+  // }
+
+  // private randomPoints = this.random.Multiple(20).Point.InRectangle(-100, 100, -100, 100)
+
+  public examples: Example[] = [
     {
+      title: 'Basic example',
+      subtitle: 'Segment with a midpoint',
       interactivePoints: [
         Point.FromCartesianCoordinates(-200, -200)
           .label('A').strokeColor(MaterialColor.AMBER),
@@ -29,6 +45,8 @@ export class IntroducingGeometryComponent {
       },
     },
     {
+      title: 'Triangle circumcircle',
+      subtitle: 'Construction',
       interactivePoints: [
         Point.FromCartesianCoordinates(-200, -200)
           .label('A').strokeColor(MaterialColor.AMBER),
@@ -56,6 +74,12 @@ export class IntroducingGeometryComponent {
         return [triangle, a, b, c, circumcircle, A, B, C]
       },
     },
+    // {
+    //   title: '',
+    //   subtitle: '',
+    //   interactivePoints: this.randomPoints,
+    //   evaluate: points => [...points],
+    // },
   ]
 
 }

@@ -22,6 +22,7 @@ import {areEqualFloats} from '../planimetryts/util'
   templateUrl: './planimetrics.component.html',
   styleUrls: ['./planimetrics.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [RendererService],
 })
 export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
 
