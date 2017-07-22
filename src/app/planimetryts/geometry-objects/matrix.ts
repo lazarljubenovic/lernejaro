@@ -36,18 +36,16 @@ export namespace Matrix {
    * @constructor
    */
   export function HomogeneousInverse(matrix: number[][]): number[][] {
-    const a = matrix[0][0]
-    const c = matrix[0][1]
-    const e = matrix[0][2]
-    const b = matrix[1][0]
-    const d = matrix[1][1]
-    const f = matrix[1][2]
+    const [
+      [a, c, e],
+      [b, d, f],
+    ] = matrix
     const λ = 1 / (a * d - b * c)
     return [
-      [d, -c, c * f - d * e],
-      [-b, a, b * e - a * f],
+      [d, -c, c * f - d * e].map(el => el * λ),
+      [-b, a, b * e - a * f].map(el => el * λ),
       [0, 0, 1],
-    ].map(_ => _.map(el => el * λ))
+    ]
   }
 
   /**

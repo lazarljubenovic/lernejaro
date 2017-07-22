@@ -10,6 +10,7 @@ import {Polygon} from '../geometry-objects/polygon'
 import {MaterialColor} from './color'
 import {MaterialColor as MaterialColorEnum} from '../geometry-objects/material-colors'
 import {Ellipse} from '../geometry-objects/ellipse'
+import {RectangularArea} from '../geometry-objects/rectangular-area'
 
 
 function getCursorPosition(canvas, event): Coordinate {
@@ -47,8 +48,8 @@ export class CanvasRenderer extends Renderer {
     const I = Matrix.GetIdentity(3)
     this._appliedMatrix = I
     this._inverseMatrix = I
-    // this._rightAppliedMatrix = I
-    // this._rightInverseMatrix = I
+    this._rightAppliedMatrix = I
+    this._rightInverseMatrix = I
   }
 
   public applyMatrix(matrix: number[][], leftMul: boolean = true): this {
@@ -56,17 +57,17 @@ export class CanvasRenderer extends Renderer {
     if (leftMul) {
       this._appliedMatrix = Matrix.Multiply(matrix, this._appliedMatrix)
       this._inverseMatrix = Matrix.Multiply(this._inverseMatrix, inverse)
-      // this._rightAppliedMatrix =
-      // Matrix.Multiply(this._rightAppliedMatrix, Matrix.Transpose(matrix));
-      // this._rightInverseMatrix =
-      // Matrix.Multiply(Matrix.Transpose(inverse), this._rightInverseMatrix);
+      this._rightAppliedMatrix =
+        Matrix.Multiply(this._rightAppliedMatrix, matrix)
+      this._rightInverseMatrix =
+        Matrix.Multiply(inverse, this._rightInverseMatrix)
     } else {
       this._appliedMatrix = Matrix.Multiply(this._appliedMatrix, matrix)
       this._inverseMatrix = Matrix.Multiply(inverse, this._inverseMatrix)
-      // this._rightAppliedMatrix =
-      // Matrix.Multiply(Matrix.Transpose(matrix), this._rightAppliedMatrix);
-      // this._rightInverseMatrix =
-      // Matrix.Multiply(this._rightInverseMatrix, Matrix.Transpose(inverse));
+      this._rightAppliedMatrix =
+        Matrix.Multiply(matrix, this._rightAppliedMatrix)
+      this._rightInverseMatrix =
+        Matrix.Multiply(this._rightInverseMatrix, inverse)
     }
     return this
   }
@@ -95,7 +96,7 @@ export class CanvasRenderer extends Renderer {
 
     this
       .applyMatrix(Matrix.Homogeneous.StretchY(-1))
-      // .applyMatrix(Matrix.Homogeneous.Stretch(.5))
+      // .applyMatrix(Matrix.Homogeneous.Stretch(2))
       .applyMatrix(Matrix.Homogeneous.Translate(300, 300))
 
     console.log(this._appliedMatrix)
@@ -172,20 +173,17 @@ export class CanvasRenderer extends Renderer {
   }
 
   protected renderLine(line: Line): void {
-    let from, to
-    if (line.isVertical()) {
-      from = Line.HorizontalThroughPoint(-1000)
-      to = Line.HorizontalThroughPoint(1000)
-    } else {
-      from = Line.VerticalThroughPoint(-1000)
-      to = Line.VerticalThroughPoint(1000)
+    const {width: w, height: h} = this
+    const matrix = Matrix.HomogeneousInverse(this._appliedMatrix)
+    const point1 = Point.FromCartesianCoordinates(0, 0).applyMatrix(matrix)
+    const point2 = Point.FromCartesianCoordinates(w, h).applyMatrix(matrix)
+    const visibleArea: RectangularArea = RectangularArea.FromTwoPoints(point1, point2)
+    console.log(visibleArea.getPoints())
+    const segment = visibleArea.getCapturedSegment(line)
+    if (segment != null) {
+      segment.copyViewDataFrom(line)
+      this.renderSegment(segment)
     }
-    const [start, end]: Point[] = [from, to]
-      .map(bound => Line.GetIntersection(line, bound))
-    const segment = Segment.FromTwoPoints(start, end)
-      .label(line.label())
-      .strokeColor(line.strokeColor())
-    this.renderSegment(segment)
   }
 
   protected renderSegment(segment: Segment): void {
