@@ -1,20 +1,9 @@
 import {EvaluateFunction} from '../../../planimetrics/planimetrics.component'
 import {Line} from '../line'
 import {Segment} from '../segment'
+import {AxisConfiguration} from './axis.interface'
 
 const arrayGen = length => Array.from({length}).map((_, index) => index)
-
-export interface AxisConfiguration {
-  hideX?: boolean
-  hideY?: boolean
-  hideNotchesX?: boolean
-  hideNotchesY?: boolean
-  hideNumbersX?: boolean
-  hideNumbersY?: boolean
-  notchDistanceX?: number
-  notchDistanceY?: number
-  notchLength?: number
-}
 
 interface ExpandedAxisConfiguration {
   hideX: boolean
@@ -32,10 +21,10 @@ function expandAxisConfiguration(configuration: AxisConfiguration = {}): Expande
   const {
     hideX = false,
     hideY = false,
-    hideNotchesX = false,
-    hideNotchesY = false,
-    hideNumbersX = false,
-    hideNumbersY = false,
+    hideNotchesX = hideX,
+    hideNotchesY = hideY,
+    hideNumbersX = hideNotchesX,
+    hideNumbersY = hideNotchesY,
     notchDistanceX = 50,
     notchDistanceY = 50,
     notchLength = 6,
@@ -73,8 +62,8 @@ export function Axis(configuration: AxisConfiguration = {}): EvaluateFunction {
       .map(y => horizontalNotch(expandedConfiguration.notchLength, 0, y))
 
     return [
-      ...(!expandedConfiguration.hideX ? [Line.Y_AXIS] : []),
-      ...(!expandedConfiguration.hideY ? [Line.X_AXIS] : []),
+      ...(!expandedConfiguration.hideX ? [Line.X_AXIS] : []),
+      ...(!expandedConfiguration.hideY ? [Line.Y_AXIS] : []),
       ...(!expandedConfiguration.hideNotchesX ? xNotches : []),
       ...(!expandedConfiguration.hideNotchesY ? yNotches : []),
     ]

@@ -6,7 +6,7 @@ import {Triangle} from 'app/planimetryts/geometry-objects/triangle'
 import {Line} from 'app/planimetryts/geometry-objects/line'
 import {Circle} from '../../planimetryts/geometry-objects/circle'
 import {EvaluateFunction} from '../../planimetrics/planimetrics.component'
-import {Axis} from '../../planimetryts/geometry-objects/macros/axis'
+import {AxisConfiguration} from '../../planimetryts/geometry-objects/macros/axis.interface'
 
 interface Example {
   interactivePoints: Point[]
@@ -67,13 +67,13 @@ export class IntroducingGeometryComponent {
       interactivePoints: [
         Point.CENTER.label(`A`).strokeColor(MaterialColor.DEEP_PURPLE),
       ],
-      evaluate: ({interactivePoints, transformationMatrix, inverseTransformationMatrix}) => {
-        const [center] = interactivePoints
-        const axis = Axis()({interactivePoints, transformationMatrix, inverseTransformationMatrix})
+      evaluate: ({interactivePoints: [center]}) => {
         const circle = Circle.FromCenterAndRadius(center, 100)
-        return [...axis, center, circle]
+        return [center, circle]
       },
     },
   ]
+
+  public axis: AxisConfiguration = {}
 
 }

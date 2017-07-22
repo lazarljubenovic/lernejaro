@@ -31,9 +31,6 @@ export class CanvasRenderer extends Renderer {
   private width: number = 600
   private height: number = 600
 
-  private _drawAxis: boolean = false
-  private _drawGrid: boolean = false
-
   private _gridLines: Set<Line>
 
   private _appliedMatrix: number[][]
@@ -137,12 +134,6 @@ export class CanvasRenderer extends Renderer {
 
   protected beforeObjectsRender(objects: GeometryObject[]) {
     this.clear()
-    if (this._drawGrid) {
-      this.drawGrid()
-    }
-    if (this._drawAxis) {
-      this.drawAxis()
-    }
   }
 
   protected renderLabel(label: string, position: Coordinate) {

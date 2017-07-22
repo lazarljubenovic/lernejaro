@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core'
 import {GeometryObject} from '../planimetryts/geometry-objects/geometry-object'
 import {CanvasRenderer} from '../planimetryts/renderers/canvas-renderer'
 import {Subject} from 'rxjs'
+import {EvaluateFunction} from './planimetrics.component'
 
 @Injectable()
 export class RendererService {
@@ -30,6 +31,10 @@ export class RendererService {
 
   public getTransformationMatrix(): number[][] {
     return this.renderer.appliedMatrix
+  }
+
+  public setPreRenderHook(evaluateFunctions: EvaluateFunction[]) {
+
   }
 
   constructor() {

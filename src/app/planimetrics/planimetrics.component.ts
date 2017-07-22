@@ -17,6 +17,8 @@ import {GeometryObject} from '../planimetryts/geometry-objects/geometry-object'
 import {Point} from '../planimetryts/geometry-objects/point'
 import {areEqualFloats} from '../planimetryts/util'
 import {Matrix} from '../planimetryts/geometry-objects/matrix'
+import {AxisConfiguration} from '../planimetryts/geometry-objects/macros/axis.interface'
+import {Axis} from '../planimetryts/geometry-objects/macros/axis'
 
 export interface EvaluateFunctionArgumentObject {
   interactivePoints: Point[]
@@ -44,7 +46,7 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() @HostBinding('style.width.px') width: number = 600
   @Input() @HostBinding('style.height.px') height: number = 600
 
-  @Input() withAxis: boolean = false
+  @Input() axis: AxisConfiguration
 
   // private wrapperEvaluate(interactivePoints: Point[]): GeometryObject[] {
   // }
@@ -86,9 +88,21 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
     this.interactivePointsChange.emit(this.getEvaluateFunctionArgumentObject())
   }
 
+  private preRender(): GeometryObject[] {
+    const renderedObjects: GeometryObject[] = []
+    if (this.axis != null) {
+      const axisConfig = this.axis === true ? {} : this.axis
+      const axis = Axis(this.axis)(this.getEvaluateFunctionArgumentObject())
+      renderedObjects.push(...axis)
+    }
+    return renderedObjects
+  }
+
   private render(): void {
     const set = new Set()
     this.objects.forEach(o => set.add(o))
+    const additionalObjects = this.preRender()
+    additionalObjects.forEach(o => set.add(o))
     this.renderer.render(Array.from(set))
   }
 
@@ -105,6 +119,9 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
     this.renderer.mouseDrag$.subscribe(this.onMouseDrag.bind(this))
     this.renderer.mouseUp$.subscribe(this.onMouseUp.bind(this))
     this.updateObjects()
+    if (this.axis != null) {
+      this.renderer.setPreRenderHook([Axis(this.axis)])
+    }
     this.render()
   }
 
