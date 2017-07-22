@@ -2,6 +2,8 @@ import {EvaluateFunction} from '../../../planimetrics/planimetrics.component'
 import {Line} from '../line'
 import {Segment} from '../segment'
 import {AxisConfiguration} from './axis.interface'
+import {Point} from '../point'
+import {RectangularArea} from '../rectangular-area'
 
 const arrayGen = length => Array.from({length}).map((_, index) => index)
 
@@ -48,18 +50,59 @@ const horizontalNotch = (length, x, y) =>
 const verticalNotch = (length, x, y) =>
   Segment.FromGeneralForm(x, y - length / 2, x, y + length / 2)
 
+const firstGreaterThanAndDivisibleBy = (lowerLimit: number, moduo: number): number => {
+  const overhead = lowerLimit % moduo
+  return lowerLimit - overhead
+}
+
+const firstLessThanAndDivisibleBy = (upperLimit: number, moduo: number): number => {
+  const overhead = upperLimit % moduo
+  return upperLimit - overhead
+}
+
+const rangeGenerator = (lo: number, hi: number, step: number = 1): number[] => {
+  return arrayGen((hi - lo) / step + 1).map(n => n * step).map(n => n + lo)
+}
+
 export function Axis(configuration: AxisConfiguration = {}): EvaluateFunction {
   const expandedConfiguration = expandAxisConfiguration(configuration)
 
   return function evaluate({inverseTransformationMatrix}) {
+    const w = 600 // TODO: Do not assume these but send to evaluate function
+    const h = 600 // TODO: Do not assume these but send to evaluate function
 
-    const xNotches = arrayGen(100).map(x => x - 50)
-      .map(index => index * expandedConfiguration.notchDistanceX)
-      .map(x => verticalNotch(expandedConfiguration.notchLength, x, 0))
+    // TODO "visibleArea" should be sent to evaluate function as well
+    const matrix = inverseTransformationMatrix
+    const point1 = Point.FromCartesianCoordinates(0, 0).applyMatrix(matrix)
+    const point2 = Point.FromCartesianCoordinates(w, h).applyMatrix(matrix)
+    const visibleArea: RectangularArea = RectangularArea.FromTwoPoints(point1, point2)
 
-    const yNotches = arrayGen(100).map(x => x - 50)
-      .map(index => index * expandedConfiguration.notchDistanceY)
-      .map(y => horizontalNotch(expandedConfiguration.notchLength, 0, y))
+    const xAxisSegment = visibleArea.getCapturedSegment(Line.X_AXIS)
+    const yAxisSegment = visibleArea.getCapturedSegment(Line.Y_AXIS)
+
+    let xNotches = []
+    if (xAxisSegment != null) {
+      const [lo, hi] = xAxisSegment.getPoints()
+        .sort((a, b) => a.x() < b.x() ? -1 : 1)
+        .map(point => point.x())
+      const {notchDistanceX: step} = expandedConfiguration
+      const from = firstGreaterThanAndDivisibleBy(lo, step)
+      const to = firstLessThanAndDivisibleBy(hi, step)
+      xNotches = rangeGenerator(from, to, step)
+        .map(x => verticalNotch(expandedConfiguration.notchLength, x, 0))
+    }
+
+    let yNotches = []
+    if (yAxisSegment != null) {
+      const [lo, hi] = yAxisSegment.getPoints()
+        .sort((a, b) => a.y() < b.y() ? -1 : 1)
+        .map(point => point.y())
+      const {notchDistanceY: step} = expandedConfiguration
+      const from = firstGreaterThanAndDivisibleBy(lo, step)
+      const to = firstLessThanAndDivisibleBy(hi, step)
+      yNotches = rangeGenerator(from, to, step)
+        .map(y => horizontalNotch(expandedConfiguration.notchLength, 0, y))
+    }
 
     return [
       ...(!expandedConfiguration.hideX ? [Line.X_AXIS] : []),
