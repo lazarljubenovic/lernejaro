@@ -3,12 +3,24 @@
 >
 
   <lrn-slide [title]="'Basic example'"
-             [subtitle]="'Line with a midpoint'"
+             [subtitle]="'Segment with a midpoint'"
   >
     <div lrnMaximize lrnCenter>
       <lrn-card>
-        <lrn-planimetrics [(interactivePoints)]="interactivePoints"
-                          [evaluate]="evaluate"
+        <lrn-planimetrics [(interactivePoints)]="examples[0].interactivePoints"
+                          [evaluate]="examples[0].evaluate"
+        ></lrn-planimetrics>
+      </lrn-card>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Triangle circumcircle'"
+             [subtitle]="'Construction'"
+  >
+    <div lrnMaximize lrnCenter>
+      <lrn-card>
+        <lrn-planimetrics [(interactivePoints)]="examples[1].interactivePoints"
+                          [evaluate]="examples[1].evaluate"
         ></lrn-planimetrics>
       </lrn-card>
     </div>

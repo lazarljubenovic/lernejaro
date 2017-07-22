@@ -69,7 +69,8 @@ export class PresentationComponent implements OnInit, AfterContentInit {
     this.renderer.attachViewAfter(outlet, [currentSlide])
 
     // Update route -- TODO ?
-    this.router.navigate(['.', {slide: this.currentSlideIndex}], {relativeTo: this.route})
+    const slide = this.currentSlideIndex + 1
+    this.router.navigate(['.', {slide}], {relativeTo: this.route})
   }
 
   public isFirstSlide(): boolean {
@@ -129,12 +130,12 @@ export class PresentationComponent implements OnInit, AfterContentInit {
   }
 
   ngOnInit() {
-    this.route.queryParams
+    this.route.params
       .distinctUntilKeyChanged('slide')
       .subscribe(params => {
         const slide = params['slide']
         if (slide != null) {
-          this.currentSlideIndex = params['slide']
+          this.currentSlideIndex = params['slide'] - 1
         }
       })
   }
