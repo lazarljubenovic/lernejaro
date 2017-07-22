@@ -108,10 +108,7 @@ export class CanvasRenderer extends Renderer {
 
     this
       .applyMatrix(Matrix.Homogeneous.StretchY(-1))
-      // .applyMatrix(Matrix.Homogeneous.Stretch(2))
       .applyMatrix(Matrix.Homogeneous.Translate(300, 300))
-
-    console.log(this._appliedMatrix)
 
     this.createGrid()
   }
@@ -311,7 +308,7 @@ export class CanvasRenderer extends Renderer {
     this.canvas.addEventListener('mouseleave', this.onMouseLeave.bind(this))
     this.canvas.addEventListener('mousedown', this.onMouseDown.bind(this))
     this.canvas.addEventListener('mousemove', this.onMouseMove.bind(this))
-    this.canvas.addEventListener('wheel', this.onMouseScroll.bind(this))
+    this.canvas.addEventListener('wheel', this.onMouseScroll.bind(this), <any>{passive: true})
   }
 
   private onMouseUp(event: MouseEvent): void {
