@@ -9,7 +9,7 @@ import {
   OnChanges,
   OnInit,
   Output,
-  ViewChild
+  ViewChild,
 } from '@angular/core'
 import {CanvasRenderer} from '../planimetryts/renderers/canvas-renderer'
 import {RendererService} from './renderer.service'
@@ -65,20 +65,19 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
   constructor(private renderer: RendererService) {
   }
 
-  private updateObjects() {
-    this.objects = this.evaluate({
+  private getEvaluateFunctionArgumentObject(): EvaluateFunctionArgumentObject {
+    return {
       interactivePoints: this.interactivePoints,
       transformationMatrix: this.renderer.getTransformationMatrix(),
-    })
+    }
+  }
+
+  private updateObjects() {
+    this.objects = this.evaluate(this.getEvaluateFunctionArgumentObject())
   }
 
   private onInteractivePointsChange() {
-    this.interactivePointsChange.emit(
-      {
-        interactivePoints: this.interactivePoints,
-        transformationMatrix: this.renderer.getTransformationMatrix(),
-      },
-    )
+    this.interactivePointsChange.emit(this.getEvaluateFunctionArgumentObject())
   }
 
   private render(): void {

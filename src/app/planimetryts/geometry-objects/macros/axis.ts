@@ -1,4 +1,8 @@
 import {EvaluateFunction} from '../../../planimetrics/planimetrics.component'
+import {Line} from '../line'
+import {Segment} from '../segment'
+
+const arrayGen = length => Array.from({length}).map((_, index) => index)
 
 export interface AxisConfiguration {
   hideX?: boolean
@@ -9,6 +13,7 @@ export interface AxisConfiguration {
   hideNumbersY?: boolean
   notchDistanceX?: number
   notchDistanceY?: number
+  notchLength?: number
 }
 
 interface ExpandedAxisConfiguration {
@@ -20,9 +25,10 @@ interface ExpandedAxisConfiguration {
   hideNumbersY: boolean
   notchDistanceX: number
   notchDistanceY: number
+  notchLength: number
 }
 
-function expandAxisConfiguration(configuration: AxisConfiguration): ExpandedAxisConfiguration {
+function expandAxisConfiguration(configuration: AxisConfiguration = {}): ExpandedAxisConfiguration {
   const {
     hideX = false,
     hideY = false,
@@ -30,8 +36,9 @@ function expandAxisConfiguration(configuration: AxisConfiguration): ExpandedAxis
     hideNotchesY = false,
     hideNumbersX = false,
     hideNumbersY = false,
-    notchDistanceX = 25,
-    notchDistanceY = 25,
+    notchDistanceX = 50,
+    notchDistanceY = 50,
+    notchLength = 6,
   } = configuration
   return {
     hideX,
@@ -42,13 +49,34 @@ function expandAxisConfiguration(configuration: AxisConfiguration): ExpandedAxis
     hideNumbersY,
     notchDistanceX,
     notchDistanceY,
+    notchLength,
   }
 }
 
-export function Axis(configuration: AxisConfiguration): EvaluateFunction {
+const horizontalNotch = (length, x, y) =>
+  Segment.FromGeneralForm(x - length / 2, y, x + length / 2, y)
+
+const verticalNotch = (length, x, y) =>
+  Segment.FromGeneralForm(x, y - length / 2, x, y + length / 2)
+
+export function Axis(configuration: AxisConfiguration = {}): EvaluateFunction {
   const expandedConfiguration = expandAxisConfiguration(configuration)
 
   return function evaluate({interactivePoints, transformationMatrix}) {
-    return []
+
+    const xNotches = arrayGen(100).map(x => x - 50)
+      .map(index => index * expandedConfiguration.notchDistanceX)
+      .map(x => verticalNotch(expandedConfiguration.notchLength, x, 0))
+
+    const yNotches = arrayGen(100).map(x => x - 50)
+      .map(index => index * expandedConfiguration.notchDistanceY)
+      .map(y => horizontalNotch(expandedConfiguration.notchLength, 0, y))
+
+    return [
+      ...(!expandedConfiguration.hideX ? [Line.Y_AXIS] : []),
+      ...(!expandedConfiguration.hideY ? [Line.X_AXIS] : []),
+      ...(!expandedConfiguration.hideNotchesX ? xNotches : []),
+      ...(!expandedConfiguration.hideNotchesY ? yNotches : []),
+    ]
   }
 }
