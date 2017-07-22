@@ -82,6 +82,7 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
 
   private updateObjects() {
     this.objects = this.evaluate(this.getEvaluateFunctionArgumentObject())
+    this.render()
   }
 
   private onInteractivePointsChange() {
@@ -118,11 +119,9 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
     this.renderer.mouseDown$.subscribe(this.onMouseDown.bind(this))
     this.renderer.mouseDrag$.subscribe(this.onMouseDrag.bind(this))
     this.renderer.mouseUp$.subscribe(this.onMouseUp.bind(this))
+    this.renderer.mouseScrollUp$.subscribe(this.onMouseScrollUp.bind(this))
+    this.renderer.mouseScrollDown$.subscribe(this.onMouseScrollDown.bind(this))
     this.updateObjects()
-    if (this.axis != null) {
-      this.renderer.setPreRenderHook([Axis(this.axis)])
-    }
-    this.render()
   }
 
   public ngOnChanges(): void {
@@ -147,13 +146,22 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
     if (this.currentPoint != null) {
       const {dx, dy} = offset.logic
       this.currentPoint.x(x => x + dx).y(y => y + dy)
+      this.onInteractivePointsChange()
     } else {
       const {dx, dy} = offset.canvas
       this.renderer.move(dx, dy)
     }
-    this.onInteractivePointsChange()
     this.updateObjects()
-    this.render()
+  }
+
+  private onMouseScrollUp(position: Coordinate): void {
+    this.renderer.zoom(position, 1.05)
+    this.updateObjects()
+  }
+
+  private onMouseScrollDown(position: Coordinate): void {
+    this.renderer.zoom(position, 0.95)
+    this.updateObjects()
   }
 
 }

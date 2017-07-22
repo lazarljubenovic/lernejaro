@@ -76,8 +76,20 @@ export class CanvasRenderer extends Renderer {
     return this.applyMatrix(Matrix.Homogeneous.Translate(dx, dy), true)
   }
 
-  public zoom(value: number): this {
-    return this.applyMatrix(Matrix.Homogeneous.Stretch(value), true)
+  public zoom(towards: Coordinate, value: number): this {
+    const {x, y} = towards
+    return this
+      .applyMatrix(Matrix.Homogeneous.Translate(-x, -y))
+      .applyMatrix(Matrix.Homogeneous.Stretch(value))
+      .applyMatrix(Matrix.Homogeneous.Translate(x, y))
+  }
+
+  private getCurrentVisibleArea(): RectangularArea {
+    const {width: w, height: h} = this
+    const matrix = this._inverseMatrix
+    const point1 = Point.FromCartesianCoordinates(0, 0).applyMatrix(matrix)
+    const point2 = Point.FromCartesianCoordinates(w, h).applyMatrix(matrix)
+    return RectangularArea.FromTwoPoints(point1, point2)
   }
 
   private prepareContext() {
@@ -291,12 +303,15 @@ export class CanvasRenderer extends Renderer {
   public mouseDown$ = new Subject<Coordinate>()
   public mouseDrag$ = new Subject<{ logic: Offset, canvas: Offset }>()
   public mouseUp$ = new Subject<Coordinate>()
+  public mouseScrollUp$ = new Subject<Coordinate>()
+  public mouseScrollDown$ = new Subject<Coordinate>()
 
   private registerEvents() {
     this.canvas.addEventListener('mouseup', this.onMouseUp.bind(this))
     this.canvas.addEventListener('mouseleave', this.onMouseLeave.bind(this))
     this.canvas.addEventListener('mousedown', this.onMouseDown.bind(this))
     this.canvas.addEventListener('mousemove', this.onMouseMove.bind(this))
+    this.canvas.addEventListener('wheel', this.onMouseScroll.bind(this))
   }
 
   private onMouseUp(event: MouseEvent): void {
@@ -334,6 +349,18 @@ export class CanvasRenderer extends Renderer {
     }
     if (this.isMouseDown) {
       this.mouseDrag$.next({logic: logicOffset, canvas: canvasOffset})
+    }
+  }
+
+  private onMouseScroll(event: WheelEvent): void {
+    const clickPosition = getCursorPosition(this.canvas, event)
+    // const {x, y} = this.viewToLogicCoordinates(clickPosition)
+    const {x, y} = clickPosition
+    const downwards = event.deltaY > 0
+    if (downwards) {
+      this.mouseScrollDown$.next({x, y})
+    } else {
+      this.mouseScrollUp$.next({x, y})
     }
   }
 

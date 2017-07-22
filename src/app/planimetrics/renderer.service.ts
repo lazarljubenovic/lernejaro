@@ -3,6 +3,7 @@ import {GeometryObject} from '../planimetryts/geometry-objects/geometry-object'
 import {CanvasRenderer} from '../planimetryts/renderers/canvas-renderer'
 import {Subject} from 'rxjs'
 import {EvaluateFunction} from './planimetrics.component'
+import {Point} from '../planimetryts/geometry-objects/point'
 
 @Injectable()
 export class RendererService {
@@ -13,28 +14,28 @@ export class RendererService {
   public mouseDown$: Subject<Coordinate>
   public mouseDrag$: Subject<{ logic: Offset, canvas: Offset }>
   public mouseUp$: Subject<Coordinate>
+  public mouseScrollUp$: Subject<Coordinate>
+  public mouseScrollDown$: Subject<Coordinate>
 
   public setRenderer(renderer: CanvasRenderer): void {
     this.renderer = renderer
     this.mouseDown$ = this.renderer.mouseDown$
     this.mouseDrag$ = this.renderer.mouseDrag$
     this.mouseUp$ = this.renderer.mouseUp$
+    this.mouseScrollUp$ = this.renderer.mouseScrollUp$
+    this.mouseScrollDown$ = this.renderer.mouseScrollDown$
   }
 
   public move(dx: number, dy: number): void {
     this.renderer.move(dx, dy)
   }
 
-  public zoom(value: number): void {
-    this.renderer.zoom(value)
+  public zoom(towards: Coordinate, value: number): void {
+    this.renderer.zoom(towards, value)
   }
 
   public getTransformationMatrix(): number[][] {
     return this.renderer.appliedMatrix
-  }
-
-  public setPreRenderHook(evaluateFunctions: EvaluateFunction[]) {
-
   }
 
   constructor() {
