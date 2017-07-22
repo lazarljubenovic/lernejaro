@@ -16,10 +16,12 @@ import {RendererService} from './renderer.service'
 import {GeometryObject} from '../planimetryts/geometry-objects/geometry-object'
 import {Point} from '../planimetryts/geometry-objects/point'
 import {areEqualFloats} from '../planimetryts/util'
+import {Matrix} from '../planimetryts/geometry-objects/matrix'
 
 export interface EvaluateFunctionArgumentObject {
   interactivePoints: Point[]
   transformationMatrix: number[][]
+  inverseTransformationMatrix: number[][]
 }
 
 export type EvaluateFunction = (arg: EvaluateFunctionArgumentObject) => GeometryObject[]
@@ -66,9 +68,13 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   private getEvaluateFunctionArgumentObject(): EvaluateFunctionArgumentObject {
+    const interactivePoints = this.interactivePoints
+    const transformationMatrix = this.renderer.getTransformationMatrix()
+    const inverseTransformationMatrix = Matrix.HomogeneousInverse(transformationMatrix)
     return {
-      interactivePoints: this.interactivePoints,
-      transformationMatrix: this.renderer.getTransformationMatrix(),
+      interactivePoints,
+      transformationMatrix,
+      inverseTransformationMatrix,
     }
   }
 

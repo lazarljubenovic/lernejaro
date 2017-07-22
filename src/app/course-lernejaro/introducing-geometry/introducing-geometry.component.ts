@@ -67,9 +67,9 @@ export class IntroducingGeometryComponent {
       interactivePoints: [
         Point.CENTER.label(`A`).strokeColor(MaterialColor.DEEP_PURPLE),
       ],
-      evaluate: ({interactivePoints, transformationMatrix}) => {
+      evaluate: ({interactivePoints, transformationMatrix, inverseTransformationMatrix}) => {
         const [center] = interactivePoints
-        const axis = Axis()({interactivePoints, transformationMatrix})
+        const axis = Axis()({interactivePoints, transformationMatrix, inverseTransformationMatrix})
         const circle = Circle.FromCenterAndRadius(center, 100)
         return [...axis, center, circle]
       },

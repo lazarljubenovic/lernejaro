@@ -62,7 +62,7 @@ const verticalNotch = (length, x, y) =>
 export function Axis(configuration: AxisConfiguration = {}): EvaluateFunction {
   const expandedConfiguration = expandAxisConfiguration(configuration)
 
-  return function evaluate({interactivePoints, transformationMatrix}) {
+  return function evaluate({inverseTransformationMatrix}) {
 
     const xNotches = arrayGen(100).map(x => x - 50)
       .map(index => index * expandedConfiguration.notchDistanceX)

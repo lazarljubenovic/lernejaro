@@ -179,7 +179,7 @@ export class Line extends GeometryObject {
     return areEqualFloats(k1 * k2, -1)
   }
 
-  public static GetIntersection(line1: Line, line2: Line): Point {
+  public static GetIntersection(line1: Line, line2: Line): Point | null {
     if (Line.AreParallel(line1, line2)) {
       return null
     }
@@ -347,7 +347,7 @@ export class Line extends GeometryObject {
     return this
   }
 
-  private getPointPositionalSign(point: Point): number {
+  private getPointPositionalSign(point: Point): -1 | 0 | 1 {
     const l = this.getGeneralForm()
     const p = point.getCartesianCoordinates()
     const result = l.A * p.x + l.B * p.y + l.C
