@@ -9,7 +9,7 @@ import {
   OnChanges,
   OnInit,
   Output,
-  ViewChild,
+  ViewChild
 } from '@angular/core'
 import {CanvasRenderer} from '../planimetryts/renderers/canvas-renderer'
 import {RendererService} from './renderer.service'
@@ -125,12 +125,12 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
     if (this.currentPoint != null) {
       const {dx, dy} = offset.logic
       this.currentPoint.x(x => x + dx).y(y => y + dy)
-      this.onInteractivePointsChange()
-      this.updateObjects()
     } else {
       const {dx, dy} = offset.canvas
       this.renderer.move(dx, dy)
     }
+    this.onInteractivePointsChange()
+    this.updateObjects()
     this.render()
   }
 
