@@ -5,14 +5,11 @@ import {Segment} from '../../planimetryts/geometry-objects/segment'
 import {Triangle} from 'app/planimetryts/geometry-objects/triangle'
 import {Line} from 'app/planimetryts/geometry-objects/line'
 import {Circle} from '../../planimetryts/geometry-objects/circle'
-import {GeometryObject} from '../../planimetryts/geometry-objects/geometry-object'
-import {RandomService} from '../../planimetrics/random.service'
+import {EvaluateFunction} from '../../planimetrics/planimetrics.component'
 
 interface Example {
-  title: string
-  subtitle: string
   interactivePoints: Point[]
-  evaluate: (interactivePoints: Point[]) => GeometryObject[]
+  evaluate: EvaluateFunction
 }
 
 @Component({
@@ -22,31 +19,22 @@ interface Example {
 })
 export class IntroducingGeometryComponent {
 
-  // constructor(private random: RandomService) {
-  // }
-
-  // private randomPoints = this.random.Multiple(20).Point.InRectangle(-100, 100, -100, 100)
-
   public examples: Example[] = [
     {
-      title: 'Basic example',
-      subtitle: 'Segment with a midpoint',
       interactivePoints: [
         Point.FromCartesianCoordinates(-200, -200)
           .label('A').strokeColor(MaterialColor.AMBER),
         Point.FromCartesianCoordinates(200, -200)
           .label('B').strokeColor(MaterialColor.AMBER),
       ],
-      evaluate: (points: Point[]) => {
-        const [A, B] = points
+      evaluate: ({interactivePoints}) => {
+        const [A, B] = interactivePoints
         const segment = Segment.FromTwoPoints(A, B)
         const midpoint = Point.GetPointBetween(A, B).label('M').strokeColor(MaterialColor.BLUE)
         return [segment, midpoint, A]
       },
     },
     {
-      title: 'Triangle circumcircle',
-      subtitle: 'Construction',
       interactivePoints: [
         Point.FromCartesianCoordinates(-200, -200)
           .label('A').strokeColor(MaterialColor.AMBER),
@@ -55,10 +43,10 @@ export class IntroducingGeometryComponent {
         Point.FromCartesianCoordinates(0, 250)
           .label('C').strokeColor(MaterialColor.AMBER),
       ],
-      evaluate: (points: Point[]) => {
-        const [A, B, C] = points
+      evaluate: ({interactivePoints}) => {
+        const [A, B, C] = interactivePoints
         const triangle = Triangle.FromVertices(A, B, C)
-          .strokeColor(MaterialColor.GREEN).fillColor(MaterialColor.GREEN)
+          .strokeColor(MaterialColor.YELLOW).fillColor(MaterialColor.YELLOW)
 
         const midA = Point.GetPointBetween(B, C)
         const midB = Point.GetPointBetween(A, C)
@@ -69,17 +57,20 @@ export class IntroducingGeometryComponent {
         const c = Line.OrthogonalThroughPoint(Line.FromTwoPoints(A, B), midC)
 
         const center = Line.GetIntersection(a, b)
-        const circumcircle = Circle.FromCenterAndPoint(center, A)
+        const circumcircle = Circle.FromCenterAndPoint(center, A).strokeColor(MaterialColor.PINK)
 
         return [triangle, a, b, c, circumcircle, A, B, C]
       },
     },
-    // {
-    //   title: '',
-    //   subtitle: '',
-    //   interactivePoints: this.randomPoints,
-    //   evaluate: points => [...points],
-    // },
+    {
+      interactivePoints: [
+        Point.CENTER.label(`X`).strokeColor(MaterialColor.DEEP_PURPLE),
+      ],
+      evaluate: ({interactivePoints, transformationMatrix}) => {
+        console.log(transformationMatrix)
+        return [...interactivePoints]
+      },
+    }
   ]
 
 }

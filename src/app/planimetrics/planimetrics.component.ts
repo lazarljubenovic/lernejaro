@@ -17,6 +17,13 @@ import {GeometryObject} from '../planimetryts/geometry-objects/geometry-object'
 import {Point} from '../planimetryts/geometry-objects/point'
 import {areEqualFloats} from '../planimetryts/util'
 
+export interface EvaluateFunctionArgumentObject {
+  interactivePoints: Point[]
+  transformationMatrix: number[][]
+}
+
+export type EvaluateFunction = (arg: EvaluateFunctionArgumentObject) => GeometryObject[]
+
 @Component({
   selector: 'lrn-planimetrics',
   templateUrl: './planimetrics.component.html',
@@ -27,13 +34,18 @@ import {areEqualFloats} from '../planimetryts/util'
 export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
 
   @Input() public interactivePoints: Point[] = []
-  @Input() public evaluate: (interactivePoints: Point[]) => GeometryObject[]
+  @Input() public evaluate: EvaluateFunction = ({interactivePoints}) => interactivePoints
   public objects: GeometryObject[] = []
 
-  @Output() public interactivePointsChange = new EventEmitter<Point[]>()
+  @Output() public interactivePointsChange = new EventEmitter<EvaluateFunctionArgumentObject>()
 
   @Input() @HostBinding('style.width.px') width: number = 600
   @Input() @HostBinding('style.height.px') height: number = 600
+
+  @Input() withAxis: boolean = false
+
+  // private wrapperEvaluate(interactivePoints: Point[]): GeometryObject[] {
+  // }
 
   public getPointAt(x: number, y: number, eps: number = 6): Point {
     return (this.objects as Point[])
@@ -54,24 +66,31 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   private updateObjects() {
-    this.objects = this.evaluate(this.interactivePoints)
+    this.objects = this.evaluate({
+      interactivePoints: this.interactivePoints,
+      transformationMatrix: this.renderer.getTransformationMatrix(),
+    })
   }
 
   private onInteractivePointsChange() {
-    this.interactivePointsChange.emit(this.interactivePoints)
+    this.interactivePointsChange.emit(
+      {
+        interactivePoints: this.interactivePoints,
+        transformationMatrix: this.renderer.getTransformationMatrix(),
+      },
+    )
   }
 
-  private render() {
+  private render(): void {
     const set = new Set()
     this.objects.forEach(o => set.add(o))
     this.renderer.render(Array.from(set))
   }
 
-  ngOnInit() {
-    this.updateObjects()
+  public ngOnInit(): void {
   }
 
-  ngAfterViewInit() {
+  public ngAfterViewInit(): void {
     this.canvas = this.canvasRef.nativeElement
     this.canvas.width = this.width
     this.canvas.height = this.height
@@ -80,28 +99,29 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
     this.renderer.mouseDown$.subscribe(this.onMouseDown.bind(this))
     this.renderer.mouseDrag$.subscribe(this.onMouseDrag.bind(this))
     this.renderer.mouseUp$.subscribe(this.onMouseUp.bind(this))
+    this.updateObjects()
     this.render()
   }
 
-  ngOnChanges() {
-    if (this.context) {
+  public ngOnChanges(): void {
+    if (this.context != null) {
       this.render()
     }
   }
 
   private currentPoint: Point = null
 
-  private onMouseUp(position: Coordinate) {
+  private onMouseUp(position: Coordinate): void {
     this.currentPoint = null
   }
 
-  private onMouseDown(position: Coordinate) {
+  private onMouseDown(position: Coordinate): void {
     const {x, y} = position
     this.currentPoint = this.getPointAt(x, y)
     // console.log('current point is', this.currentPoint)
   }
 
-  private onMouseDrag(offset: { logic: Offset, canvas: Offset }) {
+  private onMouseDrag(offset: { logic: Offset, canvas: Offset }): void {
     if (this.currentPoint != null) {
       const {dx, dy} = offset.logic
       this.currentPoint.x(x => x + dx).y(y => y + dy)
