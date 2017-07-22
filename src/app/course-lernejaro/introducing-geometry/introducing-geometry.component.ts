@@ -73,13 +73,7 @@ export class IntroducingGeometryComponent {
       evaluate: ({interactivePoints: [center]}) => {
         const circle = Ellipse.Circle.FromCenterAndRadius(center, 100)
           .strokeColor(MaterialColor.RED)
-        const square = Polygon.FromVertices(
-          Point.FromCartesianCoordinates(-80, -80),
-          Point.FromCartesianCoordinates(-80, 80),
-          Point.FromCartesianCoordinates(80, 80),
-          Point.FromCartesianCoordinates(80, -80),
-        ).strokeColor(MaterialColor.BLUE)
-        return [center, circle, square]
+        return [center, circle]
       },
     },
   ]
