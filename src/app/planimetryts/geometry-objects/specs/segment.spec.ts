@@ -118,6 +118,44 @@ describe(`Segment`, () => {
       expect(vSegment1.getIntersectionWithSegment(hSegment2)).toBeNull()
     })
 
+    describe(`WithLine`, () => {
+
+      it(`should get intersection of two segments`, () => {
+        const actual = Segment.GetIntersectionWithLine(segment1, segment2.getLine())
+        const expected = Point.FromCartesianCoordinates(3, 3)
+        expect(actual).toEqual(expected)
+      })
+
+      it(`should return null when segments are parallel`, () => {
+        expect(segment1.getIntersectionWithLine(segment1P.getLine())).toBeNull()
+      })
+
+      it(`should return null when no intersection for two horizontal segments`, () => {
+        expect(hSegment1.getIntersectionWithLine(hSegmentP.getLine())).toBeNull()
+      })
+
+      it(`should return null when no intersection for two vertical segments`, () => {
+        expect(vSegment1.getIntersectionWithLine(vSegmentP.getLine())).toBeNull()
+      })
+
+      it(`should return null when segments are on the same horizontal line, but no overlap`, () => {
+        expect(hSegment1.getIntersectionWithLine(hSegment3.getLine())).toBeNull()
+      })
+
+      it(`should return null when segments are on the same vertical line, but no overlap`, () => {
+        expect(vSegment1.getIntersectionWithLine(vSegment3.getLine())).toBeNull()
+      })
+
+      it(`should return null when segments are on the same horizontal line with overlap`, () => {
+        expect(hSegment1.getIntersectionWithLine(hSegment2.getLine())).toBeNull()
+      })
+
+      it(`should return null when segments are on the same vertical line with overlap`, () => {
+        expect(vSegment1.getIntersectionWithLine(hSegment2.getLine())).toBeNull()
+      })
+
+    })
+
   })
 
   describe(`Segment#copyValuesFrom`, () => {

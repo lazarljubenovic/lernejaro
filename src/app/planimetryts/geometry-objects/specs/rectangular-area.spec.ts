@@ -1,6 +1,8 @@
 import {Point} from '../point'
 import {RectangularArea} from '../rectangular-area'
 import {Polygon} from '../polygon'
+import {Segment} from '../segment'
+import {Line} from '../line'
 
 const customEqualities = function (first: any, second: any) {
   if (first.kind == 'point' && second.kind == 'point') {
@@ -209,7 +211,21 @@ describe(`RectangularArea`, () => {
 
   describe(`getCapturedSegment`, () => {
 
+    const area = RectangularArea.FromTwoPoints(A, C)
 
+    it(`should get captured segment for a vertical line through the area`, () => {
+      const line = Line.VerticalThroughPoint(5)
+      const actual = area.getCapturedSegment(line)
+      const expected = Segment.FromGeneralForm(5, 2, 5, 20)
+      expect(Segment.AreEqual(actual, expected)).toBe(true)
+    })
+
+    it(`should get captured segment for a horizontal line through the area`, () => {
+      const line = Line.HorizontalThroughPoint(5)
+      const actual = area.getCapturedSegment(line)
+      const expected = Segment.FromGeneralForm(1, 5, 10, 5)
+      expect(Segment.AreEqual(actual, expected)).toBe(true)
+    })
 
   })
 
