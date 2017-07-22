@@ -126,8 +126,17 @@ export class RectangularArea extends GeometryObject {
     return segment.getPoints().some(this.containsPoint.bind(this))
   }
 
-  // public getCapturedSegment(line: Line): Segment | null {
-  //
-  // }
+  public getCapturedSegment(line: Line): Segment | null {
+    const intersections = this.getSegments()
+      .map(segment => Segment.GetIntersectionWithLine(segment, line))
+      .filter(point => point != null)
+
+    if (intersections.length != 2) {
+      return null
+    }
+
+    const [A, B] = intersections
+    return Segment.FromTwoPoints(A, B)
+  }
 
 }

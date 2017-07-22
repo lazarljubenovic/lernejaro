@@ -30,6 +30,21 @@ export class Segment extends GeometryObject {
       return null
     }
 
+    if (segment1.containsPoint(intersection) && segment2.containsPoint(intersection)) {
+      return intersection
+    } else {
+      return null
+    }
+  }
+
+  public static GetIntersectionWithLine(segment1: Segment, line2: Line): Point | null {
+    const line1 = segment1.getLine()
+    const intersection = Line.GetIntersection(line1, line2)
+
+    if (intersection == null) {
+      return null
+    }
+
     if (segment1.containsPoint(intersection)) {
       return intersection
     } else {
@@ -150,6 +165,14 @@ export class Segment extends GeometryObject {
     } else {
       return rectangularArea.containsPoint(point)
     }
+  }
+
+  public getIntersectionWithSegment(segment: Segment): Point | null {
+    return Segment.GetIntersection(this, segment)
+  }
+
+  public getIntersectionWithLine(line: Line): Point | null {
+    return Segment.GetIntersectionWithLine(this, line)
   }
 
 }

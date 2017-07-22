@@ -52,6 +52,74 @@ describe(`Segment`, () => {
     expect(actual).toEqual(expected)
   })
 
+  describe(`GetIntersection`, () => {
+
+    const segment1 = Segment.FromGeneralForm(1, 2, 5, 4)
+    const segment1P = Segment.FromGeneralForm(2, 2, 6, 4)
+    const segment2 = Segment.FromGeneralForm(4, 1, 2, 5)
+    const segment3 = Segment.FromGeneralForm(1, 1, 2, 2)
+
+    const vSegment1 = Segment.FromGeneralForm(6, 1, 6, 3)
+    const vSegment2 = Segment.FromGeneralForm(6, 2, 6, 4)
+    const vSegment3 = Segment.FromGeneralForm(6, 5, 6, 6)
+    const vSegment4 = Segment.FromGeneralForm(6, 0, 6, 10)
+    const vSegmentP = Segment.FromGeneralForm(7, 1, 7, 2)
+
+    const hSegment1 = Segment.FromGeneralForm(1, 6, 3, 6)
+    const hSegment2 = Segment.FromGeneralForm(2, 6, 4, 6)
+    const hSegment3 = Segment.FromGeneralForm(5, 6, 6, 6)
+    const hSegment4 = Segment.FromGeneralForm(0, 6, 10, 6)
+    const hSegmentP = Segment.FromGeneralForm(1, 7, 2, 7)
+
+    it(`should get intersection of two segments`, () => {
+      const actual = Segment.GetIntersection(segment1, segment2)
+      const expected = Point.FromCartesianCoordinates(3, 3)
+      expect(actual).toEqual(expected)
+    })
+
+    it(`should return null when no intersection`, () => {
+      expect(segment1.getIntersectionWithSegment(segment3)).toBeNull()
+      expect(segment2.getIntersectionWithSegment(segment3)).toBeNull()
+      expect(segment1.getIntersectionWithSegment(vSegment1)).toBeNull()
+      expect(segment1.getIntersectionWithSegment(vSegment2)).toBeNull()
+      expect(segment1.getIntersectionWithSegment(vSegment3)).toBeNull()
+      expect(segment1.getIntersectionWithSegment(vSegment4)).toBeNull()
+      expect(segment1.getIntersectionWithSegment(hSegment1)).toBeNull()
+      expect(segment1.getIntersectionWithSegment(hSegment2)).toBeNull()
+      expect(segment1.getIntersectionWithSegment(hSegment3)).toBeNull()
+      expect(segment1.getIntersectionWithSegment(hSegment4)).toBeNull()
+    })
+
+    it(`should return null when segments are parallel`, () => {
+      expect(segment1.getIntersectionWithSegment(segment1P)).toBeNull()
+    })
+
+    it(`should return null when no intersection for two horizontal segments`, () => {
+      expect(hSegment1.getIntersectionWithSegment(hSegmentP)).toBeNull()
+    })
+
+    it(`should return null when no intersection for two vertical segments`, () => {
+      expect(vSegment1.getIntersectionWithSegment(vSegmentP)).toBeNull()
+    })
+
+    it(`should return null when segments are on the same horizontal line, but no overlap`, () => {
+      expect(hSegment1.getIntersectionWithSegment(hSegment3)).toBeNull()
+    })
+
+    it(`should return null when segments are on the same vertical line, but no overlap`, () => {
+      expect(vSegment1.getIntersectionWithSegment(vSegment3)).toBeNull()
+    })
+
+    it(`should return null when segments are on the same horizontal line with overlap`, () => {
+      expect(hSegment1.getIntersectionWithSegment(hSegment2)).toBeNull()
+    })
+
+    it(`should return null when segments are on the same vertical line with overlap`, () => {
+      expect(vSegment1.getIntersectionWithSegment(hSegment2)).toBeNull()
+    })
+
+  })
+
   describe(`Segment#copyValuesFrom`, () => {
 
     it(`should copy by value to an object`, () => {
