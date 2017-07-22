@@ -92,7 +92,6 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
   private preRender(): GeometryObject[] {
     const renderedObjects: GeometryObject[] = []
     if (this.axis != null) {
-      const axisConfig = this.axis === true ? {} : this.axis
       const axis = Axis(this.axis)(this.getEvaluateFunctionArgumentObject())
       renderedObjects.push(...axis)
     }

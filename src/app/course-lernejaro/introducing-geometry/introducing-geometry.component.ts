@@ -31,11 +31,10 @@ export class IntroducingGeometryComponent {
         Point.FromCartesianCoordinates(200, -200)
           .label('B').strokeColor(MaterialColor.AMBER),
       ],
-      evaluate: ({interactivePoints}) => {
-        const [A, B] = interactivePoints
+      evaluate: ({interactivePoints: [A, B]}) => {
         const segment = Segment.FromTwoPoints(A, B)
         const midpoint = Point.GetPointBetween(A, B).label('M').strokeColor(MaterialColor.BLUE)
-        return [segment, midpoint, A]
+        return [segment, midpoint, A, B]
       },
     },
     {
@@ -47,8 +46,7 @@ export class IntroducingGeometryComponent {
         Point.FromCartesianCoordinates(0, 250)
           .label('C').strokeColor(MaterialColor.AMBER),
       ],
-      evaluate: ({interactivePoints}) => {
-        const [A, B, C] = interactivePoints
+      evaluate: ({interactivePoints: [A, B, C]}) => {
         const triangle = Triangle.FromVertices(A, B, C)
           .strokeColor(MaterialColor.YELLOW).fillColor(MaterialColor.YELLOW)
 
