@@ -7,6 +7,9 @@ import {Line} from 'app/planimetryts/geometry-objects/line'
 import {Circle} from '../../planimetryts/geometry-objects/circle'
 import {EvaluateFunction} from '../../planimetrics/planimetrics.component'
 import {AxisConfiguration} from '../../planimetryts/geometry-objects/macros/axis.interface'
+import {Ellipse} from '../../planimetryts/geometry-objects/ellipse'
+import {Matrix} from '../../planimetryts/geometry-objects/matrix'
+import {Polygon} from '../../planimetryts/geometry-objects/polygon'
 
 interface Example {
   interactivePoints: Point[]
@@ -68,8 +71,15 @@ export class IntroducingGeometryComponent {
         Point.CENTER.label(`A`).strokeColor(MaterialColor.DEEP_PURPLE),
       ],
       evaluate: ({interactivePoints: [center]}) => {
-        const circle = Circle.FromCenterAndRadius(center, 100)
-        return [center, circle]
+        const circle = Ellipse.Circle.FromCenterAndRadius(center, 100)
+          .strokeColor(MaterialColor.RED)
+        const square = Polygon.FromVertices(
+          Point.FromCartesianCoordinates(-80, -80),
+          Point.FromCartesianCoordinates(-80, 80),
+          Point.FromCartesianCoordinates(80, 80),
+          Point.FromCartesianCoordinates(80, -80),
+        ).strokeColor(MaterialColor.BLUE)
+        return [center, circle, square]
       },
     },
   ]

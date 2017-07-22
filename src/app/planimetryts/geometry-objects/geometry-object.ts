@@ -109,7 +109,7 @@ export abstract class GeometryObject {
             return this.applyMatrixWithRespectTo(matrix, point)
         } else {
             throw `Invalid number of arguments for function applyHomogeneousMatrix.
-Expected 1 or 2 but given ${arguments.length}`
+Expected 1 or 2 but given ${arguments.length}.`
         }
     }
 

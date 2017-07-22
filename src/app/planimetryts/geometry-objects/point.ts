@@ -206,7 +206,7 @@ export class Point extends GeometryObject {
         } else if (n == 3 && m == 3) {
             isHomogeneous = true
         } else {
-            throw `Matrix needs to be 2×2 or 3×3. Given matrix is ${matrix}`
+            throw `Matrix needs to be 2×2 or 3×3. Given matrix is ${matrix}.`
         }
         const matrixCoordinates = this.getMatrixCoordinates(isHomogeneous)
         const newMatrix = Matrix.Multiply(matrix, matrixCoordinates)

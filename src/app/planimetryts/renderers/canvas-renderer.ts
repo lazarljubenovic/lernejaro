@@ -174,11 +174,10 @@ export class CanvasRenderer extends Renderer {
 
   protected renderLine(line: Line): void {
     const {width: w, height: h} = this
-    const matrix = Matrix.HomogeneousInverse(this._appliedMatrix)
+    const matrix = this._inverseMatrix
     const point1 = Point.FromCartesianCoordinates(0, 0).applyMatrix(matrix)
     const point2 = Point.FromCartesianCoordinates(w, h).applyMatrix(matrix)
     const visibleArea: RectangularArea = RectangularArea.FromTwoPoints(point1, point2)
-    console.log(visibleArea.getPoints())
     const segment = visibleArea.getCapturedSegment(line)
     if (segment != null) {
       segment.copyViewDataFrom(line)

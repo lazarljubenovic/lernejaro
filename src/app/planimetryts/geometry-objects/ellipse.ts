@@ -211,7 +211,7 @@ export class Ellipse extends GeometryObject {
     throw new Error(`Ellipse cannot be reconstructed from points`)
   }
 
-  protected applyMatrixWithRespectToCenter(matrix: number[][]): this {
+  public applyMatrixWithRespectToCenter(matrix: number[][]): this {
     const matrixT: number[][] = Matrix.Transpose(matrix)
     const newMatrix = Matrix.Multiply(matrixT, Matrix.Multiply(this.getMatrix(), matrix))
     const newEllipse = Ellipse.FromMatrix(newMatrix)
