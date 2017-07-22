@@ -8,8 +8,6 @@ import {Circle} from '../../planimetryts/geometry-objects/circle'
 import {EvaluateFunction} from '../../planimetrics/planimetrics.component'
 import {AxisConfiguration} from '../../planimetryts/geometry-objects/macros/axis.interface'
 import {Ellipse} from '../../planimetryts/geometry-objects/ellipse'
-import {Matrix} from '../../planimetryts/geometry-objects/matrix'
-import {Polygon} from '../../planimetryts/geometry-objects/polygon'
 
 interface Example {
   interactivePoints: Point[]

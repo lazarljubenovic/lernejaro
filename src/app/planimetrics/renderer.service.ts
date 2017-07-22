@@ -2,8 +2,6 @@ import {Injectable} from '@angular/core'
 import {GeometryObject} from '../planimetryts/geometry-objects/geometry-object'
 import {CanvasRenderer} from '../planimetryts/renderers/canvas-renderer'
 import {Subject} from 'rxjs'
-import {EvaluateFunction} from './planimetrics.component'
-import {Point} from '../planimetryts/geometry-objects/point'
 
 @Injectable()
 export class RendererService {
@@ -16,6 +14,7 @@ export class RendererService {
   public mouseUp$: Subject<Coordinate>
   public mouseScrollUp$: Subject<Coordinate>
   public mouseScrollDown$: Subject<Coordinate>
+  public mouseMove$: Subject<{ logic: Coordinate, canvas: Coordinate }>
 
   public setRenderer(renderer: CanvasRenderer): void {
     this.renderer = renderer
@@ -24,6 +23,7 @@ export class RendererService {
     this.mouseUp$ = this.renderer.mouseUp$
     this.mouseScrollUp$ = this.renderer.mouseScrollUp$
     this.mouseScrollDown$ = this.renderer.mouseScrollDown$
+    this.mouseMove$ = this.renderer.mouseMove$
   }
 
   public move(dx: number, dy: number): void {

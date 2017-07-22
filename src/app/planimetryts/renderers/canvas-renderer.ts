@@ -302,6 +302,7 @@ export class CanvasRenderer extends Renderer {
   public mouseUp$ = new Subject<Coordinate>()
   public mouseScrollUp$ = new Subject<Coordinate>()
   public mouseScrollDown$ = new Subject<Coordinate>()
+  public mouseMove$ = new Subject<{ logic: Coordinate, canvas: Coordinate }>()
 
   private registerEvents() {
     this.canvas.addEventListener('mouseup', this.onMouseUp.bind(this))
@@ -346,6 +347,8 @@ export class CanvasRenderer extends Renderer {
     }
     if (this.isMouseDown) {
       this.mouseDrag$.next({logic: logicOffset, canvas: canvasOffset})
+    } else {
+      this.mouseMove$.next({logic: logicStart, canvas: movementStart})
     }
   }
 

@@ -1,6 +1,7 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -54,6 +55,9 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
   public getPointAt(x: number, y: number, eps: number = 6): Point {
     return (this.objects as Point[])
       .filter(object => object.kind == 'point')
+      .filter(point => this.interactivePoints.some(interactivePoint => {
+        return Point.AreEqual(interactivePoint, point)
+      }))
       .filter((point: Point) => {
         return areEqualFloats(point.x(), x, eps)
           && areEqualFloats(point.y(), y, eps)
@@ -66,7 +70,8 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
   public context: CanvasRenderingContext2D
   public canvas: HTMLCanvasElement
 
-  constructor(private renderer: RendererService) {
+  constructor(private renderer: RendererService,
+              private changeDetectorRef: ChangeDetectorRef) {
   }
 
   private getEvaluateFunctionArgumentObject(): EvaluateFunctionArgumentObject {
@@ -120,6 +125,7 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
     this.renderer.mouseUp$.subscribe(this.onMouseUp.bind(this))
     this.renderer.mouseScrollUp$.subscribe(this.onMouseScrollUp.bind(this))
     this.renderer.mouseScrollDown$.subscribe(this.onMouseScrollDown.bind(this))
+    this.renderer.mouseMove$.subscribe(arg => this.onMouseMove(arg))
     this.updateObjects()
   }
 
@@ -131,14 +137,51 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
 
   private currentPoint: Point = null
 
+  public halo = {
+    visible: false,
+    position: {
+      x: 0,
+      y: 0,
+    },
+  }
+
+  private showHalo(position) {
+    this.halo = {
+      ...this.halo,
+      visible: true,
+      position,
+    }
+    this.changeDetectorRef.markForCheck()
+  }
+
+  private hideHalo() {
+    this.halo = {
+      ...this.halo,
+      visible: false,
+    }
+    this.changeDetectorRef.markForCheck()
+  }
+
+  private onMouseMove(offset: { logic: Coordinate, canvas: Coordinate }): void {
+    const {x, y} = offset.logic
+    const point = this.getPointAt(x, y)
+    if (point != null) {
+      this.showHalo(offset.canvas)
+    } else {
+      if (!this.halo.visible) {
+        return
+      }
+      this.hideHalo()
+    }
+  }
+
   private onMouseUp(position: Coordinate): void {
     this.currentPoint = null
   }
 
-  private onMouseDown(position: Coordinate): void {
-    const {x, y} = position
+  private onMouseDown({x, y}: Coordinate): void {
     this.currentPoint = this.getPointAt(x, y)
-    // console.log('current point is', this.currentPoint)
+    this.hideHalo()
   }
 
   private onMouseDrag(offset: { logic: Offset, canvas: Offset }): void {
