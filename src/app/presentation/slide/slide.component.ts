@@ -9,6 +9,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core'
 import {SlideColumnComponent} from '../slide-column/slide-column.component'
+import {LoggerService} from '../../logger.service'
 
 @Component({
   selector: 'lrn-slide',
@@ -18,7 +19,7 @@ import {SlideColumnComponent} from '../slide-column/slide-column.component'
 })
 export class SlideComponent implements OnInit {
 
-  @Input() public title: string = 'Untitled'
+  @Input() public title: string
   @Input() public subtitle: string
   @Input() public logo: string | TemplateRef<any>
 
@@ -29,10 +30,18 @@ export class SlideComponent implements OnInit {
     return typeof something
   }
 
-  constructor(public elementRef: ElementRef) {
+  constructor(public elementRef: ElementRef,
+              public logger: LoggerService) {
   }
 
   ngOnInit() {
+    this.assert()
+  }
+
+  private assert() {
+    if (this.title == null) {
+      this.logger.warn(`You've created a slide without a title.`, this.elementRef.nativeElement)
+    }
   }
 
 }

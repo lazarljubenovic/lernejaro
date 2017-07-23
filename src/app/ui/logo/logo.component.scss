@@ -11,11 +11,29 @@
     height: 100%;
   }
 
-  .back-card {
-    fill: material-color('yellow');
+  .mislete {
+    transform: scale(0.1) translate(250px, 290px);
   }
+}
 
-  .front-card {
-    fill: white;
+@each $theme in ('light', 'dark') {
+  :host-context(.lrn-theme-#{$theme}) {
+
+    .front-card {
+      fill: get-theme($theme, front);
+    }
+  }
+}
+
+@each $color-name in get-color-strings() {
+  :host-context(.lrn-theme-color-#{$color-name}) {
+
+    .back-card {
+      fill: material-color($color-name, '500')
+    }
+
+    .mislete path {
+      stroke: material-color(get-accent-color-string-for($color-name), 'a400');
+    }
   }
 }
