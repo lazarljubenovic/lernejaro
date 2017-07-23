@@ -1,0 +1,71 @@
+@import '../../global';
+
+// Layout
+
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  .banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .picture {
+      display: block;
+      font-size: 20vh;
+    }
+
+    .text {
+      font-size: 5em;
+    }
+  }
+
+  .info {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 4em;
+
+    .author {
+      font-size: .7em;
+      text-transform: uppercase;
+      opacity: .5;
+      font-weight: bold;
+      margin-bottom: 1ex;
+    }
+
+    .email {
+      font-family: monospace;
+    }
+  }
+}
+
+// Theming
+@each $color-string in get-color-strings() {
+  :host-context(.lrn-theme-color-#{$color-string}) {
+    $accent-color-string: get-accent-color-string-for($color-string);
+
+    .banner {
+
+      .picture {
+        color: material-color($accent-color-string, a400);
+      }
+
+      .text {
+        color: get-color($color-string, 500);
+      }
+    }
+  }
+}
+
+@each $theme in ('light', 'dark') {
+  :host-context(.lrn-theme-#{$theme}) {
+    color: get-theme($theme, primary);
+  }
+}

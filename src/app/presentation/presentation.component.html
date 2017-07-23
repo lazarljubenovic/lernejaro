@@ -7,6 +7,8 @@
 ></lrn-title-slide>
 
 <lrn-questions-slide *ngIf="currentSlideIdentifier.type == 'questions'"
+                     [email]="email"
+                     [author]="author"
 ></lrn-questions-slide>
 
 <lrn-thank-you-slide *ngIf="currentSlideIdentifier.type == 'thank-you'"

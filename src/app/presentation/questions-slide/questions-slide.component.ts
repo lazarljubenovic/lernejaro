@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core'
+import {Component, Input, OnInit} from '@angular/core'
 
 @Component({
   selector: 'lrn-questions-slide',
@@ -6,6 +6,9 @@ import {Component, OnInit} from '@angular/core'
   styleUrls: ['./questions-slide.component.scss'],
 })
 export class QuestionsSlideComponent implements OnInit {
+
+  @Input() public author: string
+  @Input() public email: string
 
   constructor() {
   }

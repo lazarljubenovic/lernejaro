@@ -34,6 +34,7 @@ export class PresentationComponent implements OnInit, AfterContentInit {
   @Input() public title: string | TemplateRef<any>
   @Input() public logo: string | TemplateRef<any> =
     'https://akimg0.ask.fm/assets/149/346/095/normal/elfaklogo.png'
+  @Input() public email: string
 
   @Input() public withoutTitleSlide: boolean = false
   @Input() public withoutQuestionsSlide: boolean = false
