@@ -33,7 +33,9 @@ export class PresentationComponent implements OnInit, AfterContentInit {
   @Input()
   public set currentSlideIndex(currentSlideIndex: number) {
     this._currentSlideIndex = currentSlideIndex
-    this.updateView()
+    if (this.slideComponents != null) {
+      this.updateView()
+    }
   };
 
   public get currentSlideIndex(): number {
@@ -48,14 +50,6 @@ export class PresentationComponent implements OnInit, AfterContentInit {
   public showPalettePicker: boolean = false
 
   private updateView(): void {
-    // Called when setting another currentSlideIndex. The first time this
-    // happens, the slide components are not yet available.
-    if (this.slideComponents == null) {
-      return
-    }
-
-    // Give logo data to all slides
-    this.slideComponents.forEach(slide => slide.logo = this.logo)
 
     const slidesArray = this.slideComponents
       .map(element => element.elementRef.nativeElement)
@@ -82,44 +76,50 @@ export class PresentationComponent implements OnInit, AfterContentInit {
     return this.currentSlideIndex == this.slideComponents.length - 1
   }
 
-  public goToFirst() {
+  public goToFirstSlide(): void {
     this.currentSlideIndex = 0
   }
 
-  public goToLast() {
+  public goToLastSlide(): void {
     this.currentSlideIndex = this.slideComponents.length - 1
   }
 
-  public goToNext() {
+  public goToNext(): void {
     if (!this.isLastSlide()) {
       this.currentSlideIndex++
     }
   }
 
-  public goToPrevious() {
+  public goToPrevious(): void {
     if (!this.isFirstSlide()) {
       this.currentSlideIndex--
     }
   }
 
-  // TODO Try to refactor this so you dont need this function but do some keypress.l magic in
-  // their respective functions
-  @HostListener('window:keypress', ['$event.key'])
-  public onKeyPress(key: string) {
-    switch (key.toLowerCase()) {
-      case 'l':
-        this.goToLast()
+  @HostListener('window:keydown', ['$event'])
+  public onKeyPress(event: KeyboardEvent) {
+    if (event.target != document.body) {
+      return
+    }
+    switch (event.code) {
+      case 'End':
+        this.goToLastSlide()
         break
-      case 'k':
-      case ']':
+      case 'KeyJ':
+      case 'ArrowRight':
+      case 'ArrowDown':
+      case 'PageDown':
+      case 'Space':
         this.goToNext()
         break
-      case 'j':
-      case '[':
+      case 'KeyK':
+      case 'ArrowLeft':
+      case 'ArrowUp':
+      case 'PageUp':
         this.goToPrevious()
         break
-      case 'h':
-        this.goToFirst()
+      case 'Home':
+        this.goToFirstSlide()
         break
     }
   }
@@ -140,15 +140,19 @@ export class PresentationComponent implements OnInit, AfterContentInit {
         const slideIndex = +params['slide'] - 1
         if (slideIndex != null && !isNaN(slideIndex)) {
           if (slideIndex >= this.slideComponents.length) {
-            this.goToFirst()
+            this.goToFirstSlide()
           } else {
             this.currentSlideIndex = slideIndex
           }
         } else {
-          this.goToFirst()
+          this.goToFirstSlide()
         }
       })
+
     this.updateView()
+
+    // Give logo data to all slides
+    this.slideComponents.forEach(slide => slide.logo = this.logo)
   }
 
 }

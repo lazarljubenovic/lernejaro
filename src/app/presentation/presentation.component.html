@@ -1,10 +1,5 @@
-<!-- TODO Wait for component-outlet in 4.0.0 -->
-<!--<lrn-title-slide [author]="author"-->
-<!--[description]="description"-->
-<!--[title]="title"-->
-<!--&gt;</lrn-title-slide>-->
-
-<lrn-progress-bar [height]="'.5ex'" [total]="slideComponents.length - 1" [current]="currentSlideIndex"></lrn-progress-bar>
+<lrn-progress-bar [height]="'.5ex'" [total]="slideComponents.length - 1"
+                  [current]="currentSlideIndex"></lrn-progress-bar>
 
 <div #outlet></div>
 
@@ -13,7 +8,7 @@
 <div class="footer">
   <ul class="navigation">
     <li>
-      <button (click)="goToFirst()"><i class="fa fa-fast-backward"></i></button>
+      <button (click)="goToFirstSlide()"><i class="fa fa-fast-backward"></i></button>
     </li>
     <li>
       <button (click)="goToPrevious()"><i class="fa fa-step-backward"></i></button>
@@ -27,7 +22,7 @@
       <button (click)="goToNext()"><i class="fa fa-step-forward"></i></button>
     </li>
     <li>
-      <button (click)="goToLast()"><i class="fa fa-fast-forward"></i></button>
+      <button (click)="goToLastSlide()"><i class="fa fa-fast-forward"></i></button>
     </li>
   </ul>
 </div>

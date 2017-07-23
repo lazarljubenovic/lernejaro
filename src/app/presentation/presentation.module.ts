@@ -10,24 +10,27 @@ import {UiModule} from '../ui/ui.module'
 import {RouterModule} from '@angular/router'
 
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule,
-        KatexModule,
-        FitTextModule,
-        UiModule,
-    ],
-    declarations: [
-        PresentationComponent,
-        SlideComponent,
-        SlideColumnComponent,
-        TitleSlideComponent,
-    ],
-    exports: [
-        PresentationComponent,
-        SlideComponent,
-        SlideColumnComponent,
-    ],
+  imports: [
+    CommonModule,
+    RouterModule,
+    KatexModule,
+    FitTextModule,
+    UiModule,
+  ],
+  declarations: [
+    PresentationComponent,
+    SlideComponent,
+    SlideColumnComponent,
+    TitleSlideComponent,
+  ],
+  exports: [
+    PresentationComponent,
+    SlideComponent,
+    SlideColumnComponent,
+  ],
+  entryComponents: [
+    TitleSlideComponent,
+  ],
 })
 export class PresentationModule {
 }
