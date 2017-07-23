@@ -8,14 +8,11 @@ $right-width: 100% - $left-width;
 
 $line-margin: 48px;
 
-$line-thin-width: 2px;
-
 lrn-title-slide {
   display: block;
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  @include all-background-colors();
   position: relative;
   font-size: 2em;
 
@@ -47,7 +44,6 @@ lrn-title-slide {
     bottom: -100vh;
     width: 200vw;
     height: auto;
-    background-color: rgba(white, 1);
     @include z-depth-24dp;
     transform-origin: 100% 50%;
     transform: rotate(20deg);
@@ -69,16 +65,10 @@ lrn-title-slide {
       bottom: $line-margin;
       position: absolute;
 
-      .left-vertical-line {
-        position: absolute;
-        width: $line-thin-width;
-        @include all-background-colors();
-      }
-
       .title {
         box-sizing: border-box;
         font-weight: 300;
-        width: 100%;
+        width: 80%;
         height: 80%;
         padding-left: 48px;
 
@@ -89,12 +79,12 @@ lrn-title-slide {
           &:before {
             content: '';
             position: absolute;
-            @include all-background-colors();
-            width: 24px;
+            width: 1.5rem;
             top: 0;
             bottom: 0;
             left: -48px;
             height: 100%;
+            border-radius: 4px;
           }
         }
 
@@ -107,41 +97,85 @@ lrn-title-slide {
         position: absolute;
         padding: 1ex;
         bottom: 0;
-        font-size: 1.5em;
+        font-size: 1.2em;
         text-transform: uppercase;
-        font-weight: 300;
+        font-weight: bold;
       }
     }
 
-    .description {
-      position: absolute;
-      bottom: $line-margin;
-      right: $line-margin;
-      color: white;
+    // TODO Description is non-existing now
+    //.description {
+    //  position: absolute;
+    //  bottom: $line-margin;
+    //  right: $line-margin;
+    //  color: white;
+    //
+    //  .card-clip {
+    //    pointer-events: none;
+    //    width: calc(100vw - #{$line-margin});
+    //    height: calc(100vh - #{$line-margin});
+    //    display: block;
+    //    float: left;
+    //    $padding: $line-margin;
+    //    shape-outside: polygon(0 0, calc(66vw + #{50vh / $tan70} + #{$padding}) 0, calc(66vw - #{50vh / $tan70} + #{$line-margin / $tan70} + #{$padding}) 100%, 0 100%);
+    //  }
+    //
+    //  .text-wrapper {
+    //    //display: flex;
+    //    //height: 100%;
+    //    //background-color: red;
+    //    //align-items: flex-end;
+    //    text-align: right;
+    //    padding-top: $line-margin;
+    //
+    //    > span {
+    //    }
+    //  }
+    //}
+  }
 
-      .card-clip {
-        pointer-events: none;
-        width: calc(100vw - #{$line-margin});
-        height: calc(100vh - #{$line-margin});
-        display: block;
-        float: left;
-        $padding: $line-margin;
-        shape-outside: polygon(0 0, calc(66vw + #{50vh / $tan70} + #{$padding})  0, calc(66vw - #{50vh / $tan70} + #{$line-margin / $tan70} + #{$padding}) 100%, 0 100%);
-      }
+}
 
-      .text-wrapper {
-        //display: flex;
-        //height: 100%;
-        //background-color: red;
-        //align-items: flex-end;
-        text-align: right;
-        padding-top: $line-margin;
+// Theming
 
-        > span {
+@each $color-string in get-color-strings() {
+  $accented-color-string: get-accent-color-string-for($color-string);
 
+  .lrn-theme-color-#{$color-string} lrn-title-slide {
+
+    background-color: material-color($color-string, '500');
+
+    .content {
+
+      .title-and-author {
+
+        .title {
+
+          span {
+
+            &::before {
+              background-color: material-color($accented-color-string, '500');
+            }
+          }
+        }
+
+        .author {
+          color: rgba(material-color($accented-color-string, '600'), 1);
         }
       }
     }
   }
+}
 
+@each $theme-string in ('light', 'dark') {
+  .lrn-theme-#{$theme-string} lrn-title-slide {
+
+    .background-card {
+      background-color: get-theme($theme-string, 'back');
+    }
+
+    .content {
+      color: get-theme(inverse-theme-name($theme-string), 'front');
+    }
+  }
 }

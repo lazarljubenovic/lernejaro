@@ -1,5 +1,4 @@
-import {Component, Input, TemplateRef, ViewContainerRef, ViewEncapsulation} from '@angular/core'
-import {PaletteService} from '../../ui/palette.service'
+import {Component, Input, TemplateRef, ViewEncapsulation} from '@angular/core'
 
 @Component({
   selector: 'lrn-title-slide',
@@ -17,11 +16,6 @@ export class TitleSlideComponent {
 
   public typeOf(something: any): string {
     return typeof something
-  }
-
-  constructor(private palette: PaletteService,
-              private viewContainerRef: ViewContainerRef) {
-    this.palette.selectColor(this.palette.color, this.viewContainerRef.element.nativeElement)
   }
 
 }
