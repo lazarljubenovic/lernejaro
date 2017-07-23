@@ -1,5 +1,14 @@
 @import '../../global';
 
+:host {
+  overflow-x: hidden;
+  z-index: 200;
+
+  .filled {
+    transition: all .33s cubic-bezier(.6, -0.61, .49, 1.49);
+  }
+}
+
 // Theming
 @each $color-string in get-color-strings() {
   :host-context(.lrn-theme-color-#{$color-string}) {
