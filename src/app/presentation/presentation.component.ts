@@ -1,6 +1,7 @@
 import {
   AfterContentInit,
   Component,
+  ComponentFactory,
   ContentChildren,
   ElementRef,
   HostListener,
@@ -14,6 +15,12 @@ import {
 import {SlideComponent} from './slide/slide.component'
 import {ActivatedRoute, Router} from '@angular/router'
 import {PaletteService} from '../ui/palette.service'
+import {TitleSlideComponent} from './title-slide/title-slide.component'
+
+interface SlideIdentifier {
+  type: string // 'title' | 'user' | 'questions' | 'thank-you'
+  index?: number
+}
 
 @Component({
   selector: 'lrn-presentation',
@@ -28,18 +35,49 @@ export class PresentationComponent implements OnInit, AfterContentInit {
   @Input() public logo: string | TemplateRef<any> =
     'https://akimg0.ask.fm/assets/149/346/095/normal/elfaklogo.png'
 
+  @Input() public withoutTitleSlide: boolean = false
+  @Input() public withoutQuestionsSlide: boolean = false
+  @Input() public withoutThankYouSlide: boolean = false
+
   private _currentSlideIndex: number = 0
 
-  @Input()
   public set currentSlideIndex(currentSlideIndex: number) {
     this._currentSlideIndex = currentSlideIndex
-    if (this.slideComponents != null) {
-      this.updateView()
-    }
+    this.currentSlideIdentifier = this.slideIdentifiers[currentSlideIndex]
   };
 
   public get currentSlideIndex(): number {
     return this._currentSlideIndex
+  }
+
+  private get slideIdentifiers(): SlideIdentifier[] {
+    return [
+      ...(!this.withoutTitleSlide ? [{type: 'title'}] : []),
+      ...this.slideComponents.map((_, index) => ({type: 'user', index})),
+      ...(!this.withoutQuestionsSlide ? [{type: 'questions'}] : []),
+      ...(!this.withoutThankYouSlide ? [{type: 'thank-you'}] : [])
+    ]
+  }
+
+  private mapGlobalIndexToUserSlideIndex(globalIndex): number {
+    if (this.withoutTitleSlide) {
+      return globalIndex
+    } else {
+      return globalIndex - 1
+    }
+  }
+
+  private _currentSlideIdentifier: SlideIdentifier = null
+
+  public get currentSlideIdentifier(): SlideIdentifier {
+    return this._currentSlideIdentifier
+  }
+
+  public set currentSlideIdentifier(value: SlideIdentifier) {
+    this._currentSlideIdentifier = value
+    if (this.slideComponents != null) {
+      this.updateView()
+    }
   }
 
   @ViewChild('outlet') public outlet: ElementRef
@@ -50,17 +88,21 @@ export class PresentationComponent implements OnInit, AfterContentInit {
   public showPalettePicker: boolean = false
 
   private updateView(): void {
-
-    const slidesArray = this.slideComponents
+    const userProvidedSlides = this.slideComponents
       .map(element => element.elementRef.nativeElement)
-    const outlet = this.outlet.nativeElement
 
     // Remove all slides
-    this.renderer.detachView(slidesArray)
+    this.renderer.detachView(userProvidedSlides)
 
-    // Attach only the current slide, after the outlet.
-    const currentSlide = slidesArray[this.currentSlideIndex]
-    this.renderer.attachViewAfter(outlet, [currentSlide])
+    // Here we care only for attaching user slides
+    if (this.currentSlideIdentifier.type == 'user') {
+      // Attach only the current user slide, after the outlet.
+      const userSlideIndex = this.mapGlobalIndexToUserSlideIndex(this.currentSlideIndex)
+      const currentSlide = userProvidedSlides[userSlideIndex]
+      this.renderer.attachViewAfter(this.outlet.nativeElement, [currentSlide])
+    } else {
+
+    }
 
     // Update route
     // TODO: What if multiple presentations on the same screen?
@@ -73,7 +115,7 @@ export class PresentationComponent implements OnInit, AfterContentInit {
   }
 
   public isLastSlide(): boolean {
-    return this.currentSlideIndex == this.slideComponents.length - 1
+    return this.currentSlideIndex == this.slideIdentifiers.length - 1
   }
 
   public goToFirstSlide(): void {
@@ -81,7 +123,7 @@ export class PresentationComponent implements OnInit, AfterContentInit {
   }
 
   public goToLastSlide(): void {
-    this.currentSlideIndex = this.slideComponents.length - 1
+    this.currentSlideIndex = this.slideIdentifiers.length - 1
   }
 
   public goToNext(): void {
@@ -134,24 +176,19 @@ export class PresentationComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
+    this.currentSlideIdentifier = this.slideIdentifiers[0]
+
     this.route.params
       .distinctUntilKeyChanged('slide')
       .subscribe(params => {
         const slideIndex = +params['slide'] - 1
-        if (slideIndex != null && !isNaN(slideIndex)) {
-          if (slideIndex >= this.slideComponents.length) {
-            this.goToFirstSlide()
-          } else {
-            this.currentSlideIndex = slideIndex
-          }
+        if (slideIndex != null && !isNaN(slideIndex) && slideIndex < this.slideIdentifiers.length) {
+          this.currentSlideIndex = slideIndex
         } else {
           this.goToFirstSlide()
         }
       })
 
-    this.updateView()
-
-    // Give logo data to all slides
     this.slideComponents.forEach(slide => slide.logo = this.logo)
   }
 

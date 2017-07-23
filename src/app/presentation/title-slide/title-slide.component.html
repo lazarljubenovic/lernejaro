@@ -9,7 +9,7 @@
   <div class="content">
     <div class="title-and-author">
       <div class="left-vertical-line"></div>
-      <div class="title" *lrnFitText>
+      <div class="title">
         <ng-container *ngIf="typeOf(title) == 'string'">{{title}}</ng-container>
         <ng-container *ngIf="typeOf(title) != 'string'">
           <ng-template [ngTemplateOutlet]="title"></ng-template>

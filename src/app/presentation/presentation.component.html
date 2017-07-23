@@ -1,35 +1,46 @@
-<lrn-progress-bar [height]="'.5ex'" [total]="slideComponents.length - 1"
+<lrn-progress-bar [height]="'.5ex'" [total]="slideIdentifiers.length - 1"
                   [current]="currentSlideIndex"></lrn-progress-bar>
+
+<lrn-title-slide *ngIf="currentSlideIdentifier.type == 'title'"
+                 [title]="title"
+                 [author]="author"
+></lrn-title-slide>
+
+<lrn-questions-slide *ngIf="currentSlideIdentifier.type == 'questions'"
+></lrn-questions-slide>
+
+<lrn-thank-you-slide *ngIf="currentSlideIdentifier.type == 'thank-you'"
+></lrn-thank-you-slide>
 
 <div #outlet></div>
 
-<ng-content select="lrn-slide"></ng-content>
+<ng-container>
+  <div class="footer">
+    <ul class="navigation">
+      <li>
+        <button (click)="goToFirstSlide()"><i class="fa fa-fast-backward"></i></button>
+      </li>
+      <li>
+        <button (click)="goToPrevious()"><i class="fa fa-step-backward"></i></button>
+      </li>
+      <li class="slide-index">
+        <span class="current">{{currentSlideIndex + 1}}</span>
+        /
+        <span class="total">{{slideIdentifiers.length}}</span>
+      </li>
+      <li>
+        <button (click)="goToNext()"><i class="fa fa-step-forward"></i></button>
+      </li>
+      <li>
+        <button (click)="goToLastSlide()"><i class="fa fa-fast-forward"></i></button>
+      </li>
+    </ul>
+  </div>
 
-<div class="footer">
-  <ul class="navigation">
-    <li>
-      <button (click)="goToFirstSlide()"><i class="fa fa-fast-backward"></i></button>
-    </li>
-    <li>
-      <button (click)="goToPrevious()"><i class="fa fa-step-backward"></i></button>
-    </li>
-    <li class="slide-index">
-      <span class="current">{{currentSlideIndex + 1}}</span>
-      /
-      <span class="total">{{slideComponents.length}}</span>
-    </li>
-    <li>
-      <button (click)="goToNext()"><i class="fa fa-step-forward"></i></button>
-    </li>
-    <li>
-      <button (click)="goToLastSlide()"><i class="fa fa-fast-forward"></i></button>
-    </li>
-  </ul>
-</div>
-
-<lrn-expanding-fab>
-  <button (click)="showPalettePicker = true"><i class="fa fa-paint-brush"></i></button>
-</lrn-expanding-fab>
+  <lrn-expanding-fab>
+    <button (click)="showPalettePicker = true"><i class="fa fa-paint-brush"></i></button>
+  </lrn-expanding-fab>
+</ng-container>
 
 <lrn-modal *ngIf="showPalettePicker" (close)="showPalettePicker = false">
   <lrn-palette-picker></lrn-palette-picker>

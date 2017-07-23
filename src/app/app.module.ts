@@ -18,44 +18,44 @@ import {LayoutModule} from './layout/layout.module'
 import {LoggerService} from './logger.service'
 
 export const ROUTES: Routes = [
-    {
-        path: 'courses',
-        children: [
-            {
-                path: 'lernejaro',
-                loadChildren: './course-lernejaro/course-lernejaro.module#CourseLernejaroModule',
-            },
-        ],
-    },
+  {
+    path: 'courses',
+    children: [
+      {
+        path: 'lernejaro',
+        loadChildren: './course-lernejaro/course-lernejaro.module#CourseLernejaroModule',
+      },
+    ],
+  },
 ]
 
 @NgModule({
-    declarations: [
-        AppComponent,
-    ],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpModule,
-        ObjectEditorModule,
-        UiModule.forRoot({theme: 'light', color: 'yellow'}),
-        PlanimetricsModule,
-        StereometricsModule,
-        NotebookModule,
-        KatexModule,
-        QuizModule,
-        FitTextModule,
-        LayoutModule,
-        RouterModule.forRoot(ROUTES),
-    ],
-    providers: [
-        MarkdownParserService,
-        UniqueIdService,
-        LoggerService,
-    ],
-    bootstrap: [
-        AppComponent,
-    ],
+  declarations: [
+    AppComponent,
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    ObjectEditorModule,
+    UiModule.forRoot({theme: 'light', color: 'yellow'}),
+    PlanimetricsModule,
+    StereometricsModule,
+    NotebookModule,
+    KatexModule,
+    QuizModule,
+    FitTextModule,
+    LayoutModule,
+    RouterModule.forRoot(ROUTES),
+  ],
+  providers: [
+    MarkdownParserService,
+    UniqueIdService,
+    LoggerService,
+  ],
+  bootstrap: [
+    AppComponent,
+  ],
 })
 export class AppModule {
 }

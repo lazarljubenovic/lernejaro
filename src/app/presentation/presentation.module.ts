@@ -8,6 +8,8 @@ import {KatexModule} from '../katex/katex.module'
 import {FitTextModule} from '../fit-text/fit-text.module'
 import {UiModule} from '../ui/ui.module'
 import {RouterModule} from '@angular/router'
+import {QuestionsSlideComponent} from './questions-slide/questions-slide.component'
+import {ThankYouSlideComponent} from './thank-you-slide/thank-you-slide.component'
 
 @NgModule({
   imports: [
@@ -22,6 +24,8 @@ import {RouterModule} from '@angular/router'
     SlideComponent,
     SlideColumnComponent,
     TitleSlideComponent,
+    QuestionsSlideComponent,
+    ThankYouSlideComponent,
   ],
   exports: [
     PresentationComponent,

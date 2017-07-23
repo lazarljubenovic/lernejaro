@@ -306,7 +306,7 @@ $map-background-color-to-text-color: (
 
 @mixin all-background-colors($variant: '500') {
   @each $color in get-color-strings() {
-    &.#{$color} {
+    &.#{$color}, &.lrn-theme-color-#{$color} {
       background-color: material-color($color, $variant);
     }
   }
