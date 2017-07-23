@@ -16,34 +16,10 @@
 
 <div #outlet></div>
 
-<ng-container>
-  <div class="footer">
-    <ul class="navigation">
-      <li>
-        <button (click)="goToFirstSlide()"><i class="fa fa-fast-backward"></i></button>
-      </li>
-      <li>
-        <button (click)="goToPrevious()"><i class="fa fa-step-backward"></i></button>
-      </li>
-      <li class="slide-index">
-        <span class="current">{{currentSlideIndex + 1}}</span>
-        /
-        <span class="total">{{slideIdentifiers.length}}</span>
-      </li>
-      <li>
-        <button (click)="goToNext()"><i class="fa fa-step-forward"></i></button>
-      </li>
-      <li>
-        <button (click)="goToLastSlide()"><i class="fa fa-fast-forward"></i></button>
-      </li>
-    </ul>
-  </div>
-
-  <lrn-expanding-fab>
-    <button (click)="showPalettePicker = true"><i class="fa fa-paint-brush"></i></button>
-  </lrn-expanding-fab>
-</ng-container>
-
-<lrn-modal *ngIf="showPalettePicker" (close)="showPalettePicker = false">
-  <lrn-palette-picker></lrn-palette-picker>
-</lrn-modal>
+<lrn-slide-controls [currentSlide]="currentSlideIndex + 1"
+                    [totalNumberOfSlides]="slideIdentifiers.length"
+                    (last)="goToLastSlide()"
+                    (prev)="goToPrevious()"
+                    (next)="goToNext()"
+                    (first)="goToFirstSlide()"
+></lrn-slide-controls>

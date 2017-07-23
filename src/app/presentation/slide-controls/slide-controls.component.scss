@@ -1,0 +1,80 @@
+@import '../../global';
+
+:host {
+  z-index: 100;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+
+  nav {
+    display: flex;
+    align-items: center;
+    padding: .66rem;
+    box-sizing: border-box;
+
+    hr {
+      border: none;
+      display: flex;
+      height: 4ex;
+      width: 0;
+      margin: 0 .5em;
+    }
+  }
+
+  .slide-index {
+    margin-left: 1em;
+    margin-right: 1em;
+
+    .current {
+      font-weight: bold;
+    }
+  }
+
+  button {
+    @include button-reset;
+    width: 3em;
+    height: 3em;
+    border-radius: 50%;
+  }
+}
+
+// Theming
+@each $color-string in get-color-strings() {
+  :host-context(.lrn-theme-color-#{$color-string}) {
+    $accent-color-string: get-accent-color-string-for($color-string);
+
+    .slide-index .current {
+      color: material-color($accent-color-string, 'a700');
+    }
+  }
+}
+
+@each $theme-name in ('light', 'dark') {
+  :host-context(.lrn-theme-#{$theme-name}) {
+    $inverse-name: inverse-theme-name($theme-name);
+
+    @include card-basic($theme-name);
+
+    nav {
+      color: get-theme($theme-name, 'front');
+
+      hr {
+        $border-color: get-theme($theme-name, 'dividers');
+        border-left: 1px solid $border-color;
+      }
+
+      button {
+        color: get-theme($inverse-name, 'front');
+
+        &:focus,
+        &:hover {
+          background-color: get-theme($theme-name, 'dividers');
+        }
+      }
+
+      .slide-index {
+        color: get-theme($inverse-name, 'front');
+      }
+    }
+  }
+}

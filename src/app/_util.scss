@@ -29,3 +29,12 @@
     border-radius: $border-radius;
   }
 }
+
+@mixin button-reset {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
