@@ -1,7 +1,6 @@
 import {
   AfterContentInit,
   Component,
-  ComponentFactory,
   ContentChildren,
   ElementRef,
   HostListener,
@@ -15,7 +14,7 @@ import {
 import {SlideComponent} from './slide/slide.component'
 import {ActivatedRoute, Router} from '@angular/router'
 import {PaletteService} from '../ui/palette.service'
-import {TitleSlideComponent} from './title-slide/title-slide.component'
+import {LoggerService} from '../logger.service'
 
 interface SlideIdentifier {
   type: string // 'title' | 'user' | 'questions' | 'thank-you'
@@ -170,10 +169,14 @@ export class PresentationComponent implements OnInit, AfterContentInit {
   constructor(private renderer: Renderer,
               private route: ActivatedRoute,
               private router: Router,
-              private palette: PaletteService) {
+              private palette: PaletteService,
+              private logger: LoggerService) {
   }
 
   ngOnInit() {
+    if (this.title == null) {
+      this.logger.error(`You've created an untitled presentation! C'mon, give it a name.`)
+    }
   }
 
   ngAfterContentInit() {
@@ -190,7 +193,29 @@ export class PresentationComponent implements OnInit, AfterContentInit {
         }
       })
 
-    this.slideComponents.forEach(slide => slide.logo = this.logo)
+    let numberOfSections = 0
+    let previousSectionName = null
+    this.slideComponents.forEach(slide => {
+      // set logo
+      slide.logo = this.logo
+
+      if (slide.section != null) {
+        previousSectionName = slide.section
+        numberOfSections++
+      }
+      slide.section = previousSectionName
+    })
+
+    if (numberOfSections == 0) {
+      this.logger.warn(`You've created a presentation "${this.title}" without any sections. ` +
+        `You should break it up into sections so it's easier to digest. Use an input [section] ` +
+        `on <lrn-slide> component to start a section. The section will automatically end on the ` +
+        `next slide which you explicitly provide a section to.`)
+    } else if (this.slideIdentifiers.length / numberOfSections > 30) {
+      this.logger.warn(`You've created a presentation "${this.title}" with ` +
+        `${this.slideIdentifiers.length} slides, but only ${numberOfSections} sections. ` +
+        `You might want to create more sections to make it easier to digest!`)
+    }
   }
 
 }

@@ -19,6 +19,7 @@ import {LoggerService} from '../../logger.service'
 })
 export class SlideComponent implements OnInit {
 
+  @Input() public section: string
   @Input() public title: string
   @Input() public subtitle: string
   @Input() public logo: string | TemplateRef<any>
