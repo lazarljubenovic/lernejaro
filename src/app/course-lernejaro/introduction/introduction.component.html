@@ -3,9 +3,14 @@
                   [title]="'Lernejaro'"
 >
 
-  <lrn-slide [title]="'Introduction'"
+  <lrn-slide [section]="'Introduction'"
+             [title]="'Logo'"
   >
     <lrn-logo></lrn-logo>
+  </lrn-slide>
+
+  <lrn-slide [title]="''">
+
   </lrn-slide>
 
   <lrn-slide [title]="''">
@@ -60,7 +65,7 @@
     </lrn-taxonomy>
   </lrn-slide>
 
-  <lrn-slide [title]="'Cats Should Rule the World'" [subtitle]="'Meow meow goes here.'">
+  <lrn-slide [title]="'Cats Should Rule the World'">
     <lrn-markdown>
       Do **you** want to _purr_ with me?
 
@@ -94,7 +99,7 @@
 
   <lrn-slide [title]="'Lernejaro'"></lrn-slide>
 
-  <lrn-slide [title]="'Lernejaro'" [subtitle]="'Komponente'">
+  <lrn-slide [title]="'Lernejaro'">
     <lrn-markdown>
       - Markdown
       - Prezentacije

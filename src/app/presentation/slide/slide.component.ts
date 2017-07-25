@@ -20,7 +20,7 @@ import {LoggerService} from '../../logger.service'
 export class SlideComponent implements OnInit {
 
   @Input() public section: string
-  @Input() public title: string
+  @Input() public title: string = ' '
   @Input() public subtitle: string
   @Input() public logo: string | TemplateRef<any>
 
@@ -40,7 +40,7 @@ export class SlideComponent implements OnInit {
   }
 
   private assert() {
-    if (this.title == null) {
+    if (this.title == null || this.title.trim().length == 0) {
       this.logger.warn(`You've created a slide without a title.`, this.elementRef.nativeElement)
     }
   }

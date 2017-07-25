@@ -30,16 +30,20 @@
 
   .title-and-subtitle {
     display: flex;
-    flex-direction: column;
+    align-items: baseline;
+
+    .section {
+      display: inline-block;
+      font-weight: 300;
+      font-size: 5em;
+    }
 
     .title {
+      display: inline-block;
       font-weight: 300;
-      font-size: 3.6em;
-    }
-    .subtitle {
-      font-weight: 300;
-      font-size: 1.6em;
-      margin-left: .16em;
+      font-size: 2.5em;
+      margin-left: 1em;
+      height: 2ex;
     }
   }
 
