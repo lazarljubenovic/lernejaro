@@ -5,9 +5,11 @@ import {
   Component,
   ElementRef,
   Input,
+  OnInit,
   ViewEncapsulation,
 } from '@angular/core'
 import {highlightElement} from 'prismjs'
+import {LoggerService} from '../logger.service'
 
 @Component({
   selector: 'code[lrnCode]',
@@ -16,18 +18,31 @@ import {highlightElement} from 'prismjs'
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class CodeComponent implements AfterViewInit {
+export class CodeComponent implements AfterViewInit, OnInit {
 
-  @Input('lrnCode') public language: string = 'javascript'
+  @Input() public language: string = 'javascript'
 
-  constructor(private elementRef: ElementRef, private changeDetectorRef: ChangeDetectorRef) {
+  constructor(private elementRef: ElementRef,
+              private changeDetectorRef: ChangeDetectorRef,
+              private logger: LoggerService) {
     this.changeDetectorRef.detach()
+  }
+
+  ngOnInit() {
+    console.log(this.language)
+    if (this.language == null) {
+      // TODO Provide a full list of languages.
+      this.logger.error(`You've created a code snippet using directive lrnCode, ` +
+        `but you haven't provided the language which you've used. Provide a language ` +
+        `to the directive; eg. language="javascript", language="c", language="cpp" or ` +
+        `language="lisp".`, this.elementRef.nativeElement)
+    }
   }
 
   ngAfterViewInit() {
     const element = this.elementRef.nativeElement
     element.classList.add(`language-${this.language}`)
-    const highlightedCodeHtml = highlightElement(element, true)
+    highlightElement(element, true)
   }
 
 }
