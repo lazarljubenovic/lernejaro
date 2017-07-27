@@ -1,0 +1,39 @@
+@import '../global';
+
+code[lrnCode] {
+
+  .token {
+
+    &.keyword {
+      font-weight: bold;
+    }
+
+    &.operator {
+      opacity: .7;
+    }
+
+    &.comment {
+      color: material-color('green', '400');
+      font-style: italic;
+      font-size: .8em;
+    }
+  }
+}
+
+@each $color-string in get-color-strings() {
+  $accent-color-string: get-accent-color-string-for($color-string);
+
+  body.lrn-theme-color-#{$color-string} code[lrnCode] {
+
+    .token {
+
+      &.keyword {
+        color: rgba(material-color($accent-color-string, '400'), .8);
+      }
+
+      &.string {
+        color: rgba(material-color($color-string, '600'), .8);
+      }
+    }
+  }
+}

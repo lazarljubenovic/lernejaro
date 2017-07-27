@@ -29,6 +29,7 @@ import {DisplayQuoteModule} from '../display-quote/display-quote.module'
 import {MultipleViewsModule} from '../multiple-views/multiple-views.module'
 import {IntroducingKvizoComponent} from './introducing-kvizo/introducing-kvizo.component'
 import {LayoutModule} from '../layout/layout.module'
+import {CodeModule} from '../code/code.module'
 
 @NgModule({
   imports: [
@@ -50,6 +51,7 @@ import {LayoutModule} from '../layout/layout.module'
     DisplayQuoteModule,
     MultipleViewsModule,
     LayoutModule,
+    CodeModule,
     RouterModule.forChild([
       {
         path: '',

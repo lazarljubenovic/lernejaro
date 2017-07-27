@@ -9,11 +9,16 @@
     <lrn-logo></lrn-logo>
   </lrn-slide>
 
-  <lrn-slide [title]="''">
-
+  <lrn-slide [title]="'Code'">
+    <pre><code lrnCode="javascript">const foo = 'a string'
+const add => x => y => x + y
+var fn = function fn(one, two, ...rest) {{'{'}}
+  console.log(one + two) // write to console
+  return [...rest, one, two] /* spread */
+{{'}'}}</code></pre>
   </lrn-slide>
 
-  <lrn-slide [title]="''">
+  <lrn-slide [title]="'Quote slide'">
     <lrn-display-quote [imageUrl]="'https://s3.amazonaws.com/uifaces/faces/twitter/mlane/128.jpg'">
 
       <lrn-quote-text>
@@ -31,7 +36,7 @@
     </lrn-display-quote>
   </lrn-slide>
 
-  <lrn-slide>
+  <lrn-slide [title]="'Taxonomy slide'">
     <lrn-taxonomy>
       <lrn-taxonomy-item [title]="'Title One'">
         opis 1
