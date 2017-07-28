@@ -3,7 +3,7 @@ import {
   ContentChildren,
   Directive,
   ElementRef,
-  HostBinding,
+  HostBinding, Input,
   QueryList,
 } from '@angular/core'
 import {BoxDirective} from './box.directive'
@@ -15,6 +15,8 @@ import {DomSanitizer} from '@angular/platform-browser'
   selector: '[lrnHorizontal]',
 })
 export class HorizontalDirective implements AfterContentInit {
+
+  @Input()
 
   @HostBinding('style.display') public display: string = 'flex'
   @HostBinding('style.align-items') public alignItems: string = 'stretch'

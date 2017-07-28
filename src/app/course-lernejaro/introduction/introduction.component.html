@@ -20,6 +20,21 @@ var fn = function fn(one, two, ...rest) {{'{'}}
     </div>
   </lrn-slide>
 
+  <lrn-slide [title]="'Code example'">
+    <div lrnSpread lrnCenter lrnVertical>
+      <div lrnCenter>
+        <pre><code [lrnCode]="'javascript'">const a = 1</code></pre>
+      </div>
+      <div lrnCenter>
+        <pre><code [lrnCode]="'html'">&lt;pre>
+  &lt;code [lrnCode]="'javascript'">
+    const a = 1
+  &lt;/code>
+&lt;/pre></code></pre>
+      </div>
+    </div>
+  </lrn-slide>
+
   <lrn-slide [title]="'Quote slide'">
     <lrn-display-quote [imageUrl]="'https://s3.amazonaws.com/uifaces/faces/twitter/mlane/128.jpg'">
 

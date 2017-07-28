@@ -1,21 +1,35 @@
 @import '../global';
 
-code[lrnCode] {
+code[class*=language-] {
 
-  .token {
+  &.language-javascript {
 
-    &.keyword {
+    .token {
+
+      &.keyword {
+        font-weight: bold;
+      }
+
+      &.operator {
+        opacity: .7;
+      }
+
+      &.comment {
+        color: material-color('green', '400');
+        font-style: italic;
+        font-size: .8em;
+      }
+    }
+  }
+
+  &.language-html {
+
+    .token.tag {
       font-weight: bold;
     }
 
-    &.operator {
-      opacity: .7;
-    }
-
-    &.comment {
-      color: material-color('green', '400');
+    > .token.tag > .token.attr-value {
       font-style: italic;
-      font-size: .8em;
     }
   }
 }
@@ -23,17 +37,33 @@ code[lrnCode] {
 @each $color-string in get-color-strings() {
   $accent-color-string: get-accent-color-string-for($color-string);
 
-  body.lrn-theme-color-#{$color-string} code[lrnCode] {
+  body.lrn-theme-color-#{$color-string} code[class*=language-] {
 
-    .token {
+    &.language-javascript {
 
-      &.keyword {
-        color: rgba(material-color($accent-color-string, '400'), .8);
-      }
+      .token {
 
-      &.string {
-        color: rgba(material-color($color-string, '600'), .8);
+        &.keyword {
+          color: rgba(material-color($accent-color-string, '400'), .8);
+        }
+
+        &.string {
+          color: rgba(material-color($color-string, '600'), .8);
+        }
       }
     }
+
+    &.language-html {
+
+      > .token.tag {
+        color: rgba(material-color($accent-color-string, '400'), .8);
+
+        > .token.attr-name, .token.attr-value {
+          color: rgba(material-color($color-string, '600'), .8);
+          font-weight: normal;
+        }
+      }
+    }
+
   }
 }

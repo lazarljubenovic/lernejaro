@@ -22,7 +22,7 @@ import {PresentationComponent} from '../presentation/presentation.component'
 })
 export class CodeComponent implements AfterViewInit, OnInit {
 
-  @Input() public language: string = 'javascript'
+  @Input('lrnCode') public language: string = 'javascript'
 
   constructor(private elementRef: ElementRef,
               private changeDetectorRef: ChangeDetectorRef,
@@ -34,6 +34,8 @@ export class CodeComponent implements AfterViewInit, OnInit {
   private render() {
     const element = this.elementRef.nativeElement
     element.classList.add(`language-${this.language}`)
+    // debugger
+    // element.addAttribute('data-lrn-code', this.language)
     highlightElement(element, false)
   }
 
