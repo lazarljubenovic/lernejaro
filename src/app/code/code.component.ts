@@ -6,10 +6,12 @@ import {
   ElementRef,
   Input,
   OnInit,
+  Optional,
   ViewEncapsulation,
 } from '@angular/core'
 import {highlightElement} from 'prismjs'
 import {LoggerService} from '../logger.service'
+import {PresentationComponent} from '../presentation/presentation.component'
 
 @Component({
   selector: 'code[lrnCode]',
@@ -24,12 +26,18 @@ export class CodeComponent implements AfterViewInit, OnInit {
 
   constructor(private elementRef: ElementRef,
               private changeDetectorRef: ChangeDetectorRef,
-              private logger: LoggerService) {
+              private logger: LoggerService,
+              @Optional() private presentation: PresentationComponent) {
     this.changeDetectorRef.detach()
   }
 
+  private render() {
+    const element = this.elementRef.nativeElement
+    element.classList.add(`language-${this.language}`)
+    highlightElement(element, false)
+  }
+
   ngOnInit() {
-    console.log(this.language)
     if (this.language == null) {
       // TODO Provide a full list of languages.
       this.logger.error(`You've created a code snippet using directive lrnCode, ` +
@@ -40,9 +48,10 @@ export class CodeComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-    const element = this.elementRef.nativeElement
-    element.classList.add(`language-${this.language}`)
-    highlightElement(element, true)
+    this.render()
+    if (this.presentation == null) {
+      this.presentation.slideChange$.subscribe(() => this.render())
+    }
   }
 
 }

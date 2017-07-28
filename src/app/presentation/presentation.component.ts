@@ -15,6 +15,7 @@ import {SlideComponent} from './slide/slide.component'
 import {ActivatedRoute, Router} from '@angular/router'
 import {PaletteService} from '../ui/palette.service'
 import {LoggerService} from '../logger.service'
+import {Subject} from 'rxjs/Subject'
 
 interface SlideIdentifier {
   type: string // 'title' | 'user' | 'questions' | 'thank-you'
@@ -39,10 +40,13 @@ export class PresentationComponent implements OnInit, AfterContentInit {
   @Input() public withoutQuestionsSlide: boolean = false
   @Input() public withoutThankYouSlide: boolean = false
 
+  public slideChange$ = new Subject<number>()
+
   private _currentSlideIndex: number = 0
 
   public set currentSlideIndex(currentSlideIndex: number) {
     this._currentSlideIndex = currentSlideIndex
+    this.slideChange$.next(currentSlideIndex)
     this.currentSlideIdentifier = this.slideIdentifiers[currentSlideIndex]
   };
 
