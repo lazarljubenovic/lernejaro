@@ -7,11 +7,11 @@
     .slide-header {
       background-color: material-color($color-string, '500');
 
-      .title {
+      .section {
         color: get-color($color-string, '500', 'primary');
       }
 
-      .subtitle {
+      .title {
         color: get-color($color-string, '500', 'secondary');
       }
     }
