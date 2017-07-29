@@ -155,10 +155,9 @@ export class PlanimetricsComponent implements OnInit, AfterViewInit, OnChanges {
   }
 
   private hideHalo() {
-    this.halo = {
-      ...this.halo,
+    this.halo = Object.assign(this.halo, {
       visible: false,
-    }
+    })
     this.changeDetectorRef.markForCheck()
   }
 

@@ -45,7 +45,7 @@
         "@angular/compiler-cli": "next",
         "@types/chroma-js": "^1.1.32",
         "@types/jasmine": "^2.2.30",
-        "@types/lodash": "^4.14.50",
+        "@types/lodash": "^4.14.71",
         "@types/marked": "^0.0.28",
         "@types/node": "^6.0.42",
         "codelyzer": "^2.0.1",

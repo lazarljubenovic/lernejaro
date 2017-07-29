@@ -1,44 +1,130 @@
-<lrn-presentation author="Lazar Ljubenović"
-                  title="Introducing Geometry Component"
-                  email="lazar.ljubenovic.1995@gmail.com"
+<lrn-presentation [author]="'Lazar Ljubenović'"
+                  [title]="'Introducing Geometry Component'"
+                  [email]="'lazar.ljubenovic.1995@gmail.com'"
                   [withoutQuestionsSlide]="true"
                   [withoutThankYouSlide]="true"
 >
 
-  <lrn-slide [title]="'Basic example'"
-             [subtitle]="'Segment with a midpoint'"
+  <lrn-slide [section]="'Basic examples'"
+             [title]="'Two points'"
   >
     <div lrnMaximize lrnCenter>
       <lrn-card>
-        <lrn-planimetrics [interactivePoints]="examples[0].interactivePoints"
-                          [evaluate]="examples[0].evaluate"
+        <lrn-planimetrics [evaluate]="examples['simplest'].evaluate"></lrn-planimetrics>
+      </lrn-card>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Two points: code'">
+    <div lrnMaximize lrnCenter>
+      <pre><code [lrnCode]="'javascript'">{{ examples['simplest'].code }}</code></pre>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Colored and labeled points'"
+  >
+    <div lrnMaximize lrnCenter>
+      <lrn-card>
+        <lrn-planimetrics [evaluate]="examples['colored'].evaluate"
         ></lrn-planimetrics>
       </lrn-card>
     </div>
   </lrn-slide>
 
-  <lrn-slide [title]="'Triangle circumcircle'"
-             [subtitle]="'Construction'"
+  <lrn-slide [title]="'Colored and labeled points: code'">
+    <div lrnMaximize lrnCenter>
+      <pre><code [lrnCode]="'javascript'">{{ examples['colored'].code }}</code></pre>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Interactive points'"
   >
     <div lrnMaximize lrnCenter>
       <lrn-card>
-        <lrn-planimetrics [interactivePoints]="examples[1].interactivePoints"
-                          [evaluate]="examples[1].evaluate"
+        <lrn-planimetrics [interactivePoints]="examples['interactive'].interactivePoints"
         ></lrn-planimetrics>
       </lrn-card>
     </div>
   </lrn-slide>
 
-  <lrn-slide [title]="'Display axis'"
-             [subtitle]="'Simple configuratio'"
+  <lrn-slide [title]="'Colored and labeled points: code'">
+    <div lrnMaximize lrnCenter>
+      <pre><code [lrnCode]="'javascript'">{{ examples['interactive'].code }}</code></pre>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Evaluating more elements: code'">
+    <div lrnMaximize lrnCenter>
+      <pre><code [lrnCode]="'javascript'">{{ examples['eval'].code }}</code></pre>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Evaluating more elements'">
+    <div lrnMaximize lrnCenter>
+      <lrn-card>
+        <lrn-planimetrics [interactivePoints]="examples['eval'].interactivePoints"
+                          [evaluate]="examples['eval'].evaluate"
+        ></lrn-planimetrics>
+      </lrn-card>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'A non-trivial evaluate function'">
+    <div lrnMaximize lrnCenter>
+      <lrn-card>
+        <lrn-planimetrics [interactivePoints]="examples['normal'].interactivePoints"
+                          [evaluate]="examples['normal'].evaluate"
+        ></lrn-planimetrics>
+      </lrn-card>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'A non-trivial evaluate function: code'">
+    <div lrnMaximize lrnCenter>
+      <pre><code [lrnCode]="'javascript'">{{ examples['normal'].code }}</code></pre>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Triangle\'s circumcircle construction'">
+    <div lrnMaximize lrnCenter>
+      <lrn-card>
+        <lrn-planimetrics [interactivePoints]="examples['circum'].interactivePoints"
+                          [evaluate]="examples['circum'].evaluate"
+        ></lrn-planimetrics>
+      </lrn-card>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Triangle\'s circumcircle construction: code'">
+    <div lrnMaximize lrnCenter>
+      <pre><code [lrnCode]="'javascript'">{{ examples['circum'].code }}</code></pre>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Displaying axis'"
   >
     <div lrnMaximize lrnCenter>
       <lrn-card>
-        <lrn-planimetrics [interactivePoints]="examples[2].interactivePoints"
-                          [evaluate]="examples[2].evaluate"
+        <lrn-planimetrics [interactivePoints]="examples['circum'].interactivePoints"
+                          [evaluate]="examples['circum'].evaluate"
                           [axis]="true"
         ></lrn-planimetrics>
       </lrn-card>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Displaying axis: code'"
+  >
+    <div lrnMaximize lrnCenter>
+      <pre><code [lrnCode]="'html'">{{ examples['axis'].code }}</code></pre>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [section]="'Complex examples'"
+             [title]="''"
+  >
+    <div lrnMaximize lrnCenter>
+      <pre><code [lrnCode]="'html'">{{ examples['axis'].code }}</code></pre>
     </div>
   </lrn-slide>
 
