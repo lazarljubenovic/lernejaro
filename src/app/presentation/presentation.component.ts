@@ -89,7 +89,7 @@ export class PresentationComponent implements OnInit, AfterContentInit {
   @ContentChildren(SlideComponent)
   public slideComponents: QueryList<SlideComponent>
 
-  public showPalettePicker: boolean = false
+  public tableOfContents = new Map<string, number>()
 
   private updateView(): void {
     const userProvidedSlides = this.slideComponents
@@ -186,6 +186,7 @@ export class PresentationComponent implements OnInit, AfterContentInit {
   ngAfterContentInit() {
     this.currentSlideIdentifier = this.slideIdentifiers[0]
 
+    // Navigate to correct slide based on route
     this.route.params
       .distinctUntilKeyChanged('slide')
       .subscribe(params => {
@@ -197,19 +198,23 @@ export class PresentationComponent implements OnInit, AfterContentInit {
         }
       })
 
+    // Set logo to all slides
+    // Set sections based on first mention of the section in a row
+    // Create a Map to be used for generating ToC
     let numberOfSections = 0
     let previousSectionName = null
-    this.slideComponents.forEach(slide => {
-      // set logo
+    this.slideComponents.forEach((slide, index) => {
       slide.logo = this.logo
 
       if (slide.section != null) {
         previousSectionName = slide.section
         numberOfSections++
+        this.tableOfContents.set(slide.section, index + 1 + (!this.withoutTitleSlide ? 1 : 0))
       }
       slide.section = previousSectionName
     })
 
+    // Warn user if no sections at all, or not enough sections
     if (numberOfSections == 0) {
       this.logger.warn(`You've created a presentation "${this.title}" without any sections. ` +
         `You should break it up into sections so it's easier to digest. Use an input [section] ` +

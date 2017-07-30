@@ -18,6 +18,7 @@
 
 <lrn-slide-controls [currentSlide]="currentSlideIndex + 1"
                     [totalNumberOfSlides]="slideIdentifiers.length"
+                    [tableOfContents]="tableOfContents"
                     (last)="goToLastSlide()"
                     (prev)="goToPrevious()"
                     (next)="goToNext()"

@@ -12,8 +12,15 @@
   <button (click)="showPalettePicker = true">
     <i class="fa fa-paint-brush"></i>
   </button>
+  <button (click)="showNavigation = true">
+    <i class="fa fa-bars"></i>
+  </button>
 </nav>
 
 <lrn-modal *ngIf="showPalettePicker" (close)="showPalettePicker = false">
   <lrn-palette-picker></lrn-palette-picker>
+</lrn-modal>
+
+<lrn-modal *ngIf="showNavigation" (close)="showNavigation = false">
+  <lrn-table-of-contents [tableOfContents]="tableOfContents"></lrn-table-of-contents>
 </lrn-modal>
