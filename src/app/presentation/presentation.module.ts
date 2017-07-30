@@ -11,6 +11,7 @@ import {RouterModule} from '@angular/router'
 import {QuestionsSlideComponent} from './questions-slide/questions-slide.component'
 import {ThankYouSlideComponent} from './thank-you-slide/thank-you-slide.component'
 import {SlideControlsComponent} from './slide-controls/slide-controls.component'
+import {TableOfContentsComponent} from './table-of-contents/table-of-contents.component'
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import {SlideControlsComponent} from './slide-controls/slide-controls.component'
     QuestionsSlideComponent,
     ThankYouSlideComponent,
     SlideControlsComponent,
+    TableOfContentsComponent,
   ],
   exports: [
     PresentationComponent,
