@@ -10,40 +10,21 @@
 
   <h2>Title at Level Two</h2>
 
-  <lrn-planimetrics [interactivePoints]="interactivePoints" (interactivePointsChange)="updateDiagram($event)"></lrn-planimetrics>
+  <lrn-card>
+    <lrn-planimetrics [interactivePoints]="interactivePoints"
+                      (interactivePointsChange)="updateDiagram($event)"
+    ></lrn-planimetrics>
+  </lrn-card>
 
   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
     <code>Integer nec odio.</code> Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.
     <b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</b>. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.
   </p>
 
-  <lrn-multiple-views>
-    <lrn-view [model]="complexNumber"
-              (modelChange)="complexNumber = $event"
-              [title]="'Algebraic'"
-    >
-      <lrn-katex [math]="'z = {}'"></lrn-katex>
-      <lrn-view-input name="realPart" type="number" [decimals]="2" [latex]="true"></lrn-view-input>
-      <lrn-katex [math]="'{} + i \\cdot '"></lrn-katex>
-      <lrn-view-input name="imaginaryPart" type="number" [decimals]="2" [latex]="true"></lrn-view-input>
-    </lrn-view>
-    <lrn-view [model]="algebraicToEuler(complexNumber)"
-              (modelChange)="complexNumber = eulerToAlgebraic($event)"
-              [title]="'Euler'"
-    >
-      <lrn-katex [math]="'z = {}'"></lrn-katex>
-      <lrn-view-input name="modulo" type="number" [decimals]="2" [latex]="true"></lrn-view-input>
-      <lrn-katex [math]="'{} \\cdot e '"></lrn-katex>
-      <sup>
-        <lrn-view-input name="argument" type="number" [decimals]="2" [latex]="true"></lrn-view-input>
-      </sup>
-    </lrn-view>
-  </lrn-multiple-views>
-
-  <!--<figure class="right">-->
-    <!--<img src="https://unsplash.it/200/200/?random">-->
-    <!--<figcaption>This is a longer figure caption on a floated image. It is never longer in width than the picture.</figcaption>-->
-  <!--</figure>-->
+  <figure class="right">
+    <img src="https://unsplash.it/200/200/?random">
+    <figcaption>This is a longer figure caption on a floated image. It is never longer in width than the picture.</figcaption>
+  </figure>
 
   <lrn-fill-in-the-blank (answerChange)="answer = $event">
     Dijkstra's algorithm is an algorithm for finding the
