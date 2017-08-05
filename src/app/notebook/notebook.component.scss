@@ -317,6 +317,11 @@ lrn-notebook {
       }
     }
 
+    .table-of-content {
+      background-color: rgba(get-theme($theme-name, 'app-bar'), .86);
+      color: get-theme($inverse-theme-name, 'front');
+    }
+
     > article.wrapper {
 
       > summary {
