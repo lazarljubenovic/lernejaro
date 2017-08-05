@@ -24,6 +24,7 @@ import {
   TreeNodeTableOfContent,
   TreeTableOfContent,
 } from './table-of-content/table-of-content-tree-node.interface'
+import {LoggerService} from '../logger.service'
 
 @Component({
   selector: 'lrn-notebook',
@@ -54,7 +55,8 @@ export class NotebookComponent implements OnInit, AfterContentInit {
     this.isVisibleTableOfContent = !this.isVisibleTableOfContent
   }
 
-  constructor(private elementRef: ElementRef) {
+  constructor(private elementRef: ElementRef,
+              private logger: LoggerService) {
   }
 
   private prepareTableOfContents(): void {
@@ -92,7 +94,8 @@ export class NotebookComponent implements OnInit, AfterContentInit {
           continue
       }
 
-      const title = child.textContent
+      const title = Array.from(child.childNodes)
+        .find(node => node.nodeType == Node.TEXT_NODE).textContent
       let id = 'unknown'
       let nodeData = {title, id}
 
@@ -112,10 +115,10 @@ export class NotebookComponent implements OnInit, AfterContentInit {
         currentNode = currentNode.getLastChild()
       }
 
-      id = currentNode.getPathEnumeration() + '_' + title.replace(/ /g, '_')
-      child.id = id
+      // id = currentNode.getPathEnumeration() + '_' + title.replace(/ /g, '_')
+      // child.id = id
 
-      nodeData = {title, id}
+      nodeData = {title, id: child.id}
       currentNode.setData(nodeData)
     }
   }

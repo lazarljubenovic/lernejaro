@@ -141,13 +141,14 @@ lrn-notebook {
   }
 
   > article.wrapper {
-    padding-top: calc(#{$header-height} + #{4rem});
+    padding-top: calc(#{$header-height} + #{1rem});
     box-sizing: border-box;
     padding-left: 1rem;
     padding-right: 1rem;
     width: 100%;
     max-width: calc(50rem + 10vw);
     font-size: calc(1em + 0.1vw);
+    line-height: 1.5;
 
     @media (max-width: $breakpoint-s) {
       padding-left: .33rem;
@@ -166,15 +167,34 @@ lrn-notebook {
       display: none;
     }
 
+    > h1, > h2, > h3, > h4, > h5, > h6 {
+
+      button {
+        @include button-reset;
+        display: inline-block;
+        margin-left: .5em;
+        opacity: .16;
+
+        &:hover,
+        &:focus {
+          opacity: .5;
+        }
+      }
+    }
+
     // Summary directly below wrapper serves an abstract for the document.
     > summary {
       margin: 1em;
       padding-top: 1ex;
       padding-bottom: 1ex;
       font-size: 1.1em;
-      $border: solid 1px rgba(black, .7);
+      $border: solid 1pt rgba(black, .7);
       border-top: $border;
       border-bottom: $border;
+
+      &::first-line {
+        font-variant: small-caps;
+      }
     }
 
     // When using markdown, there's an additional <p> which adds weird margins
@@ -196,7 +216,7 @@ lrn-notebook {
       box-shadow: 0 0 0 .2em rgba(black, .1);
       margin-left: .2em;
       margin-right: .2em;
-      border-radius: 2px;
+      border-radius: 2pt;
     }
 
     pre {

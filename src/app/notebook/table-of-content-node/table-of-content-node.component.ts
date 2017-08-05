@@ -1,20 +1,34 @@
-import {Component, OnInit, Input, ViewEncapsulation} from '@angular/core'
+import {Component, Input, OnInit, ViewEncapsulation} from '@angular/core'
 import {TreeNodeTableOfContent} from '../table-of-content/table-of-content-tree-node.interface'
 
 @Component({
-    selector: '[lrnTableOfContentNode]',
-    templateUrl: './table-of-content-node.component.html',
-    styleUrls: ['./table-of-content-node.component.scss'],
-    encapsulation: ViewEncapsulation.None,
+  selector: '[lrnTableOfContentNode]',
+  template: `
+    <span>
+      <button (click)="goTo('#' + node.getData().id)">
+        {{node.getData().title}}
+      </button>
+    </span>
+
+    <ol>
+      <li lrnTableOfContentNode *ngFor="let child of node.getChildren()" [node]="child"></li>
+    </ol>
+  `,
+  encapsulation: ViewEncapsulation.None,
 })
 export class TableOfContentNodeComponent implements OnInit {
 
-    @Input() node: TreeNodeTableOfContent
+  @Input() node: TreeNodeTableOfContent
 
-    constructor() {
-    }
+  public goTo(anchor) {
+    window.location.hash = ''
+    window.location.hash = anchor
+  }
 
-    ngOnInit() {
-    }
+  constructor() {
+  }
+
+  ngOnInit() {
+  }
 
 }

@@ -1,14 +1,39 @@
-import {Directive, ElementRef, Injectable, AfterContentInit} from '@angular/core'
+import {AfterContentInit, Directive, ElementRef, Injectable, Renderer2} from '@angular/core'
+import {ActivatedRoute, Router} from '@angular/router'
+import * as _ from 'lodash'
 
 @Injectable()
 export abstract class HDirective implements AfterContentInit {
-    constructor(protected elementRef: ElementRef) {}
+  constructor(protected elementRef: ElementRef,
+              protected renderer: Renderer2,
+              private route: ActivatedRoute,
+              private router: Router) {
+  }
 
-    public title: string
+  public title: string
 
-    ngAfterContentInit() {
-        this.title = this.elementRef.nativeElement.textContent
+  ngAfterContentInit() {
+    const {nativeElement} = this.elementRef
+    this.title = nativeElement.textContent
+
+    const id = this.title.replace(/ /g, '_')
+
+    const url = this.route.snapshot.pathFromRoot
+      .map(x => x.url)
+      .map(x => x.map(segment => segment.path))
+      .join('/')
+    const link = `${url}#${id}`
+    const anchorButton = document.createElement('button')
+    anchorButton.innerText = `#`
+    anchorButton.onclick = () => {
+      // https://github.com/angular/angular/issues/13636#issuecomment-297083132
+      window.location.hash = ''
+      window.location.hash = id
     }
+
+    this.renderer.setProperty(nativeElement, 'id', id)
+    this.renderer.appendChild(nativeElement, anchorButton)
+  }
 }
 
 @Directive({selector: 'h1'})
