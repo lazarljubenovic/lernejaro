@@ -31,32 +31,24 @@ lrn-notebook {
   width: 100%;
   min-height: 100%;
   font-size: 1.24em;
-  color: rgba(black, .86);
-  font-family: Roboto, sans-serif;
+  font-family: Roboto, sans-serif; // TODO Move this to body
 
   .table-of-content {
     position: fixed;
-    left: 24px;
-    top: calc(24px + #{$header-height});
-    width: calc(50% - 24px - 786px / 2 - 100px); // 786 = article width
     z-index: 10;
+    top: $header-height + 1em;
+    left: 0;
+    bottom: 1em;
+    width: auto;
+    max-width: 33%;
+    @include z-depth-3dp;
+    padding: 1em;
+    padding-left: 2em;
+    margin-left: -1em;
+    border-radius: 4px;
 
     &.hidden {
       display: none;
-    }
-
-    @media (max-width: 1400px) {
-      background-color: rgba(white, .94);
-      top: $header-height + 1em;
-      left: 0;
-      bottom: 1em;
-      width: auto;
-      max-width: 33%;
-      @include z-depth-3dp;
-      padding: 1em;
-      padding-left: 2em;
-      margin-left: -1em;
-      border-radius: 4px;
     }
 
     @media (max-width: 700px) {
@@ -66,7 +58,6 @@ lrn-notebook {
       right: 1em;
       width: auto;
       max-width: none;
-      background-color: rgba(white, .92);
     }
   }
 
@@ -78,19 +69,15 @@ lrn-notebook {
     width: 100%;
     padding: 0;
     min-height: $header-height;
-    background-color: rgba(white, .96);
     @include z-depth-2dp;
     display: flex;
     z-index: 10;
 
     .icon {
-      background-color: material-color('red', '500');
-      color: white;
       display: flex;
       justify-content: center;
       align-items: center;
       width: $header-height;
-      @include all-background-colors;
 
       > i {
         font-size: 1.5em;
@@ -105,7 +92,7 @@ lrn-notebook {
       font-weight: 300;
 
       .title {
-        @include all-text-colors('700');
+        font-size: 1.33em;
       }
     }
 
@@ -117,21 +104,13 @@ lrn-notebook {
       display: flex;
 
       button {
-        background: transparent;
-        color: rgba(black, .3);
-        border: none;
-        outline: none;
-        font-size: inherit;
+        @include button-reset;
         width: $header-height * .66;
         display: flex;
         justify-content: center;
         align-items: center;
         cursor: pointer;
         margin-right: $header-height * .66 * .33;
-
-        &:hover {
-          color: rgba(black, .6);
-        }
 
         i {
           padding-top: .33ex;
@@ -184,36 +163,23 @@ lrn-notebook {
 
     // Summary directly below wrapper serves an abstract for the document.
     > summary {
-      margin: 1em;
-      padding-top: 1ex;
-      padding-bottom: 1ex;
+      margin-top: 1em;
+      padding: 1ex 1em;
       font-size: 1.1em;
-      $border: solid 1pt rgba(black, .7);
-      border-top: $border;
-      border-bottom: $border;
 
       &::first-line {
         font-variant: small-caps;
       }
-    }
 
-    // When using markdown, there's an additional <p> which adds weird margins
-    // Remove top and bottom margin, taking into account possibility that there are multiple <p>'s
-    > summary {
-
-      p:first-child {
-        margin-top: 0;
-      }
-
-      p:last-child {
-        margin-bottom: 0;
-      }
+      // When using markdown, there's an additional <p> which adds ugly margins
+      // Remove top and bottom margin,
+      // taking into account possibility that there are multiple <p>'s
+      p:first-child { margin-top: 0; }
+      p:last-child { margin-bottom: 0; }
     }
 
     code {
-      display: inline-block;
-      background-color: rgba(black, .1);
-      box-shadow: 0 0 0 .2em rgba(black, .1);
+      padding: .1em;
       margin-left: .2em;
       margin-right: .2em;
       border-radius: 2pt;
@@ -221,7 +187,6 @@ lrn-notebook {
 
     pre {
       display: block;
-      background-color: rgba(black, .1);
       padding: .8rem 1.2em;
       box-sizing: border-box;
       overflow-x: auto;
@@ -254,7 +219,7 @@ lrn-notebook {
           float: left;
           margin-right: 1em;
 
-          @media (min-width: 1000px) {
+          @media (min-width: $breakpoint-l) {
             margin-left: -3em;
           }
         }
@@ -266,7 +231,7 @@ lrn-notebook {
           margin-left: 1em;
           align-items: flex-end;
 
-          @media (min-width: 1000px) {
+          @media (min-width: $breakpoint-l) {
             margin-right: -3em;
           }
         }
@@ -309,19 +274,64 @@ lrn-notebook {
       }
     }
   }
+}
 
-  &.dark {
-    background-color: mix(black, white, 94%);
-    color: rgba(white, .87);
+@each $color-string in get-color-strings() {
+  .lrn-theme-color-#{$color-string} lrn-notebook {
+    $accent-color-string: get-accent-color-string-for($color-string);
 
-    code {
-      background-color: rgba(white, .2);
-      box-shadow: 0 0 0 .2em rgba(white, .2); // TODO mixin
+    header {
+
+      .icon {
+        background-color: material-color($color-string, '500');
+      }
+
+      .title-and-subtitle {
+
+        .title {
+          color: material-color($accent-color-string, '700');
+        }
+      }
     }
   }
+}
 
-  &.sepia {
-    background-color: #fbf0d9;
-    color: #5f4b32;
+@each $theme-name in 'light' 'dark' {
+  .lrn-theme-#{$theme-name} lrn-notebook {
+    $inverse-theme-name: inverse-theme-name($theme-name);
+    color: get-theme($inverse-theme-name, 'front');
+    background-color: get-theme($theme-name, 'back');
+
+    header {
+      background-color: get-theme($theme-name, 'app-bar');
+
+      .icon {
+        color: get-theme($theme-name, 'back');
+      }
+
+      .buttons {
+
+        button {
+          color: get-theme($inverse-theme-name, 'front');
+        }
+      }
+    }
+
+    > article.wrapper {
+
+      > summary {
+        $border: solid 1pt get-theme($inverse-theme-name, 'back');
+        border-top: $border;
+        border-bottom: $border;
+      }
+
+      code {
+        background-color: rgba(get-theme($inverse-theme-name, 'front'), .08);
+      }
+
+      pre {
+        background-color: rgba(get-theme($inverse-theme-name, 'front'), .08);
+      }
+    }
   }
 }

@@ -29,6 +29,7 @@ import {DisplayQuoteModule} from '../display-quote/display-quote.module'
 import {IntroducingKvizoComponent} from './introducing-kvizo/introducing-kvizo.component'
 import {LayoutModule} from '../layout/layout.module'
 import {CodeModule} from '../code/code.module'
+import {PaletteService} from '../ui/palette.service'
 
 @NgModule({
   imports: [
@@ -42,7 +43,10 @@ import {CodeModule} from '../code/code.module'
     BitmapModule,
     PlanimetricsModule,
     ChartModule,
-    UiModule,
+    UiModule.forRoot({
+      color: 'indigo',
+      theme: 'dark',
+    }),
     NotebookModule,
     KatexModule,
     QuizModule,

@@ -25,6 +25,7 @@ import {
   TreeTableOfContent,
 } from './table-of-content/table-of-content-tree-node.interface'
 import {LoggerService} from '../logger.service'
+import {PaletteService} from '../ui/palette.service'
 
 @Component({
   selector: 'lrn-notebook',
@@ -50,13 +51,23 @@ export class NotebookComponent implements OnInit, AfterContentInit {
   @ViewChild('article') public article: ElementRef
 
   public isVisibleTableOfContent: boolean = false
+  public isVisiblePalettePicker: boolean = false
 
   public toggleTableOfContentVisibility() {
     this.isVisibleTableOfContent = !this.isVisibleTableOfContent
   }
 
+  public openPalettePicker() {
+    this.isVisiblePalettePicker = true
+  }
+
+  public closePalettePicker() {
+    this.isVisiblePalettePicker = false
+  }
+
   constructor(private elementRef: ElementRef,
-              private logger: LoggerService) {
+              private logger: LoggerService,
+              private palette: PaletteService) {
   }
 
   private prepareTableOfContents(): void {

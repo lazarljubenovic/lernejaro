@@ -5,7 +5,7 @@ import {PaletteConfigService} from './palette-config.service'
 @Injectable()
 export class PaletteService implements OnDestroy {
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     // Force creation of service eagerly so the app doesn't remain colorless
   }
 
