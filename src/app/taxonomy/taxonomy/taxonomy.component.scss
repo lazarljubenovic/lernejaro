@@ -28,7 +28,7 @@
 
 // Wrapper around the whole taxonomy, does not recurse
 lrn-taxonomy {
-  @include grid-container-fluid-single-row-variable-columns(1em);
+  @include grid(('x-x-x',));
 }
 
 // All items
