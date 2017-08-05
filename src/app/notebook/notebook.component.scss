@@ -2,8 +2,25 @@
 
 $header-height: 3em;
 
+$breakpoint-l: 65rem;
+$breakpoint-m: 40rem;
+$breakpoint-s: 20rem;
+
 body {
   counter-reset: figureCounter;
+  font-size: 100%;
+
+  @media (max-width: $breakpoint-l) {
+    font-size: 87.5%;
+  }
+
+  @media(max-width: $breakpoint-m) {
+    font-size: 75%;
+  }
+
+  @media (max-width: $breakpoint-s) {
+    font-size: 67%;
+  }
 }
 
 lrn-notebook {
@@ -56,7 +73,10 @@ lrn-notebook {
   header {
     position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     width: 100%;
+    padding: 0;
     min-height: $header-height;
     background-color: rgba(white, .96);
     @include z-depth-2dp;
@@ -120,13 +140,20 @@ lrn-notebook {
     }
   }
 
-  > .wrapper {
+  > article.wrapper {
     padding-top: calc(#{$header-height} + #{4rem});
     box-sizing: border-box;
-    padding-left: 1em;
-    padding-right: 1em;
+    padding-left: 1rem;
+    padding-right: 1rem;
     width: 100%;
-    max-width: 786px;
+    max-width: calc(50rem + 10vw);
+    font-size: calc(1em + 0.1vw);
+
+    @media (max-width: $breakpoint-s) {
+      padding-left: .33rem;
+      padding-right: .33rem;
+      max-width: 100%;
+    }
 
     > h2 { margin-top: 1.1039em; }
     > h3 { margin-top: 1.33em; }
@@ -187,34 +214,41 @@ lrn-notebook {
       }
     }
 
+    img {
+      max-width: 100%;
+    }
+
     figure {
       display: table;
       margin-left: 0;
       margin-right: 0;
-      margin-top: .5ex;
+      margin-top: 1em;
+      margin-bottom: 1em;
       width: 100%;
       text-align: center;
 
-      &.left {
-        width: auto;
-        text-align: left;
-        float: left;
-        margin-right: 1em;
+      @media (min-width: $breakpoint-m) {
+        &.left {
+          width: auto;
+          text-align: left;
+          float: left;
+          margin-right: 1em;
 
-        @media (min-width: 1000px) {
-          margin-left: -100px;
+          @media (min-width: 1000px) {
+            margin-left: -3em;
+          }
         }
-      }
 
-      &.right {
-        width: auto;
-        text-align: right;
-        float: right;
-        margin-left: 1em;
-        align-items: flex-end;
+        &.right {
+          width: auto;
+          text-align: right;
+          float: right;
+          margin-left: 1em;
+          align-items: flex-end;
 
-        @media (min-width: 1000px) {
-          margin-right: -100px;
+          @media (min-width: 1000px) {
+            margin-right: -3em;
+          }
         }
       }
 
