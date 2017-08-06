@@ -249,4 +249,8 @@ export class NotebookComponent implements OnInit, AfterContentInit {
     window.location.hash = hash
   }
 
+  public print() {
+    window.print()
+  }
+
 }

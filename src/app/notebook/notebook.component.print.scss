@@ -1,6 +1,7 @@
 @media print {
 
   lrn-notebook {
+    background-color: transparent!important;
 
     .table-of-content {
       position: relative;
@@ -21,6 +22,8 @@
     }
 
     header {
+      position: relative;
+      background-color: transparent!important;
 
       .buttons {
         display: none;
