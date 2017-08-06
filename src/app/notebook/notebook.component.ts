@@ -49,7 +49,7 @@ const roundUp = (step: number) => (number: number) => number - (number % step) +
 @Component({
   selector: 'lrn-notebook',
   templateUrl: './notebook.component.html',
-  styleUrls: ['./notebook.component.scss'],
+  styleUrls: ['./notebook.component.scss', './notebook.component.print.scss'],
   encapsulation: ViewEncapsulation.None,
   animations: [
     trigger('footerTrigger', [
