@@ -289,8 +289,15 @@ lrn-notebook {
       &:before {
         content: "";
         display: inline-block;
-        height: 80px;
-        margin-top: -80px;
+        height: 6rem;
+        margin-top: -6rem;
+      }
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+
+      &:target:before {
+        display: block;
       }
     }
 

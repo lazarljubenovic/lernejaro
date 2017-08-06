@@ -35,7 +35,7 @@
   </p>
 
   <p lrnMarkdown>
-    I mada se uveliko priča o potencijalu digitalnog medijuma za kreiranje nastavnih materijala, pojmovi "multimedija" i "interkativnost" često ostaju samo prazno obećanje, a učenicima se kao materijal za učenje dostavljaju slajdovi koji se po malo čemu razlikuju od tradicionalne knjige: imaju striktnu linearnu strukturu, a "multimedija" je svedena jedino na statičke slike.
+    I mada se uveliko priča o potencijalu digitalnog medijuma za kreiranje nastavnih materijala, pojmovi "multimedija" i "interaktivnost" često ostaju samo prazno obećanje, a učenicima se kao materijal za učenje dostavljaju slajdovi koji se po malo čemu razlikuju od tradicionalne knjige: imaju striktnu linearnu strukturu, a "multimedija" je svedena jedino na statičke slike.
   </p>
 
   <p lrnMarkdown>
@@ -69,7 +69,7 @@
       title="Amit Patel">Patel</a> dozvoljava čitaocu da izabere za koju je orijentaciju šestouglova zainteresovan. U štampanom medijumu bi ovaj tekst bio ili dupliran uz sitne razlike, ili bi bio ispresecan nepreglednim zagradama. Interaktivni dijagrami su tu da čitaocu probude interesovanje i želju za samostalnim istraživanjem. Na primer, ne samo da korisnik može da korak po korak prolazi kroz obilazak grafa, već može da interaktivno učestvuje u njegovoj promeni, dodajući i uklanjajući prepreke i menjajući težine čvorova. Obilazak grafa je moguće prikazati i na štampanom medijumu (mada bi za to bilo potrebno previše prostora), ali promenu grafa je nemoguće predvideti.
     </p>
 
-    <p>
+    <p lrnMarkdown>
       Slično, referenciranje na slike, dijagrame i druge delove teksta je ulinkovano, što uklanja potrebu za eksplicitno vidljivim referencama ("na slici 43a"), ili makar uklanja potrebu da ručna pretraga po tekstu bude jedini način da se pronađe tražena referenca. Ovakav pristup omogućava i neke zanimljive efekte -- na primer, prelaskom miša preko određenog dela slike može da se istakne neki deo teksta; na ovaj način je sasvim jasno na koji način su slika i tekst povezani, odnosno o kom delu slike govori tekst.
     </p>
   </lrn-digression>
@@ -86,6 +86,95 @@
     Velika pažnja je posvećena tome da su podrazumevane vrednosti postavljene na najčešći slučaj korišćenja. Jednostavnom konfiguracijom koja se obično svodi na prosleđivanje jednog ili dva stringa su obuhvaćeni dalji česti slučajevi korišćenja. A za iskusne programere je ostavljena i veća sloboda u vidu potpune kontrole nad izglednom i ponašanjem komponenti. Developeri mogu razvijati svoje komponente i module i tako dopunjavati ekosistem Lernejara.
 
     Za kraj treba napomenuti da nijedan alat, pa ni Lernejaro, nije zamena za dobrog predavača. Ma koliko dobra tehnologija bila, bez osobe koja ima želju da iskoristi njen potencijal na pravi način, studenti će prilikom učenja imati loše iskustvo.
+  </lrn-markdown>
+
+  <h2>Moderni veb</h2>
+
+  <p>Internet je odavno postao sastavni deo života ljudi, a prvenstveno mladima. Predstavlja neiscrpan izvor zabave i informacija i povezuje ljude širom sveta.
+    <a href="https://www.article19.org/data/files/Internet_Statement_Adopted.pdf"
+       title="Internet kao osnovno ljudsko pravo">Ujedinjene nacije su 2016. godine proglasile pristup internetu osnovnim ljudskim pravom.</a> Gugl je još 2011. godine pustio u prodaju Hrombuk, lap-top u kome su operativni sistem i brauzer spojeni u jedno. Sve više aplikacija se izvršavaju direktno u brauzeru, umesto klasičnih desktop aplikacija.
+  </p>
+
+  <lrn-markdown>
+    Ovo ima brojne prednosti, ali se sledeće dve izdvajaju kao ključne.
+
+    Veb-aplikacije od korisnika **ne zahtevaju instalaciju**. Mnogo je veća verovatnoća da će potencijalni klijent koristiti aplikaciju ukoliko može da je koristi čim naiđe na nju, umesto da mora da je preuzme i instalira na svojoj mašini. Sem toga, danas nije retkost da korisnici poseduju više uređaja koje svakodnevno koriste. Veb-aplikacija je po definiciji dostupna sa svakog od njih, dok bi desktop- ili mobilnu aplikaciju trebalo instalirati na svakom uređaju ponaosob.
+
+    Pored ovoga, **ažuriranje** klasičnih desktop aplikacija zahteva neki vid akcije od korisnika. Čak i ako je ažuriranje dobro isplanirano i može da se odvija automatski i bez čitave ponovne instalacije programa, korisnici uvek imaju mogućnost da ipak ostanu na staroj verziji. Developer ne može da bude siguran u to koju verziju aplikacije koriste klijenti, što za posledicu ima razne probleme u kompatibilnosti prilikom, na primer, komunikacije sa serverom, koji bi morao da uvek podržava sve verzije desktop aplikacije. Veb-aplikaciju je trivijalno ažurirati, i garantovano je da će svi korisnici istog trenutka moći da pristupe jedino najnovijoj verziji.
+
+    Zbog ovoga je Lernejaro zamišljen kao veb-aplikacija; studentima će materijali uvek biti dostupni i ažurirani na poslednju verziju koju predavač objavi.
+  </lrn-markdown>
+
+  <h3>Jednostranične aplikacije</h3>
+
+  <summary lrnMarkdown>
+    **Jednostranična aplikacija** (SPA) je veb-aplikacija koja postoji u brauzeru tokom izvršenja i ne zahteva osvežavanje cele stranice prilikom korišćenja.
+  </summary>
+
+  <lrn-markdown>
+    Sadržaj na internetu je prvobitno zamišljen kao skup **statičkih dokumenata** koji su međusobno povezani. Praćenjem tih veza ("klikom na link"), korisnik pomoću brauzera sa svog računara (klijent) izdaje udaljenom i znatno moćnijem računaru (server) zahtev za pribavljanje nove stranice, koristeći URL kao identifikator. Kao odgovor na zahtev, server klijentu vraća novu stranicu, koju klijent iznova renderuje. Za izgradnju ovakvih statičkih stranica dovoljno je koristiti
+    <abbr
+      title="Hypertext Markup Language">HTML</abbr>, kojim se definiše semantička struktura sadržaja stranice, i
+    <abbr
+      title="Cascading Style Sheets">CSS</abbr>, koji služi za deklaraciju stilova, tj. načina prikaza (prezentacije) dokumenata pisanih u HTML-u.
+
+    Kada brauzer primi stranicu od servera, on je parsira. Na osnovu HTML-a kreira strukturu podataka u vidu stabla koja se naziva
+    <abbr title="Document Object Model">DOM</abbr>, a na osnovu CSS-a se na sličan način generiše
+    <abbr
+      title="Cascading Style Sheet Object Model">CSSOM</abbr>. Na osnovu ova dva stabla, brazuer može da renderuje stranicu.
+
+    Statičke veb-strance su vremenom zamenile **dinamičke veb-stranice**, koje su korisnicima omogućile određeni vid interakcije. Da bi stranica bila dinamička, osim HTML-a i CSS-a mora se pisati i kod u JavaSkriptu, kojim se programira način interakcije s korisnikom. Brazueri nude
+    <abbr
+      title="Application Programming Interface">API</abbr> ka DOM-u koje programer može iskoristiti da osluškuje događaje (klik mišem, pritisak dirke na tastaturi, itd), i da programski manipuliše strukturom DOM-a. Ovo znači da stranica može promeniti svoju strukturu i izgled na osnovu akcija korisnika, bez potrebe da se sa servera dobavi cela nova stranica, i bez potrebe da je brauzer iznova parsira i renderuje.
+
+    Takav način ponašanja stranice se u početku koristio samo za neke manje izmene na stranici koje je bilo trivijalno promeniti JavaSkriptom, npr. za validaciju formi na klijentu: korisnik odmah nakon unosa lozinke može biti obavešten da ona mora imati više od određenog broja karaktera (umesto da pošalje formu, da se na serveru detektuje nevalidna lozinka, i da se vrati nova stranica sa upisanom greškom). Ovaj vid funkcionisanja predstavlja preteču veb-aplikacija, kod kojih se sve više i više funkcionalnosti događa na klijentu umesto na serveru.
+
+    **Veb-aplikacija** je klijentska aplikacija kod koje se sav korisnički interfejs izvršava u okviru brauzera. Ne postoji jasna granica između "dinamičke veb-stranice" i "veb-aplikacije"; za sajtove koji po izgledu više podsećaju na desktop ili mobilnu aplikaciju postoji veća šansa da se proglasi veb-aplikacijom.
+
+    Među veb-aplikacijama se posebno izdvajaju **jednostranične aplikacije** (<abbr
+    title="Single Page Application">SPA</abbr>) jer se potpuno odvajaju od tipične veb paradigme gde se korisnik kreće kroz stranice koje imaju različite
+    <abbr
+      title="Uniform Resource Locator">URL</abbr>-ove. Tokom poslednjih godina se pojavio veliki broj frejmvorka, uglavnom otvorenog koda, koji omogućuju jednostavniji razvoj jednostraničnih aplikacija.
+
+    U osnovi svake SPA aplikacije leži Ajaks (<abbr title="Asynchronous JavaScript and XML">AJAX</abbr>). Striktno govoreći, ne radi se o tehnologiji, već o skupu više tehnologija, od kojih se kao najznačajnija izdvaja `XMLHttpRequest` koja u kombinaciji sa HTML-om, CSS-om, JavaSkriptom, DOM-om i
+    <abbr title="Extensible Markup Language">XML</abbr>-om ili <abbr
+    title="JavaScript Object Notation">JSON</abbr>-om omogućava inkrementalno ažuriranje korisničkog interfejsa bez slanja zahteva ka serveru za novu HTML stranicu, i samim tim bez osvežavanja čitave stranice. Na ovaj način je aplikacija znatno responzivnija, u smislu da brže odgovara na zahteve korisnika.
+
+    Mada je X oznaka za XML, za razmenu podataka se relativno brzo sa XML-a prešlo na JSON, iz razloga što predstavlja kompaktniji zapis podataka, ali i zbog toga što od 2009. godine JavaSkript ima ugrađenu funkciju za parsiranje JSON formata u JavaSkript objekat.
+  </lrn-markdown>
+
+  <p>
+    Međutim, vremenom se pokazalo da je
+    <code>XMLHttpRequest</code> nezgrapan i previše komplikovan za rad. Dolazak prototipa
+    <code>Promise</code> u <abbr title="ECMAScript 2015">ES2015</abbr> iskorišćen je za definiciju
+    <a href="https://fetch.spec.whatwg.org/"
+       title="Fetch specifikacija">novog standarda</a> za obavljanje Ajaks zahteva pod nazivom <a
+    href="https://developer.mozilla.org/en/docs/Web/API/Fetch_API"
+    title="Više o fetch API-ju"><code>fetch</code></a>, koji i Angular u pozadini koristi u metodama klase `Http` koju nudi kao preporučeno rešenje za obavljanje zahteva.
+  </p>
+
+  <lrn-markdown>
+    Kao **prednosti** jednostraničnih aplikacija izdvajaju se tri glavne osobine.
+
+    Jednostranične aplikacije su **brze**. Većina resursa se učitava samo jednom (lejaut, stilovi, skripte). Samo se podaci razmenjuju sa serverom. Na primer, u aplikacijama kao što su mejl-klijenti, struktura aplikacije ostaje ista tokom navigacije kroz nju. Umesto da se otvaranjem mejla iznova učitava čitava stranica, dobavlja se samo sadržaj mejla i zatim se JavaSkriptom taj sadržaj ubacuje u odgovarajuću sekciju sajta -- ostatak stranice nema potrebe da se ponovo preuzima sa servera.
+
+    **Iskustvo korisnika** je znatno bolje prilikom korišćenja jednostraničnih aplikacija spram klasičnih veb-sajtova. Ovo je direktna posledica goreopisane brzine. Ako se iskoriste neke _pre-load_ tehnike, moguće je čak i učiniti da se sve promene koje korisnik zahteva dogode istog trenutka kada korisnik isporuči zahtev za njih.
+
+    Pošto jednostranične aplikacije konzumiraju **API** samo za razmenu podataka, identičan API se može iskoristiti i za druge aplikacije; na primer, mobilna aplikacija može gađati iste tačke na API-ju, a interno na drugačiji način prikazivati te podatke. Ovo je nemoguće ostvariti u tradicionalnoj paradigmi jer server vraća čitavu HTML stranicu, koja je mobilnom klijentu beskorisna.
+
+    **Mane** jednostraničnih aplikacija su mnogo suptilnije i uglavnom se tiču činjenice da one ne mogu u potpunosti iskoristiti funkcionalnosti brauzera, već da moraju manuelno iznova implementirati te funkcionalnosti u JavaSkriptu.
+
+    Brauzeri čuvaju **istoriju posećenih stranica** što čini povratak na prethodnu stranicu veoma brzim. Kada korisnik pritisne dugme za navigaciju unazad, on očekuje da se promena dogodi uz veoma malo kašnjenje i da stranica bude u sličnom stanju u odnosu na ono kada je poslednji put bila prikazana na ekranu. Kada je sajt izgrađen tradicionalnim modelom, brauzer će biti u stanju da iskoristi keširanu verziju stranice i povezane resurse. Naivna implementacija jednostranične aplikacije će povratak nazad poistovetiti sa bilo kojom drugom akcijom, odnosno biće okinut događaj koji će detektovai osluškivač u JavaSkriptu, što će kao posledicu imati ponovno ispaljivanje zahteva ka serveru za istim podacima; dakle javlja se dodatna latentnost i (verovatno) vizuelna promena.
+
+    Da bi korisnici mogli da imaju zadovoljavajuće iskustvo prilikom navigacije kroz jednostraničnu aplikaciju, slična funkcionalnost se mora implementirati u JavaSkriptu. Aplikacija treba da kešira stranice korišćenjem memorije, lokalnog skladišta, baze podataka na strani klijenta ili kolačića. Sem toga, aplikacija mora da odluči i _kada_ da pokupi te stranice i iskoristi ih. Da bi se ovo rešilo, neophodno je da se napravi razlika između klika na link ili kucanja adrese direktno u brauzer, i pritiskom na dugmad _back_ i _forward_ na brauzeru. Međutim, iz bezbednosnog razloga, nemoguće je iz Javaskripta ustanoviti na koji je način korisnik navigirao na drugu stranicu.
+
+    Sličan problem postoji i kod **čuvanja pozicije skrola**. Brauzeri pamte poziciju skrola na stranicama koje su ranije posećene. Pošto se kod jednostraničnih aplikacija stranica nikada ne menja, brauzer nije svestan promene "stranica", pa čuva poziciju skrola čak i kada se to ne očekuje. Na primer, ako korisnik klikne na link na dnu stranice, kada mu se otvori "nova" stranica, brauzer neće znati da treba da ažurira poziciju skrola na vrh, pa će korisnik biti odveden na dno.
+
+    Brauzeri će korisnike obavestiti da imaju **popunjenu formu** koja još uvek nije poslata kada probaju da navigiraju na neku drugu stranicu. Ovo je implementirano kroz događaj `beforeunload` na koji se developer može pretplatiti. Međutim, kod jednostraničnih aplikacija ovaj događaj postaje beskoristan jer brauzer ne pravi zahteve ka pravim stranicama. Developer bi morao lično da bude odgovoran da pruži ovakvo iskusvo korisnicima.
+
+    Možda najčešće pominjana mana jednostraničnih aplikacija jeste **optimizacija za pretraživače** (<abbr title="Search Engine Optimization">SEO</abbr>). Pošto je dovlačenje podataka asinhrono, Guglovi kroleri prilikom obilaska stranice neće "znati" da treba da sačekaju neko vreme pre nego što se podaci dobave sa servera i stranica prikaže, pa će stranicu tretirati kao potpuno praznu, što znači da stranica neće biti indeksirana i neće se pojavljivati u rezultatima pretrage, što je za mnoge biznis-stranice nedopustivo. Srećom, popularni frejmvorci u poslednje vreme nude mogućnost da nekoliko ključnih stranica (npr. početna stranica, stranica sa opisom firme, stranica sa podacima za kontakt, stranica koja predstavlja oglas za otvorenu poziciju u firmi) budu renderovane na serveru
+    (<abbr title="Server-Side Rendering">SSR</abbr>)
+    i da se direktno takve dostave klijentu. Ovo omogućava pojavu statičkih stranica, iako su napisane u frejmvorku koji je namenjen dinamičkim jednostraničnim aplikacijama, čime se sprečava dupliranje funkcionalnosti, tj. održavanje dve različito kodirane verzije istog sadržaja.
   </lrn-markdown>
 
 </lrn-notebook>
