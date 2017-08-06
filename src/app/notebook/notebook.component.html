@@ -18,7 +18,22 @@
   </div>
 
   <ng-content></ng-content>
+
+  <!-- Automatically generated headings -->
+  <!-- TODO -->
+  <h2>References</h2>
+  <h2>Abbrevations</h2>
 </article>
+
+<footer [@footerTrigger]="visibleFooter ? 'show' : 'hide'">
+  <dl>
+    <dt>Word count</dt>
+    <dd>{{ wordCount }}</dd>
+
+    <dt>Time to read</dt>
+    <dd>{{ estimatedReadingTimeMinutes }} minutes</dd>
+  </dl>
+</footer>
 
 <lrn-modal *ngIf="isVisiblePalettePicker"
            (close)="closePalettePicker()">

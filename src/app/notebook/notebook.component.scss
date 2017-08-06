@@ -212,6 +212,12 @@ lrn-notebook {
       }
     }
 
+    abbr {
+      text-decoration: none;
+      border-bottom: 1px dotted mix(black, white);
+      cursor: help;
+    }
+
     img {
       max-width: 100%;
     }
@@ -287,6 +293,36 @@ lrn-notebook {
       }
     }
   }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-size: .78em;
+    height: 1em;
+    line-height: 1.2;
+    padding-top: .4em;
+    padding-bottom: .4em;
+
+    dl, dd, dt {
+      margin: 0;
+      padding: 0;
+    }
+
+    dl {
+      display: flex;
+
+      dt {
+        margin-left: 1em;
+        font-weight: bold;
+      }
+
+      dd {
+        margin-left: .5em;
+      }
+    }
+  }
 }
 
 @each $color-string in get-color-strings() {
@@ -350,6 +386,10 @@ lrn-notebook {
       pre {
         background-color: rgba(get-theme($inverse-theme-name, 'front'), .08);
       }
+    }
+
+    footer {
+      background-color: get-theme($theme-name, 'status-bar');
     }
   }
 }

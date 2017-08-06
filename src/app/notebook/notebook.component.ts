@@ -3,12 +3,14 @@ import {
   Component,
   ContentChildren,
   ElementRef,
+  HostListener,
   OnInit,
   QueryList,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core'
 import {
+  AnchorDirective,
   H1Directive,
   H2Directive,
   H3Directive,
@@ -26,12 +28,45 @@ import {
 } from './table-of-content/table-of-content-tree-node.interface'
 import {LoggerService} from '../logger.service'
 import {PaletteService} from '../ui/palette.service'
+import {animate, state, style, transition, trigger} from '@angular/animations'
+
+const HUMAN_WPM = 275
+
+function reduceTree(fn: (node: Node) => number, node: Node) {
+  if (node.nodeType == Node.TEXT_NODE) {
+    return (node.textContent && node.textContent.length) || 0
+  } else {
+    return Array.from(node.childNodes)
+      .reduce((acc, curr) => acc + fn(curr), 0)
+  }
+}
+
+function getNumberOfLetters(node: Node) {
+  return reduceTree(n => n.textContent.length, node)
+}
+
+function getNumberOfWords(node: Node) {
+  return reduceTree(n => n.textContent.split(/\s+/g).length, node)
+}
+
+const roundUp = (step: number) => (number: number) => number - (number % step) + step
 
 @Component({
   selector: 'lrn-notebook',
   templateUrl: './notebook.component.html',
   styleUrls: ['./notebook.component.scss'],
   encapsulation: ViewEncapsulation.None,
+  animations: [
+    trigger('footerTrigger', [
+      state('show', style({
+        transform: 'translateY(0)',
+      })),
+      state('hide', style({
+        transform: 'translateY(100%)',
+      })),
+      transition('show <=> hide', animate('.33s ease')),
+    ]),
+  ],
 })
 export class NotebookComponent implements OnInit, AfterContentInit {
 
@@ -41,6 +76,7 @@ export class NotebookComponent implements OnInit, AfterContentInit {
   @ContentChildren(H4Directive) public heading4: QueryList<H4Directive>
   @ContentChildren(H5Directive) public heading5: QueryList<H5Directive>
   @ContentChildren(H6Directive) public heading6: QueryList<H6Directive>
+  @ContentChildren(AnchorDirective) public anchors: QueryList<AnchorDirective>
 
   public headings: HDirective[][]
 
@@ -105,8 +141,13 @@ export class NotebookComponent implements OnInit, AfterContentInit {
           continue
       }
 
-      const title = Array.from(child.childNodes)
-        .find(node => node.nodeType == Node.TEXT_NODE).textContent
+      const title = child.innerText.trim().slice(0, -1)
+
+      if (title == '') {
+        this.logger.error(`The notebook you've created contains a title without ` +
+          `any text inside.`, child)
+      }
+
       let id = 'unknown'
       let nodeData = {title, id}
 
@@ -131,6 +172,38 @@ export class NotebookComponent implements OnInit, AfterContentInit {
     }
   }
 
+  private lastScrollTop: number = 0
+  public visibleFooter: boolean = true
+
+  @HostListener('window:scroll')
+  public onWindowScroll() {
+    const scrollTop: number = window.pageYOffset || document.documentElement.scrollTop
+    this.visibleFooter = scrollTop <= this.lastScrollTop
+    this.lastScrollTop = scrollTop
+  }
+
+  public wordCount: number
+  public estimatedReadingTimeMinutes: number
+
+  private prepareWordCount(): void {
+    this.wordCount = getNumberOfWords(this.elementRef.nativeElement)
+    this.estimatedReadingTimeMinutes = Math.ceil(this.wordCount / HUMAN_WPM)
+    // this.letterCount = getNumberOfLetters(this.elementRef.nativeElement)
+  }
+
+  private prepareReferences(): void {
+    if (this.anchors.length == 0) {
+      this.logger.warn(`Looks like your notebook "${this.notebookTitle}" contains no ` +
+        `links to any external resources. You should consider adding references to ` +
+        `webpages where students can read more about the topic you're covering. ` +
+        `To add a link, wrap it in <a>anchor</a> tags and optionally ` +
+        `<a title="The Title Attribute">add a title attribute</a> which will be used ` +
+        `for displaying a list of all references at the bottom of the page. Without a ` +
+        `title attribute, the text inside the anchor tags will be used for the list of ` +
+        `references.`, this.elementRef.nativeElement)
+    }
+  }
+
   ngOnInit() {
   }
 
@@ -148,11 +221,13 @@ export class NotebookComponent implements OnInit, AfterContentInit {
     if (heading1) {
       this.notebookTitle = heading1.title
     } else {
-      throw new Error(`Every notebook must have a title. Include a <h1>Title</h1> inside ` +
-        `your <lrn-notebook></lrn-notebook>.`)
+      this.logger.error(`Every notebook must have a title. Include a <h1>Title</h1> ` +
+        `inside your <lrn-notebook></lrn-notebook>.`)
     }
 
+    this.prepareWordCount()
     this.prepareTableOfContents()
+    this.prepareReferences()
   }
 
 }

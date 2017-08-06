@@ -59,3 +59,9 @@ export class H5Directive extends HDirective {
 @Directive({selector: 'h6'})
 export class H6Directive extends HDirective {
 }
+
+@Directive({selector: 'a'})
+export class AnchorDirective {
+  constructor(public elementRef: ElementRef) {
+  }
+}
