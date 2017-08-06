@@ -16,7 +16,6 @@ import {LabelPipe} from './controls/planimetrics-control/pipes/label.pipe'
 import {FillColorPipe} from './controls/planimetrics-control/pipes/fill-color.pipe'
 import {StrokeColorPipe} from './controls/planimetrics-control/pipes/stroke-color.pipe'
 import {DestructPipe} from './controls/planimetrics-control/pipes/destruct.pipe'
-import {RandomService} from './random.service'
 
 @NgModule({
   imports: [
@@ -45,7 +44,6 @@ import {RandomService} from './random.service'
   ],
   providers: [
     RendererService,
-    RandomService,
   ],
 })
 export class PlanimetricsModule {

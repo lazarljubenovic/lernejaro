@@ -45,7 +45,7 @@ import {PaletteService} from '../ui/palette.service'
     ChartModule,
     UiModule.forRoot({
       color: 'indigo',
-      theme: 'dark',
+      theme: 'light',
     }),
     NotebookModule,
     KatexModule,

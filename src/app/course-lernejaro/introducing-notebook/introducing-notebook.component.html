@@ -4,220 +4,61 @@
 
   <summary>
     Cilj ovog rada je da istakne značaj primene modernih multimedijalnih tehnologija u nastavi. Uz osvrt na kratku ali dinamičnu istoriju JavaSkripta i veba uopšte, rad se bavi modernim tehnologijama povezanim sa JavaSkriptom. Zatim na visokom nivou opisuje sve module za biblioteku Lernejaro, implementirane u veb-frejmvorku
-    <i>Angular</i>, koji za cilj imaju olakšano kreiranje multimedijalnih interaktivnih materijala za učenje.
+    <i>Angular</i>, koji <span
+    #foo>za cilj imaju olakšano kreiranje</span> multimedijalnih interaktivnih materijala za učenje.
+  </summary>
+
+  <lrn-digression [anchor]="foo">
+    <lrn-markdown>
+      Prvo poglavlje uvodi čitaoca u problem nedostatka interaktivnosti u nastavnim materijalima.
+
+      Drugo poglavlje ukratko govori o razvoju veba, uz akcenat na prednostima i manama jednostraničnih aplikacija, a zatim se osvrće na JavaSkript kao osnovni jezik za izgradnju istih.
+
+      Treće poglavlje detaljnije opisuje tehnologije, biblioteke i frejmvorke koji su izgrađeni nad JavaSkriptom, a koriste se neposredno, ili posredno u Lernejaru; ovde su uključeni TajpSkript, Vebpek, Zone.js, Reaktivne ekstenzije i Angular. Angular je opisan znatno detaljnije, a posebna pažnja posvećena je detekciji promena i ubrizgavanju zavisnosti.
+
+      Četvrto poglavlje posvećeno je samom Lernejaru.
+    </lrn-markdown>
+  </lrn-digression>
+
+
+  <h2>Motivacija i cilj</h2>
+
+  <summary>
+    Lernejaro je nastao kao rezultat suočavanja sa lošim materijalima za učenje tokom školovanja. Inspiraciju dobija od sistema za pripremu teksta LaTeX, od Guglovog jezika za komunikaciju putem korisničkih interfejsa Material Design, i od nekolicine dobro pripremljenih interaktivnih materijala na internetu.
   </summary>
 
   <lrn-markdown>
-    Prvo poglavlje uvodi čitaoca u problem nedostatka interaktivnosti u nastavnim materijalima.
+    Još od otkrivanja prvog digitalnog računara, brzina izračunavanja i kapacitet skladišta podataka su bili u eksponencijalnom porastu. Personalni računari i pametni telefoni, a u poslednje vreme i pametni satovi i drugi pametni uređaji, su u stanju da kreiraju, modifikuju i pristupe ogromnoj količini digitalnih podataka. U kombinaciji sa internetom, svetskom mrežom, digitalni medijumi su u potpunosti transformisali čovečanstvo dvadesetprvog veka.
 
-    Drugo poglavlje ukratko govori o razvoju veba, uz akcenat na prednostima i manama jednostraničnih aplikacija, a zatim se osvrće na JavaSkript kao osnovni jezik za izgradnju istih.
+    **Digitalni medijum** je svaki medijum koji je šifriran (enkodiran) u formatu koji je čitljiv mašinama. On se može kreirati, pregledati, distribuirati, modifikovati i trajno skladištiti na elektronskim uređajima: računarski programi, digitalna fotografija, digitalni video- i audio-snimci, podaci i baze podataka, knjige u elektronskom formatu. Digitalni medijumi se često porede sa **štampanim medijumima**, kao što su štampane knjige, novine i časopisi, i analogni medijumi kao što su slike, filmovi i audio-trake. Za pojam digitalnih medijuma često se vezuje i **multimedija**. To je sadržaj koji koristi kombinaciju različitih oblika digitalnih medijuma, uključujući tekst, audio, slike, animacije, video i **interaktivni sadržaj**.
 
-    Treće poglavlje detaljnije opisuje tehnologije, biblioteke i frejmvorke koji su izgrađeni nad JavaSkriptom, a koriste se neposredno, ili posredno u Lernejaru; ovde su uključeni TajpSkript, Vebpek, Zone.js, Reaktivne ekstenzije i Angular. Angular je opisan znatno detaljnije, a posebna pažnja posvećena je detekciji promena i ubrizgavanju zavisnosti.
+    I mada se uveliko priča o potencijalu digitalnog medijuma za kreiranje nastavnih materijala, pojmovi "multimedija" i "interkativnost" često ostaju samo prazno obećanje, a učenicima se kao materijal za učenje dostavljaju slajdovi koji se po malo čemu razlikuju od tradicionalne knjige: imaju striktnu linearnu strukturu, a "multimedija" je svedena jedino na statičke slike.
 
-    Četvrto poglavlje posvećeno je samom Lernejaru.
+    Postoji mnogo alata za izgradnju prezentacija i tekstualnih datoteka. Najčešće korišćeni alati za kreiranje prezentacija u vidu slajdova su _PowerPoint_ na Vindouzu i _Keynote_ na Meku, a kao veb-aplikacije se izdvajaju _Google Slides_ i _Prezi_. Za tekstualne datoteke se uglavnom koristi Majkrosoftov _Word_ ili neki drugi softver kompatibilan sa .doc i .docx fajlovima, kao što je _LibreOffice_.
+
+    Premda ovi alati u teoriji mogu da pruže, barem u neku ruku, dobru semantičku strukturu teksta i pratećih medija, činjenica da se radi o WYSIWYG alatima uglavnom sputava kreatora prezentacije sa ovog cilja. Na primer, u PowerPoint-u je čest slučaj da predavač iskoristi običan _text-box_ umesto _caption_ elementa za sliku. Mada je vizuelna reprezentacija ista, ili barem slična, gubi se semantička struktura, što za posledicu ima nemogućnost da _PowerPoint_ automatski konvertuje prezentacije u čitljiv tekstualni fajl spreman za štampu; već bi student, ukoliko želi da ima prezentacije u štampanom obliku, morao da odštampa slajd bukvalno kao sliku, što svakako nije optimalno, ni sa stanovišta uštede prostora, ni sa stanovišta preglednosti. Slično, često se umesto semantičkog naslova koristi deo glavnog teksta kome se poveća veličina i težina fonta, zbog čega je navigacija kroz prezentaciju otežana (jer alati ne znaju da se radi o naslovu, pa ne mogu da ponude prečice za navigaciju, niti da, na primer, automatski generišu sadržaj).
+
+    Ovo je glavni razlog zbog čega Lernejaro nije zamišljen kao alat sa bilo kakvom GUI podrškom. Ovo znači da se ne radi o WYSIWYG (_what you **see** is what you get_, dobiješ to što _vidiš_) alatu, već o takozvanom WYMIWYG (_what you **mean** is what you get_, dobiješ to što _misliš_). Ova ideja je pozajmljena od semantičke strukture HTML5 dokumenata i sistema za pripremanje teksta LaTeX.
+
+    Praktični pokazatelj da su interaktivni materijali neprocenjivi izvor za učenje su blog **Red Blob Games** (autor Amit Patel), i **A Primer on Bézier Curves** (autor Pomaks), koji su upravo zbog ovog pristupa postali glavni izvor informacija za oblasti kojom se bave. Mada se naizgled radi o običnom tekstu ispresecanom slikama koji se svakodnevno sreću i u štampanom i u digitalnom obliku, ova dva autora su iskoristili potencijal koji im pruža digitalni zapis: interaktivnost i dinamičnost. Na primer, skoro svi dijagrami su vezani za neku kontrolu kojom korisnik može da manipuliše i tako istraži kako bi se oblik dijagrama menjao u zavinosti od parametara.
   </lrn-markdown>
 
+  <lrn-digression [heading]="'Još primera'">
+    <lrn-markdown>
+      U članku o šestougaonim tablama za igranje strateških igara, Patel dozvoljava čitaocu da izabere za koju je orijentaciju šestouglova zainteresovan. U štampanom medijumu bi ovaj tekst bio ili dupliran uz sitne razlike, ili bi bio ispresecan nepreglednim zagradama. Interaktivni dijagrami su tu da čitaocu probude interesovanje i želju za samostalnim istraživanjem. Na primer, ne samo da korisnik može da korak po korak prolazi kroz obilazak grafa, već može da interaktivno učestvuje u njegovoj promeni, dodajući i uklanjajući prepreke i menjajući težine čvorova. Obilazak grafa je moguće prikazati i na štampanom medijumu (mada bi za to bilo potrebno previše prostora), ali promenu grafa je nemoguće predvideti.
 
-  <h2>Title at Level Two</h2>
+      Slično, referenciranje na slike, dijagrame i druge delove teksta je ulinkovano, što uklanja potrebu za eksplicitno vidljivim referencama ("na slici 43a"), ili makar uklanja potrebu da ručna pretraga po tekstu bude jedini način da se pronađe tražena referenca. Ovakav pristup omogućava i neke zanimljive efekte -- na primer, prelaskom miša preko određenog dela slike može da se istakne neki deo teksta; na ovaj način je sasvim jasno na koji način su slika i tekst povezani, odnosno o kom delu slike govori tekst.
+    </lrn-markdown>
+  </lrn-digression>
 
-  <lrn-card>
-    <lrn-planimetrics [interactivePoints]="interactivePoints"
-                      (interactivePointsChange)="updateDiagram($event)"
-    ></lrn-planimetrics>
-  </lrn-card>
+  <lrn-markdown>
+    Kreiranje ovakvih iskustava nije jednostvan posao i zahteva dobro poznavanje tehnologije. S druge strane, popularni WYSIWYG/GUI alati ne pružaju dovoljnu fleksibilnost u izgradnji interaktivnih materijala. Lernejaro pokušava da bude "zlatna sredina".
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    <code>Integer nec odio.</code> Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.
-    <b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</b>. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.
-  </p>
+    Izgrađen je imajući u vidu inkrementalno poboljšanje materijala: kreiranje statičkih prezentacija i dalje ostaje jednostavno i svodi se na ekapsulaciju teksta u tagove koji podsećaju na poznati HTML. Dakle, ciljna grupa korisnika biblioteke Lernejaro nisu isključivo iskusni veb-developeri. Mada je "programerska pismenost" nesumnjivo poželjna za rad sa bibliotekom, nije nemoguće da se bilo koja osoba obuči za korišćenje Lernejara, kao da je u pitanju bilo koji drugi alat.
 
-  <figure class="right">
-    <img src="https://unsplash.it/200/200/?random">
-    <figcaption>This is a longer figure caption on a floated image. It is never longer in width than the picture.</figcaption>
-  </figure>
+    Velika pažnja je posvećena tome da su podrazumevane vrednosti postavljene na najčešći slučaj korišćenja. Jednostavnom konfiguracijom koja se obično svodi na prosleđivanje jednog ili dva stringa su obuhvaćeni dalji česti slučajevi korišćenja. A za iskusne programere je ostavljena i veća sloboda u vidu potpune kontrole nad izglednom i ponašanjem komponenti. Developeri mogu razvijati svoje komponente i module i tako dopunjavati ekosistem Lernejara.
 
-  <lrn-fill-in-the-blank (answerChange)="answer = $event">
-    Dijkstra's algorithm is an algorithm for finding the
-    <lrn-blank [correct]="'shortest'" [hint]="'what kind of'"></lrn-blank>
-    paths between nodes in a graph.
-  </lrn-fill-in-the-blank>
-
-  <pre>Answer: {{answer | json}}</pre>
-
-  <p>Curabitur tortor. Pellentesque
-    <lrn-katex
-      [math]="'c = \\int_0^e \\log_2 \\left(x^{e^{\\sqrt{3}}}\\right) \\, \\mathrm dx'"
-      [display]="'block'"></lrn-katex>
-    nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem.
-    <b>Vestibulum lacinia arcu eget nulla</b>. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit.
-  </p>
-
-  <lrn-multiple-choice (answerChoose)="answer = $event">
-    <lrn-question>
-      Calculate
-      <lrn-katex [math]="'\\det A'"></lrn-katex>
-      if given
-      <lrn-katex [display]="'block'"
-                 [math]="'A = \\begin{bmatrix}1 & 2 & 3 \\\\ 4 & 5 & 6 \\\\ 7 & 8 & 9 \\end{bmatrix}.'"></lrn-katex>
-    </lrn-question>
-    <lrn-choice lrnCorrect>
-      <lrn-katex [math]="'\\det A = 0'"></lrn-katex>
-    </lrn-choice>
-    <lrn-choice>
-      <lrn-katex [math]="'\\det A = 12'"></lrn-katex>
-    </lrn-choice>
-    <lrn-choice>
-      <lrn-katex [math]="'\\det A = 24'"></lrn-katex>
-    </lrn-choice>
-    <lrn-choice>
-      <lrn-katex [math]="'\\det A = 48'"></lrn-katex>
-    </lrn-choice>
-    <lrn-choice>Impossible to answer.</lrn-choice>
-  </lrn-multiple-choice>
-
-  <figure class="left">
-    <img src="https://unsplash.it/400/300">
-    <figcaption>This is a longer figure caption on a floated image. It is never longer in width than the picture.</figcaption>
-  </figure>
-
-  <p>
-    <b>Sed dignissim lacinia nunc</b>. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante.
-    <b>Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa</b>. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices.
-    <i>Maecenas mattis</i>. Suspendisse in justo eu magna luctus suscipit. Sed lectus.
-  </p>
-
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    <code>Integer nec odio.</code> Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.
-    <b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</b>. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.
-  </p>
-
-  <dl>
-    <dt>Term</dt>
-    <dd>Its definition</dd>
-    <dt>Another term</dt>
-    <dd>And its definition</dd>
-    <dt>Term #3</dt>
-    <dd>A pretty long definition can be put here as well, such as this one. Morbi in dui quis est pulvinar ullamcorper. Nulla facilisi. Integer lacinia sollicitudin massa. Cras metus. Sed aliquet risus a tortor.</dd>
-  </dl>
-
-  <p>
-    <b>Sed dignissim lacinia nunc</b>. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante.
-    <b>Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa</b>. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices.
-    <i>Maecenas mattis</i>. Suspendisse in justo eu magna luctus suscipit. Sed lectus.
-  </p>
-
-  <p>Integer euismod lacus luctus magna.
-    <b>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos</b>. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus. Ut ultrices ultrices enim. Curabitur sit amet mauris.
-  </p>
-
-  <figure>
-    <img src="https://unsplash.it/300/200">
-    <figcaption>This is a caption on a centered picture. It spans across the page and isn't bound by the picture width.</figcaption>
-  </figure>
-
-  <p>Morbi in dui quis est pulvinar ullamcorper. Nulla facilisi. Integer lacinia sollicitudin massa. Cras metus. Sed aliquet risus a tortor.
-    <b>Donec lacus nunc, viverra nec, blandit vel, egestas et, augue</b>. Integer id quam.
-    <b>Morbi in ipsum sit amet pede facilisis laoreet</b>. Morbi mi. Quisque nisl felis, venenatis tristique, dignissim in, ultrices sit amet, augue. Proin sodales libero eget ante. Nulla quam. Aenean laoreet.
-    <b>Nulla facilisi</b>. Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, pede.
-  </p>
-
-  <h2>Title at Level Two, Once Again</h2>
-
-  <p>Ut orci risus, accumsan porttitor, cursus quis, aliquet eget, justo. Sed pretium blandit orci.
-    <b>Integer id quam</b>. Ut eu
-    <code>diam at pede suscipit sodales</code>. Aenean lectus elit, fermentum non, convallis id, sagittis at, neque. Nullam mauris orci, aliquet et, iaculis et, viverra vitae, ligula. Nulla ut felis in purus aliquam imperdiet. Maecenas aliquet mollis lectus. Vivamus consectetuer risus et tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.
-    <b>Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, pede</b>. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.
-  </p>
-
-  <h3>Title at Level Three</h3>
-
-  <p>Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.
-    <b>Nullam mauris orci, aliquet et, iaculis et, viverra vitae, ligula</b>. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis.
-  </p>
-
-  <hr>
-
-  <p>
-    <b>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos</b>. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor.
-    <b>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos</b>. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa.
-    <i>Mauris massa</i>. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-    <b>Sed convallis tristique sem</b>. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla.
-    <i>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos</i>. Suspendisse potenti.
-  </p>
-
-  <p>Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna.
-    <b>Ut fringilla</b>. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui.
-    <b>Suspendisse potenti</b>. Praesent blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec, blandit vel, egestas et, augue.
-  </p>
-
-  <h3>Title at Level Three</h3>
-
-  <p>Vestibulum tincidunt malesuada tellus. Ut ultrices ultrices enim. Curabitur sit amet mauris. Morbi in dui quis est pulvinar ullamcorper. Nulla facilisi.
-    <b>Praesent blandit dolor</b>. Integer lacinia sollicitudin massa. Cras metus. Sed aliquet risus a tortor. Integer id quam. Morbi mi. Quisque nisl felis, venenatis tristique, dignissim in, ultrices sit amet, augue.
-  </p>
-
-  <h4>Title at Level Four</h4>
-
-  <p><b>Curabitur sit amet mauris</b>. Proin sodales libero eget ante. Nulla quam.
-    <b>Integer lacinia sollicitudin massa</b>. Aenean laoreet. Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, pede.
-    <b>Integer lacinia sollicitudin massa</b>. Ut orci risus, accumsan porttitor, cursus quis, aliquet eget, justo. Sed pretium blandit orci.
-    <b>Cras metus</b>. Ut eu diam at pede suscipit sodales. Aenean lectus elit, fermentum non, convallis id, sagittis at, neque. Nullam mauris orci, aliquet et, iaculis et, viverra vitae, ligula.
-    <b>Proin sodales libero eget ante</b>. Nulla ut felis in purus aliquam imperdiet. Maecenas aliquet mollis lectus.
-  </p>
-
-  <h4>Title at Level Four</h4>
-
-  <p>Vivamus consectetuer risus et tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
-    <b>Ut eu diam at pede suscipit sodales</b>. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.
-  </p>
-
-  <h3>Title at Level Three</h3>
-
-  <p>Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.
-    <b>Duis sagittis ipsum</b>. Curabitur tortor. Pellentesque nibh.
-    <i>Praesent libero</i>. Aenean quam. In scelerisque sem at dolor.
-    <b>Duis sagittis ipsum</b>. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa.
-  </p>
-
-  <ul>
-    <li>Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit.</li>
-    <li>
-      <i>Maecenas mattis</i>. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus.
-    </li>
-  </ul>
-
-  <p>
-    <b>Curabitur sodales ligula in libero</b>. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien.
-  </p>
-
-  <p>Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit.
-    <b>Ut fringilla</b>. Sed lectus.
-    <b>Nam nec ante</b>. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum.
-    <i>Maecenas mattis</i>. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus.
-  </p>
-
-  <p>Ut ultrices ultrices enim. Curabitur sit amet mauris. Morbi in dui quis est pulvinar ullamcorper. Nulla facilisi. Integer lacinia sollicitudin massa.
-    <b>Sed non quam</b>. Cras metus. Sed aliquet risus a tortor. Integer id quam. Morbi mi. Quisque nisl felis, venenatis tristique, dignissim in, ultrices sit amet, augue. Proin sodales libero eget ante. Nulla quam.
-  </p>
-
-  <h2>Title at Level Two, for the Last Time</h2>
-
-  <p>Aenean laoreet. Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, pede. Ut orci risus, accumsan porttitor, cursus quis, aliquet eget, justo. Sed pretium blandit orci. Ut eu diam at pede suscipit sodales. Aenean lectus elit, fermentum non, convallis id, sagittis at, neque. Nullam mauris orci, aliquet et, iaculis et, viverra vitae, ligula. Nulla ut felis in purus aliquam imperdiet. Maecenas aliquet mollis lectus. Vivamus consectetuer risus et tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    <b>Proin sodales libero eget ante</b>. Integer nec odio. </p>
-
-  <p>
-    <b>Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, pede</b>. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.
-    <b>Nulla ut felis in purus aliquam imperdiet</b>. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero.
-  </p>
-
-  <p>Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam.
-    <b>Mauris massa</b>. In scelerisque sem at dolor.
-    <b>Mauris massa</b>. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum.
-    <b>In scelerisque sem at dolor</b>. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh.
-    <b>In scelerisque sem at dolor</b>. Quisque volutpat condimentum velit. </p>
-
-  <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices.
-    <b>Nam nec ante</b>. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam.
-  </p>
+    Za kraj treba napomenuti da nijedan alat, pa ni Lernejaro, nije zamena za dobrog predavača. Ma koliko dobra tehnologija bila, bez osobe koja ima želju da iskoristi njen potencijal na pravi način, studenti će prilikom učenja imati loše iskustvo.
+  </lrn-markdown>
 
 </lrn-notebook>

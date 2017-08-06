@@ -38,7 +38,7 @@ export class PalettePickerComponent implements OnInit {
     this.palette.selectTheme(theme)
   }
 
-  constructor(private palette: PaletteService) {
+  constructor(public palette: PaletteService) {
   }
 
   ngOnInit() {

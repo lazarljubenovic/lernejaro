@@ -19,7 +19,6 @@ import {PaletteConfigService} from './palette-config.service'
 import {PaletteService} from './palette.service'
 import {LogoComponent} from './logo/logo.component'
 import {StepPipe} from './input/step.pipe'
-import {LatexInputNumberComponent} from './latex-input-number/latex-input-number.component'
 import {CardHeaderComponent} from './card/card-header/card-header.component'
 import {CardFooterComponent} from './card/card-footer/card-footer.component'
 import {CardContentComponent} from './card/card-content/card-content.component'
@@ -49,7 +48,6 @@ import {IconComponent} from './icon/icon.component'
     PalettePickerComponent,
     LogoComponent,
     StepPipe,
-    LatexInputNumberComponent,
     CardHeaderComponent,
     CardFooterComponent,
     CardContentComponent,
@@ -73,7 +71,6 @@ import {IconComponent} from './icon/icon.component'
     ModalComponent,
     PalettePickerComponent,
     LogoComponent,
-    LatexInputNumberComponent,
     CardHeaderComponent,
     CardFooterComponent,
     CardContentComponent,

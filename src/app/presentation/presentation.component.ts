@@ -54,7 +54,7 @@ export class PresentationComponent implements OnInit, AfterContentInit {
     return this._currentSlideIndex
   }
 
-  private get slideIdentifiers(): SlideIdentifier[] {
+  public get slideIdentifiers(): SlideIdentifier[] {
     return [
       ...(!this.withoutTitleSlide ? [{type: 'title'}] : []),
       ...this.slideComponents.map((_, index) => ({type: 'user', index})),

@@ -161,15 +161,28 @@ lrn-notebook {
       }
     }
 
-    // Summary directly below wrapper serves an abstract for the document.
-    > summary {
+    // Summary of the chapter
+    summary {
       margin-top: 1em;
-      padding: 1ex 1em;
-      font-size: 1.1em;
+      margin-bottom: 1em;
+      font-size: 0.8em;
+      line-height: 1.75;
+    }
+
+    summary {
 
       &::first-line {
         font-variant: small-caps;
       }
+    }
+
+    // Abstract for the document is the first summary
+    > h1 + summary {
+      margin-top: 1em;
+      margin-bottom: 1em;
+      padding: 0.4em 0.6em;
+      font-size: 1.3em;
+      line-height: 1.33;
 
       // When using markdown, there's an additional <p> which adds ugly margins
       // Remove top and bottom margin,
@@ -324,7 +337,7 @@ lrn-notebook {
 
     > article.wrapper {
 
-      > summary {
+      > h1 + summary {
         $border: solid 1pt get-theme($inverse-theme-name, 'back');
         border-top: $border;
         border-bottom: $border;

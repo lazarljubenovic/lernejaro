@@ -37,7 +37,7 @@ export class MultipleChoiceComponent implements AfterContentInit, AfterViewInit,
   // TODO This is the same as in the fill-in-the-blank component
   private submitted: boolean
 
-  private icon: string
+  public icon: string
 
   private resetIcon(): void {
     this.icon = 'question'
@@ -54,7 +54,7 @@ export class MultipleChoiceComponent implements AfterContentInit, AfterViewInit,
   private defaultFeedbackFunction = (info: MultipleChoiceInfo) => null
   @Input() feedback: Function = this.defaultFeedbackFunction
 
-  private feedbackString: string
+  public feedbackString: string
 
   private resetFeedback(): void {
     this.feedbackString = null
