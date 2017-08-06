@@ -16,6 +16,7 @@ import {UniqueIdService} from './unique-id.service'
 import {FitTextModule} from './fit-text/fit-text.module'
 import {LayoutModule} from './layout/layout.module'
 import {LoggerService} from './logger.service'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 
 export const ROUTES: Routes = [
   {
@@ -47,6 +48,7 @@ export const ROUTES: Routes = [
     FitTextModule,
     LayoutModule,
     RouterModule.forRoot(ROUTES),
+    BrowserAnimationsModule,
   ],
   providers: [
     MarkdownParserService,

@@ -126,9 +126,6 @@ export class NotebookComponent implements OnInit, AfterContentInit {
         currentNode = currentNode.getLastChild()
       }
 
-      // id = currentNode.getPathEnumeration() + '_' + title.replace(/ /g, '_')
-      // child.id = id
-
       nodeData = {title, id: child.id}
       currentNode.setData(nodeData)
     }

@@ -1,36 +1,17 @@
-import {
-    Component,
-    OnInit,
-    Input,
-    HostBinding,
-    ChangeDetectionStrategy,
-    OnChanges, ViewEncapsulation
-} from '@angular/core'
-import {PaletteService} from '../palette.service'
+import {ChangeDetectionStrategy, Component, HostBinding, Input} from '@angular/core'
 
 @Component({
-    selector: 'button[lrnButton]',
-    templateUrl: './button.component.html',
-    styleUrls: ['./button.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    changeDetection: ChangeDetectionStrategy.OnPush,
+  selector: 'button[lrnButton]',
+  template: `
+    <ng-content></ng-content>
+  `,
+  styleUrls: ['./button.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ButtonComponent implements OnInit, OnChanges {
+export class ButtonComponent {
 
-    @Input('lrnButton') public style: 'raised' | 'flat' | 'fab' = 'raised'
-    public color: string = 'blue'
-
-    @HostBinding('class') public klass: string
-
-    constructor(private palette: PaletteService) {
-        this.color = palette.color
-    }
-
-    ngOnInit() {
-    }
-
-    ngOnChanges() {
-        this.klass = 'lrnButton ' + (this.style || 'raised') + ' ' + this.color
-    }
+  @Input('lrnButton')
+  @HostBinding('class')
+  public style: 'raised' | 'flat' | 'fab' = 'raised'
 
 }
