@@ -2,9 +2,8 @@
 
   <h1>Lernejaro</h1>
 
-  <summary>
-    Cilj ovog rada je da istakne značaj primene modernih multimedijalnih tehnologija u nastavi. Uz osvrt na kratku ali dinamičnu istoriju JavaSkripta i veba uopšte, rad se bavi modernim tehnologijama povezanim sa JavaSkriptom. Zatim na visokom nivou opisuje sve module za biblioteku Lernejaro, implementirane u veb-frejmvorku
-    <i>Angular</i>, koji za cilj imaju olakšano kreiranje multimedijalnih interaktivnih materijala za učenje.
+  <summary lrnMarkdown>
+    Cilj ovog rada je da istakne značaj primene modernih multimedijalnih tehnologija u nastavi. Uz osvrt na kratku ali dinamičnu istoriju JavaSkripta i veba uopšte, rad se bavi modernim tehnologijama povezanim sa JavaSkriptom. Zatim na visokom nivou opisuje sve module za biblioteku Lernejaro, implementirane u veb-frejmvorku _Angular_, koji za cilj imaju olakšano kreiranje multimedijalnih interaktivnih materijala za učenje.
   </summary>
 
   <lrn-digression [heading]="'Detaljni pregled'">
@@ -22,38 +21,67 @@
 
   <h2>Motivacija i cilj</h2>
 
-  <summary>
-    Lernejaro je nastao kao rezultat suočavanja sa lošim materijalima za učenje tokom školovanja. Inspiraciju dobija od sistema za pripremu teksta LaTeX, od Guglovog jezika za komunikaciju putem korisničkih interfejsa Material Design, i od nekolicine dobro pripremljenih interaktivnih materijala na internetu.
+  <summary lrnMarkdown>
+    Lernejaro je nastao kao rezultat suočavanja sa lošim materijalima za učenje tokom školovanja. Inspiraciju dobija od sistema za pripremu teksta _LaTeX_, od Guglovog jezika za komunikaciju putem korisničkih interfejsa _Material Design_, i od nekolicine dobro pripremljenih interaktivnih materijala na internetu.
   </summary>
 
-  <lrn-markdown>
-    Još od otkrivanja prvog digitalnog računara, brzina izračunavanja i kapacitet skladišta podataka su bili u eksponencijalnom porastu. Personalni računari i pametni telefoni, a u poslednje vreme i pametni satovi i drugi pametni uređaji, su u stanju da kreiraju, modifikuju i pristupe ogromnoj količini digitalnih podataka. U kombinaciji sa internetom, svetskom mrežom, digitalni medijumi su u potpunosti transformisali čovečanstvo dvadesetprvog veka.
+  <p>Još od otkrivanja prvog digitalnog računara, brzina izračunavanja i kapacitet skladišta podataka su bili u
+    <a href="https://sr.wikipedia.org/sr-el/Murov_zakon"
+       title="Murov zakon">eksponencijalnom porastu</a>. Personalni računari i pametni telefoni, a u poslednje vreme i pametni satovi i drugi pametni uređaji, su u stanju da kreiraju, modifikuju i pristupe ogromnoj količini digitalnih podataka. U kombinaciji sa internetom, svetskom mrežom, digitalni medijumi su u potpunosti transformisali čovečanstvo dvadesetprvog veka.
+  </p>
 
+  <p lrnMarkdown>
     **Digitalni medijum** je svaki medijum koji je šifriran (enkodiran) u formatu koji je čitljiv mašinama. On se može kreirati, pregledati, distribuirati, modifikovati i trajno skladištiti na elektronskim uređajima: računarski programi, digitalna fotografija, digitalni video- i audio-snimci, podaci i baze podataka, knjige u elektronskom formatu. Digitalni medijumi se često porede sa **štampanim medijumima**, kao što su štampane knjige, novine i časopisi, i analogni medijumi kao što su slike, filmovi i audio-trake. Za pojam digitalnih medijuma često se vezuje i **multimedija**. To je sadržaj koji koristi kombinaciju različitih oblika digitalnih medijuma, uključujući tekst, audio, slike, animacije, video i **interaktivni sadržaj**.
+  </p>
 
+  <p lrnMarkdown>
     I mada se uveliko priča o potencijalu digitalnog medijuma za kreiranje nastavnih materijala, pojmovi "multimedija" i "interkativnost" često ostaju samo prazno obećanje, a učenicima se kao materijal za učenje dostavljaju slajdovi koji se po malo čemu razlikuju od tradicionalne knjige: imaju striktnu linearnu strukturu, a "multimedija" je svedena jedino na statičke slike.
+  </p>
 
-    Postoji mnogo alata za izgradnju prezentacija i tekstualnih datoteka. Najčešće korišćeni alati za kreiranje prezentacija u vidu slajdova su _PowerPoint_ na Vindouzu i _Keynote_ na Meku, a kao veb-aplikacije se izdvajaju _Google Slides_ i _Prezi_. Za tekstualne datoteke se uglavnom koristi Majkrosoftov _Word_ ili neki drugi softver kompatibilan sa .doc i .docx fajlovima, kao što je _LibreOffice_.
+  <p lrnMarkdown>
+    Postoji mnogo alata za izgradnju prezentacija i tekstualnih datoteka. Najčešće korišćeni alati
+    za kreiranje prezentacija u vidu slajdova su _PowerPoint_ na Vindouzu i _Keynote_ na
+    Meku, a kao veb-aplikacije se izdvajaju _Google Slides_ i _Prezi_. Za tekstualne
+    datoteke se uglavnom koristi Majkrosoftov _Word_ ili neki drugi softver kompatibilan sa
+    .doc i .docx fajlovima, kao što je _LibreOffice_.
 
-    Premda ovi alati u teoriji mogu da pruže, barem u neku ruku, dobru semantičku strukturu teksta i pratećih medija, činjenica da se radi o <abbr title="What You See Is What You Get">WYSIWYG</abbr> alatima uglavnom sputava kreatora prezentacije sa ovog cilja. Na primer, u PowerPoint-u je čest slučaj da predavač iskoristi običan _text-box_ umesto _caption_ elementa za sliku. Mada je vizuelna reprezentacija ista, ili barem slična, gubi se semantička struktura, što za posledicu ima nemogućnost da _PowerPoint_ automatski konvertuje prezentacije u čitljiv tekstualni fajl spreman za štampu; već bi student, ukoliko želi da ima prezentacije u štampanom obliku, morao da odštampa slajd bukvalno kao sliku, što svakako nije optimalno, ni sa stanovišta uštede prostora, ni sa stanovišta preglednosti. Slično, često se umesto semantičkog naslova koristi deo glavnog teksta kome se poveća veličina i težina fonta, zbog čega je navigacija kroz prezentaciju otežana (jer alati ne znaju da se radi o naslovu, pa ne mogu da ponude prečice za navigaciju, niti da, na primer, automatski generišu sadržaj).
+    Premda ovi alati u teoriji mogu da pruže, barem u neku ruku, dobru semantičku strukturu
+    teksta i pratećih medija, činjenica da se radi o
+    <abbr title="What You See Is What You Get">WYSIWYG</abbr>
+    alatima uglavnom sputava kreatora prezentacije sa ovog cilja. Na primer, u PowerPoint-u je čest slučaj da predavač iskoristi običan _text-box_ umesto _caption_ elementa za sliku. Mada je vizuelna reprezentacija ista, ili barem slična, gubi se semantička struktura, što za posledicu ima nemogućnost da _PowerPoint_ automatski konvertuje prezentacije u čitljiv tekstualni fajl spreman za štampu; već bi student, ukoliko želi da ima prezentacije u štampanom obliku, morao da odštampa slajd bukvalno kao sliku, što svakako nije optimalno, ni sa stanovišta uštede prostora, ni sa stanovišta preglednosti. Slično, često se umesto semantičkog naslova koristi deo glavnog teksta kome se poveća veličina i težina fonta, zbog čega je navigacija kroz prezentaciju otežana (jer alati ne znaju da se radi o naslovu, pa ne mogu da ponude prečice za navigaciju, niti da, na primer, automatski generišu sadržaj).
 
     Ovo je glavni razlog zbog čega Lernejaro nije zamišljen kao alat sa bilo kakvom GUI podrškom. Ovo znači da se ne radi o WYSIWYG (_what you **see** is what you get_, dobiješ to što _vidiš_) alatu, već o takozvanom WYMIWYG (_what you **mean** is what you get_, dobiješ to što _misliš_). Ova ideja je pozajmljena od semantičke strukture HTML5 dokumenata i sistema za pripremanje teksta LaTeX.
+  </p>
 
-    Praktični pokazatelj da su interaktivni materijali neprocenjivi izvor za učenje su blog **Red Blob Games** (autor Amit Patel), i **A Primer on Bézier Curves** (autor Pomaks), koji su upravo zbog ovog pristupa postali glavni izvor informacija za oblasti kojom se bave. Mada se naizgled radi o običnom tekstu ispresecanom slikama koji se svakodnevno sreću i u štampanom i u digitalnom obliku, ova dva autora su iskoristili potencijal koji im pruža digitalni zapis: interaktivnost i dinamičnost. Na primer, skoro svi dijagrami su vezani za neku kontrolu kojom korisnik može da manipuliše i tako istraži kako bi se oblik dijagrama menjao u zavinosti od parametara.
-  </lrn-markdown>
+  <p>
+    Praktični pokazatelj da su interaktivni materijali neprocenjivi izvor za učenje su blog
+    <a href="http://www.redblobgames.com/"><b>Red Blob Games</b></a>
+    (autor <a href="https://twitter.com/redblobgames">Amit Patel</a>),
+    i <a href="https://pomax.github.io/bezierinfo/"><b>A Primer on Bézier Curves</b></a>
+    (autor <a href="https://github.com/Pomax">Pomaks</a>),
+    koji su upravo zbog ovog pristupa postali glavni izvor informacija za oblasti kojom se bave. Mada se naizgled radi o običnom tekstu ispresecanom slikama koji se svakodnevno sreću i u štampanom i u digitalnom obliku, ova dva autora su iskoristili potencijal koji im pruža digitalni zapis: interaktivnost i dinamičnost. Na primer, skoro svi dijagrami su vezani za neku kontrolu kojom korisnik može da manipuliše i tako istraži kako bi se oblik dijagrama menjao u zavinosti od parametara.
+  </p>
 
   <lrn-digression [heading]="'Još primera'">
-    <lrn-markdown>
-      U članku o šestougaonim tablama za igranje strateških igara, Patel dozvoljava čitaocu da izabere za koju je orijentaciju šestouglova zainteresovan. U štampanom medijumu bi ovaj tekst bio ili dupliran uz sitne razlike, ili bi bio ispresecan nepreglednim zagradama. Interaktivni dijagrami su tu da čitaocu probude interesovanje i želju za samostalnim istraživanjem. Na primer, ne samo da korisnik može da korak po korak prolazi kroz obilazak grafa, već može da interaktivno učestvuje u njegovoj promeni, dodajući i uklanjajući prepreke i menjajući težine čvorova. Obilazak grafa je moguće prikazati i na štampanom medijumu (mada bi za to bilo potrebno previše prostora), ali promenu grafa je nemoguće predvideti.
+    <p>
+      U članku o šestougaonim tablama za igranje strateških igara, <a
+      href="https://twitter.com/redblobgames"
+      title="Amit Patel">Patel</a> dozvoljava čitaocu da izabere za koju je orijentaciju šestouglova zainteresovan. U štampanom medijumu bi ovaj tekst bio ili dupliran uz sitne razlike, ili bi bio ispresecan nepreglednim zagradama. Interaktivni dijagrami su tu da čitaocu probude interesovanje i želju za samostalnim istraživanjem. Na primer, ne samo da korisnik može da korak po korak prolazi kroz obilazak grafa, već može da interaktivno učestvuje u njegovoj promeni, dodajući i uklanjajući prepreke i menjajući težine čvorova. Obilazak grafa je moguće prikazati i na štampanom medijumu (mada bi za to bilo potrebno previše prostora), ali promenu grafa je nemoguće predvideti.
+    </p>
 
+    <p>
       Slično, referenciranje na slike, dijagrame i druge delove teksta je ulinkovano, što uklanja potrebu za eksplicitno vidljivim referencama ("na slici 43a"), ili makar uklanja potrebu da ručna pretraga po tekstu bude jedini način da se pronađe tražena referenca. Ovakav pristup omogućava i neke zanimljive efekte -- na primer, prelaskom miša preko određenog dela slike može da se istakne neki deo teksta; na ovaj način je sasvim jasno na koji način su slika i tekst povezani, odnosno o kom delu slike govori tekst.
-    </lrn-markdown>
+    </p>
   </lrn-digression>
 
   <lrn-markdown>
-    Kreiranje ovakvih iskustava nije jednostvan posao i zahteva dobro poznavanje tehnologije. S druge strane, popularni <abbr title="What You See Is What You Get">WYSIWYG</abbr>/<abbr title="Graphical User Interface">GUI</abbr> alati ne pružaju dovoljnu fleksibilnost u izgradnji interaktivnih materijala. Lernejaro pokušava da bude "zlatna sredina".
+    Kreiranje ovakvih iskustava nije jednostvan posao i zahteva dobro poznavanje tehnologije. S druge strane, popularni
+    <abbr title="What You See Is What You Get">WYSIWYG</abbr>/<abbr
+    title="Graphical User Interface">GUI</abbr> alati ne pružaju dovoljnu fleksibilnost u izgradnji interaktivnih materijala. Lernejaro pokušava da bude "zlatna sredina".
 
-    Izgrađen je imajući u vidu inkrementalno poboljšanje materijala: kreiranje statičkih prezentacija i dalje ostaje jednostavno i svodi se na ekapsulaciju teksta u tagove koji podsećaju na poznati <abbr title="HyperText Markup Language">HTML</abbr>. Dakle, ciljna grupa korisnika biblioteke Lernejaro nisu isključivo iskusni veb-developeri. Mada je "programerska pismenost" nesumnjivo poželjna za rad sa bibliotekom, nije nemoguće da se bilo koja osoba obuči za korišćenje Lernejara, kao da je u pitanju bilo koji drugi alat.
+    Izgrađen je imajući u vidu inkrementalno poboljšanje materijala: kreiranje statičkih prezentacija i dalje ostaje jednostavno i svodi se na ekapsulaciju teksta u tagove koji podsećaju na poznati
+    <abbr
+      title="HyperText Markup Language">HTML</abbr>. Dakle, ciljna grupa korisnika biblioteke Lernejaro nisu isključivo iskusni veb-developeri. Mada je "programerska pismenost" nesumnjivo poželjna za rad sa bibliotekom, nije nemoguće da se bilo koja osoba obuči za korišćenje Lernejara, kao da je u pitanju bilo koji drugi alat.
 
     Velika pažnja je posvećena tome da su podrazumevane vrednosti postavljene na najčešći slučaj korišćenja. Jednostavnom konfiguracijom koja se obično svodi na prosleđivanje jednog ili dva stringa su obuhvaćeni dalji česti slučajevi korišćenja. A za iskusne programere je ostavljena i veća sloboda u vidu potpune kontrole nad izglednom i ponašanjem komponenti. Developeri mogu razvijati svoje komponente i module i tako dopunjavati ekosistem Lernejara.
 

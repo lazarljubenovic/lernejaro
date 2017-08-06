@@ -29,24 +29,19 @@ import {
 import {LoggerService} from '../logger.service'
 import {PaletteService} from '../ui/palette.service'
 import {animate, state, style, transition, trigger} from '@angular/animations'
+import * as _ from 'lodash'
 
 const HUMAN_WPM = 275
 
-function reduceTree(fn: (node: Node) => number, node: Node) {
-  if (node.nodeType == Node.TEXT_NODE) {
-    return (node.textContent && node.textContent.length) || 0
-  } else {
-    return Array.from(node.childNodes)
-      .reduce((acc, curr) => acc + fn(curr), 0)
-  }
-}
-
-function getNumberOfLetters(node: Node) {
-  return reduceTree(n => n.textContent.length, node)
-}
+const wordsInNode = node => node.textContent.split(/\s+/g).length
 
 function getNumberOfWords(node: Node) {
-  return reduceTree(n => n.textContent.split(/\s+/g).length, node)
+  if (node.nodeType == Node.TEXT_NODE) {
+    return wordsInNode(node) || 0
+  } else {
+    return Array.from(node.childNodes)
+      .reduce((acc, curr) => acc + getNumberOfWords(curr), 0)
+  }
 }
 
 const roundUp = (step: number) => (number: number) => number - (number % step) + step
@@ -76,7 +71,7 @@ export class NotebookComponent implements OnInit, AfterContentInit {
   @ContentChildren(H4Directive) public heading4: QueryList<H4Directive>
   @ContentChildren(H5Directive) public heading5: QueryList<H5Directive>
   @ContentChildren(H6Directive) public heading6: QueryList<H6Directive>
-  @ContentChildren(AnchorDirective) public anchors: QueryList<AnchorDirective>
+  @ContentChildren(AnchorDirective, {descendants: true}) public anchors: QueryList<AnchorDirective>
 
   public headings: HDirective[][]
 
@@ -176,20 +171,21 @@ export class NotebookComponent implements OnInit, AfterContentInit {
   public visibleFooter: boolean = true
 
   @HostListener('window:scroll')
-  public onWindowScroll() {
+  public onWindowScroll = _.debounce(() => {
     const scrollTop: number = window.pageYOffset || document.documentElement.scrollTop
     this.visibleFooter = scrollTop <= this.lastScrollTop
     this.lastScrollTop = scrollTop
-  }
+  }, 300)
 
   public wordCount: number
   public estimatedReadingTimeMinutes: number
 
   private prepareWordCount(): void {
-    this.wordCount = getNumberOfWords(this.elementRef.nativeElement)
+    this.wordCount = roundUp(50)(getNumberOfWords(this.elementRef.nativeElement))
     this.estimatedReadingTimeMinutes = Math.ceil(this.wordCount / HUMAN_WPM)
-    // this.letterCount = getNumberOfLetters(this.elementRef.nativeElement)
   }
+
+  public references: { href: string, name: string, ids: string[] }[] = []
 
   private prepareReferences(): void {
     if (this.anchors.length == 0) {
@@ -202,6 +198,22 @@ export class NotebookComponent implements OnInit, AfterContentInit {
         `title attribute, the text inside the anchor tags will be used for the list of ` +
         `references.`, this.elementRef.nativeElement)
     }
+
+    this.references = _(this.anchors.toArray())
+      .groupBy(({id, text, title, href}: AnchorDirective) => href)
+      .map((anchors: AnchorDirective[], href: string) => {
+        const withTitle = anchors.find(({title}) => title != null)
+        const name: string = withTitle
+          ? withTitle.title
+          : anchors[0].text
+        return {
+          href,
+          name,
+          ids: anchors.map(({id}) => id),
+        }
+      })
+      .sortBy(({name}) => name)
+      .value()
   }
 
   ngOnInit() {
@@ -225,9 +237,16 @@ export class NotebookComponent implements OnInit, AfterContentInit {
         `inside your <lrn-notebook></lrn-notebook>.`)
     }
 
+    setTimeout(() => {
+      this.prepareReferences()
+    })
     this.prepareWordCount()
     this.prepareTableOfContents()
-    this.prepareReferences()
+  }
+
+  public goToFragment(hash) {
+    window.location.hash = ''
+    window.location.hash = hash
   }
 
 }

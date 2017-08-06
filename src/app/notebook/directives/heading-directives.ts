@@ -1,6 +1,16 @@
-import {AfterContentInit, Directive, ElementRef, Injectable, Renderer2} from '@angular/core'
+import {
+  AfterContentInit,
+  AfterViewInit,
+  Directive,
+  ElementRef,
+  HostBinding,
+  Injectable,
+  Input,
+  Renderer2,
+} from '@angular/core'
 import {ActivatedRoute, Router} from '@angular/router'
 import * as _ from 'lodash'
+import {UniqueIdService} from '../../unique-id.service'
 
 @Injectable()
 export abstract class HDirective implements AfterContentInit {
@@ -61,7 +71,34 @@ export class H6Directive extends HDirective {
 }
 
 @Directive({selector: 'a'})
-export class AnchorDirective {
-  constructor(public elementRef: ElementRef) {
+export class AnchorDirective implements AfterViewInit {
+
+  public id: string
+  @Input() public title: string
+  @HostBinding('href') @Input() public href: string
+  public text: string
+
+  constructor(private elementRef: ElementRef,
+              private uniqueId: UniqueIdService,
+              private renderer: Renderer2) {
   }
+
+  public ngAfterViewInit(): void {
+    const nativeElement: HTMLAnchorElement = this.elementRef.nativeElement
+
+    // For easier grabbing from the notebook
+    this.text = nativeElement.innerText
+
+    // Unique but meaningful ID so that anchor links are possible from the
+    // bottom of the notebook where "References" are
+    const name = (this.title || this.text).replace(/ /g, '_')
+    this.id = this.uniqueId.getUniqueId(name)
+
+    // Apply stiff to the element
+    if (this.title != null) {
+      this.renderer.setProperty(nativeElement, 'title', this.title)
+    }
+    this.renderer.setProperty(nativeElement, 'id', this.id)
+  }
+
 }

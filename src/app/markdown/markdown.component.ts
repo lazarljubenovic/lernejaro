@@ -5,7 +5,7 @@ import {
 import {MarkdownParserService} from "./markdown-parser.service"
 
 @Component({
-    selector: 'lrn-markdown',
+    selector: 'lrn-markdown, [lrnMarkdown]',
     templateUrl: './markdown.component.html',
     styleUrls: ['./markdown.component.scss'],
 })
