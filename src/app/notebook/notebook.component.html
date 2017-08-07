@@ -8,7 +8,7 @@
   <div class="flex-spacer"></div>
   <div class="buttons">
     <button (click)="print()"><i class="fa fa-print"></i></button>
-    <button (click)="openPalettePicker()"><i class="fa fa-paint-brush"></i></button>
+    <button (click)="modal.open(palettePicker)"><i class="fa fa-paint-brush"></i></button>
     <button (click)="toggleTableOfContentVisibility()"><i class="fa fa-bars"></i></button>
   </div>
 </header>
@@ -44,7 +44,6 @@
   </dl>
 </footer>
 
-<lrn-modal *ngIf="isVisiblePalettePicker"
-           (close)="closePalettePicker()">
+<ng-template #palettePicker>
   <lrn-palette-picker></lrn-palette-picker>
-</lrn-modal>
+</ng-template>

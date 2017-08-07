@@ -27,6 +27,8 @@ import {CheckboxGroupComponent} from './checkbox-group/checkbox-group.component'
 import {CardBadgeComponent} from './card/card-badge/card-badge.component'
 import {ChipComponent} from './chip/chip.component'
 import {IconComponent} from './icon/icon.component'
+import { BlackoutComponent } from './blackout/blackout.component'
+import {BlackoutService} from './blackout/blackout.service'
 
 @NgModule({
   imports: [
@@ -56,6 +58,7 @@ import {IconComponent} from './icon/icon.component'
     CardBadgeComponent,
     ChipComponent,
     IconComponent,
+    BlackoutComponent,
   ],
   exports: [
     InputComponent,
@@ -68,7 +71,6 @@ import {IconComponent} from './icon/icon.component'
     RadioButtonGroupComponent,
     ExpandingFabComponent,
     ProgressBarComponent,
-    ModalComponent,
     PalettePickerComponent,
     LogoComponent,
     CardHeaderComponent,
@@ -79,6 +81,15 @@ import {IconComponent} from './icon/icon.component'
     CardBadgeComponent,
     ChipComponent,
     IconComponent,
+    ModalComponent,
+  ],
+  providers: [
+    BlackoutService,
+    ModalService,
+  ],
+  entryComponents: [
+    BlackoutComponent,
+    ModalComponent,
   ],
 })
 export class UiModule {

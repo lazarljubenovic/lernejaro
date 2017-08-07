@@ -47,3 +47,9 @@ lrn-card {
     border-top: 1px solid rgba(black, .06);
   }
 }
+
+@each $theme-name in 'light' 'dark' {
+  .lrn-theme-#{$theme-name} lrn-card {
+    background-color: get-theme($theme-name, 'back');
+  }
+}

@@ -31,7 +31,7 @@ export class IconComponent implements OnInit, OnChanges {
   ngOnChanges() {
     let id: string
     if (typeof this.icon == 'string') {
-      id = this.icon
+      id = <string>this.icon
     } else {
       switch (this.icon) {
         case LessonIcon.Calendar:

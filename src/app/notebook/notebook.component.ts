@@ -6,6 +6,7 @@ import {
   HostListener,
   OnInit,
   QueryList,
+  TemplateRef,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core'
@@ -30,6 +31,8 @@ import {LoggerService} from '../logger.service'
 import {PaletteService} from '../ui/palette.service'
 import {animate, state, style, transition, trigger} from '@angular/animations'
 import * as _ from 'lodash'
+import {BlackoutService} from '../ui/blackout/blackout.service'
+import {ModalService} from '../ui/modal/modal.service'
 
 const HUMAN_WPM = 275
 
@@ -65,6 +68,13 @@ const roundUp = (step: number) => (number: number) => number - (number % step) +
 })
 export class NotebookComponent implements OnInit, AfterContentInit {
 
+  constructor(private elementRef: ElementRef,
+              private logger: LoggerService,
+              private palette: PaletteService,
+              private blackout: BlackoutService,
+              public modal: ModalService) {
+  }
+
   @ContentChildren(H1Directive) public heading1: QueryList<H1Directive>
   @ContentChildren(H2Directive) public heading2: QueryList<H2Directive>
   @ContentChildren(H3Directive) public heading3: QueryList<H3Directive>
@@ -82,23 +92,9 @@ export class NotebookComponent implements OnInit, AfterContentInit {
   @ViewChild('article') public article: ElementRef
 
   public isVisibleTableOfContent: boolean = false
-  public isVisiblePalettePicker: boolean = false
 
   public toggleTableOfContentVisibility() {
     this.isVisibleTableOfContent = !this.isVisibleTableOfContent
-  }
-
-  public openPalettePicker() {
-    this.isVisiblePalettePicker = true
-  }
-
-  public closePalettePicker() {
-    this.isVisiblePalettePicker = false
-  }
-
-  constructor(private elementRef: ElementRef,
-              private logger: LoggerService,
-              private palette: PaletteService) {
   }
 
   private prepareTableOfContents(): void {

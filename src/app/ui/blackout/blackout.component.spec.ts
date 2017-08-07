@@ -1,25 +1,25 @@
 // import { async, ComponentFixture, TestBed } from '@angular/core/testing'
 //
-// import { ModalComponent } from './modal.component'
+// import { BlackoutComponent } from './blackout.component'
 //
-// describe('ModalComponent', () => {
-//   let component: ModalComponent
-//   let fixture: ComponentFixture<ModalComponent>
+// describe('BlackoutComponent', () => {
+//   let component: BlackoutComponent
+//   let fixture: ComponentFixture<BlackoutComponent>
 //
 //   beforeEach(async(() => {
 //     TestBed.configureTestingModule({
-//       declarations: [ ModalComponent ]
+//       declarations: [ BlackoutComponent ]
 //     })
 //     .compileComponents()
 //   }))
 //
 //   beforeEach(() => {
-//     fixture = TestBed.createComponent(ModalComponent)
+//     fixture = TestBed.createComponent(BlackoutComponent)
 //     component = fixture.componentInstance
 //     fixture.detectChanges()
 //   })
 //
-//   it('should create', () => {
+//   it('should be created', () => {
 //     expect(component).toBeTruthy()
 //   })
 // })
