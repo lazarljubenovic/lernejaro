@@ -18,12 +18,15 @@ export class BlackoutService {
     this.blackoutComponentFactory = this.cfr.resolveComponentFactory(BlackoutComponent)
   }
 
+  private rootEl = <HTMLElement>document.querySelector('app-root')
+
   public click$ = new Subject<MouseEvent>()
 
   private blackoutComponentFactory: ComponentFactory<BlackoutComponent>
   private blackoutComponent: ComponentRef<BlackoutComponent>
 
   public show(isVisible: boolean = false): Subject<MouseEvent> {
+    this.blurApp()
     this.blackoutComponent = this.blackoutComponentFactory.create(this.injector)
     this.blackoutComponent.instance.service = this
     this.blackoutComponent.instance.isVisible = isVisible
@@ -36,8 +39,17 @@ export class BlackoutService {
     if (this.blackoutComponent == null) {
       return
     }
+    this.unblurApp()
     this.applicationRef.detachView(this.blackoutComponent.hostView)
     this.blackoutComponent = null
+  }
+
+  private blurApp() {
+    this.rootEl.style.filter = 'blur(3px)'
+  }
+
+  private unblurApp() {
+    this.rootEl.style.filter = ''
   }
 
 }

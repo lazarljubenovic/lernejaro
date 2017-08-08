@@ -6,9 +6,8 @@ import {
   HostListener,
   OnInit,
   QueryList,
-  TemplateRef,
   ViewChild,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core'
 import {
   AnchorDirective,
@@ -18,14 +17,14 @@ import {
   H4Directive,
   H5Directive,
   H6Directive,
-  HDirective,
+  HDirective
 } from './directives/heading-directives'
 import {Tree} from './tree/tree'
 import {TreeNode} from './tree/tree-node'
 import {
   NodeDataTableOfContent,
   TreeNodeTableOfContent,
-  TreeTableOfContent,
+  TreeTableOfContent
 } from './table-of-content/table-of-content-tree-node.interface'
 import {LoggerService} from '../logger.service'
 import {PaletteService} from '../ui/palette.service'
@@ -43,7 +42,7 @@ function getNumberOfWords(node: Node) {
     return wordsInNode(node) || 0
   } else {
     return Array.from(node.childNodes)
-      .reduce((acc, curr) => acc + getNumberOfWords(curr), 0)
+      .reduce((acc, curr: Node) => acc + getNumberOfWords(curr), 0)
   }
 }
 

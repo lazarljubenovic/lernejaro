@@ -1,9 +1,9 @@
 import {
   ApplicationRef,
+  ChangeDetectorRef,
   ComponentFactory,
   ComponentFactoryResolver,
-  ComponentRef,
-  EmbeddedViewRef,
+  ComponentRef, EmbeddedViewRef,
   Injectable,
   Injector,
   TemplateRef,
@@ -28,14 +28,15 @@ export class ModalService {
       [this.modalEmbeddedViewRef.rootNodes],
     )
     document.body.appendChild(this.modalCmp.location.nativeElement)
+    this.applicationRef.attachView(this.modalCmp.hostView)
     this.applicationRef.attachView(this.modalEmbeddedViewRef)
+    this.modalEmbeddedViewRef.detectChanges()
   }
 
   public close() {
     if (this.modalCmp != null) {
       this.blackout.hide()
-      this.modalCmp.destroy()
-      this.applicationRef.detachView(this.modalEmbeddedViewRef)
+      this.applicationRef.detachView(this.modalCmp.hostView)
       this.modalCmp = null
     }
   }
