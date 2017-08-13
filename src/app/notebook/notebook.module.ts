@@ -18,10 +18,17 @@ import {MissingTitleComponent} from './errors/missing-title.component'
 import {MarkdownModule} from '../markdown/markdown.module'
 import {LoggerModule} from '../logger/logger.module'
 import {CodeModule} from '../code/code.module'
-import {NotebookTitleWithoutContentErrorComponent} from './errors'
+import {
+  NoExternalResourcesWarningComponent,
+  NotebookTitleWithoutContentErrorComponent,
+} from './errors'
 
 const errors = [
   NotebookTitleWithoutContentErrorComponent,
+]
+
+const warnings = [
+  NoExternalResourcesWarningComponent,
 ]
 
 @NgModule({
@@ -46,6 +53,7 @@ const errors = [
     DigressionComponent,
     MissingTitleComponent,
     ...errors,
+    ...warnings,
   ],
   exports: [
     NotebookComponent,
@@ -61,6 +69,7 @@ const errors = [
   entryComponents: [
     MissingTitleComponent,
     ...errors,
+    ...warnings,
   ],
 })
 export class NotebookModule {

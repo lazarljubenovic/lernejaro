@@ -40,7 +40,7 @@ export class CodeComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     if (this.language == null) {
-      this.logger.displayError(NoLanguageSpecifiedErrorComponent)
+      this.logger.display(NoLanguageSpecifiedErrorComponent)
     }
   }
 

@@ -1,4 +1,4 @@
-import {Component, ElementRef, forwardRef, Inject, OnInit, Optional} from '@angular/core'
+import {Component, forwardRef, Inject, OnInit, Optional} from '@angular/core'
 import {MultipleChoiceComponent} from '../multiple-choice/multiple-choice.component'
 import {LoggerService} from '../../logger/logger.service'
 import {StrayQuestionErrorComponent} from '../errors'
@@ -12,10 +12,9 @@ export class QuestionComponent implements OnInit {
 
   constructor(@Inject(forwardRef(() => MultipleChoiceComponent))
               @Optional() private multipleChoiceComponent: MultipleChoiceComponent,
-              logger: LoggerService,
-              elementRef: ElementRef) {
+              logger: LoggerService) {
     if (multipleChoiceComponent == null) {
-      logger.displayError(StrayQuestionErrorComponent)
+      logger.display(StrayQuestionErrorComponent)
     }
   }
 

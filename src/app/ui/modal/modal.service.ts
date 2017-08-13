@@ -5,7 +5,7 @@ import {
   ComponentRef,
   Injectable,
   Injector,
-  TemplateRef, Type,
+  TemplateRef,
 } from '@angular/core'
 import {ModalComponent} from './modal.component'
 import {BlackoutService} from '../blackout/blackout.service'
@@ -26,9 +26,7 @@ export class ModalService {
   }
 
   private openFromTemplate(contentTemplate: TemplateRef<void>): void {
-    this.blackout.show(true).take(1).subscribe(() => {
-      this.close()
-    })
+    this.blackout.show(true).take(1).subscribe(this.close.bind(this))
     const modalEmbeddedViewRef = contentTemplate.createEmbeddedView(null)
     this.modalCmp = this.modelComponentFactory.create(
       this.injector,
@@ -60,8 +58,8 @@ export class ModalService {
   }
 
   public close() {
+    this.blackout.hide()
     if (this.modalCmp != null) {
-      this.blackout.hide()
       this.applicationRef.detachView(this.modalCmp.hostView)
       this.modalCmp = null
     }

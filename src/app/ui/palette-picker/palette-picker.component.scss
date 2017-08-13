@@ -1,5 +1,9 @@
 @import '../../global';
 
+:host {
+  display: block;
+}
+
 .palette-picker {
   padding: 2.5em;
   display: flex;

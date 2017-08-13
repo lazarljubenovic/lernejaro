@@ -78,19 +78,114 @@ export class PresentationWithoutAuthorErrorComponent {
         Your students will not send an owl to your house with a letter describing their problems.
         They will want to send you an email.
       </p>
-      
+
       <p>
         Go ahead and tell your users how they can contact you.
       </p>
-      
+
       <p>
         This information will also be used for generating some slides, such as
         the title slide and the thank-you slide.
       </p>
-      
+
       <lrn-presentation-missing-input-base-error></lrn-presentation-missing-input-base-error>
     </lrn-error>
   `,
 })
 export class PresentationWithoutEmailErrorComponent {
+}
+
+
+@Component({
+  template: `
+    <lrn-warning heading="No Sections Found"
+                 suppress="suppressNoSectionsFoundWarning"
+    >
+      <p>
+        You've created a presentation “{{ title }}” without any sections.
+        You should <b>break it up into sections</b> so it's easier to digest.
+        It also helps students always know what's the current sub-topic of
+        your presentation.
+      </p>
+
+      <p>
+        Use an input <code>[section]</code> on the <code>&lt;lrn-slide></code>
+        component to start a section.
+      </p>
+
+      <p>
+        The section will automatically end on the next slide which you
+        explicitly provide a section to.
+      </p>
+    </lrn-warning>
+  `,
+})
+export class PresentationNoSectionsFoundWarningComponent {
+  public title: string
+}
+
+
+@Component({
+  template: `
+    <lrn-warning heading="Not Enough Sections"
+                 suppress="suppressNotEnoughSectionsWarning"
+    >
+      <p>
+        You've created a presentation “{{title}}” with
+        {{numberOfSlides}} slides, but only {{numberOfSections}} sections.
+        You might want to create more sections to make it easier to digest!
+      </p>
+    </lrn-warning>
+  `,
+})
+export class PresentationNotEnoughSectionsWarningComponent {
+  public title: string
+  numberOfSlides: number
+}
+
+
+@Component({
+  template: `
+    <lrn-warning heading="Untitled Slide">
+      <p>
+        Your presentation “{{ presentationTitle }}” contains a slide without a title.
+      </p>
+    </lrn-warning>
+  `,
+})
+export class UntitledSlideWarningComponent {
+  public presentationTitle: string
+}
+
+
+@Component({
+  template: `
+    <lrn-error heading="Stray Slide Detected">
+      <p>
+        I'm confused.
+      </p>
+
+      <p>
+        You've created a slide component but it's <strong>not inside a presentation</strong>.
+        Slides only make sense if they're a part of a presentation.
+        {{ title ? ('The slide in question is titled “' + title + '“') : '' }}
+      </p>
+
+      <p>
+        Make sure you follow the following structure.
+      </p>
+
+      <pre><code [lrnCode]="'html'">{{ example }}</code></pre>
+    </lrn-error>
+  `
+})
+export class StraySlideErrorComponent {
+  public title: string
+  example = format`
+    <lrn-presentation>
+      <lrn-slide></lrn-slide>
+      <lrn-slide></lrn-slide>
+      <lrn-slide></lrn-slide>
+    </lrn-presentation>
+  `
 }

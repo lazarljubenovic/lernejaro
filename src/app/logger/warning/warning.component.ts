@@ -1,13 +1,17 @@
-import { Component, OnInit } from '@angular/core'
+import {Component, Input, OnInit} from '@angular/core'
 
 @Component({
   selector: 'lrn-warning',
   templateUrl: './warning.component.html',
-  styleUrls: ['./warning.component.scss']
+  styleUrls: ['./warning.component.scss'],
 })
 export class WarningComponent implements OnInit {
 
-  constructor() { }
+  @Input() heading: string
+  @Input() suppress: string
+
+  constructor() {
+  }
 
   ngOnInit() {
   }

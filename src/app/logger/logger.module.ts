@@ -13,6 +13,7 @@ import { WarningComponent } from './warning/warning.component'
   ],
   exports: [
     ErrorComponent,
+    WarningComponent,
   ],
 })
 export class LoggerModule {

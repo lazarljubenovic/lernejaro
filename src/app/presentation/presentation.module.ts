@@ -13,9 +13,13 @@ import {SlideControlsComponent} from './slide-controls/slide-controls.component'
 import {TableOfContentsComponent} from './table-of-contents/table-of-contents.component'
 import {
   PresentationMissingInputBaseErrorComponent,
+  PresentationNoSectionsFoundWarningComponent,
+  PresentationNotEnoughSectionsWarningComponent,
   PresentationWithoutAuthorErrorComponent,
   PresentationWithoutEmailErrorComponent,
-  UntitledPresentationErrorComponent
+  StraySlideErrorComponent,
+  UntitledPresentationErrorComponent,
+  UntitledSlideWarningComponent,
 } from './errors'
 import {CodeModule} from '../code/code.module'
 import {LoggerModule} from '../logger/logger.module'
@@ -25,6 +29,13 @@ const errorComponents = [
   PresentationWithoutAuthorErrorComponent,
   PresentationWithoutEmailErrorComponent,
   UntitledPresentationErrorComponent,
+]
+
+const warningComponents = [
+  PresentationNoSectionsFoundWarningComponent,
+  PresentationNotEnoughSectionsWarningComponent,
+  UntitledSlideWarningComponent,
+  StraySlideErrorComponent,
 ]
 
 @NgModule({
@@ -48,6 +59,7 @@ const errorComponents = [
     TableOfContentsComponent,
     PresentationMissingInputBaseErrorComponent,
     ...errorComponents,
+    ...warningComponents,
   ],
   exports: [
     PresentationComponent,
@@ -59,6 +71,7 @@ const errorComponents = [
     TitleSlideComponent,
     TableOfContentsComponent,
     ...errorComponents,
+    ...warningComponents,
   ],
 })
 export class PresentationModule {

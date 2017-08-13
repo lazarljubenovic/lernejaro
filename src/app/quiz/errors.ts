@@ -127,3 +127,29 @@ export class MultipleChoiceNoChoicesErrorComponent {
 })
 export class StrayQuestionErrorComponent {
 }
+
+
+@Component({
+  template: `
+    <lrn-error heading="Conflicting feedback">
+      <p>
+        Congrats on wanting to help your students by giving immediate feedback
+        on their answers!
+      </p>
+
+      <p>
+        However, it looks like you might've gotten something wrong.
+        You've created a multiple-choice question where you've provided
+        a <code>[feedback]</code> function to both <code>&lt;lrn-multiple-choice></code>
+        component and some of <code>&lt;lrn-choice></code> components.
+      </p>
+
+      <p>
+        Since these are technically two different functions,
+        we can't use both of them.
+      </p>
+    </lrn-error>
+  `,
+})
+export class ConflictingFeedbackErrorComponent {
+}

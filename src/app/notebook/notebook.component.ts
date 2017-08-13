@@ -4,10 +4,11 @@ import {
   ContentChildren,
   ElementRef,
   HostListener,
+  Input,
   OnInit,
   QueryList,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core'
 import {
   AnchorDirective,
@@ -17,23 +18,25 @@ import {
   H4Directive,
   H5Directive,
   H6Directive,
-  HDirective
+  HDirective,
 } from './directives/heading-directives'
 import {Tree} from './tree/tree'
 import {TreeNode} from './tree/tree-node'
 import {
   NodeDataTableOfContent,
   TreeNodeTableOfContent,
-  TreeTableOfContent
+  TreeTableOfContent,
 } from './table-of-content/table-of-content-tree-node.interface'
 import {LoggerService} from '../logger/logger.service'
 import {PaletteService} from '../ui/palette.service'
 import {animate, state, style, transition, trigger} from '@angular/animations'
 import * as _ from 'lodash'
-import {BlackoutService} from '../ui/blackout/blackout.service'
 import {ModalService} from '../ui/modal/modal.service'
 import {MissingTitleComponent} from './errors/missing-title.component'
-import {NotebookTitleWithoutContentErrorComponent} from './errors'
+import {
+  NoExternalResourcesWarningComponent,
+  NotebookTitleWithoutContentErrorComponent,
+} from './errors'
 
 const HUMAN_WPM = 275
 
@@ -69,10 +72,11 @@ const roundUp = (step: number) => (number: number) => number - (number % step) +
 })
 export class NotebookComponent implements OnInit, AfterContentInit {
 
+  @Input() public suppressNoExternalResourcesWarning: boolean
+
   constructor(private elementRef: ElementRef,
               private logger: LoggerService,
               private palette: PaletteService,
-              private blackout: BlackoutService,
               public modal: ModalService) {
   }
 
@@ -136,7 +140,7 @@ export class NotebookComponent implements OnInit, AfterContentInit {
       const title = child.innerText.trim().slice(0, -1)
 
       if (title == '') {
-        this.logger.displayError(NotebookTitleWithoutContentErrorComponent)
+        this.logger.display(NotebookTitleWithoutContentErrorComponent)
       }
 
       let id = 'unknown'
@@ -184,15 +188,12 @@ export class NotebookComponent implements OnInit, AfterContentInit {
   public references: { href: string, name: string, ids: string[] }[] = []
 
   private prepareReferences(): void {
-    if (this.anchors.length == 0) {
-      this.logger.warn(`Looks like your notebook "${this.notebookTitle}" contains no ` +
-        `links to any external resources. You should consider adding references to ` +
-        `webpages where students can read more about the topic you're covering. ` +
-        `To add a link, wrap it in <a>anchor</a> tags and optionally ` +
-        `<a title="The Title Attribute">add a title attribute</a> which will be used ` +
-        `for displaying a list of all references at the bottom of the page. Without a ` +
-        `title attribute, the text inside the anchor tags will be used for the list of ` +
-        `references.`, this.elementRef.nativeElement)
+    if (this.anchors.length == 0 && this.wordCount > 2000 &&
+      !this.suppressNoExternalResourcesWarning) {
+      this.logger.display(NoExternalResourcesWarningComponent, {
+        notebookTitle: this.notebookTitle,
+        numberOfWords: this.wordCount,
+      })
     }
 
     this.references = _(this.anchors.toArray())
@@ -229,14 +230,14 @@ export class NotebookComponent implements OnInit, AfterContentInit {
     if (heading1) {
       this.notebookTitle = heading1.title
     } else {
-      this.logger.displayError(MissingTitleComponent)
+      this.logger.display(MissingTitleComponent)
     }
 
+    this.prepareWordCount()
+    this.prepareTableOfContents()
     setTimeout(() => {
       this.prepareReferences()
     })
-    this.prepareWordCount()
-    this.prepareTableOfContents()
   }
 
   public goToFragment(hash) {

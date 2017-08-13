@@ -20,6 +20,7 @@ import {LoggerService} from '../../logger/logger.service'
 import {QuestionComponent} from '../question/question.component'
 import {MultipleChoiceInfo} from './interfaces'
 import {
+  ConflictingFeedbackErrorComponent,
   MultipleChoiceNoChoicesErrorComponent,
   MultipleChoiceNoCorrectAnswerErrorComponent,
   MultipleChoiceNoQuestionErrorComponent,
@@ -170,9 +171,7 @@ export class MultipleChoiceComponent implements AfterContentInit, AfterViewInit,
       .some(choice => choice.feedback != null)
 
     if (this.feedback != this.defaultFeedbackFunction && existsChoiceWithFeedbackString) {
-      this.logger.warn(`If [feedback] function is given to <multiple-choice>, [feedback] ` +
-        `inputs on children will be ignored.`, this.elementRef.nativeElement)
-      return
+      this.logger.display(ConflictingFeedbackErrorComponent)
     }
 
     this.feedback = ({answer}) => {
@@ -184,17 +183,17 @@ export class MultipleChoiceComponent implements AfterContentInit, AfterViewInit,
 
   private assert() {
     if (this.questionComponent == null) {
-      this.logger.displayError(MultipleChoiceNoQuestionErrorComponent)
+      this.logger.display(MultipleChoiceNoQuestionErrorComponent)
       return
     }
 
     if (this.choicesQueryList.length == 0) {
-      this.logger.displayError(MultipleChoiceNoChoicesErrorComponent)
+      this.logger.display(MultipleChoiceNoChoicesErrorComponent)
       return
     }
 
     if (!this.choicesQueryList.some(choice => choice.isCorrect())) {
-      this.logger.displayError(MultipleChoiceNoCorrectAnswerErrorComponent)
+      this.logger.display(MultipleChoiceNoCorrectAnswerErrorComponent)
       return
     }
   }

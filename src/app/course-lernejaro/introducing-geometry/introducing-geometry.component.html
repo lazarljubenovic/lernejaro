@@ -105,7 +105,7 @@
   >
     <div lrnCenter>
       <lrn-card>
-        <lrn-planimetrics [interactivePoints]="examples['circum'].interactivePoints"
+        <lrn-planimetrics [interactivePoints]="examples['axis'].interactivePoints"
                           [evaluate]="examples['circum'].evaluate"
                           [axis]="true"
         ></lrn-planimetrics>
@@ -114,14 +114,6 @@
   </lrn-slide>
 
   <lrn-slide [title]="'Displaying axis: code'"
-  >
-    <div lrnCenter>
-      <pre><code [lrnCode]="'html'">{{ examples['axis'].code }}</code></pre>
-    </div>
-  </lrn-slide>
-
-  <lrn-slide [section]="'Complex examples'"
-             [title]="''"
   >
     <div lrnCenter>
       <pre><code [lrnCode]="'html'">{{ examples['axis'].code }}</code></pre>

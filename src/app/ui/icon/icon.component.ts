@@ -85,7 +85,7 @@ export class IconComponent implements OnInit, OnChanges {
           id = 'check'
           break
         default:
-          this.logger.displayError(UnknownIconErrorComponent, {icon: id})
+          this.logger.display(UnknownIconErrorComponent, {icon: id})
           return
       }
     }

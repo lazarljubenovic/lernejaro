@@ -9,10 +9,11 @@ import {FillInTheBlankComponent} from './fill-in-the-blank/fill-in-the-blank.com
 import {BlankComponent} from './fill-in-the-blank/blank/blank.component'
 import {QuizComponent} from './quiz.component'
 import {
+  ConflictingFeedbackErrorComponent,
   MultipleChoiceNoChoicesErrorComponent,
   MultipleChoiceNoCorrectAnswerErrorComponent,
   MultipleChoiceNoQuestionErrorComponent,
-  StrayQuestionErrorComponent,
+  StrayQuestionErrorComponent
 } from './errors'
 import {CodeModule} from '../code/code.module'
 import {LoggerModule} from '../logger/logger.module'
@@ -22,6 +23,7 @@ const errorComponents = [
   MultipleChoiceNoCorrectAnswerErrorComponent,
   MultipleChoiceNoChoicesErrorComponent,
   StrayQuestionErrorComponent,
+  ConflictingFeedbackErrorComponent,
 ]
 
 @NgModule({

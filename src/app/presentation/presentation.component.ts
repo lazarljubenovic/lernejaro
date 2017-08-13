@@ -17,6 +17,8 @@ import {PaletteService} from '../ui/palette.service'
 import {LoggerService} from '../logger/logger.service'
 import {Subject} from 'rxjs/Subject'
 import {
+  PresentationNoSectionsFoundWarningComponent,
+  PresentationNotEnoughSectionsWarningComponent,
   PresentationWithoutAuthorErrorComponent,
   PresentationWithoutEmailErrorComponent,
   UntitledPresentationErrorComponent,
@@ -33,6 +35,9 @@ interface SlideIdentifier {
   styleUrls: ['./presentation.component.scss'],
 })
 export class PresentationComponent implements OnInit, AfterContentInit {
+
+  @Input() public suppressNoSectionsFoundWarning: boolean
+  @Input() public suppressNotEnoughSectionsWarning: boolean
 
   @Input() public author: string | TemplateRef<any>
   @Input() public description: string | TemplateRef<any>
@@ -186,17 +191,17 @@ export class PresentationComponent implements OnInit, AfterContentInit {
 
   ngOnInit() {
     if (this.title == null) {
-      this.logger.displayError(UntitledPresentationErrorComponent)
+      this.logger.display(UntitledPresentationErrorComponent)
       return
     }
 
     if (this.author == null) {
-      this.logger.displayError(PresentationWithoutAuthorErrorComponent)
+      this.logger.display(PresentationWithoutAuthorErrorComponent)
       return
     }
 
     if (this.email == null) {
-      this.logger.displayError(PresentationWithoutEmailErrorComponent)
+      this.logger.display(PresentationWithoutEmailErrorComponent)
       return
     }
   }
@@ -233,15 +238,20 @@ export class PresentationComponent implements OnInit, AfterContentInit {
     })
 
     // Warn user if no sections at all, or not enough sections
-    if (numberOfSections == 0) {
-      this.logger.warn(`You've created a presentation "${this.title}" without any sections. ` +
-        `You should break it up into sections so it's easier to digest. Use an input [section] ` +
-        `on <lrn-slide> component to start a section. The section will automatically end on the ` +
-        `next slide which you explicitly provide a section to.`)
-    } else if (this.slideIdentifiers.length / numberOfSections > 30) {
-      this.logger.warn(`You've created a presentation "${this.title}" with ` +
-        `${this.slideIdentifiers.length} slides, but only ${numberOfSections} sections. ` +
-        `You might want to create more sections to make it easier to digest!`)
+    if (numberOfSections == 0 && !this.suppressNoSectionsFoundWarning) {
+      this.logger.display(PresentationNoSectionsFoundWarningComponent, {
+        title: this.title,
+      })
+      return
+    }
+
+    if (this.slideIdentifiers.length / numberOfSections > 30 &&
+      !this.suppressNotEnoughSectionsWarning) {
+      this.logger.display(PresentationNotEnoughSectionsWarningComponent, {
+        title: this.title,
+        numberOfSlides: this.slideIdentifiers.length,
+      })
+      return
     }
   }
 
