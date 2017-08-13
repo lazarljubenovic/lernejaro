@@ -26,12 +26,14 @@ import {
   TreeNodeTableOfContent,
   TreeTableOfContent
 } from './table-of-content/table-of-content-tree-node.interface'
-import {LoggerService} from '../logger.service'
+import {LoggerService} from '../logger/logger.service'
 import {PaletteService} from '../ui/palette.service'
 import {animate, state, style, transition, trigger} from '@angular/animations'
 import * as _ from 'lodash'
 import {BlackoutService} from '../ui/blackout/blackout.service'
 import {ModalService} from '../ui/modal/modal.service'
+import {MissingTitleComponent} from './errors/missing-title.component'
+import {NotebookTitleWithoutContentErrorComponent} from './errors'
 
 const HUMAN_WPM = 275
 
@@ -134,8 +136,7 @@ export class NotebookComponent implements OnInit, AfterContentInit {
       const title = child.innerText.trim().slice(0, -1)
 
       if (title == '') {
-        this.logger.error(`The notebook you've created contains a title without ` +
-          `any text inside.`, child)
+        this.logger.displayError(NotebookTitleWithoutContentErrorComponent)
       }
 
       let id = 'unknown'
@@ -228,8 +229,7 @@ export class NotebookComponent implements OnInit, AfterContentInit {
     if (heading1) {
       this.notebookTitle = heading1.title
     } else {
-      this.logger.error(`Every notebook must have a title. Include a <h1>Title</h1> ` +
-        `inside your <lrn-notebook></lrn-notebook>.`)
+      this.logger.displayError(MissingTitleComponent)
     }
 
     setTimeout(() => {

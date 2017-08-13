@@ -15,8 +15,9 @@ import {QuizModule} from './quiz/quiz.module'
 import {UniqueIdService} from './unique-id.service'
 import {FitTextModule} from './fit-text/fit-text.module'
 import {LayoutModule} from './layout/layout.module'
-import {LoggerService} from './logger.service'
+import {LoggerService} from './logger/logger.service'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
+import {PresentationModule} from './presentation/presentation.module'
 
 export const ROUTES: Routes = [
   {
@@ -43,6 +44,7 @@ export const ROUTES: Routes = [
     PlanimetricsModule,
     StereometricsModule,
     NotebookModule,
+    PresentationModule,
     KatexModule,
     QuizModule,
     FitTextModule,

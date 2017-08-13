@@ -136,7 +136,8 @@
     <abbr
       title="Uniform Resource Locator">URL</abbr>-ove. Tokom poslednjih godina se pojavio veliki broj frejmvorka, uglavnom otvorenog koda, koji omogućuju jednostavniji razvoj jednostraničnih aplikacija.
 
-    U osnovi svake SPA aplikacije leži Ajaks (<abbr title="Asynchronous JavaScript and XML">AJAX</abbr>). Striktno govoreći, ne radi se o tehnologiji, već o skupu više tehnologija, od kojih se kao najznačajnija izdvaja `XMLHttpRequest` koja u kombinaciji sa HTML-om, CSS-om, JavaSkriptom, DOM-om i
+    U osnovi svake SPA aplikacije leži Ajaks (<abbr
+    title="Asynchronous JavaScript and XML">AJAX</abbr>). Striktno govoreći, ne radi se o tehnologiji, već o skupu više tehnologija, od kojih se kao najznačajnija izdvaja `XMLHttpRequest` koja u kombinaciji sa HTML-om, CSS-om, JavaSkriptom, DOM-om i
     <abbr title="Extensible Markup Language">XML</abbr>-om ili <abbr
     title="JavaScript Object Notation">JSON</abbr>-om omogućava inkrementalno ažuriranje korisničkog interfejsa bez slanja zahteva ka serveru za novu HTML stranicu, i samim tim bez osvežavanja čitave stranice. Na ovaj način je aplikacija znatno responzivnija, u smislu da brže odgovara na zahteve korisnika.
 
@@ -150,7 +151,8 @@
     <a href="https://fetch.spec.whatwg.org/"
        title="Fetch specifikacija">novog standarda</a> za obavljanje Ajaks zahteva pod nazivom <a
     href="https://developer.mozilla.org/en/docs/Web/API/Fetch_API"
-    title="Više o fetch API-ju"><code>fetch</code></a>, koji i Angular u pozadini koristi u metodama klase <code>Http</code> koju nudi kao preporučeno rešenje za obavljanje zahteva.
+    title="Više o fetch API-ju"><code>fetch</code></a>, koji i Angular u pozadini koristi u metodama klase
+    <code>Http</code> koju nudi kao preporučeno rešenje za obavljanje zahteva.
   </p>
 
   <lrn-markdown>
@@ -172,7 +174,8 @@
 
     Brauzeri će korisnike obavestiti da imaju **popunjenu formu** koja još uvek nije poslata kada probaju da navigiraju na neku drugu stranicu. Ovo je implementirano kroz događaj `beforeunload` na koji se developer može pretplatiti. Međutim, kod jednostraničnih aplikacija ovaj događaj postaje beskoristan jer brauzer ne pravi zahteve ka pravim stranicama. Developer bi morao lično da bude odgovoran da pruži ovakvo iskusvo korisnicima.
 
-    Možda najčešće pominjana mana jednostraničnih aplikacija jeste **optimizacija za pretraživače** (<abbr title="Search Engine Optimization">SEO</abbr>). Pošto je dovlačenje podataka asinhrono, Guglovi kroleri prilikom obilaska stranice neće "znati" da treba da sačekaju neko vreme pre nego što se podaci dobave sa servera i stranica prikaže, pa će stranicu tretirati kao potpuno praznu, što znači da stranica neće biti indeksirana i neće se pojavljivati u rezultatima pretrage, što je za mnoge biznis-stranice nedopustivo. Srećom, popularni frejmvorci u poslednje vreme nude mogućnost da nekoliko ključnih stranica (npr. početna stranica, stranica sa opisom firme, stranica sa podacima za kontakt, stranica koja predstavlja oglas za otvorenu poziciju u firmi) budu renderovane na serveru
+    Možda najčešće pominjana mana jednostraničnih aplikacija jeste **optimizacija za pretraživače** (<abbr
+    title="Search Engine Optimization">SEO</abbr>). Pošto je dovlačenje podataka asinhrono, Guglovi kroleri prilikom obilaska stranice neće "znati" da treba da sačekaju neko vreme pre nego što se podaci dobave sa servera i stranica prikaže, pa će stranicu tretirati kao potpuno praznu, što znači da stranica neće biti indeksirana i neće se pojavljivati u rezultatima pretrage, što je za mnoge biznis-stranice nedopustivo. Srećom, popularni frejmvorci u poslednje vreme nude mogućnost da nekoliko ključnih stranica (npr. početna stranica, stranica sa opisom firme, stranica sa podacima za kontakt, stranica koja predstavlja oglas za otvorenu poziciju u firmi) budu renderovane na serveru
     (<abbr title="Server-Side Rendering">SSR</abbr>)
     i da se direktno takve dostave klijentu. Ovo omogućava pojavu statičkih stranica, iako su napisane u frejmvorku koji je namenjen dinamičkim jednostraničnim aplikacijama, čime se sprečava dupliranje funkcionalnosti, tj. održavanje dve različito kodirane verzije istog sadržaja.
   </lrn-markdown>

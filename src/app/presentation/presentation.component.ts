@@ -14,8 +14,13 @@ import {
 import {SlideComponent} from './slide/slide.component'
 import {ActivatedRoute, Router} from '@angular/router'
 import {PaletteService} from '../ui/palette.service'
-import {LoggerService} from '../logger.service'
+import {LoggerService} from '../logger/logger.service'
 import {Subject} from 'rxjs/Subject'
+import {
+  PresentationWithoutAuthorErrorComponent,
+  PresentationWithoutEmailErrorComponent,
+  UntitledPresentationErrorComponent,
+} from './errors'
 
 interface SlideIdentifier {
   type: string // 'title' | 'user' | 'questions' | 'thank-you'
@@ -92,6 +97,10 @@ export class PresentationComponent implements OnInit, AfterContentInit {
   public tableOfContents = new Map<string, number>()
 
   private updateView(): void {
+    if (this.currentSlideIdentifier == null) {
+      return
+    }
+
     const userProvidedSlides = this.slideComponents
       .map(element => element.elementRef.nativeElement)
 
@@ -104,8 +113,6 @@ export class PresentationComponent implements OnInit, AfterContentInit {
       const userSlideIndex = this.mapGlobalIndexToUserSlideIndex(this.currentSlideIndex)
       const currentSlide = userProvidedSlides[userSlideIndex]
       this.renderer.attachViewAfter(this.outlet.nativeElement, [currentSlide])
-    } else {
-
     }
 
     // Update route
@@ -179,7 +186,18 @@ export class PresentationComponent implements OnInit, AfterContentInit {
 
   ngOnInit() {
     if (this.title == null) {
-      this.logger.error(`You've created an untitled presentation! C'mon, give it a name.`)
+      this.logger.displayError(UntitledPresentationErrorComponent)
+      return
+    }
+
+    if (this.author == null) {
+      this.logger.displayError(PresentationWithoutAuthorErrorComponent)
+      return
+    }
+
+    if (this.email == null) {
+      this.logger.displayError(PresentationWithoutEmailErrorComponent)
+      return
     }
   }
 

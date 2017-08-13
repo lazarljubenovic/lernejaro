@@ -1,12 +1,11 @@
 import {
   ApplicationRef,
-  ChangeDetectorRef,
   ComponentFactory,
   ComponentFactoryResolver,
-  ComponentRef, EmbeddedViewRef,
+  ComponentRef,
   Injectable,
   Injector,
-  TemplateRef,
+  TemplateRef, Type,
 } from '@angular/core'
 import {ModalComponent} from './modal.component'
 import {BlackoutService} from '../blackout/blackout.service'
@@ -16,21 +15,48 @@ export class ModalService {
 
   private modelComponentFactory: ComponentFactory<ModalComponent>
   private modalCmp: ComponentRef<ModalComponent>
-  private modalEmbeddedViewRef: EmbeddedViewRef<void>
+  // private modalEmbeddedViewRef: EmbeddedViewRef<void>
 
-  public open(contentTemplate: TemplateRef<void>): void {
+  public open(templateOrComponentRef: TemplateRef<any> | Function, context = {}): void {
+    if (templateOrComponentRef instanceof TemplateRef) {
+      return this.openFromTemplate(templateOrComponentRef)
+    } else {
+      return this.openFromComponent(templateOrComponentRef, context)
+    }
+  }
+
+  private openFromTemplate(contentTemplate: TemplateRef<void>): void {
     this.blackout.show(true).take(1).subscribe(() => {
       this.close()
     })
-    this.modalEmbeddedViewRef = contentTemplate.createEmbeddedView(null)
+    const modalEmbeddedViewRef = contentTemplate.createEmbeddedView(null)
     this.modalCmp = this.modelComponentFactory.create(
       this.injector,
-      [this.modalEmbeddedViewRef.rootNodes],
+      [modalEmbeddedViewRef.rootNodes],
     )
     document.body.appendChild(this.modalCmp.location.nativeElement)
     this.applicationRef.attachView(this.modalCmp.hostView)
-    this.applicationRef.attachView(this.modalEmbeddedViewRef)
-    this.modalEmbeddedViewRef.detectChanges()
+    this.applicationRef.attachView(modalEmbeddedViewRef)
+    modalEmbeddedViewRef.detectChanges()
+  }
+
+  private openFromComponent(component, context = {}): void {
+    const componentFactory = this.cfr.resolveComponentFactory(component)
+    const cmp = componentFactory.create(this.injector)
+    this.modalCmp = this.modelComponentFactory.create(
+      this.injector,
+      [[cmp.location.nativeElement]],
+    )
+    setTimeout(() => {
+      this.blackout.show(true).take(1).subscribe(this.close.bind(this))
+      document.body.appendChild(this.modalCmp.location.nativeElement)
+      this.applicationRef.attachView(this.modalCmp.hostView)
+      this.applicationRef.attachView(cmp.hostView)
+      Object.keys(context).forEach(key => {
+        cmp.instance[key] = context[key]
+      })
+      cmp.changeDetectorRef.detectChanges()
+    })
   }
 
   public close() {

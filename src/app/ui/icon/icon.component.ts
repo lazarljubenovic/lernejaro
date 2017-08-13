@@ -8,7 +8,8 @@ import {
   OnInit,
 } from '@angular/core'
 import {LessonIcon} from '../../lesson-navigator/lesson-icon.enum'
-import {LoggerService} from '../../logger.service'
+import {LoggerService} from '../../logger/logger.service'
+import {UnknownIconErrorComponent} from '../errors'
 
 @Component({
   selector: 'lrn-icon',
@@ -84,7 +85,7 @@ export class IconComponent implements OnInit, OnChanges {
           id = 'check'
           break
         default:
-          this.logger.error(`Unknown icon value.`, this.elementRef.nativeElement)
+          this.logger.displayError(UnknownIconErrorComponent, {icon: id})
           return
       }
     }

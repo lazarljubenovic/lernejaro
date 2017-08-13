@@ -1,15 +1,26 @@
-import {Directive, HostBinding, Input} from '@angular/core'
+import {Component, HostBinding, Input} from '@angular/core'
 
-@Directive({selector: '[lrnFullScreen]'})
-export class FullScreenDirective {
-  @HostBinding('style.position') public position: string = 'fixed'
-  @HostBinding('style.top') public top: number = 0
-  @HostBinding('style.left') public left: number = 0
-  @HostBinding('style.right') public right: number = 0
-  @HostBinding('style.bottom') public bottom: number = 0
-  @HostBinding('style.width') public width: string = '100%'
-  @HostBinding('style.height') public height: string = '100vh'
-
+@Component({
+  selector: 'lrn-full-screen,[lrnFullScreen]',
+  template: `
+    <ng-content></ng-content>
+  `,
+  styles: [`
+    :host {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      height: 100vh;
+      /* Can be overwritten with an input */
+      background-color: white;
+    }
+  `],
+})
+export class FullScreenComponent {
   @Input('lrnFullScreen') @HostBinding('style.background-color')
   public backgroundColor: string = 'white'
 }

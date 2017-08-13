@@ -1,6 +1,6 @@
 import {Component, ElementRef, HostBinding, Input, OnInit} from '@angular/core'
 import {animate, state, style, transition, trigger} from '@angular/animations'
-import {LoggerService} from '../../logger.service'
+import {LoggerService} from '../../logger/logger.service'
 
 @Component({
   selector: 'lrn-digression',

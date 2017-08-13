@@ -1,4 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core'
+import {ModalService} from '../../ui/modal/modal.service'
+import {PalettePickerComponent} from '../../ui/palette-picker/palette-picker.component'
 
 @Component({
   selector: 'lrn-slide-controls',
@@ -16,10 +18,11 @@ export class SlideControlsComponent implements OnInit {
   @Output() public next = new EventEmitter<void>()
   @Output() public last = new EventEmitter<void>()
 
-  public showPalettePicker: boolean = false
-  public showNavigation: boolean = false
+  public openPalette() {
+    this.modal.open(PalettePickerComponent)
+  }
 
-  constructor() {
+  constructor(public modal: ModalService) {
   }
 
   ngOnInit() {

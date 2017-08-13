@@ -8,17 +8,29 @@ import {
   H3Directive,
   H4Directive,
   H5Directive,
-  H6Directive
+  H6Directive,
 } from './directives/heading-directives'
 import {UiModule} from '../ui/ui.module'
 import {TableOfContentComponent} from './table-of-content/table-of-content.component'
 import {TableOfContentNodeComponent} from './table-of-content-node/table-of-content-node.component'
 import {DigressionComponent} from './digression/digression.component'
+import {MissingTitleComponent} from './errors/missing-title.component'
+import {MarkdownModule} from '../markdown/markdown.module'
+import {LoggerModule} from '../logger/logger.module'
+import {CodeModule} from '../code/code.module'
+import {NotebookTitleWithoutContentErrorComponent} from './errors'
+
+const errors = [
+  NotebookTitleWithoutContentErrorComponent,
+]
 
 @NgModule({
   imports: [
     CommonModule,
     UiModule,
+    MarkdownModule,
+    LoggerModule,
+    CodeModule,
   ],
   declarations: [
     NotebookComponent,
@@ -32,6 +44,8 @@ import {DigressionComponent} from './digression/digression.component'
     TableOfContentComponent,
     TableOfContentNodeComponent,
     DigressionComponent,
+    MissingTitleComponent,
+    ...errors,
   ],
   exports: [
     NotebookComponent,
@@ -43,6 +57,10 @@ import {DigressionComponent} from './digression/digression.component'
     H6Directive,
     AnchorDirective,
     DigressionComponent,
+  ],
+  entryComponents: [
+    MissingTitleComponent,
+    ...errors,
   ],
 })
 export class NotebookModule {

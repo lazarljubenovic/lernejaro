@@ -29,11 +29,16 @@ import {ChipComponent} from './chip/chip.component'
 import {IconComponent} from './icon/icon.component'
 import { BlackoutComponent } from './blackout/blackout.component'
 import {BlackoutService} from './blackout/blackout.service'
+import {UnknownIconErrorComponent} from './errors'
+import {LoggerModule} from '../logger/logger.module'
+import {CodeModule} from '../code/code.module'
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    LoggerModule,
+    CodeModule,
   ],
   declarations: [
     InputComponent,
@@ -59,6 +64,7 @@ import {BlackoutService} from './blackout/blackout.service'
     ChipComponent,
     IconComponent,
     BlackoutComponent,
+    UnknownIconErrorComponent,
   ],
   exports: [
     InputComponent,
@@ -90,6 +96,8 @@ import {BlackoutService} from './blackout/blackout.service'
   entryComponents: [
     BlackoutComponent,
     ModalComponent,
+    UnknownIconErrorComponent,
+    PalettePickerComponent,
   ],
 })
 export class UiModule {

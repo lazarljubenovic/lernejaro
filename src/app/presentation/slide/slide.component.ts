@@ -6,10 +6,10 @@ import {
   OnInit,
   QueryList,
   TemplateRef,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core'
 import {SlideColumnComponent} from '../slide-column/slide-column.component'
-import {LoggerService} from '../../logger.service'
+import {LoggerService} from '../../logger/logger.service'
 
 @Component({
   selector: 'lrn-slide',

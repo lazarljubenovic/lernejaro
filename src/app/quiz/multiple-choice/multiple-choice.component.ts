@@ -16,9 +16,14 @@ import {
 import {ChoiceComponent} from './choice/choice.component'
 import * as _ from 'lodash'
 import {UniqueIdService} from '../../unique-id.service'
-import {LoggerService} from '../../logger.service'
+import {LoggerService} from '../../logger/logger.service'
 import {QuestionComponent} from '../question/question.component'
 import {MultipleChoiceInfo} from './interfaces'
+import {
+  MultipleChoiceNoChoicesErrorComponent,
+  MultipleChoiceNoCorrectAnswerErrorComponent,
+  MultipleChoiceNoQuestionErrorComponent,
+} from '../errors'
 
 @Component({
   selector: 'lrn-multiple-choice',
@@ -179,18 +184,18 @@ export class MultipleChoiceComponent implements AfterContentInit, AfterViewInit,
 
   private assert() {
     if (this.questionComponent == null) {
-      this.logger.error(`Multiple choice must have a question (lrn-question).`,
-        this.elementRef.nativeElement)
+      this.logger.displayError(MultipleChoiceNoQuestionErrorComponent)
+      return
     }
 
     if (this.choicesQueryList.length == 0) {
-      this.logger.error(`Multiple choice must have at least one lrn-choice inside.`,
-        this.elementRef.nativeElement)
+      this.logger.displayError(MultipleChoiceNoChoicesErrorComponent)
+      return
     }
 
     if (!this.choicesQueryList.some(choice => choice.isCorrect())) {
-      this.logger.error(`At least one choice must be marked as correct.`,
-        this.elementRef.nativeElement)
+      this.logger.displayError(MultipleChoiceNoCorrectAnswerErrorComponent)
+      return
     }
   }
 
