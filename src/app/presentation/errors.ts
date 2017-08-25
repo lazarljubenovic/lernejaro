@@ -140,7 +140,8 @@ export class PresentationNoSectionsFoundWarningComponent {
 })
 export class PresentationNotEnoughSectionsWarningComponent {
   public title: string
-  numberOfSlides: number
+  public numberOfSlides: number
+  public numberOfSections: number
 }
 
 
@@ -177,7 +178,7 @@ export class UntitledSlideWarningComponent {
 
       <pre><code [lrnCode]="'html'">{{ example }}</code></pre>
     </lrn-error>
-  `
+  `,
 })
 export class StraySlideErrorComponent {
   public title: string

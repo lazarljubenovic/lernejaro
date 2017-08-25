@@ -250,6 +250,7 @@ export class PresentationComponent implements OnInit, AfterContentInit {
       this.logger.display(PresentationNotEnoughSectionsWarningComponent, {
         title: this.title,
         numberOfSlides: this.slideIdentifiers.length,
+        numberOfSections,
       })
       return
     }
