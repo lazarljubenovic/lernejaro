@@ -32,6 +32,7 @@ import {BlackoutService} from './blackout/blackout.service'
 import {UnknownIconErrorComponent} from './errors'
 import {LoggerModule} from '../logger/logger.module'
 import {CodeModule} from '../code/code.module'
+import {MarkdownComponent} from '../markdown/markdown.component'
 
 @NgModule({
   imports: [

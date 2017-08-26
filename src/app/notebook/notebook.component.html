@@ -40,7 +40,10 @@
     <dd>{{ wordCount }}</dd>
 
     <dt>Time to read</dt>
-    <dd>{{ estimatedReadingTimeMinutes }} minutes</dd>
+    <dd>
+      {{ estimatedReadingTimeMinutes }}
+      {{ estimatedReadingTimeMinutes == 1 ? 'minute' : 'minutes' }}
+    </dd>
   </dl>
 </footer>
 

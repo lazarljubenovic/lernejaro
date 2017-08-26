@@ -24,6 +24,10 @@ import {DisplayQuoteModule} from '../display-quote/display-quote.module'
 import {IntroducingKvizoComponent} from './introducing-kvizo/introducing-kvizo.component'
 import {LayoutModule} from '../layout/layout.module'
 import {CodeModule} from '../code/code.module'
+import {IntroducingConsoleComponent} from './introducing-console/introducing-console.component'
+import {ConsoleModule} from '../console/console.module'
+import {LRN_CONSOLE_INTERPRETER} from '../console/console'
+import {LispInterpreter} from '../console/interpreters/lisp'
 
 @NgModule({
   imports: [
@@ -46,6 +50,7 @@ import {CodeModule} from '../code/code.module'
     DisplayQuoteModule,
     LayoutModule,
     CodeModule,
+    ConsoleModule,
     RouterModule.forChild([
       {
         path: '',
@@ -81,7 +86,7 @@ import {CodeModule} from '../code/code.module'
       },
       {
         path: '13-Console',
-        component: null,
+        component: IntroducingConsoleComponent,
       },
       {
         path: '14-Latex',
@@ -106,6 +111,14 @@ import {CodeModule} from '../code/code.module'
     IntroducingGeometryComponent,
     IntroducingNotebookComponent,
     IntroducingKvizoComponent,
+    IntroducingConsoleComponent,
+  ],
+  providers: [
+    {
+      provide: LRN_CONSOLE_INTERPRETER,
+      useClass: LispInterpreter,
+      multi: true,
+    },
   ],
 })
 export class CourseLernejaroModule {
