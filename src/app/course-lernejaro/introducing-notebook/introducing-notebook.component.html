@@ -180,4 +180,461 @@
     i da se direktno takve dostave klijentu. Ovo omogućava pojavu statičkih stranica, iako su napisane u frejmvorku koji je namenjen dinamičkim jednostraničnim aplikacijama, čime se sprečava dupliranje funkcionalnosti, tj. održavanje dve različito kodirane verzije istog sadržaja.
   </lrn-markdown>
 
+  <h3>Sazrevanje JavaSkripta</h3>
+
+  <lrn-markdown>
+    JavaSkript je nastao maja 1995. godine kao "jezik-lepak" za tadašnji dominantni brauzer Netskejp. Prvobitno nazvan _Mocha_, četiri meseca kasnije biva prekršten u _LiveScript_ da bi tri meseca nakon toga dobio ime po kojem je i danas poznat: _JavaScript_. Ovaj jezik je nastao iz potrebe za premošćavanjem jaza između brauzera kao korisničkog okruženja za prikaz dokumenata i jezika za opis tih dokumenata, HTML-a. Definisao ga je **Brendon Ajk** za samo deset dana.
+
+    Sa pojavom drugih brauzera, pojavili su se i jezici koji su očigledno bili inspirisani JavaSkriptom, ali njihovi stvaratelji nisu smeli da ga zvanično tretiraju kao JavaSkript zbog autorskih prava koji je imao San Majkrosistems. Na primer, JavaSkript je poslužio kao podloga Adobiju za jezik ActionScript, i sada predstavlja njegov zvaničan dijalekat. Ipak, najpoznatiji primer kopije JavaSkripta je nesumnjivo _JScript_ koji je došao uz Majkrosoftov Internet Eksplorer u verziji 3, već krajem 1996. Osim u imenu, razlikovao se i u nekim detaljima u implementaciji, ali i u API-ju za komunikaciju sa DOM-om (_Document Object Model_). Iz tog razloga je ubrzo organizovana komisija za standardizaciju JavaSkripta, nazvana ECMA.
+
+    Osnova za moderni JavaSkript definisana je 1999. godine u trećoj verziji standarda, **ES3**. Počelo se sa radom na četvrtoj verziji, koja je trebalo da bude još radikalnija i da ispravi neke "greške" u JavaSkript standardu. Najavljivane promene su bile toliko velike da su čak dovele do toga da **ES4** bude postane poznat kao "JavaSkript 2". Međutim, komitet za standardizaciju je bio podeljen: dok se jedna strana zalagala za poboljšanje jezika zarad bolje budućnosti, druga se bojala da će ovime nastati prevelika pometnja, jer bi sve veb-stranice koje koriste "stari" JavaSkript prestale da rade zbog promene u sintaksi jezika (tzv. "slamanje veba"). Sukob je aktivno trajao do 2003, kada je projekat zvanično napušten.
+
+    Dve godine kasnije, osnivač JavaSkripta **Ajk** u saradnji za Mozilom počinje da radi na projektu **E4X**. Pridružuje im se i Makromedija (sada Adobi), u nadi da će standardizovati svoj ActionScript3 u saradnji sa ECMA-om, i time ponovo spojiti razdeljene dijalekte jezika. Ipak, razlika je bila previše velika, što su obe strane počele da shvataju krajem 2007. godine. Otprilike u to vreme, **Daglas Krokford**, koji je tada radio u Jahuu, udružuje snage sa Majkrosoftom kao opozicija promenama koje treba da budu definisane standardom ES4, a svoje stavove iskazuju tako što standard žele da nazovu jednostavno ES3.1, jer unosi samo neznatne promene.
+
+    Sve se ovo dešava u vreme kada je JavaSkript zajednica pokrenula revoluciju u mogućnostima koje pruža JavaSkript, što nesumnjivo otpočinje 2005. godine kada je **Džesi Džejms Geret** skovao termin **Ajaks** koji je iskoristio za opis skupa tehnologija izgrađenim nad JavaSkriptom. Ovo je bio renesansni period za jezik, i tada počinju da se javljaju biblioteke otvorenog koda kao što su jQuery, Mootools i Dojo koje su do pojave SPA frejmvorka bile dominantni alati za izgradnju dinamičkih veb-sajtova i veb-aplikacija.
+
+    Iz rata oko konačnog oblika četvrte verzije standarda koji se konačno okončava 2009. godine izlazi **Krokford**. U JavaSkript je posle dvanaest godina uneto svega nekoliko neznatnih promena, a rezultujući standard je preimenovan u **ES5**, kako ne bi došlo do kasnije zabune oko eventualne četvrte verzije o kojoj se već godinama govori. U standard tada dolazi takozvani `strict mode`, koji definiše "strožu" verziju jezika, ali na kompatibilan način, kako ne bi narušio već postojeći kod koji se nalazi na vebu.
+
+    Dve godine kasnije usledila je mala promena standarda, editorijalnog karaktera, nazvana ES5.1, koja nije bila od većeg značaja za JavaSkript.
+
+    Nove osobine JavaSkripta koje nisu ušle u ES5 standard ostale su poznate pod imenom Harmonija (_Harmony_). Tek 2015. godine se ECMA komitet ponovo sastaje radi definisanja standarda šeste edicije standarda, kada se konačno, posle petanest godina nagomilanih ideja za proširene i poboljšanje jezika, sprovode u delo. Šesta edicija standarda je vrlo kratko pre zvaničnog objavljana preimanovana iz ES6 u **ES2015**, zbog ideje da se u nastavku standard za JavaSkript obnavlja na svakih godinu dana, kako naredne promene ne bi bile toliko velike kao ova.
+
+    ES2015 je drastično promenio izgled JavaSkripta, čime je omogućeno znatno jednostavnije pisanje složenih aplikacija. Nesumnjivo najznačanija novina u jeziku su moduli koji omogućuju podelu koda u fajlove, ali je tu i intuitivnija sintaksa za defisanje klasa, iteratori i generatori (koji će poslužiti kao osnova za `async/await` u ES2017), generatorski izrazi, `for-of` petlje, "streličaste" funkcije za sintaksno jednostavnije pisanje funkcionalnog koda, binarni podaci, tipizirani nizovi, kolekcije (mape, skupovi, slabe mape), promisi, dodatne funkcije na `Math` objektu, bolja refleksija, kao i posrednici za metaprogramiranje virtuelnih objekata i omotača.
+
+    **Sedma** edicija objavljena 2016. godine uvodi blage promene: operator za stepenovanje `**` i `Array#includes`. Presek za **ES2017** napravljen je juna 2017. godine i ponovo uvodi revolucionarne promene u jezik koje omogućavaju da se procesorska moć iskoristi na znatno višem nivou nego ranije. Među novinama koje ES2017 uvodi izdvaja se mogućnost paralelnog programiranja, izvođenja atomičnih operacija ukoliko ih procesor podržava, nadgledanja tokova podataka (_observable streams_), definisanja tipova podataka koji omogućuju SIMD programiranje. Sem toga, uvedena je sintaksna integracija promisa i generatora pomoću ključnih reči `async` i `await`, a bolji Simboli predstavljaju korak bliže predefinisanju operatora.
+
+    Popularnost interneta učinila je da JavaSkript postane najpopularniji programski jezik na svetu. Vrlo je verovatno da na svetu ne postoji računar opšte namene na kome nije instaliran interpreter za JavaSkript. Ovo ima brojne prednosti zbog velike zajednice koja aktivno radi na poboljšanju jezika i ekosistema, ali zbog turbulentnih okolnosti u kojima je JavaSkript nastao i u kojima se razvijao tokom niza godina, nosi i određene mane sa sobom. **Daglas Krokford**, poznat po svom aktivnom učešću u razviću JavaSkripta, po popularizaciji JSON formata i alatima _JSLint_ i _JSMin_, naziva JavaSkript "najneshvaćenijim programskim jezikom".
+
+    Krokford svoje [popularno izlaganje](http://javascript.crockford.com/javascript.html) počinje od samog imena. Ne samo da _Java-_ stvara očiglednu zabunu i lažnu ascoijaciju sa Javom, već i nastavak _-Script_ ostavlja utisak da se ne radi o pravom programskom jeziku, i da je "skript" jezik na neki način manje od "programskog" jezika; zapravo se radi o specijalizaciji: na primer, u poređenju sa C-om, JavaSkript po cenu performansi ističe svoju izražajnu moć i dinamičnost.
+
+    Ipak, neosporno je da osnovni izvor konfuzije predstavlja sintaksa JavaSkripta, koja podseća na Javu i C. Nezgrapna `for` petlja i vitičaste zagrade koje omeđuju blokove koda daju utisak da se radi o tipičnom proceduralnom jeziku. JavaSkript zapravo ima mnogo više zajedničkog sa funkcionalnim jezicima kao što su Lisp ili Skim. U stvari, najveća razlika JavaSkripta u odnosu na Lisp, pored sintakse, je implementacioni detalj i terminologija: koristi nizove umesto lančanih listi i objekte umesto liste svojstava. Dve glavne osobine koje vezuju JavaSkript za funkcionalno programiranje su prvoklasne funkcije (_first-class functions_) i zatvaranja (_closure_).
+
+    Zbog svoje sintakse koja podseća na Javu, developeri koji uče JavaSkript, a upoznati su sa _klasnim_ objektno-orijentisanim programiranjem, donose uranjene i neispravne zaključke o načinu na koji JavaSkript radi. Na primer, iako postoje ključne reči `class`, `constructor`, `static` i `extends`, one predstavljaju samo kraće zapise za definisanje funkcija i deklarisanje metoda nad prototipom. JavaSkipt jeste objektno-orijentisan u smislu da se zasniva na objektima koji sadrže podatke i nad kojima se mogu pozivati metode, ali nije i _klasni_ jezik, jer se kreiranje takvih objekata ne ostvaruje deklarisanjem klasa, već definisanjem prototipa.
+
+    Mane u JavaSkriptu nesumnjivo postoje, ali se to može reći za svaki programski jezik. Daglas kao primer loše osobine navodi činjenicu da je operator `+` preklopljen da znači i sabiranje brojeva i konkateniranje stringova. Ovo samo po sebi nije veliki problem, ali u kombinaciji sa nepostojanjem tipova podataka i veoma slobodnim algoritmom za koerciju podataka, ovo često dovodi do zabune i potpuno neituitivnih rezultata. Na primer, moguće je "konkatenirati/sabrati" prazan objekat i prazan niz i kao rezultat dobiti broj nula.
+
+    Još jedna često pominjana mana jeste automatsko ubacivanje tačke-zarez u kod (ASI, _automatic semicolon insertion_). Naime, ukoliko su dve linije koda odvojene blanko znakom, a njihovo spajanje u jedan red dovodi do sintaksne greške, JavaSkript interpretator po specifikaciji automatski dodaje tačku-zarez, odnosno razdvaja naredbe. Ipak, stvari nisu tako jednostavne; postoje neki izuzeci i primeri kada nepisanje tačke-zarez može dovesti do suptilnih grešaka u kodu. S druge strane, konstantno pisanje tačke-zarez ne samo da je bespotrebno, već svakako ne može da _spreči_ ASI, i dalje može doći do suptilnih bagova (kao čest primer se navodi da će prelazak u novi red posle ključne reči `return` vratiti `undefined` iz funkcije i ignorisati ostatak koda).
+
+    Sem ovoga, često se JavaSkript nepravedno osuđuje kao "loš" programski jezik zbog njegovih loših, nepotpunih, bagovitih, i međusobno nekonzistentnih implementacija u prošlosti. Ali danas je situacija mnogo drugačija.
+
+    Inkrementalno izdavanje verzija omogućilo je da svi poznatiji brauzeri održe korak sa standardom i da redovno implementiraju nove osobine JavaSkripta. Ipak, kako developer ne može garantovati koju verziju i na kakvom uređaju klijent izvršava aplikaciju, i dalje se često pribegava metodama **transpajliranja**, pri čemu se tekuće -- ili čak buduće -- verzije JavaSkripta prevode na one niže; ovime se postiže veća pokrivenost potencijalnih klijenata. Od popularnih transpajlera se izdvajaju Babel i TajpSkript. Pored ovoga, mada JavaSkript po standardu podržava module, u stvarnosti je podrška za ovo izuzetno slaba. Rešenje za ovo su takozvani **bandleri** koda, među kojima se kao vodeći izdvajaju Rolap i Vebpek.
+  </lrn-markdown>
+
+  <h2>Tehnologije zasnovane na JavaSkriptu</h2>
+
+  <h3>TypeScript</h3>
+
+  <summary>
+    Tajpskript je jezik vrlo sličan JavaSkriptu, i istovremeno predstavlja njegovu tipiziranu nadgradnju i transpajler u neku stariju verziju ECMAScript-a.
+  </summary>
+
+  <lrn-markdown>
+    TajpSkript (_TypeScript_) je programski jezik koji predstavlja statički tipizirani nadskup JavaSkripta i transpajlira se u JavaSkript. **Trajnspajliranje** je vrsta kompajliranja pri kojoj je ulaz jedan viši programski jezik, a izlaz je kod sa ekvivalentnom funkcionalnošću, napisan na drugom (višem) programskom jeziku. Rezultujući JavaSkript se može pokrenuti u brauzerima ili kroz node.js okruženje. Korišćenjem konfiguracionog fajla `tsconfig.json` ili zadavanjem opcija preko komandne linije moguće je izabrati bilo koju verziju JavaSkript standarda (ES3, ES5, ES2015, itd) u zavinosti od željene podrške na starijim brauzerima i verzijama node.js okruženja.
+
+    Namenski je zamišljen kao nadskup JavaSkripta kako bi migracija projekta već napisanog u JavaSkriptu na TajpSkript bila skoro trivijalna. Ovo omogućava developerima da inkrementalno dodaju osobine TajpSkripta u postojeći kod, kao i da developeri koji nemaju velikog iskustva u TajpSkriptu mogu samo da "zaobiđu" delove specifične za TajpSkript i koncentrišu se na JavaSkript.
+
+    Mada pruža i mnoge druge prednosti u radu, osnovna namena zbog koje je i nastao jeste dodavanje tipova podataka u kod napisan u JavaSkriptu. Ipak, kao da se istorija ponavlja: TajpSkript deli neke sintaksičke sličnosti sa C# (TajpSkript je Majkrosoftov proizvod), ali se zapravo stvari u pozadini odvijaju drugačije. Kao i sa JavaSkriptom i Javom, mada ovo ima svojih prednosti jer je developerima koji imaju iskustvo u strogo-tipizranim _klasnim_ jezicima, TajpSkript ne može da bude _klasni_ jezik (jer se svakako transpajraliranja u JavaSkript), već samo pruža sintaksni šećer nad JavaSkriptom. Ovi tipovi podataka više podsećaju na tipove podataka koje imaju funkcionalni jezici kao što je Haskel, nego klasni jezici kao što je C#. Ovo je manifestovano sledećim osobinama tipova podataka koje definiše TajpSkript.
+
+    Postoje jezici gde je neophodno precizno definisati tipove, čak i ako se prilikom deklarisanja vrši i inicijalizacija. Na primer, u C-u se mora navesti `int a = 1` iako je iz same dodele `a = 1` očigledno da se radi o podatku celobrojnog tipa. TajpSkript se trudi da **automatski zaključi** o kom se tipu radi; stoga ga nije neophodno uvek eksplicitno definisati. Na primer, `const a = 1` će imati isti efekat kao i `const a: number = 1` -- u oba slučaja je TajpSkript svestan da se radi o broju (JavaSkript, pa ni TajpSkript, ne razlikuje celobrojne od razlomljenih podataka za razliku od većine drugih jezika).
+  </lrn-markdown>
+
+  <p>
+    U sprezi s ovim je i osobina TajpSkripta koja se naziva
+    <strong>poklapanje šablona</strong>. Tipovi podataka ne moraju da se slažu po imenu, niti moraju da budu identični da bi TajpSkript zaključio da li je operaciju moguće izvesti nad njima. Na primer, TajpSkript će prepoznati da anonimni tip `{{ '{' }} name: string, data?: any {{ '}' }}` može da se dodeli interfejsu `Person` koji je definisan sa `interface Person {{ '{' }} name: string {{ '}' }}`.
+  </p>
+
+  <lrn-markdown>
+    Tipovi podataka se u TajpSkriptu određuju **statičkom analizom** koda, što znači da, u teoriji, tokom izvršenja izlaznog JavaSkript koda ne postoji garancija da će tipovi odgovarati tipovima definisanim kroz TajpSkript. Ovo je direktna posledica toga da će TajpSkriptov transpajler na izlazu dati JavaSkript kod, u kome je nemoguće garantovati tipove podataka.
+
+    Ipak, ukoliko je developer svestan ograničenja TajpSkripta i načina na koji se on transpajlira, on može sebi nametnuti pravila kako bi onemogućio nastanak grešaka. U ovome pomažu opcije u kompajeru kao što su `--strictNullChecks` (ne dozvoljava dodelu `null` vrednosti promenljivoj bilo kojeg tipa osim ako se eksplicino ne naglasi da tip može biti i `null`), `--noImplicitAny` (ne dozvoljava da se promenljivoj ne oglasi tip podatka ako ga TajpSkript ne može automatski zaključiti; u slučaju da developer ne želi da definiše tip podatka, mora eskplicitno naglasiti da se radi o bilo kom tipu pomoću ključne reči `any`), itd.
+
+    Statička analiza koda je prilično napredna u TajpSkriptu i motivisana je čestim obrascima koji se javljaju u JavaSkript kodu. Na primer, nije retkost da jedan argument funkcije može biti ili string ili broj. U ovakvim slučajevima bi tip podatka trebalo proglasiti kao **uniju** `arg: string | number`. Unutar tela funkcije će se u tom slučaju verovatno naći uslov `if (typeof arg == 'string')`. TajpSkript kompajler će prepoznati ovaj uslov kao _type guard_ i unutar _then_ grane će `arg` tretirati kao `string`, a unutar _else_ grane kao `number`.
+  </lrn-markdown>
+
+  <p>
+    TajpSkript podržava i <strong>generičke tipove</strong> (<code>function sort
+    &lt;T>(a: T[]): T[]</code>), gorepomenute
+    <strong>unije</strong> (<code>string | number | (foo: number) => string</code>),
+    <strong>preseke</strong> (<code>TipA & TipB</code>),
+    <strong>enumeracije</strong> (<code>enum Colors {{ '{' }}Red, Green, Blue{{ '}' }}</code>), itd.
+  </p>
+
+  <lrn-markdown>
+    Osim navedenih prednosti, tipovi podataka nude i bolje iskustvo prilikom **refaktorisanja** koda, jer je okruženje svesnije zavinosti između promenljivih. U čistom JavaSkriptu, preimenovanje promenljivih ili drugih tokena se može vršiti samo na osnovu imena, što vrlo često predstavlja problem u velikim projektima. Sem ovoga, **automatsko kompletiranje** koda postaje znatno moćnije, a svaki dobar IDE će u toku kucanja sprovoditi kod inkrementalno kroz kompajler, pa developer u realnom vremenu dobija povratnu informaciju o sintaksičkoj ispravnosti koda. Na primer, ako developer proba da sabere string i broj, dobar IDE će ga odmah obavestiti o grešci (na primer, podvući će problematičan isečak koda crvenom linijom), bez potrebe za time da developer ručno pokrene kompajler i tako dobije broj linije koda u kojoj se nalazi greška.
+
+    Glavna mana TajpSkripta jeste činjenica da on postaje beskoristan u slučaju da deo koda nije pisan u TajpSkriptu. Ovo je čest slučaj sa eksternim bibliotekama. Zbog toga postoje posebni **definicioni fajlovi** u kojima se nalaze samo deklaracije funkcija, klasa i ostalih promenljivih i konstanti koje se koriste u kodu. Ukoliko takav fajl ne postoji, TajpSkript će potpuno ignorisati modul, odnosno sve što je uvezeno iz tog eksternog modula će imati tip `any`. Ipak, kako TajpSkript dobija na popularnosti, to sve više i više biblioteka pružaju i definicione `.d.ts` fajlove. Sem toga, za mnoge popularne biblioteke su definicioni fajlovi kreirani od strane zajednice i dostupni su za instalaciju preko zvaničnog npm registra.
+
+    Mada je misija TajpSkripta da prvenstveno pruži informacije o tipovima podataka, i da osim toga ne ubacuje nove konstrukcije u postojeću specifikaciju JavaSkripta, postoji jedna oblast koda koju TajpSkript značajno menja, a to su **klase**.
+
+    Ključna reč `class` je dodata u ECMAScript specifiakciju u verziji ES2015, i predstavlja samo "sintaksni šećer" za funkciju (što se lako proverava operatorom `typeof` koji za klase vraća `'function'`). Kao što je već rečeno, rad sa klasama u JavaSkriptu je drugačiji od rada sa klasama u klasnim jezicima poput Jave i C# i od developera zahteva poznavanje funkcionalne i prototipne paradigme.
+
+    Ipak, TajpSkript pokušava da premosti ovaj jaz između programera koji već imaju iskustvno u klasnim jezicima i prototipske prirode JavaSkripta. Na primer, TajpSkript pruža mogućnost definisanja prava pristupa podacima iz klase pomoću ključnih reči `public`, `protected`, `private` (što zapravo nema uticaj na rezultujući JavaSkript, ali TajpSkript koristi ovu informaciju u procesu statičke analize koda i ne dozvoljava, na primer, pristup privatnim metodama van klase). Mada ova osobina TajpSkripta približava JavaSkript developerima iskusnim u klasnim programskim jezicima, istovremeno sakriva "prave namere" JavaSkripta, što može dovesti do problema ukoliko developer nije svestan dešavanja u pozadini.
+
+    Sem tipova podataka, TajpSkript često u iteracijama dodaje i nove osobine jezika koje još uvek nisu ušle u standard, ili su ušle u standard ali još uvek nisu dovoljno dobro rasprostranjene, pa je neophodno transpajlirati ih u verziju JavaSkripta koja je podržana od strane brauzera. Na primer, ES2016 ne podržava _spread_ operator `...` nad objektima; TajpSkript omogućuje korišćenje ovog operatora, pri čemu se transpajlirani kod služi funkcijom `Object.assign` koja ima slične osobine kao _spread_ operator, a podržana je standardom ES2016.
+
+    Drugi transpajleri, kao što je Babel, postoje upravo iz razloga da omoguće pisanje JavaSkripta "iz budućnosti", pa vrlo često pružaju korisnicima mogućnost da u kodu koriste osobine jezika koje za koje je još uvek previše rano da se garantuje u kom obliku će tačno ući, kada će ući, i da li ću opšte ući u ECMAScript standard. Ovo kao posledicu može da ima da se developer oslanja na nešto za šta se ispostavi da ne ipak ne postane standard, i nakon toga mora da refaktoriše kod kako bi se "uklopio" uz novi standard, što često može da izazove probleme. Zbog toga, TajpSkript ubacuje nove osobine u jezik tek kada predlog bude u trećoj fazi (od četiri) TC39 komiteta.
+
+    Najpoznatiji primer osobine JavaSkripta koja je preuranjeno ušla u TajpSkript jesu **dekoratori**. Dekoratori su trenutno u drugoj fazi TC39 predloga, a specifikacija je i dalje daleko od kompletirane. Dodati su u TajpSkript u verziji 1.6 nakon što je Gugl objavio da će za potrebe frejmvorka **Angular** (tada zvanog Angular2) napraviti svoj jezik "AtScript" koji će predstavljati nadskup TajpSkripta (sa dodatim dekoratorima). Ovaj jezik je trebalo da se transpajlira u TajpSkript, koji bi se transpajlirao u JavaSkript. Plan je (srećom) obustavljen kada je Majkrosoft objavio da će ubaciti dekoratore u TajpSkript. Ovime počinje i neočekivana saradnja Gugla i Majkrosofta na polju veb-tehnologija. Nekoliko godina kasnije, Gugl čak interno prihvata TajpSkript kao zvaničan jezik i postavlja sebi cilj da sav JavaSkript kod migrira u TajpSkript.
+  </lrn-markdown>
+
+  <h3>Webpack</h3>
+
+  <summary lrnMarkdown>
+    Vebpek je bandler modula za moderne JavaSkript aplikacije. Gradi graf zavinosti rekurzivnim prolaskom kroz module i pakuje ih u manji broj bandlova koje će brauzer učitati.
+  </summary>
+
+  <lrn-markdown>
+    Najočiglednija mana JavaSkripta pre ES2015 je nedostatak sistema za modularni razvitak aplikacija, tj. za pisanje koda u odvojenim fajlovima. "Uvlačenje" više skripti u HTML stranicu je moguće, ali je komunikacija između skripti moguća jedino putem globalno vidljivih promenljivih. Developer mora da vodi računa o tome da skripte uključuje u stranicu ispravnim redosledom ako se oslanja na međusobnu komunikaciju skripti. Ovo je jako mukotrpan posao i podložan je greškama kada se uzme u obzir da se tokom poslednjih godina JavaSkript koristi za kreiranje veoma složenih aplikacija.
+
+    Sem toga, dovlačenje pojedinačnih skripti kao posledicu ima veliki broj zahteva ka serveru, što usporava rad aplikacije. S druge strane, pisanje celog koda u jednom fajlu nije skalabilno rešenje. Problem se javlja i u eksternim modulima od kojih aplikacija zavisi.
+
+    Zbog toga su se razvili alati poznati kao "izvršioci zadataka" (vodeći primeri su _gulp_ i _grunt_) koji su na primitivan način rešavali ovaj problem. Developer je morao da u nekoj vrsti konfiguracionog fajla definiše redosled kojim fajlovi treba da se učitaju, a izvršilac je jednostavno konkatenirao sve datoteke, kao da su proizvoljni stringovi, u jedan fajl koji je developer uključivao u stranicu.
+
+    Kao pravo rešenje za ovaj problem nastaje [Vebpek](https://webpack.js.org/) (_Webpack_). Pripada grupi alata koji se nazivaju **bandleri**. Kada procesira aplikaciju, on je potpuno svestan JavaSkripta kao jezika u kome je napisana. Kod se parsira, a u nekim slučajevima se delovi koda i interpretiraju; na osnovu toga se rekurzivno izgrađuje graf zavisnosti koji sadrži svaki modul koji je potreban aplikaciji. Kao krajnji proizvod daje manji broj paketa (nekad i samo jedan) koje će brauzer učitati.
+
+    Veoma je konfigurabilan, što omogućuje granularnije podešavanje veličine i izgleda bandlova, kao i lenjo učitavanje tek kada ih korisnička aplikacija zahteva, čime se ubrzava inicijalno učitavanje aplikacije.
+
+    Konfiguracija Vebpeka bazira se na četiri osnovna koncepta koji su opisani u nastavku.
+
+    Početna tačka za kreiranje grafa zavisnosti u aplikaciji naziva se **ulazna tačka** (_entry point_). Za fajl koji se definiše kao ulazna tačka se još kaže da predstavlja kontektualni koren, odnosno fajl koji pokreće celu aplikaciju.
+
+    Često se za ulaznu tačku bira više fajlova. Najčešća jednostavna postavka kod jednostraničnih aplikacija su dve ulazne tačke: jedna za sam aplikacioni kod, a druga za vendore. Vendori su eksterni moduli: najčešće je to frejmvork koji se koristi u kombinaciji sa drugim eksternim bibliotekama koje su uključene u aplikaciju. Ova postavka se koristi jer omogućava korišćenje obrasca _dugoročnog keširanja vendorskog koda_. (https://medium.com/@okonetchnikov/long-term-caching-of-static-assets-with-webpack-1ecb139adb95)
+
+    Naime, svaki put kada se neki deo aplikacionog koda promeni, mora da se ponovo okači na server i da se ponovo preuzme od strane svih klijenata. Ovo je očigledno neefikasno jer pribavljanje podataka preko mreže može da bude sporo. Zato brauzeri keširaju statičke resurse. Međutim, ukoliko se ne promeni putanja i ime do fajla kada se objavljuje nova verzija, brauzer može da pomisli da fajl nije ažuriran i da klijentu dostavi keširanu verziju. Vebpek zbog ovoga nudi automatsko dodavanje dvadesetocifrenog heksadekadnog broja u ime fajla, koji se generiše nekom funkcijom za heširanje.
+
+    Na ovaj način je omogućeno da menjaju samo imena fajlova koji unose promene u kodu. Ako se vendori ne ažuriraju na novije verzije, njihov heš ostaje isti, pa brauzer koristi keširanu verziju. Izmena aplikacionog koda znači da će pribaviti samo novi kod, a ne čitav kod iznova. Ipak, treba voditi računa o broju bandlova i održati balans: više bandlova znači bolje keširanje, ali slabija kompresija.
+
+    Nakon što Vebpek obradi aplikacioni kod, mora da zna kako da zapše taj rezultat. Ovo se podešava konfiguracijom **izlaza** (_output_). Za trivijalne konfiguracije sa jednom ulaznom tačkom moguće je definisati putanju i ime fajla koji treba da bude zapisan. Za slučaj da veb-aplikacija treba da bude distribuirana kroz nekoliko čankova, kao što je najčešće slučaj, koriste se _zamene_ u imenu (npr. `[name]` će biti zamenjeno imenom ulazne tačke).
+
+    Vebpek može razumeti zavinosti koje postoje između fajlova, čak i ako se ne radi o JavaSkript fajlovima, ukoliko se konfigurišu odgovarajući **čitači** (_loaders_). Čitači su transformacije koje se primenjuju nad izvornim kodom modula. Dozvoljavaju pre-procesiranje fajlova koji se pozivaju u kodu pomoću `import`. Čitači podsećaju na "zadatke" iz drugih bild-alata, i pružaju način za rukovanje koracima pri bildovanju izlaznog bandla. Čitači mogu da transformišu različite jezike, ili da inlajnuju slike i URL-ove sa podacima. Moguće je čak i `import`-ovati CSS datoteke direktno u JavaSkript module.
+
+    Na primer, čitači `style-loader` i `css-loader` se koriste u kombinaciji za čitanje CSS fajlova. Kako je moguć lančan prolazak kroz čitače, mogu se učitati i, na primer, fajlovi sa stilovima koji su pisani u pre-procesorskom jeziku Sass korišćenjem `sass-loader` čitača, koji će kompajlirati Sass u CSS, a da se taj rezultujući CSS zatim prosledi dalje kroz sekvencu čitača.
+
+    **Plaginovi** (_plugin_) su kičmeni stub Vebpeka. Sam Vebpek je izgrađen nad istim sistemom za plaginove koji se koristi u Vebpek konfiguracijama. Sem toga koriste se za bilo šta što čitači nisu u staju da urade. Plagin je JavaSkript objekat koji ima svojstvo `apply` u koji je smeštena funkcija. Poziva je Vebpekov kompilator, i na taj način je plaginu omogućen pristup čitavom životnom ciklusu kompilacije.
+  </lrn-markdown>
+
+  <h3>Zone.js</h3>
+
+  <summary>
+    Zone.js je biblioteka koja omogućava rad sa zonama u JavaSkriptu. Zone daju kontekst izvršenju asinhronih operacija. Mada je glavna prednost bolje rukovanje greškama, nalaze primenu i u profilisanju koda i testiranju.
+  </summary>
+
+  <lrn-markdown>
+    Zone.js je projekat pokrenut od strane Angularovog tima radi boljeg praćenja toka izvršenja asinhronih operacija u JavaSkriptu. Zone su koncept koji postoji u Guglovom jeziku Dart, i obizrom da se u ranijim fazama Angular (tada Angular2) razvijao paralelno u TajpSkriptu i Dartu, bilo je neophodno da se funkcionalnost Zona portuje i za TajpSkript, odnosno JavaSkript.
+
+    U osnovi, zone su **kontekst izvršenja** asinhronih operacija u JavaSkriptu. Omogućuju praćenje konteksta u kome se nalazi definisanje asinronog poziva i presreće sve asinhrone događaje kako bi se mapirali na isti kontekst. Kao rezultat, moguće je, između ostalog, dobiti asinhroni stek poziva procedura ukoliko dođe do greške, što znatno poboljšava iskustvo prilikom razvitka aplikacija. Zone se mogu koristiti i za promenu ponašanja događaja ili za praćenje obavljenih zadataka.
+  </lrn-markdown>
+
+  <h3>Reactive Extensions</h3>
+
+  <summary lrnMarkdown>
+    Reaktivne ekstenzije omogućavaju programiranje korišćenjem nadgledivih promenljvih, kombinujući ga na najbolji način sa funkcionalnim programiranjem.
+  </summary>
+
+  <lrn-markdown>
+    Jedno trivijalno zapažanje o funkcijama u JavaSkriptu jeste da, kada počnu sa izvršenjem, ne mogu se prekinuti sve dok se funkcija ne izvrši do kraja, bez obzira na eksterne (asinhrone) događaje koji čekaju u red na izvršenje. Dakle, **funkcija** je lenjo sinhrono izračunavanje koje kao rezultat daje jednu vrednost. Pod "lenjim" se smatra da se funkcija neće izvršiti nakon deklaracije sve dok ne bude pozvana.
+
+    ES2015 je sa sobom doneo iteratore i generatore; to su funkcije koje mogu da prekinu svoje izvršenje u određenim prekidnim tačkama definisanim od strane programera, i da, kada ponovo budu pozvane, nastave sa izvršenjem počev od tačke prekida. Drugim rečima, **generator** je lenjo sinhrono izračunavanje koje vraća između nula i beskonačno mnogo vrednosti prilikom svake iteracije.
+
+    Istovremeno se pojavio bolji način za upravljanje asinhronim događajima koristeći `Promise`, pomoću kojih se može koncizno definisati funkcija koja treba da se izvrši nakon što se ispuni (ili prekrši) "obećanje" o izvršenju određene asinhrone operacije. **Promis** je, dakle, izračunavanje koje će možda (a možda i neće) kao rezultat imati jednu vrednost.
+
+    Reaktivne ekstenzije imaju za cilj da nastave ovaj niz -- one predstavljaju skup API-ja koje omogućuju "višestruka obećanja", koja su najčešće asinhrone prirode. Drugim rečima, predstavljaju tokove događaja. Obraćanje serveru radi pribavljanja nekih podataka predstavlja "obećanje" da će se odgovor dobiti, ali klik na dugme je tok događaja: može se obaviti proizvoljan broj puta, ili nijednom. Dakle, **nadglediv objekat** je lenjo izračunavanje koje može da na sinhron ili asinhron način kao rezultat ima između nula i beskonačno mnogo vrednosti, počev od trenutka kada je pozvano.
+
+    Reaktivne ekstenzije pružaju mogućnost za registrovanjem funkcije koja će se dogoditi svaki put kada se dogodi neki asinhroni događaj; na primer, klik na dugme. One kombinuju ovu jednostavnu zamisao sa funkcionalnim programiranjem čime znatno olakšavaju upravljanje asinhronim događajima u kodu. Postoje implementacije za različite programske jezike, među kojima su i RxJava (Java), Rx.NET (C#), UniRx (Unity), RxCpp (C++), Rx.rb (Rubi), RxPHP (PHP) i RxJS za JavaSkript.
+
+    Za Reaktivne ekstenzije se ponekad kaže da omogućavaju "funkcionalno reaktivno programiranje". Nema sumnje da su Ekstenzije reaktivne, i operatori definisani kao čiste funkcije znači da se radi o funkcionalnom programiranju; ali termin "funkcionalno reaktivno programiranje" (FRP) ima drugačije značenje. Naime, FRP opisuje kontinualnu promenu podataka u vremenu, dok su reaktivne ekstenzije _diskretne_ prirode i predstavljaju samo API za manipulaciju (uglavnom) asinhronim događajima koji već postoje u programskom jeziku.
+
+    Osnovni koncepti RxJS-a koji rešavaju problem upravljanja asinhronim događajima su sledeći.
+
+    - **Nadgledivi objekti** predstavljaju pojam kolekcije događaja koji se mogu dogoditi u budućnosti.
+    - **Nadgledatelj** je kolekcija funkcija koje znaju koje objekte posmatraju, i znaju kako da upravljaju vrednostima koje "primete" kod objekata koje nadgledaju.
+    - **Pretplata** predstavlja izvršenje nadgledivog objekta, i najčešće se koristi za otkazivanje nadgledanja toka podataka kada on više nije od koristi.
+    - **Operatori** su čiste funkcije koje omogućavaju funkcionalno programiranje nad kolekcijama. Neki od jednostavnijih operatora su `filter`, `concat`, `map`, `flatMap` (poslednja dva kao posledicu imaju da nadgledivi objekti predstavljaju monade).
+    - **Subjekti** su jedini način za emisiju ili multikast podataka ka više nadgledatalja.
+    - **Planeri** su centralizovani dispečeri koji kontrolišu konkurentnost.
+  </lrn-markdown>
+
+  <h3>Angular</h3>
+
+  <summary lrnMarkdown>
+    **Angular** je platforma i frejmvork za izgradnju jednostraničnih aplikacija (SPA) koristeći šablonski jezik nalik na HTML i JavaSkript ili TajpSkript. Frejmvork je podeljen na nekoliko biblioteka, od kojih su neke opcione.
+  </summary>
+
+  <lrn-markdown>
+    Polazeći od ideje da korisničke interfejse treba izgraditi korišćenjem deklarativne paradigme, a da je imperativno ili funkcionalno programiranje bolje za biznis logiku aplikacije, **Angular** adaptira i proširuje HTML sintaksu za definisanje delova korisničkog interfejsa, dozvoljavajući definisanje sprege podataka između modela i pogleda. Kao rezultat ovoga, aplikacije pisane u Angularu se ne oslanjaju na direktnu manipulaciju DOM-om, u cilju lakšeg testiranja, jednostavnijeg razvitka i skalabilnijeg koda.
+
+    Dva su **osnovna cilja** Angulara kao frejmvorka za razvoj front-end aplikacija.
+
+    - Razdvojiti manipulaciju DOM-om od biznis logike aplikacije. Ovo značajno olakšava pristup prilikom programiranja, jer se developer može koncentrisati isključivo na manipulaciju podacima, oslanjajući se na Angular da će ažurirati korisnički interfejs kada dođe do promene podataka.
+    - Odvojiti klijentsku stranu aplikacije od serverske strane. Ovime je omogućeno da se obe strane aplikacije razvijaju paralelno. Sem toga, moguće je jednostavnije ponovo upotrebiti bilo koju od strana jer postoji veoma slaba sprega između njih.
+  </lrn-markdown>
+
+  <h4>Arhitektura Angular aplikacije</h4>
+
+  <summary lrnMarkdown>
+    Aplikacije se pišu u **šablonima** (_templates_) koji su predstavljeni "angularizovanom" verzijom HTML-a, vezanim za klase koje su posebno obeležene kao **komponente** (_componentes_). Ponašanjem komponenti rukovode **direktive** (_directives_). Za njih se vezuju **servisi** (_services_) koje je moguće ubrizgavati u komponente korišćenjem Angularovog DI (_dependency injection_) mehanizma. Šabloni mogu da koriste i posebne (uglavnom čiste) funkcije, **cevi** (_pipes_). Direktive i servisi se grupišu u **module**.
+  </summary>
+
+  <lrn-markdown>
+    Aplikacije pisane u Angularu su modularne; srodne funkcionalnosti su grupisane u Angular **module**. Svaka Angular aplikacija mora da ima barem jedan modul, koreni modul, koji se po konvenciji naziva `AppModule`.
+
+    Mada će manje aplikacije biti izgrađene samo od korenog modula, veće aplikacije, pa i aplikacije srednje veličine, će biti podeljene u skup modula. Ovi moduli obuhvataju kod koji je vezan za jedan aplikacioni domen, za tok rada, ili za skup komponenti koje imaju sličnu funkcionalnost.
+
+    Da bi Angular znao da određena klasa predstavlja modul, ona treba biti obeležena dekoratorom `@NgModule`. Taj dekorator je funkcija koja prima objekat koji opisuje modul. Najvažnija svojstva tog objekta su:
+
+    - `declarations`, koji sadrži klase pogleda (komponente, direktive i cevi) koje pripadaju modulu;
+    - `imports`, drugi moduli koji su potrebni tekućem;
+    - `exports`, podskup deklaracija koje su vidvljive modulu koji uvozi ovaj modul;
+    - `providers`, stvaratelji servisa koje ovaj modul doprinosi globalnoj kolekciji servisa.
+
+    Šabloni kojima se definiše izgled aplikacije su _dinamični_. Kada ih Angular renderuje, on transformiše DOM oslanjajući se na instrukcije koje se zadaju **direktivama**. Posebna vrsta direktive koja uz sebe ima vezan i pogled (pomoću šablona) naziva se komponenta.
+
+    Angular razlikuje tri vrste direktiva:
+
+    - **komponente**, direktive sa šablonom;
+    - **strukturalne direktive**, direktive koje menjaju lejaut DOM-a dodavanjem ili uklanjanjem DOM elemenata;
+    - **atributivne direktive**, direktive koje menjaju izgled ili ponašanje elementa, komponente ili druge direktive.
+
+    **Komponenta** je najčešća vrsta direktive; kontroliše deo ekrana koji se naziva **pogled**. Logika koja podržava pogled se definiše unutar klase. Takva klasa može da interaguje sa pogledom preko API-ja koji se sastoji od atributa i metoda. Ovde nije mesto biznis-logici aplikacije (na primer pribavljanje podataka sa servera); tome služe servisi.
+  </lrn-markdown>
+
+  <p>
+    <strong>Strukturalne direktive</strong> oblikuju i dinamički menjaju
+    <i>strukturu</i> pogleda i odgovorne su za promenu strukture stranice. Primeri ugrađenih direktiva su
+    <code>NgIf</code>, <code>NgSwitch</code> i
+    <code>NgFor</code>. S obzirom na to da se ove direktive bave lejautom, mogu se u teoriji primenjivati samo nad
+    <code>&lt;ng-template></code> tagom koji predstavlja, kako mu ime govori, samo
+    <i>šablon</i> za kreiranje dela DOM-a.
+  </p>
+
+  <pre><code [lrnCode]="'html'">{{ structuralDirectives.noSugar }}</code></pre>
+
+  <p>
+    Kako je najčešći slučaj da je potrebno uticati samo na jedan element (u ovom primeru
+    <code>&lt;span></code>), gornji kod se može napisati kraće na sledeći način.
+  </p>
+
+  <pre><code [lrnCode]="'html'">{{ structuralDirectives.partialSugar }}</code></pre>
+
+  <p>
+    Ovo se dodatno može skratiti korišćenjem
+    <b>mikro-sintakse</b>, kao što je prikazano u sledećem isečku.
+  </p>
+
+  <pre><code [lrnCode]="'html'">{{ structuralDirectives.microSyntax }}</code></pre>
+
+  <lrn-markdown>
+    U praksi se najčešće sreće ovakav način pisanja strukturalnih direktiva. Na jednom elementu je moguće definisati samo jednu strukturalnu direktivu.
+
+    **Atributivne direktive** se koriste kao atributi elemenata. Na primer, ugrađena direktiva `NgStyle` može da promeni nekoliko stilova jednog elementa istovremeno.
+
+    Angular zna da neka klasa predstavlja komponentu ili direktivu na osnovu **meta-podataka**. Drugim rečima, meta-podaci govore Angularu kako da obradi klasu. U TajpSkriptu se meta-podaci dodaju primenom **dekoratora**.
+
+    Na primer, dekorator za komponente je funkcija `Component` i primenjuje se na klasu njenim pozivom neposredno ispred definicije klase, uz prefiks `@`. Ovaj dekorator očekuje jedan parametar -- objekat koji bliže određuje o kakvoj se komponenti radi. Neke od najčešće korišćenih svojstava su sledeća.
+
+    - `selector` predstavlja CSS selektor koji govori Angularu na osnovu kakvog taga da prepozna da treba da instancira ovu komponentu. Na primer, ako se `selector` postavi na string `list-of-users` i u nekom šablonu se nađe `&lt;list-of-users>&lt;/list-of-users>`, Angular će na to mesto instancirati ovu komponentu.
+    - `templateUrl` je string koji predstavlja putanju koja vodi do fajla u kome je definisan šablon koji odgovara ovoj komponenti. Alternativno se šablon može direktno navesti kao svojstvo `template` konfiguracionog objekta.
+    - Slično, `styleUrls` je niz stringova koji predstavlja putanje koje vode do fajlova u kome se nalaze CSS fajlovi vezani za komponentu.
+
+    **Ulazi** i **izlazi** komponenti i direktiva se takođe deklarišu postavljanjem dekoratora `@Input` i `@Output` na atribute klase. Ovo omogućava da se u šablonima prosleđuju podaci u komponentu i da se osluškuju događaji iz komponente.
+
+    Angular kreira i uništava komponente dok se korisnik kreće kroz aplikaciju. Developer se može pretplatiti na ove događaje implementacijom odgovarajućih interfejsa. Na primer, aplikacija može obaviti HTTP zahtev ka serveru kada se pojavi komponenta za prikaz korisnika; u tom slučaju klasa koja odgovara takvoj komponenti treba da implementira interfejs `OnInit`, odnosno da sadrži definiciju funkcije `ngOnInit`, u kojoj će se ispaliti HTTP zahtev.
+
+    Ima ukupno osam funkcija koje se mogu definisati kako bi se reagovalo na prolazak kroz faze životnog ciklusa direktive.
+
+    - `ngOnChanges()` se koristi kada treba da se reaguje na postavljanje ili promenu ulaznih podataka u komponentu. Ova metoda prima objekat koji sadrži trenutne i prethodne vrednosti. Zove se svaki put kada se promeni jedan ili više ulaza.
+    - `ngOnInit()` se zove nakon inicijalizacije direktive ili komponente, tj. nakon što Angular prvi put prikaže spregnute atribute i postavi ulazne podatke. Poziva se samo jednom, nakon prvog poziva `ngOnChanges().`
+    - `ngDoCheck()` treba predefinisati kada je potrebno "uloviti" promene koje Angular na svoju ruku ne može. Zove se prilikom svakog pokretanja algoritma za detekciju promena, odmah nakon `ngOnChanges()` i `ngOnInit()`.
+    - `ngAfterContentInit()` sadrži kod koji će se pokrenuti nakon što Angular projektuje eksterni sadržaj u pogled komponente. Zove se jednom nakon prvog poziva `ngDoCheck()`. Koristi se samo uz komponente.
+    - `ngAfterContentChecked()` se poziva nakon svake provere projektovanog sadržaja: jednom posle `ngAfterContentInit()` i svaki put posle `ngDoCheck()`. Koristi se samo uz komponente.
+    - `ngAfterViewInit()` će biti okinut nakon što Angular inicijalizuje pogled komponente, kao i sve poglede komponenti koji predstavljaju decu tekuće. Koristi se samo uz komponente i zove se jednom posle prvog poziva `ngAfterContentChecked()`.
+    - `ngAfterViewChecked()` se poziva nakon svake provere pogleda i pogleda dece. Zove se jednom nakon `ngAfterViewInit()` i svaki put nakon `ngAfterContentChecked()`; koristi se samo uz komponente.
+    - `ngOnDestroy()` predstavlja čišćenje pred uništavanje komponente. Ovde treba ukinuti pretplatu na nadgledive promenljive i prestati sa osluškivanjem događaja kako bi se izbeglo curenje memorije. Ovo je poslednji poziv koji vezan za komponentu koji će Angular obaviti pre nego što je uništi.
+  </lrn-markdown>
+
+  <p>
+    Pogled komponente se definiše pomoću
+    <b>šablona</b>. Šabloni u Angularu dosta podsećaju na HTML, ali sadrže i neke dodatke koje preciznije definišu kako treba renderovati komponentu. Na primer, šabloni koriste poznate tagove kao što su
+    <code>&lt;p></code> i <code>&lt;input></code>, ali definišu i dodatnu sintaksu kao što je
+    <code>*ngIf</code>, <code>[users]</code>, <code>(click)</code>, <code>[(ngModel)]</code>, itd.
+  </p>
+
+  <p>
+    Skoro sav validan HTML je i validan Angular šablon. Glavna razlika je
+    <code>&lt;script></code> element koji se u potpunosti ignoriše. Takođe, za neke elemente kao što su
+    <code>&lt;html></code>,
+    <code>&lt;body></code>, i slične, nema mnogo smisla da se nađu u šablonu. Još jedna značajna razlika jeste da Angularovi šabloni prave razliku između malih i velikih slova.
+  </p>
+
+  <lrn-markdown>
+    Bez frejmvorka, developer bi sam bio odgovaran za ažuriranje DOM-a. Angular podržava **vezivanje podataka** (_data binding_), tj. mehanizam za koordinaciju delova šablona sa delovima komponenti (pogled i podaci). Dodavanje vezivnih oznaka u šablonima govori Angularu kako da izvrši povezivanje.
+
+    Postoje četiri načina za vezivanje podataka.
+  </lrn-markdown>
+
+  <ul>
+    <li>
+      Najjednostavniji način za prikazivanje atributa komponente je povezivanje imena pomoću
+      <b>interpolacije</b> (<i>interpolation</i>). Na primer, moguće je pozdraviti korisnika sa `Welcome, {{'\{\{ user.name \}\}'}}`.
+    </li>
+    <li>
+      Postavljanje svojstva elementa u šablonu postiže se
+      <b>vezivanjem svojstva</b> (<i>property binding</i>). Na primer, dugme se može kondiciono obeležiti kao neaktivno sa
+      <code>&lt;button [disabled]="isDisabled">Cancel&lt;/button></code>.
+    </li>
+    <li>
+      <b>Vezivanje događaja</b> (<i>event binding</i>) postiže se registrovanjem dela koda koji se izvršava (najčešće poziv funkcije) kada se desi određeni događaj. Na primer, može se izvršiti funkcija
+      <code>change</code> svaki put kada se klikne na dugme sa
+      <code>&lt;button (click)="change()">Change&lt;/button></code>.
+    </li>
+    <li>
+      <b>Dvosmerno vezivanje</b> (<i>two-way data binding</i>) postiže se kombinacijom vezivanja svojstva i vezivanja događaja i zapravo predstavlja sintaksički šećer za navođenje obeju vrsti vezivanja. Na primer, ugrađen
+      <code>NgModel</code> koji se koristi za povezivanje vrednosti polja za unos sa modelom podataka se najčešće koristi u obliku
+      <code>[(ngModel)]="name"</code>, što je zapravo samo skraćeni zapis za
+      <code>[ngModel]="name" (ngModelChange)="name = $event"</code>.
+    </li>
+  </ul>
+
+  <p>
+    Za interpolaciju se koriste dvostruke vitičaste zagrade,
+    <code>{{ '\{\{ ... \}\}' }}</code>. Tekst između njih se smatra
+    <b>šablonskim izrazom</b> (<i>template expression</i>). Angular ga prvo izvršava, a zatim ga konvertuje u string. JavaSkript izrazi koji imaju sporedne efekte su zabranjeni u šablonskim izrazima (dodela, uključujući, pored
+    <code>=</code>, i <code>+=</code>, <code>*=</code>, itd; operator
+    <code>new</code>; ulančavanje izraza pomoću <code>;</code> ili
+    <code>,</code>; inkrementiranje i dekrementiranje). Sem ovoga, zabranjeni su i bitski operatori
+    <i>ili</i> <code>|</code> i <i>i</i>
+    <code>&</code>. Dodata su dva nova operatora koji ne postoje u JavaSkriptu (ni TajpSkriptu):
+    <i>cev</i> <code>|</code> i <i>bezbedan pristup atributu</i>
+    <code>?.</code>. Šablonski izrazi mogu da pristupaju instanci komponente. Drugim rečima, instanca komponente predstavlja
+    <b>kontekst izraza</b>.
+  </p>
+
+  <lrn-markdown>
+    Šablonski izrazi bi trebalo da imaju sledeće osobine:
+
+    - **Nema vidljivih sporednih efekata.** Izraz ne sme ni na koji način da menja aplikaciju, već da samo vrati vrednost ciljnog atributa. Ovo je najznačajnije pravilo jer se na njega oslanja striktna ideologija Angulara da "podaci teku jednosmerno". Čitanje promenljive nikada ne bi smelo da utiče na promenu neke druge promenljive; pogled mora da ostane stabilan posle jednog prolaska kroz funkciju za renderovanje.
+    - **Brzo izvršavanje.** Angular izvršava šablonske izraze na svaki ciklus detekcije promena. Ti ciklusi mogu biti okinuti od strane raznih asinhronih aktivnosti; sem rezultata HTTP zahteva ili događaja iniciranih od strane tajmera, to mogu biti čak i pokreti mišem. Izrazi zato moraju da se brzo izvršavaju kako se ne bi narušile performanse aplikacije. U slučaju neophodnog kompleksnog izračunavanja treba koristiti neku tehniku keširanja, ili iskoristiti cevi.
+    - **Jednostavnost.** Mada je moguće pisati kompleksne izraze, treba ih izbegavati. Idealno bi svi izrazi trebalo da se sastoje samo od imena atributa, eventualno uz negiranje operatorom `!`. Kompleksna aplikaciona logika treba da bude u klasi, a biznis logika u servisima. Šablon treba da se bavi samo prikazom podataka, a ne da manipuliše njima.
+    - **Idempotencija**. Idempotentna operacija je operacija koja nema dodatne efekte ako se pozove više puta sa istim parametrima. U kontekstu Angulara, idempotentni šablonski izraz uvek vraća istu vrednost, sve dok se neka od promenljivih od kojih zavisi ne promeni. Ako idempotentni izraz vraća string ili broj, vraća isti string ili broj kada se pozove dvaput uzastopno. Ako izraz vraća objekat, vraća istu _referencu_ na objekat kada se pozove dvaput uzastopno.
+
+    S druge strane, **šablonski iskazi** (_template statement_) odgovaraju na događaje koje okidaju mete povezivanja, što mogu biti elementi, komponente ili direktive. Šablonski iskaz _mora_ da ima sporedni efekat, jer predstavlja način za ažuriranje stanja aplikacije na osnovu korisnikove interakcije. Ovo predstavlja drugu stranu Angularove ideologije o jednosmernom kretanju podataka.
+
+    Slično šablonskim izrazima, i iskazi koriste jezik vrlo sličan JavaSkriptu. Ovde nisu podržani dodatni operatori, a zabranjeni su isti operatori kao i kod šablonskih izraza. S druge strane, dozovoljena je dodela `=` (ali ne i `+=` i slični) i lančanje sa `;` i `,`.
+
+    Iskazi takođe imaju pristup jedino instanci komponente za koju su vezani. Osim ovoga, šablon ima i svoj lokalni kontekst (npr. `$event` objekat, ulazne promenljive kao što je `user` u `for` petlji oblika `let user of users`, reference na elemente, direktive ili komponente koristeći prefiks `#`). Kontekst šablona ima prednost u odnosu na kontekst komponente. Iz šablona se ne mogu referencirati globalni objekti kao što su `window`, `document`, `console` i `Math`.
+  </lrn-markdown>
+
+  <h4>Detektovanje promena</h4>
+
+  <summary>
+    Ključna osobina svih modernih SPA frejmvorka jeste implementacija neke vrste MVC šablona: promena podataka treba kao posledicu da ima automatsko ažuriranje pogleda, u skladu sa definisanim pravilima za predstavljanje tih podataka (u slučaju Angulara se ovo postiže putem šablona).
+  </summary>
+
+  <lrn-markdown>
+    Osnovni zadatak algoritma za detekciju promena jeste da na osnovu unutrašnjeg stanja programa stvori korisnički interfejs. Stanje može biti skup objekata, nizova, primitiva, itd. Korisnički interfejs mogu biti paragrafi, forme, linkovi, dugmadi, i slično; ali s obizom na to da se radi o veb-aplikacijama, možemo slobodno govoriti o DOM-u. Ovaj proces, pri kome se uzima proizvoljna struktura podataka kao ulaz, a na izlazu se dobija DOM koji brauzer može predstaviti korisnicima, naziva se **renderovanje**.
+
+    Stoga se može reći da je renderovanje proces koji se može opisati jednom funkcijom. Međutim, stvar postaje znatno komplikovanija kada se promene u modelu (unutrašnjem stanju sistema) dešavaju tokom vremena. Drugim rečima, promena u modelu se u javlja _nakon_ što je korisnički interfejs već renderovan. Kako proceniti šta se promenilo u modelu, i kako ta promena treba da utiče na promenu interfejsa? Pristup i manipulisanje DOM stablom je skupa operacija; prema tome, ne samo da treba odrediti šta se promenilo, već i kako tu promenu manifestovati na korisnički interfejs uz što manje operacija.
+
+    Ovakvom problemu se može pristupiti na mnogo načina. Tradicionalni način je slanje novog HTTP zahteva i ponovno renderovanje čitave stranice. Moderan pristup, u duhu SPA aplikacija, jeste primena algoritama za traženje razlike (_diffing_) između starog i novog DOM-a i renderovanje samo delova koji su se promenili.
+
+    No, postoji još jedno, mnogo fundamentalnije pitanje od implementacije algoritma za detektovanje promena: _kada_ ga pokrenuti? Drugim rečima, kada _potencijalno_ može doći do promene stanja aplikacije? Neke od najčešćih izvora su sledeći:
+
+    - događaji: klik mišem, pritisak dugmeta sa tastature, slanje forme, itd;
+    - mreža: pribavljanje podataka sa servera;
+    - tajmeri: `setTimeout`, `setInterval`.
+
+    Ono što je zajedničko pobrojanim izvorima mogućih promena unutrašnjeg stanja aplikacije jeste da su svi oni **asinhroni**. Ovo dovodi do zaključka da, kada god se dogodi neka sinhrona operacija, postoji mogućnost da je došlo do promene stanja aplikacije. I tada neko treba da obavesti Angular da ažurira DOM. Za ovo se koriste **zone** (iz biblioteke Zone.js).
+
+    Angular osluškuje događaj `onTurnDone` definisan nad `NgZones`. Kada se primeti događaj, zove se funkcija `tick()` koja u suštini pokreće algoritam za detektovanje promena.
+
+    Angularov algoritam za detekciju promena je koncipiran tako da _svaka_ komponenta ima svoj detektor. Ovo je od velikog značaja jer pruža developeru potpunu kontrolu nad time da li komponenta treba automatski da prolazi kroz proces detekcije promena, ali i omogućava developeru da ručno zove (i po potrebi menja) način rada algoritma.
+
+    S obzirom na to da je Angular aplikacija sastavljena od stabla komponenti, očigledno je da postoji i **stablo detektora promena**. Detekcija promena se obavlja odozgo naniže za svaku komponentu, pri svakom asinhronom događaju, počev od korene komponente. U ovom stablu je bitno napomenuti da podaci uvek idu _odozgo naniže_, odnosno od korena prema listovima. Ovime se dobija na performansama prilikom detekcije jer je mnogo lakše predvideti ponašanje nego u slučaju kada postoje ciklusi. Drugim rečima, graf komponenti treba da striktno bude stablo.
+
+    Još jedno relevantno opažanje jeste da detekcija promena mora biti stabilna posle jednog prolaza. Ukoliko neka od komponenti prouzrkuje bilo kakav sporedni efekat _tokom_ prolaska kroz stablo komponenti radi detekcije, Angular će prijaviti grešku. (U režimu za development, Angular ispaljuje detekciju promena dvaput kako bi proverio da li ima sporednih efekata; u bildu za produkciju se detekcija promena izvršava samo jednom po ciklusu.)
+
+    Detekcija promena u Angularu je brza, čak i kada svi detektori vezani za komponente ostanu na podrazumevanim podešavanjima. Moguće je izvršiti na hiljade ispitivanja za manje od 10 milisekundi (što se procenjuje kao gornja granica za izvšenje JavaSkripta radi postizanja renderovanja od 60 frejma u sekundi). Ovo je moguće zbog činjenice da Angular generiše kod takav da ga **virtuelna mašina može optimizovati** prilikom izvršenja.
+
+    Ako bi Angular pružio neku generišku funkciju za detekciju promena i primenjivao je nad svakom komponentom (koja je u suštini proizvoljna klasa definisana od strane programera, obeležena dekoratorom `@Component`), dinamički kod generisan od strane VM-a bi bio polimorfan jer bi se primenjivao nad različitim objektima svaki put kada se izvršava.
+
+    Angular zato za svaku komponentu ponaosob kreira posebne detektore, koji su monomorfni po prirodi, jer su potpuno svesni strukture klase koja predstavlja komponentu. VM može veoma dobro da optimizuje ovakav kod, što ga čini izuzetno brzim (premda istovremeno i nešto većim).
+
+    Ipak, i pored te brzine, moraju se obići svi čvrovi u stablu komponenti, koje može biti veliko za obimnije aplikacije. Ovo je posedica činjenice da JavaSkript kao jezik ne pruža garanciju za mutaciju objekata. Ali, ako je developer svestan ovoga, i odluči da koristi nepromenljive (_immutable_) strukture podataka, postoji način na koji može da obavesti Angular o tome kako bi skratio oblazak stabla.
+
+    Ako komponenta zavisi samo od svojih ulaza (atributi klase obeleženi dekoratorom `@Input`), i ti ulazi su **nepromenljive** (_immutable_) strukture podataka, onda se ta komponenta može promeniti ako i samo ako se promeni neki od ulaznih parametara. Prema tome, podstablo te komponente se u određenim situacijama može zaobići prilikom obilaska radi detekcije promena. Naravno, komponenta i dalje može imati interno stanje, ali samo ako ono zavisi isključivo od ulaznih parametara.
+
+    Ako komponenta zavisi samo od svojih ulaza, i ti ulazi su **nadgledivi** (_observable_), onda se ta komponenta može promeniti ako i samo ako neki od ulaznih parametara emituje događaj. Mada ovo zvuči slično goreopisanoj metodi koja koristi nepromenljive strukture podataka, razlika je zapravo velika. Ako postoji stablo komponenti sa nepromenljivim vezama, algoritam mora da obiđe sve komponente, počev od korena. Ovo nije slučaj kada se radi sa nadgledivim objektima. Ovo je naizgled mala promena, ali u slučaju Angulara povlači sa sobom neke ozbiljnije implikacije.
+
+    Nadgledivi objekti su na lošem glasu jer mogu da, u opštem slučaju, prouzrokuju kaskadne promene koje se propagiraju kroz sistem, pri čemu je lako izgubiti kontrolu nad ažuriranjima, čime se dobijaju ciklusi; sem toga, aplikacija postaje izuzetno teška za debagiranje.
+
+    Međutim, korišćenje nadgledivih objekata u Angularu neće rezultovati ovakvim problemima. Događaj okinut od strane nadgledivih objekta samo obeležava da put od komponente do korena treba da bude proveren pri sledećem CD ciklusu. Zatim se pokreće uobičajen proces detekcije promena, koji prolazi kroz stablo pretragom u dubinu. Drugim rečima, _redosled ažuriranja se ne menja_, bez obzira na to da li developer koristi nadgledive objekte ili ne.
+  </lrn-markdown>
+
+  <p>Ovo zapažanje je izuzetno važno za performanse, jer se korišćenje nadgledivih objekata svodi na prostu optimizaciju, a ne na promenu načina razmišljanja u frejmvorku. Naime, pod pretpostavkom da se promene ne dešavaju često, korišćenje nadgledivih objekata smanjuje kompleksnost algoritma za detekciju promena od
+    <lrn-katex [math]="'O(N)'"></lrn-katex>
+    na
+    <lrn-katex [math]="'O(\\log N)'"></lrn-katex>
+    , pri čemu je
+    <lrn-katex [math]="'N'"></lrn-katex>
+    broj veza u sistemu.
+  </p>
+
+  <lrn-markdown>
+    Komponente se mogu obeležiti kao ovakve jednostavnim navođenjem načina detekcije promene u okviru meta-podataka klase. Postavljanjem `changeDetection` na `ChangeDetectionStrategy.OnPush` se Angular obaveštava da detekcija promene treba da prođe kroz ovaj taj čvor u stablu samo ako je došlo do promene ulaznih parametara komponente.
+
+    Sofisticiranije optimizacije se mogu obaviti direktnim pristupom objektu koji je zadužen za detekciju promena nad tom instancom komponente. Objektu se može pristupiti ubrizgavanjem zavisnosti za tip `ChangeDetectorRef`. Nad dobijenim objektom se može izvršiti funkcija `markForCheck()` koja obeležava da put od tekuće komponente do korena treba biti proveren sledeći put kada se pokrene detekcija promena.
+  </lrn-markdown>
+
+  <h4>Ubrizgavanje zavisnosti</h4>
+
+  <blockquote>
+    <p>
+      Kada sam odeš do frižidera po nešto, možeš da napraviš problem. Možda zaboraviš da zatvoriš vrata, možda uzmeš nešto što ti mama i tata ne bi dozvolili. Možda čak tražiš nešto što ne postoji ili mu je istekao rok trajanja.
+    </p>
+
+    <p>
+      Umesto toga, treba da se javiš da "želiš da popiješ nešto uz ručak", a tata i mama će se postarati da te piće čeka na stolu kada budeš seo da jedeš.
+    </p>
+
+    <cite>
+      Džon Manš, odgovor na pitanje <a
+      href="https://stackoverflow.com/a/1638961/2131286">"Kako objasniti šta je ubrizgavanje zavisnosti petogodišnjaku?"</a>.
+    </cite>
+  </blockquote>
+
+  <lrn-markdown>
+    Ubrizgavanje zavisnosti (_dependency injection_, DI) je arhitekturni obrazac gde jedan objekat pruža zavisnosti drugom objektu. **Zavisnost** je objekat koji može da se koristi (servis); **ubrizgavanje** je prosleđivanje zavinosti objektu koji od njega zavisi (klijent) i koji treba da ga koristi. Po kreiranju, servis postaje deo **stanja** klijenta. Fundamentalni zahtev obrasca je da se servis _prosleđuje_ klijentu; klijent ga ne kreira, niti obavlja pretragu za njim.
+
+    Angular dolazi sa mehanizmom za ubrizgavanje zavinosti i predstavlja njegov sastavni deo. Nemoguće je pisati bilo kakvu realnu aplikaciju u Angularu bez korišćenja ovog mehanizma.
+
+    Da bi Angular mogao da obavi ubrizgavanje kako valja, on mora biti svestan svih klasa koje su kandidati za **servise**. Ovo se postiže obeležavanjem klase bilo kojim dekoratorom, a ukoliko odgovarajući dekorator ne postoji (klasa nije komponenta, direktiva, cev, niti modul; to je obična klasa koja enkapsulira neku funkcionalnost, npr. biznis logiku ili komunikaciju sa serverom), poziva se dekorator `Injectable`. On ne prima nikakve parametre i predstavlja najjednostavniji dekorator u Angularu, koji _samo_ obeležava klasu kao potencijalan servis koji se može iskoristiti u procesu razlučivanja zavinosti među klasama.
+
+    Ubrizgavanje servisa u klasu obavlja se preko konstruktora, najčešće samo na osnovu tipa podataka, mada postoje i napredniji načini za razlučivanje odgovarajućih zavinosti. Kada Angular negde u svom kodu bude instancirao klasu (npr. komponentu) pozivom konstruktora, na osnovu tipa podatka će pretražiti hijerarijsko stablo zavinosti i proslediti objekat odgovarajućeg tipa.
+
+    Zavinosti se navode najčešće u modulima, i takve zavisnosti će biti singltoni nad celom aplikacijom. Ukoliko je potrebno da svaka komponenta ima svoju instancu servisa, onda se zavinosti mogu navesti i u okviru komponente (na primer, komponenta za tabove bi mogla imati prateći servis u kome se nalazi nadgledivi objekat koji predstavlja naslov trenutno selektiranog taba; jasno je da će svaka instanca ove komponente zahtevati posebnu klasu, a ne jedisntven singlton).
+
+    DI omogućava jednostavnu zamenu servisa drugim, pod uslovom da imaju isti API, tj. iste potpise javnih metoda u atributa. Ovo je izuetko korisno prilikom testiranja komponenti koje u produkciji zavise od servera. U kodu za testiranje je samo potrebno pružiti drugu klasu, koja radi sa lokalnim lažnim podacima (tzv. _mock_ servisi) sa istim interfejsom kao "pravi" servis. Sem ovoga, omogućena je jednostvna konfiguracija plagin komponenti i modula. Zvaničan ruter se konfiguriše pozivom funkcije kojoj se kao paramter dostavlja konfiguracija rutera, a povratna vrednost je instanca rutera koja se može korsitit kroz celu aplikaciju, bilo za osluškivanje promena URL-a ili za čitanje parametara iz URL-a.
+  </lrn-markdown>
+
+  <h4>Zone u Angularu</h4>
+
+  <lrn-markdown>
+    Kao što je već rečeno, biblioteka Zone.js implementira zone; to je mehanizam koji omogućava enkapsulaciju i presretanje asinhronih događaja u brauzeru. Angular koristi ovaj kontekst izvršenja na osnovu koga prati početak i okočenje izvršenja asinhronih aktivnosti, što npr. omogućuje da zna kada treba pokrenuti algoritam za detekciju promena. (https://angular-2-training-book.rangle.io/handout/zones/)
+
+    Zone.js pruža jednu globalnu zonu koja se može forkovati i proširiti da detaljnije enkapsulira i izoluje asinhrono ponašanje, što Angular radi u vidu servisa `NgZone`.  Ovaj servis se može ubrizgati kao zavinost u bilo koju direktivu, cev ili servis. U njemu je implementiran određen broj metoda i nadgledivih promenljivih koji služe za ispitivanje stanja Angularove zone i za izvršenje koda unutar ili van ove zone.
+
+    - `onUnstable` obaveštava da je kod počeo za izvršenjem unutar Angularove zone.
+    - `onMicrotaskEmpty` obaveštava da nema mikro-zadataka u redu za izvršenje. Angular se interno pretplaćuje na ovaj događaj da bi signalizirao da treba pokrenuti detekciju promena.
+    - `onStable` se okida kada se obavi poslednji mikrozadatak, što znači da su se obavili svi mikrozadaci i da je detekcija promena obavljena.
+    - `onError` obaveštava da je došlo do greške. Angular se interno pretplaćuje na ovaj događaj i šalje neuhvaćenu grešku svom rukovodiocu grešaka koji štampa grešku u konzoli.
+
+    Kako svi asinhroni događaji koji se obavljaju unutar Angularove zone mogu okinuti detekciju promena, Angular nudi način za izvršavanje asinhronih događaja koji neće okinuti detekciju promena (npr. kod za ispis trenutnog vremena može koristiti `setInterval`; nema potrebe da Angular traži promenu u celom stablu jer je developer svestan da je taj poziv funkcije namenjen ažuriranju samo jedne stvari). Ovo se ostvaruje pozivom metode `runOutsideAngular` nad ubrizganom instancom `NgZone`.
+  </lrn-markdown>
+
+  <h2>Lernejaro moduli</h2>
+
+  Lernejaro je sačinjen od skupa modula koji mogu funkcionisati nezavisno, ali su načinjeni tako da dobro funkcionišu u međusobnoj sprezi jer dele zajedničke API osobine.
+
+  Ipak, posebno se izdvajaju dva centarlna modula, _Prezento_ (prezentacija) i _Kajero_ (sveska), za koje se očekuje da svaki predavač koristi kada koristi Lernejaro. Ovi moduli, respektivno, služe za izgradnju prezentacije i materijala za učenje u vidu "digitalne sveske".
+
 </lrn-notebook>
