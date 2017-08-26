@@ -12,8 +12,6 @@ $label-height: 3ex;
 
 .wrapper {
   display: block;
-  font-family: Roboto, sans-serif;
-  //padding: 1ex;
   box-sizing: border-box;
   width: 100%;
   padding-bottom: $label-height * .6;
@@ -30,7 +28,6 @@ input {
   outline: none;
   border: none;
   border-bottom: solid $input-border-width rgba(black, .25);
-  font-family: Roboto, sans-serif;
   height: $input-height;
   padding: 0;
   margin: 0;
