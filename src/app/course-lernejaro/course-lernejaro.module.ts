@@ -7,17 +7,12 @@ import {RouterModule} from '@angular/router'
 import {MarkdownModule} from '../markdown/markdown.module'
 import {PresentationModule} from '../presentation/presentation.module'
 import {MarkdownMarkupComponent} from './markdown-markup/markdown-markup.component'
-// tslint:disable-next-line
-import {IntroducingFlowchartsComponent} from './introducing-flowcharts/introducing-flowcharts.component'
-import {FlowchartModule} from '../flowchart/flowchart.module'
 import {IntroducingTablesComponent} from './introducing-tables/introducing-tables.component'
 import {TableModule} from '../table/table.module'
 import {IntroducingBitmapsComponent} from './introducing-bitmaps/introducing-bitmaps.component'
 import {BitmapModule} from '../bitmap/bitmap.module'
 import {IntroducingGeometryComponent} from './introducing-geometry/introducing-geometry.component'
 import {PlanimetricsModule} from '../planimetrics/planimetrics.module'
-import {ChartModule} from '../chart/chart.module'
-import {IntroducingChartsComponent} from './introducing-charts/introducing-charts.component'
 import {FormsModule} from '@angular/forms'
 import {UiModule} from '../ui/ui.module'
 import {IntroducingNotebookComponent} from './introducing-notebook/introducing-notebook.component'
@@ -34,18 +29,16 @@ import {CodeModule} from '../code/code.module'
   imports: [
     CommonModule,
     FormsModule,
-    LessonNavigatorModule,
-    MarkdownModule,
-    PresentationModule,
-    FlowchartModule,
-    TableModule,
-    BitmapModule,
-    PlanimetricsModule,
-    ChartModule,
     UiModule.forRoot({
       color: 'indigo',
       theme: 'light',
     }),
+    LessonNavigatorModule,
+    MarkdownModule,
+    PresentationModule,
+    TableModule,
+    BitmapModule,
+    PlanimetricsModule,
     NotebookModule,
     KatexModule,
     QuizModule,
@@ -67,10 +60,6 @@ import {CodeModule} from '../code/code.module'
         component: MarkdownMarkupComponent,
       },
       {
-        path: '4-Flowcharts',
-        component: IntroducingFlowchartsComponent,
-      },
-      {
         path: '5-Tables',
         component: IntroducingTablesComponent,
       },
@@ -81,10 +70,6 @@ import {CodeModule} from '../code/code.module'
       {
         path: '9-Geometry',
         component: IntroducingGeometryComponent,
-      },
-      {
-        path: '10-Charts',
-        component: IntroducingChartsComponent,
       },
       {
         path: '11-Class',
@@ -116,11 +101,9 @@ import {CodeModule} from '../code/code.module'
     CourseLernejaroComponent,
     IntroductionComponent,
     MarkdownMarkupComponent,
-    IntroducingFlowchartsComponent,
     IntroducingTablesComponent,
     IntroducingBitmapsComponent,
     IntroducingGeometryComponent,
-    IntroducingChartsComponent,
     IntroducingNotebookComponent,
     IntroducingKvizoComponent,
   ],

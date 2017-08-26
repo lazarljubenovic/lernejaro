@@ -24,13 +24,6 @@ export const LESSONS: Lesson[] = [
         icon: LessonIcon.Cog,
     },
     {
-        id: '4',
-        name: 'Flowcharts',
-        color: LessonColor.Blue,
-        icon: LessonIcon.Magnet,
-        isUnlocked: true,
-    },
-    {
         id: '5',
         name: 'Tables',
         color: LessonColor.DeepOrange,
@@ -61,13 +54,6 @@ export const LESSONS: Lesson[] = [
         name: 'Geometry',
         color: LessonColor.Lime,
         icon: LessonIcon.Flask,
-        isUnlocked: true,
-    },
-    {
-        id: '10',
-        name: 'Charts',
-        color: LessonColor.DeepPurple,
-        icon: LessonIcon.Magnet,
         isUnlocked: true,
     },
     {
