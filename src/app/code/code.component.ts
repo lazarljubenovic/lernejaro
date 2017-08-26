@@ -10,8 +10,9 @@ import {
   ViewEncapsulation,
 } from '@angular/core'
 import {highlightElement} from 'prismjs'
-import {LoggerService} from '../logger.service'
+import {LoggerService} from '../logger/logger.service'
 import {PresentationComponent} from '../presentation/presentation.component'
+import {NoLanguageSpecifiedErrorComponent} from './errors'
 
 @Component({
   selector: 'code[lrnCode]',
@@ -34,24 +35,18 @@ export class CodeComponent implements AfterViewInit, OnInit {
   private render() {
     const element = this.elementRef.nativeElement
     element.classList.add(`language-${this.language}`)
-    // debugger
-    // element.addAttribute('data-lrn-code', this.language)
     highlightElement(element, false)
   }
 
   ngOnInit() {
     if (this.language == null) {
-      // TODO Provide a full list of languages.
-      this.logger.error(`You've created a code snippet using directive lrnCode, ` +
-        `but you haven't provided the language which you've used. Provide a language ` +
-        `to the directive; eg. language="javascript", language="c", language="cpp" or ` +
-        `language="lisp".`, this.elementRef.nativeElement)
+      this.logger.display(NoLanguageSpecifiedErrorComponent)
     }
   }
 
   ngAfterViewInit() {
     this.render()
-    if (this.presentation == null) {
+    if (this.presentation != null) {
       this.presentation.slideChange$.subscribe(() => this.render())
     }
   }

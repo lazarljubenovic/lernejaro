@@ -8,22 +8,22 @@
   <lrn-slide [section]="'Basic examples'"
              [title]="'Two points'"
   >
-    <div lrnMaximize lrnCenter>
+    <lrn-center>
       <lrn-card>
         <lrn-planimetrics [evaluate]="examples['simplest'].evaluate"></lrn-planimetrics>
       </lrn-card>
-    </div>
+    </lrn-center>
   </lrn-slide>
 
   <lrn-slide [title]="'Two points: code'">
-    <div lrnMaximize lrnCenter>
+    <div lrnCenter>
       <pre><code [lrnCode]="'javascript'">{{ examples['simplest'].code }}</code></pre>
     </div>
   </lrn-slide>
 
   <lrn-slide [title]="'Colored and labeled points'"
   >
-    <div lrnMaximize lrnCenter>
+    <div lrnCenter>
       <lrn-card>
         <lrn-planimetrics [evaluate]="examples['colored'].evaluate"
         ></lrn-planimetrics>
@@ -32,14 +32,14 @@
   </lrn-slide>
 
   <lrn-slide [title]="'Colored and labeled points: code'">
-    <div lrnMaximize lrnCenter>
+    <div lrnCenter>
       <pre><code [lrnCode]="'javascript'">{{ examples['colored'].code }}</code></pre>
     </div>
   </lrn-slide>
 
   <lrn-slide [title]="'Interactive points'"
   >
-    <div lrnMaximize lrnCenter>
+    <div lrnCenter>
       <lrn-card>
         <lrn-planimetrics [interactivePoints]="examples['interactive'].interactivePoints"
         ></lrn-planimetrics>
@@ -48,19 +48,19 @@
   </lrn-slide>
 
   <lrn-slide [title]="'Colored and labeled points: code'">
-    <div lrnMaximize lrnCenter>
+    <div lrnCenter>
       <pre><code [lrnCode]="'javascript'">{{ examples['interactive'].code }}</code></pre>
     </div>
   </lrn-slide>
 
   <lrn-slide [title]="'Evaluating more elements: code'">
-    <div lrnMaximize lrnCenter>
+    <div lrnCenter>
       <pre><code [lrnCode]="'javascript'">{{ examples['eval'].code }}</code></pre>
     </div>
   </lrn-slide>
 
   <lrn-slide [title]="'Evaluating more elements'">
-    <div lrnMaximize lrnCenter>
+    <div lrnCenter>
       <lrn-card>
         <lrn-planimetrics [interactivePoints]="examples['eval'].interactivePoints"
                           [evaluate]="examples['eval'].evaluate"
@@ -70,7 +70,7 @@
   </lrn-slide>
 
   <lrn-slide [title]="'A non-trivial evaluate function'">
-    <div lrnMaximize lrnCenter>
+    <div lrnCenter>
       <lrn-card>
         <lrn-planimetrics [interactivePoints]="examples['normal'].interactivePoints"
                           [evaluate]="examples['normal'].evaluate"
@@ -80,13 +80,13 @@
   </lrn-slide>
 
   <lrn-slide [title]="'A non-trivial evaluate function: code'">
-    <div lrnMaximize lrnCenter>
+    <div lrnCenter>
       <pre><code [lrnCode]="'javascript'">{{ examples['normal'].code }}</code></pre>
     </div>
   </lrn-slide>
 
   <lrn-slide [title]="'Triangle\'s circumcircle construction'">
-    <div lrnMaximize lrnCenter>
+    <div lrnCenter>
       <lrn-card>
         <lrn-planimetrics [interactivePoints]="examples['circum'].interactivePoints"
                           [evaluate]="examples['circum'].evaluate"
@@ -96,16 +96,16 @@
   </lrn-slide>
 
   <lrn-slide [title]="'Triangle\'s circumcircle construction: code'">
-    <div lrnMaximize lrnCenter>
+    <div lrnCenter>
       <pre><code [lrnCode]="'javascript'">{{ examples['circum'].code }}</code></pre>
     </div>
   </lrn-slide>
 
   <lrn-slide [title]="'Displaying axis'"
   >
-    <div lrnMaximize lrnCenter>
+    <div lrnCenter>
       <lrn-card>
-        <lrn-planimetrics [interactivePoints]="examples['circum'].interactivePoints"
+        <lrn-planimetrics [interactivePoints]="examples['axis'].interactivePoints"
                           [evaluate]="examples['circum'].evaluate"
                           [axis]="true"
         ></lrn-planimetrics>
@@ -115,15 +115,7 @@
 
   <lrn-slide [title]="'Displaying axis: code'"
   >
-    <div lrnMaximize lrnCenter>
-      <pre><code [lrnCode]="'html'">{{ examples['axis'].code }}</code></pre>
-    </div>
-  </lrn-slide>
-
-  <lrn-slide [section]="'Complex examples'"
-             [title]="''"
-  >
-    <div lrnMaximize lrnCenter>
+    <div lrnCenter>
       <pre><code [lrnCode]="'html'">{{ examples['axis'].code }}</code></pre>
     </div>
   </lrn-slide>

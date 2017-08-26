@@ -1,2 +1,2 @@
 <div class="filled" [style.height]="'100%'"
-     [style.width.%]="(percent == null ? current / total : percent) * 100"></div>
+     [style.width.%]="total == 0 ? 0 : ((current / total) * 100)"></div>

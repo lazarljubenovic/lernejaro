@@ -14,8 +14,15 @@ import {
 import {SlideComponent} from './slide/slide.component'
 import {ActivatedRoute, Router} from '@angular/router'
 import {PaletteService} from '../ui/palette.service'
-import {LoggerService} from '../logger.service'
+import {LoggerService} from '../logger/logger.service'
 import {Subject} from 'rxjs/Subject'
+import {
+  PresentationNoSectionsFoundWarningComponent,
+  PresentationNotEnoughSectionsWarningComponent,
+  PresentationWithoutAuthorErrorComponent,
+  PresentationWithoutEmailErrorComponent,
+  UntitledPresentationErrorComponent,
+} from './errors'
 
 interface SlideIdentifier {
   type: string // 'title' | 'user' | 'questions' | 'thank-you'
@@ -28,6 +35,9 @@ interface SlideIdentifier {
   styleUrls: ['./presentation.component.scss'],
 })
 export class PresentationComponent implements OnInit, AfterContentInit {
+
+  @Input() public suppressNoSectionsFoundWarning: boolean
+  @Input() public suppressNotEnoughSectionsWarning: boolean
 
   @Input() public author: string | TemplateRef<any>
   @Input() public description: string | TemplateRef<any>
@@ -54,7 +64,7 @@ export class PresentationComponent implements OnInit, AfterContentInit {
     return this._currentSlideIndex
   }
 
-  private get slideIdentifiers(): SlideIdentifier[] {
+  public get slideIdentifiers(): SlideIdentifier[] {
     return [
       ...(!this.withoutTitleSlide ? [{type: 'title'}] : []),
       ...this.slideComponents.map((_, index) => ({type: 'user', index})),
@@ -92,6 +102,10 @@ export class PresentationComponent implements OnInit, AfterContentInit {
   public tableOfContents = new Map<string, number>()
 
   private updateView(): void {
+    if (this.currentSlideIdentifier == null) {
+      return
+    }
+
     const userProvidedSlides = this.slideComponents
       .map(element => element.elementRef.nativeElement)
 
@@ -104,8 +118,6 @@ export class PresentationComponent implements OnInit, AfterContentInit {
       const userSlideIndex = this.mapGlobalIndexToUserSlideIndex(this.currentSlideIndex)
       const currentSlide = userProvidedSlides[userSlideIndex]
       this.renderer.attachViewAfter(this.outlet.nativeElement, [currentSlide])
-    } else {
-
     }
 
     // Update route
@@ -179,7 +191,18 @@ export class PresentationComponent implements OnInit, AfterContentInit {
 
   ngOnInit() {
     if (this.title == null) {
-      this.logger.error(`You've created an untitled presentation! C'mon, give it a name.`)
+      this.logger.display(UntitledPresentationErrorComponent)
+      return
+    }
+
+    if (this.author == null) {
+      this.logger.display(PresentationWithoutAuthorErrorComponent)
+      return
+    }
+
+    if (this.email == null) {
+      this.logger.display(PresentationWithoutEmailErrorComponent)
+      return
     }
   }
 
@@ -215,15 +238,21 @@ export class PresentationComponent implements OnInit, AfterContentInit {
     })
 
     // Warn user if no sections at all, or not enough sections
-    if (numberOfSections == 0) {
-      this.logger.warn(`You've created a presentation "${this.title}" without any sections. ` +
-        `You should break it up into sections so it's easier to digest. Use an input [section] ` +
-        `on <lrn-slide> component to start a section. The section will automatically end on the ` +
-        `next slide which you explicitly provide a section to.`)
-    } else if (this.slideIdentifiers.length / numberOfSections > 30) {
-      this.logger.warn(`You've created a presentation "${this.title}" with ` +
-        `${this.slideIdentifiers.length} slides, but only ${numberOfSections} sections. ` +
-        `You might want to create more sections to make it easier to digest!`)
+    if (numberOfSections == 0 && !this.suppressNoSectionsFoundWarning) {
+      this.logger.display(PresentationNoSectionsFoundWarningComponent, {
+        title: this.title,
+      })
+      return
+    }
+
+    if (this.slideIdentifiers.length / numberOfSections > 30 &&
+      !this.suppressNotEnoughSectionsWarning) {
+      this.logger.display(PresentationNotEnoughSectionsWarningComponent, {
+        title: this.title,
+        numberOfSlides: this.slideIdentifiers.length,
+        numberOfSections,
+      })
+      return
     }
   }
 

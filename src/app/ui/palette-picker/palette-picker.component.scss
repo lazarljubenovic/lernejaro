@@ -1,23 +1,27 @@
 @import '../../global';
 
+:host {
+  display: block;
+}
+
 .palette-picker {
   padding: 2.5em;
   display: flex;
+  flex-direction: column;
 
   > * + * {
-    margin-left: 1em;
+    margin-top: 1em;
   }
 
   ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
+    width: 23em; // 3*1 for gaps, 4*5 for desired width
 
     li {
-      margin: 0;
-      padding: 0;
+      height: 5em;
       border-radius: 3px;
-      // TODO create variable for border-radius value (or a few different: large, medium, small)
       cursor: pointer;
       transform: scale(1);
       transition: all .2s ease;
@@ -26,10 +30,24 @@
         transform: scale(1.15);
       }
     }
+
+    @media (max-width: 35em) {
+      width: 15em;
+
+      li {
+        height: 3em;
+      }
+    }
   }
 
   .color-picker {
-    @include grid-container-fixed-size(4, 4em, 4em, 1em, 1em);
+
+    @include grid(
+        'x x x x'
+        'x x x x'
+        'x x x x'
+        'x x x x'
+    );
 
     li {
       @include all-background-colors('500');
@@ -37,7 +55,8 @@
   }
 
   .theme-picker {
-    @include grid-container-fixed-size(1, 4em, 9em, 1em, 1em);
+
+    @include grid(('x x',));
 
     li {
       &.light { background-color: $light-theme-status-bar-background-color; }

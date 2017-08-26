@@ -7,11 +7,9 @@
   </div>
   <div class="flex-spacer"></div>
   <div class="buttons">
-    <button (click)="setWhiteTheme()"><i class="fa fa-paint-brush"></i></button>
-    <button (click)="setSepiaTheme()"><i class="fa fa-paint-brush"></i></button>
-    <button (click)="setDarkTheme()"><i class="fa fa-paint-brush"></i></button>
-    <button (click)="toggleTableOfContentVisibility()"><i class="fa fa-list-ol"></i></button>
-    <button><i class="fa fa-cogs"></i></button>
+    <button (click)="print()"><i class="fa fa-print"></i></button>
+    <button (click)="modal.open(palettePicker)"><i class="fa fa-paint-brush"></i></button>
+    <button (click)="toggleTableOfContentVisibility()"><i class="fa fa-bars"></i></button>
   </div>
 </header>
 
@@ -21,6 +19,31 @@
   </div>
 
   <ng-content></ng-content>
+
+  <!-- Automatically generated headings -->
+  <h2 class="references">References</h2>
+  <dl>
+    <div *ngFor="let reference of references">
+      <dt><a [href]="reference.href">{{ reference.name }}</a></dt>
+      <dd *ngFor="let id of reference.ids; let index = index">
+        <button (click)="goToFragment(id)">[{{ index + 1 }}]</button>
+      </dd>
+    </div>
+  </dl>
+
+  <!--<h2>Abbrevations</h2>-->
 </article>
 
-<!--<button [lrnButton]="'fab'"><i class="fa fa-cog"></i></button>-->
+<footer [@footerTrigger]="visibleFooter ? 'show' : 'hide'">
+  <dl>
+    <dt>Word count</dt>
+    <dd>{{ wordCount }}</dd>
+
+    <dt>Time to read</dt>
+    <dd>{{ estimatedReadingTimeMinutes }} minutes</dd>
+  </dl>
+</footer>
+
+<ng-template #palettePicker>
+  <lrn-palette-picker></lrn-palette-picker>
+</ng-template>

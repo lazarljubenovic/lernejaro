@@ -1,5 +1,5 @@
 @import 'imports';
-@import 'grass';
+@import '../../node_modules/grassy/grassy';
 @import 'themes';
 @import 'util';
 
@@ -9,4 +9,3 @@ $white: rgba(white, .86);
 $black: rgba(black, .86);
 
 $slide-header-height: 8rem;
-$slide-footer-height: 4rem;

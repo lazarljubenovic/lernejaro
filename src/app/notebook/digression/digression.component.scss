@@ -1,0 +1,71 @@
+@import '../../global';
+
+:host {
+  display: block;
+}
+
+.toggle-area {
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+  padding-top: 1em;
+  margin-top: -.5em;
+  overflow: hidden;
+
+  .heading {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    font-size: .66em;
+    font-style: italic;
+    opacity: .6;
+    transition: all .33s ease-out;
+  }
+
+  .line {
+    height: 0;
+  }
+}
+
+:host([aria-expanded=true]),
+:host .toggle-area:hover {
+
+  .heading {
+    right: 50%;
+    transform: translateX(50%);
+    opacity: .8;
+    transition: all .33s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+}
+
+.content {
+  overflow: hidden;
+  font-size: .86em;
+  line-height: 1.6;
+
+  ::ng-deep p:first-child {
+    margin-top: .2em;
+  }
+
+  ::ng-deep p:last-child {
+    margin-bottom: .2em;
+  }
+}
+
+@each $theme-name in 'light' 'dark' {
+  :host-context(.lrn-theme-#{$theme-name}) {
+    $inverse-theme-name: inverse-theme-name($theme-name);
+
+    .toggle-area {
+
+      .line {
+        border-bottom: dashed 1px get-theme($theme-name, 'status-bar');
+      }
+    }
+
+    .content {
+      border-bottom: dashed 1px get-theme($theme-name, 'status-bar');
+    }
+  }
+}

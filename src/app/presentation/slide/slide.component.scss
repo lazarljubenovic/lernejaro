@@ -3,7 +3,8 @@
 @import 'slide-inner';
 
 lrn-slide {
-  display: flex;
+  // TODO: Open a modal and after 2 slide changes it attaches inline display: none...
+  display: flex!important;
   flex-direction: column;
   width: 100%;
   height: 100%;

@@ -2,14 +2,19 @@ import {
   Component,
   ContentChildren,
   ElementRef,
+  forwardRef,
+  Inject,
   Input,
   OnInit,
+  Optional,
   QueryList,
   TemplateRef,
   ViewEncapsulation,
 } from '@angular/core'
 import {SlideColumnComponent} from '../slide-column/slide-column.component'
-import {LoggerService} from '../../logger.service'
+import {LoggerService} from '../../logger/logger.service'
+import {StraySlideErrorComponent, UntitledSlideWarningComponent} from '../errors'
+import {PresentationComponent} from '../presentation.component'
 
 @Component({
   selector: 'lrn-slide',
@@ -32,7 +37,9 @@ export class SlideComponent implements OnInit {
   }
 
   constructor(public elementRef: ElementRef,
-              public logger: LoggerService) {
+              public logger: LoggerService,
+              @Inject(forwardRef(() => PresentationComponent))
+              @Optional() private presentation: PresentationComponent) {
   }
 
   ngOnInit() {
@@ -40,8 +47,20 @@ export class SlideComponent implements OnInit {
   }
 
   private assert() {
+    if (this.presentation == null) {
+      const context = {}
+      if (this.title != null) {
+        context['title'] = this.title
+      }
+      this.logger.display(StraySlideErrorComponent, context)
+      return
+    }
+
     if (this.title == null || this.title.trim().length == 0) {
-      this.logger.warn(`You've created a slide without a title.`, this.elementRef.nativeElement)
+      this.logger.display(UntitledSlideWarningComponent, {
+        presentationTitle: this.presentation.title,
+      })
+      return
     }
   }
 

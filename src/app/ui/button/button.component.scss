@@ -1,11 +1,12 @@
 @import '../../global';
 
-button.lrnButton {
+:host {
   font-family: $font;
   border: 0;
   outline: 0;
-  padding: 1ex 1em;
+  padding: .6em .8em;
   font-size: .8em;
+  line-height: 1;
   font-weight: 600;
   text-transform: uppercase;
   cursor: pointer;
@@ -19,8 +20,6 @@ button.lrnButton {
 
   &.raised {
     @include z-depth-2dp;
-    @include all-background-colors;
-    color: rgba(white, .86);
 
     &:focus,
     &:hover {
@@ -43,7 +42,7 @@ button.lrnButton {
     $offset: 3em;
     bottom: $offset;
     right: $offset;
-    $size: 64px;
+    $size: 4.5rem;
     width: $size;
     height: $size;
     border-radius: $size / 2;
@@ -56,6 +55,24 @@ button.lrnButton {
     i.fa {
       display: inline-block;
       font-size: 2em;
+    }
+  }
+}
+
+@each $color-string in get-color-strings() {
+  :host-context(.lrn-theme-color-#{$color-string}) {
+
+    &.raised {
+      background-color: material-color($color-string, '500');
+    }
+  }
+}
+
+@each $theme-name in 'light' 'dark' {
+  :host-context(.lrn-theme-#{$theme-name}) {
+
+    &.raised {
+      color: rgba(white, .86);
     }
   }
 }

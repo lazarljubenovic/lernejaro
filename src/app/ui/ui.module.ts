@@ -19,7 +19,6 @@ import {PaletteConfigService} from './palette-config.service'
 import {PaletteService} from './palette.service'
 import {LogoComponent} from './logo/logo.component'
 import {StepPipe} from './input/step.pipe'
-import {LatexInputNumberComponent} from './latex-input-number/latex-input-number.component'
 import {CardHeaderComponent} from './card/card-header/card-header.component'
 import {CardFooterComponent} from './card/card-footer/card-footer.component'
 import {CardContentComponent} from './card/card-content/card-content.component'
@@ -28,11 +27,18 @@ import {CheckboxGroupComponent} from './checkbox-group/checkbox-group.component'
 import {CardBadgeComponent} from './card/card-badge/card-badge.component'
 import {ChipComponent} from './chip/chip.component'
 import {IconComponent} from './icon/icon.component'
+import { BlackoutComponent } from './blackout/blackout.component'
+import {BlackoutService} from './blackout/blackout.service'
+import {UnknownIconErrorComponent} from './errors'
+import {LoggerModule} from '../logger/logger.module'
+import {CodeModule} from '../code/code.module'
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    LoggerModule,
+    CodeModule,
   ],
   declarations: [
     InputComponent,
@@ -49,7 +55,6 @@ import {IconComponent} from './icon/icon.component'
     PalettePickerComponent,
     LogoComponent,
     StepPipe,
-    LatexInputNumberComponent,
     CardHeaderComponent,
     CardFooterComponent,
     CardContentComponent,
@@ -58,6 +63,8 @@ import {IconComponent} from './icon/icon.component'
     CardBadgeComponent,
     ChipComponent,
     IconComponent,
+    BlackoutComponent,
+    UnknownIconErrorComponent,
   ],
   exports: [
     InputComponent,
@@ -70,10 +77,8 @@ import {IconComponent} from './icon/icon.component'
     RadioButtonGroupComponent,
     ExpandingFabComponent,
     ProgressBarComponent,
-    ModalComponent,
     PalettePickerComponent,
     LogoComponent,
-    LatexInputNumberComponent,
     CardHeaderComponent,
     CardFooterComponent,
     CardContentComponent,
@@ -82,6 +87,17 @@ import {IconComponent} from './icon/icon.component'
     CardBadgeComponent,
     ChipComponent,
     IconComponent,
+    ModalComponent,
+  ],
+  providers: [
+    BlackoutService,
+    ModalService,
+  ],
+  entryComponents: [
+    BlackoutComponent,
+    ModalComponent,
+    UnknownIconErrorComponent,
+    PalettePickerComponent,
   ],
 })
 export class UiModule {

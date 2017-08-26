@@ -1,237 +1,183 @@
 <lrn-notebook>
 
-  <h1>Title at Level 1</h1>
+  <h1>Lernejaro</h1>
 
-  <summary>
-    This is a short <strong>abstract</strong> which defines the scope of the text which follows. It
-    <em>shouldn't contain any specific details</em> and should only serve as a
-    <strong>short introduction</strong> to themes which are about to covered.
+  <summary lrnMarkdown>
+    Cilj ovog rada je da istakne značaj primene modernih multimedijalnih tehnologija u nastavi. Uz osvrt na kratku ali dinamičnu istoriju JavaSkripta i veba uopšte, rad se bavi modernim tehnologijama povezanim sa JavaSkriptom. Zatim na visokom nivou opisuje sve module za biblioteku Lernejaro, implementirane u veb-frejmvorku _Angular_, koji za cilj imaju olakšano kreiranje multimedijalnih interaktivnih materijala za učenje.
   </summary>
 
-  <h2>Title at Level Two</h2>
+  <lrn-digression [heading]="'Detaljni pregled'">
+    <lrn-markdown>
+      Prvo poglavlje uvodi čitaoca u problem nedostatka interaktivnosti u nastavnim materijalima.
 
-  <lrn-planimetrics [interactivePoints]="interactivePoints" (interactivePointsChange)="updateDiagram($event)"></lrn-planimetrics>
+      Drugo poglavlje ukratko govori o razvoju veba, uz akcenat na prednostima i manama jednostraničnih aplikacija, a zatim se osvrće na JavaSkript kao osnovni jezik za izgradnju istih.
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    <code>Integer nec odio.</code> Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.
-    <b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</b>. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.
+      Treće poglavlje detaljnije opisuje tehnologije, biblioteke i frejmvorke koji su izgrađeni nad JavaSkriptom, a koriste se neposredno, ili posredno u Lernejaru; ovde su uključeni TajpSkript, Vebpek, Zone.js, Reaktivne ekstenzije i Angular. Angular je opisan znatno detaljnije, a posebna pažnja posvećena je detekciji promena i ubrizgavanju zavisnosti.
+
+      Četvrto poglavlje posvećeno je samom Lernejaru.
+    </lrn-markdown>
+  </lrn-digression>
+
+
+  <h2>Motivacija i cilj</h2>
+
+  <summary lrnMarkdown>
+    Lernejaro je nastao kao rezultat suočavanja sa lošim materijalima za učenje tokom školovanja. Inspiraciju dobija od sistema za pripremu teksta _LaTeX_, od Guglovog jezika za komunikaciju putem korisničkih interfejsa _Material Design_, i od nekolicine dobro pripremljenih interaktivnih materijala na internetu.
+  </summary>
+
+  <p>Još od otkrivanja prvog digitalnog računara, brzina izračunavanja i kapacitet skladišta podataka su bili u
+    <a href="https://sr.wikipedia.org/sr-el/Murov_zakon"
+       title="Murov zakon">eksponencijalnom porastu</a>. Personalni računari i pametni telefoni, a u poslednje vreme i pametni satovi i drugi pametni uređaji, su u stanju da kreiraju, modifikuju i pristupe ogromnoj količini digitalnih podataka. U kombinaciji sa internetom, svetskom mrežom, digitalni medijumi su u potpunosti transformisali čovečanstvo dvadesetprvog veka.
   </p>
 
-  <lrn-multiple-views>
-    <lrn-view [model]="complexNumber"
-              (modelChange)="complexNumber = $event"
-              [title]="'Algebraic'"
-    >
-      <lrn-katex [math]="'z = {}'"></lrn-katex>
-      <lrn-view-input name="realPart" type="number" [decimals]="2" [latex]="true"></lrn-view-input>
-      <lrn-katex [math]="'{} + i \\cdot '"></lrn-katex>
-      <lrn-view-input name="imaginaryPart" type="number" [decimals]="2" [latex]="true"></lrn-view-input>
-    </lrn-view>
-    <lrn-view [model]="algebraicToEuler(complexNumber)"
-              (modelChange)="complexNumber = eulerToAlgebraic($event)"
-              [title]="'Euler'"
-    >
-      <lrn-katex [math]="'z = {}'"></lrn-katex>
-      <lrn-view-input name="modulo" type="number" [decimals]="2" [latex]="true"></lrn-view-input>
-      <lrn-katex [math]="'{} \\cdot e '"></lrn-katex>
-      <sup>
-        <lrn-view-input name="argument" type="number" [decimals]="2" [latex]="true"></lrn-view-input>
-      </sup>
-    </lrn-view>
-  </lrn-multiple-views>
-
-  <!--<figure class="right">-->
-    <!--<img src="https://unsplash.it/200/200/?random">-->
-    <!--<figcaption>This is a longer figure caption on a floated image. It is never longer in width than the picture.</figcaption>-->
-  <!--</figure>-->
-
-  <lrn-fill-in-the-blank (answerChange)="answer = $event">
-    Dijkstra's algorithm is an algorithm for finding the
-    <lrn-blank [correct]="'shortest'" [hint]="'what kind of'"></lrn-blank>
-    paths between nodes in a graph.
-  </lrn-fill-in-the-blank>
-
-  <pre>Answer: {{answer | json}}</pre>
-
-  <p>Curabitur tortor. Pellentesque
-    <lrn-katex
-      [math]="'c = \\pm\\sqrt{a^2 + b^2} + \\int_0^e \\log_2 \\left(\\sin\\left(x^{e^{\\sqrt{3}}}\\right)\\right) \\, \\mathrm dx'"
-      [display]="'block'"></lrn-katex>
-    nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem.
-    <b>Vestibulum lacinia arcu eget nulla</b>. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit.
+  <p lrnMarkdown>
+    **Digitalni medijum** je svaki medijum koji je šifriran (enkodiran) u formatu koji je čitljiv mašinama. On se može kreirati, pregledati, distribuirati, modifikovati i trajno skladištiti na elektronskim uređajima: računarski programi, digitalna fotografija, digitalni video- i audio-snimci, podaci i baze podataka, knjige u elektronskom formatu. Digitalni medijumi se često porede sa **štampanim medijumima**, kao što su štampane knjige, novine i časopisi, i analogni medijumi kao što su slike, filmovi i audio-trake. Za pojam digitalnih medijuma često se vezuje i **multimedija**. To je sadržaj koji koristi kombinaciju različitih oblika digitalnih medijuma, uključujući tekst, audio, slike, animacije, video i **interaktivni sadržaj**.
   </p>
 
-  <lrn-multiple-choice (answerChoose)="answer = $event">
-    <lrn-question>
-      Calculate
-      <lrn-katex [math]="'\\det A'"></lrn-katex>
-      if given
-      <lrn-katex [display]="'block'"
-                 [math]="'A = \\begin{bmatrix}1 & 2 & 3 \\\\ 4 & 5 & 6 \\\\ 7 & 8 & 9 \\end{bmatrix}.'"></lrn-katex>
-    </lrn-question>
-    <lrn-choice lrnCorrect>
-      <lrn-katex [math]="'\\det A = 0'"></lrn-katex>
-    </lrn-choice>
-    <lrn-choice>
-      <lrn-katex [math]="'\\det A = 12'"></lrn-katex>
-    </lrn-choice>
-    <lrn-choice>
-      <lrn-katex [math]="'\\det A = 24'"></lrn-katex>
-    </lrn-choice>
-    <lrn-choice>
-      <lrn-katex [math]="'\\det A = 48'"></lrn-katex>
-    </lrn-choice>
-    <lrn-choice>Impossible to answer.</lrn-choice>
-  </lrn-multiple-choice>
+  <p lrnMarkdown>
+    I mada se uveliko priča o potencijalu digitalnog medijuma za kreiranje nastavnih materijala, pojmovi "multimedija" i "interaktivnost" često ostaju samo prazno obećanje, a učenicima se kao materijal za učenje dostavljaju slajdovi koji se po malo čemu razlikuju od tradicionalne knjige: imaju striktnu linearnu strukturu, a "multimedija" je svedena jedino na statičke slike.
+  </p>
 
-  <figure class="left">
-    <img src="https://unsplash.it/400/300/?random">
-    <figcaption>This is a longer figure caption on a floated image. It is never longer in width than the picture.</figcaption>
-  </figure>
+  <p lrnMarkdown>
+    Postoji mnogo alata za izgradnju prezentacija i tekstualnih datoteka. Najčešće korišćeni alati
+    za kreiranje prezentacija u vidu slajdova su _PowerPoint_ na Vindouzu i _Keynote_ na
+    Meku, a kao veb-aplikacije se izdvajaju _Google Slides_ i _Prezi_. Za tekstualne
+    datoteke se uglavnom koristi Majkrosoftov _Word_ ili neki drugi softver kompatibilan sa
+    .doc i .docx fajlovima, kao što je _LibreOffice_.
+
+    Premda ovi alati u teoriji mogu da pruže, barem u neku ruku, dobru semantičku strukturu
+    teksta i pratećih medija, činjenica da se radi o
+    <abbr title="What You See Is What You Get">WYSIWYG</abbr>
+    alatima uglavnom sputava kreatora prezentacije sa ovog cilja. Na primer, u PowerPoint-u je čest slučaj da predavač iskoristi običan _text-box_ umesto _caption_ elementa za sliku. Mada je vizuelna reprezentacija ista, ili barem slična, gubi se semantička struktura, što za posledicu ima nemogućnost da _PowerPoint_ automatski konvertuje prezentacije u čitljiv tekstualni fajl spreman za štampu; već bi student, ukoliko želi da ima prezentacije u štampanom obliku, morao da odštampa slajd bukvalno kao sliku, što svakako nije optimalno, ni sa stanovišta uštede prostora, ni sa stanovišta preglednosti. Slično, često se umesto semantičkog naslova koristi deo glavnog teksta kome se poveća veličina i težina fonta, zbog čega je navigacija kroz prezentaciju otežana (jer alati ne znaju da se radi o naslovu, pa ne mogu da ponude prečice za navigaciju, niti da, na primer, automatski generišu sadržaj).
+
+    Ovo je glavni razlog zbog čega Lernejaro nije zamišljen kao alat sa bilo kakvom GUI podrškom. Ovo znači da se ne radi o WYSIWYG (_what you **see** is what you get_, dobiješ to što _vidiš_) alatu, već o takozvanom WYMIWYG (_what you **mean** is what you get_, dobiješ to što _misliš_). Ova ideja je pozajmljena od semantičke strukture HTML5 dokumenata i sistema za pripremanje teksta LaTeX.
+  </p>
 
   <p>
-    <b>Sed dignissim lacinia nunc</b>. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante.
-    <b>Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa</b>. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices.
-    <i>Maecenas mattis</i>. Suspendisse in justo eu magna luctus suscipit. Sed lectus.
+    Praktični pokazatelj da su interaktivni materijali neprocenjivi izvor za učenje su blog
+    <a href="http://www.redblobgames.com/"><b>Red Blob Games</b></a>
+    (autor <a href="https://twitter.com/redblobgames">Amit Patel</a>),
+    i <a href="https://pomax.github.io/bezierinfo/"><b>A Primer on Bézier Curves</b></a>
+    (autor <a href="https://github.com/Pomax">Pomaks</a>),
+    koji su upravo zbog ovog pristupa postali glavni izvor informacija za oblasti kojom se bave. Mada se naizgled radi o običnom tekstu ispresecanom slikama koji se svakodnevno sreću i u štampanom i u digitalnom obliku, ova dva autora su iskoristili potencijal koji im pruža digitalni zapis: interaktivnost i dinamičnost. Na primer, skoro svi dijagrami su vezani za neku kontrolu kojom korisnik može da manipuliše i tako istraži kako bi se oblik dijagrama menjao u zavinosti od parametara.
   </p>
 
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    <code>Integer nec odio.</code> Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa. Vestibulum lacinia arcu eget nulla.
-    <b>Lorem ipsum dolor sit amet, consectetur adipiscing elit</b>. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.
+  <lrn-digression [heading]="'Još primera'">
+    <p>
+      U članku o šestougaonim tablama za igranje strateških igara, <a
+      href="https://twitter.com/redblobgames"
+      title="Amit Patel">Patel</a> dozvoljava čitaocu da izabere za koju je orijentaciju šestouglova zainteresovan. U štampanom medijumu bi ovaj tekst bio ili dupliran uz sitne razlike, ili bi bio ispresecan nepreglednim zagradama. Interaktivni dijagrami su tu da čitaocu probude interesovanje i želju za samostalnim istraživanjem. Na primer, ne samo da korisnik može da korak po korak prolazi kroz obilazak grafa, već može da interaktivno učestvuje u njegovoj promeni, dodajući i uklanjajući prepreke i menjajući težine čvorova. Obilazak grafa je moguće prikazati i na štampanom medijumu (mada bi za to bilo potrebno previše prostora), ali promenu grafa je nemoguće predvideti.
+    </p>
+
+    <p lrnMarkdown>
+      Slično, referenciranje na slike, dijagrame i druge delove teksta je ulinkovano, što uklanja potrebu za eksplicitno vidljivim referencama ("na slici 43a"), ili makar uklanja potrebu da ručna pretraga po tekstu bude jedini način da se pronađe tražena referenca. Ovakav pristup omogućava i neke zanimljive efekte -- na primer, prelaskom miša preko određenog dela slike može da se istakne neki deo teksta; na ovaj način je sasvim jasno na koji način su slika i tekst povezani, odnosno o kom delu slike govori tekst.
+    </p>
+  </lrn-digression>
+
+  <lrn-markdown>
+    Kreiranje ovakvih iskustava nije jednostvan posao i zahteva dobro poznavanje tehnologije. S druge strane, popularni
+    <abbr title="What You See Is What You Get">WYSIWYG</abbr>/<abbr
+    title="Graphical User Interface">GUI</abbr> alati ne pružaju dovoljnu fleksibilnost u izgradnji interaktivnih materijala. Lernejaro pokušava da bude "zlatna sredina".
+
+    Izgrađen je imajući u vidu inkrementalno poboljšanje materijala: kreiranje statičkih prezentacija i dalje ostaje jednostavno i svodi se na ekapsulaciju teksta u tagove koji podsećaju na poznati
+    <abbr
+      title="HyperText Markup Language">HTML</abbr>. Dakle, ciljna grupa korisnika biblioteke Lernejaro nisu isključivo iskusni veb-developeri. Mada je "programerska pismenost" nesumnjivo poželjna za rad sa bibliotekom, nije nemoguće da se bilo koja osoba obuči za korišćenje Lernejara, kao da je u pitanju bilo koji drugi alat.
+
+    Velika pažnja je posvećena tome da su podrazumevane vrednosti postavljene na najčešći slučaj korišćenja. Jednostavnom konfiguracijom koja se obično svodi na prosleđivanje jednog ili dva stringa su obuhvaćeni dalji česti slučajevi korišćenja. A za iskusne programere je ostavljena i veća sloboda u vidu potpune kontrole nad izglednom i ponašanjem komponenti. Developeri mogu razvijati svoje komponente i module i tako dopunjavati ekosistem Lernejara.
+
+    Za kraj treba napomenuti da nijedan alat, pa ni Lernejaro, nije zamena za dobrog predavača. Ma koliko dobra tehnologija bila, bez osobe koja ima želju da iskoristi njen potencijal na pravi način, studenti će prilikom učenja imati loše iskustvo.
+  </lrn-markdown>
+
+  <h2>Moderni veb</h2>
+
+  <p>Internet je odavno postao sastavni deo života ljudi, a prvenstveno mladima. Predstavlja neiscrpan izvor zabave i informacija i povezuje ljude širom sveta.
+    <a href="https://www.article19.org/data/files/Internet_Statement_Adopted.pdf"
+       title="Internet kao osnovno ljudsko pravo">Ujedinjene nacije su 2016. godine proglasile pristup internetu osnovnim ljudskim pravom.</a> Gugl je još 2011. godine pustio u prodaju Hrombuk, lap-top u kome su operativni sistem i brauzer spojeni u jedno. Sve više aplikacija se izvršavaju direktno u brauzeru, umesto klasičnih desktop aplikacija.
   </p>
 
-  <dl>
-    <dt>Term</dt>
-    <dd>Its definition</dd>
-    <dt>Another term</dt>
-    <dd>And its definition</dd>
-    <dt>Term #3</dt>
-    <dd>A pretty long definition can be put here as well, such as this one. Morbi in dui quis est pulvinar ullamcorper. Nulla facilisi. Integer lacinia sollicitudin massa. Cras metus. Sed aliquet risus a tortor.</dd>
-  </dl>
+  <lrn-markdown>
+    Ovo ima brojne prednosti, ali se sledeće dve izdvajaju kao ključne.
+
+    Veb-aplikacije od korisnika **ne zahtevaju instalaciju**. Mnogo je veća verovatnoća da će potencijalni klijent koristiti aplikaciju ukoliko može da je koristi čim naiđe na nju, umesto da mora da je preuzme i instalira na svojoj mašini. Sem toga, danas nije retkost da korisnici poseduju više uređaja koje svakodnevno koriste. Veb-aplikacija je po definiciji dostupna sa svakog od njih, dok bi desktop- ili mobilnu aplikaciju trebalo instalirati na svakom uređaju ponaosob.
+
+    Pored ovoga, **ažuriranje** klasičnih desktop aplikacija zahteva neki vid akcije od korisnika. Čak i ako je ažuriranje dobro isplanirano i može da se odvija automatski i bez čitave ponovne instalacije programa, korisnici uvek imaju mogućnost da ipak ostanu na staroj verziji. Developer ne može da bude siguran u to koju verziju aplikacije koriste klijenti, što za posledicu ima razne probleme u kompatibilnosti prilikom, na primer, komunikacije sa serverom, koji bi morao da uvek podržava sve verzije desktop aplikacije. Veb-aplikaciju je trivijalno ažurirati, i garantovano je da će svi korisnici istog trenutka moći da pristupe jedino najnovijoj verziji.
+
+    Zbog ovoga je Lernejaro zamišljen kao veb-aplikacija; studentima će materijali uvek biti dostupni i ažurirani na poslednju verziju koju predavač objavi.
+  </lrn-markdown>
+
+  <h3>Jednostranične aplikacije</h3>
+
+  <summary lrnMarkdown>
+    **Jednostranična aplikacija** (SPA) je veb-aplikacija koja postoji u brauzeru tokom izvršenja i ne zahteva osvežavanje cele stranice prilikom korišćenja.
+  </summary>
+
+  <lrn-markdown>
+    Sadržaj na internetu je prvobitno zamišljen kao skup **statičkih dokumenata** koji su međusobno povezani. Praćenjem tih veza ("klikom na link"), korisnik pomoću brauzera sa svog računara (klijent) izdaje udaljenom i znatno moćnijem računaru (server) zahtev za pribavljanje nove stranice, koristeći URL kao identifikator. Kao odgovor na zahtev, server klijentu vraća novu stranicu, koju klijent iznova renderuje. Za izgradnju ovakvih statičkih stranica dovoljno je koristiti
+    <abbr
+      title="Hypertext Markup Language">HTML</abbr>, kojim se definiše semantička struktura sadržaja stranice, i
+    <abbr
+      title="Cascading Style Sheets">CSS</abbr>, koji služi za deklaraciju stilova, tj. načina prikaza (prezentacije) dokumenata pisanih u HTML-u.
+
+    Kada brauzer primi stranicu od servera, on je parsira. Na osnovu HTML-a kreira strukturu podataka u vidu stabla koja se naziva
+    <abbr title="Document Object Model">DOM</abbr>, a na osnovu CSS-a se na sličan način generiše
+    <abbr
+      title="Cascading Style Sheet Object Model">CSSOM</abbr>. Na osnovu ova dva stabla, brazuer može da renderuje stranicu.
+
+    Statičke veb-strance su vremenom zamenile **dinamičke veb-stranice**, koje su korisnicima omogućile određeni vid interakcije. Da bi stranica bila dinamička, osim HTML-a i CSS-a mora se pisati i kod u JavaSkriptu, kojim se programira način interakcije s korisnikom. Brazueri nude
+    <abbr
+      title="Application Programming Interface">API</abbr> ka DOM-u koje programer može iskoristiti da osluškuje događaje (klik mišem, pritisak dirke na tastaturi, itd), i da programski manipuliše strukturom DOM-a. Ovo znači da stranica može promeniti svoju strukturu i izgled na osnovu akcija korisnika, bez potrebe da se sa servera dobavi cela nova stranica, i bez potrebe da je brauzer iznova parsira i renderuje.
+
+    Takav način ponašanja stranice se u početku koristio samo za neke manje izmene na stranici koje je bilo trivijalno promeniti JavaSkriptom, npr. za validaciju formi na klijentu: korisnik odmah nakon unosa lozinke može biti obavešten da ona mora imati više od određenog broja karaktera (umesto da pošalje formu, da se na serveru detektuje nevalidna lozinka, i da se vrati nova stranica sa upisanom greškom). Ovaj vid funkcionisanja predstavlja preteču veb-aplikacija, kod kojih se sve više i više funkcionalnosti događa na klijentu umesto na serveru.
+
+    **Veb-aplikacija** je klijentska aplikacija kod koje se sav korisnički interfejs izvršava u okviru brauzera. Ne postoji jasna granica između "dinamičke veb-stranice" i "veb-aplikacije"; za sajtove koji po izgledu više podsećaju na desktop ili mobilnu aplikaciju postoji veća šansa da se proglasi veb-aplikacijom.
+
+    Među veb-aplikacijama se posebno izdvajaju **jednostranične aplikacije** (<abbr
+    title="Single Page Application">SPA</abbr>) jer se potpuno odvajaju od tipične veb paradigme gde se korisnik kreće kroz stranice koje imaju različite
+    <abbr
+      title="Uniform Resource Locator">URL</abbr>-ove. Tokom poslednjih godina se pojavio veliki broj frejmvorka, uglavnom otvorenog koda, koji omogućuju jednostavniji razvoj jednostraničnih aplikacija.
+
+    U osnovi svake SPA aplikacije leži Ajaks (<abbr
+    title="Asynchronous JavaScript and XML">AJAX</abbr>). Striktno govoreći, ne radi se o tehnologiji, već o skupu više tehnologija, od kojih se kao najznačajnija izdvaja `XMLHttpRequest` koja u kombinaciji sa HTML-om, CSS-om, JavaSkriptom, DOM-om i
+    <abbr title="Extensible Markup Language">XML</abbr>-om ili <abbr
+    title="JavaScript Object Notation">JSON</abbr>-om omogućava inkrementalno ažuriranje korisničkog interfejsa bez slanja zahteva ka serveru za novu HTML stranicu, i samim tim bez osvežavanja čitave stranice. Na ovaj način je aplikacija znatno responzivnija, u smislu da brže odgovara na zahteve korisnika.
+
+    Mada je X oznaka za XML, za razmenu podataka se relativno brzo sa XML-a prešlo na JSON, iz razloga što predstavlja kompaktniji zapis podataka, ali i zbog toga što od 2009. godine JavaSkript ima ugrađenu funkciju za parsiranje JSON formata u JavaSkript objekat.
+  </lrn-markdown>
 
   <p>
-    <b>Sed dignissim lacinia nunc</b>. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante.
-    <b>Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa</b>. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices.
-    <i>Maecenas mattis</i>. Suspendisse in justo eu magna luctus suscipit. Sed lectus.
+    Međutim, vremenom se pokazalo da je
+    <code>XMLHttpRequest</code> nezgrapan i previše komplikovan za rad. Dolazak prototipa
+    <code>Promise</code> u <abbr title="ECMAScript 2015">ES2015</abbr> iskorišćen je za definiciju
+    <a href="https://fetch.spec.whatwg.org/"
+       title="Fetch specifikacija">novog standarda</a> za obavljanje Ajaks zahteva pod nazivom <a
+    href="https://developer.mozilla.org/en/docs/Web/API/Fetch_API"
+    title="Više o fetch API-ju"><code>fetch</code></a>, koji i Angular u pozadini koristi u metodama klase
+    <code>Http</code> koju nudi kao preporučeno rešenje za obavljanje zahteva.
   </p>
 
-  <!--<figure>-->
-  <!--<lrn-planimetrics [interactivePoints]="[pointLeft, pointRight]" [objects]="[segment, bisector]"></lrn-planimetrics>-->
-  <!--<figcaption>Segment bisector. You can drag points A and B to see how the bisector will change.</figcaption>-->
-  <!--</figure>-->
+  <lrn-markdown>
+    Kao **prednosti** jednostraničnih aplikacija izdvajaju se tri glavne osobine.
 
-  <p>Integer euismod lacus luctus magna.
-    <b>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos</b>. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus. Ut ultrices ultrices enim. Curabitur sit amet mauris.
-  </p>
+    Jednostranične aplikacije su **brze**. Većina resursa se učitava samo jednom (lejaut, stilovi, skripte). Samo se podaci razmenjuju sa serverom. Na primer, u aplikacijama kao što su mejl-klijenti, struktura aplikacije ostaje ista tokom navigacije kroz nju. Umesto da se otvaranjem mejla iznova učitava čitava stranica, dobavlja se samo sadržaj mejla i zatim se JavaSkriptom taj sadržaj ubacuje u odgovarajuću sekciju sajta -- ostatak stranice nema potrebe da se ponovo preuzima sa servera.
 
-  <figure>
-    <img src="https://unsplash.it/300/200">
-    <figcaption>This is a caption on a centered picture. It spans across the page and isn't bound by the picture width.</figcaption>
-  </figure>
+    **Iskustvo korisnika** je znatno bolje prilikom korišćenja jednostraničnih aplikacija spram klasičnih veb-sajtova. Ovo je direktna posledica goreopisane brzine. Ako se iskoriste neke _pre-load_ tehnike, moguće je čak i učiniti da se sve promene koje korisnik zahteva dogode istog trenutka kada korisnik isporuči zahtev za njih.
 
-  <p>Morbi in dui quis est pulvinar ullamcorper. Nulla facilisi. Integer lacinia sollicitudin massa. Cras metus. Sed aliquet risus a tortor.
-    <b>Donec lacus nunc, viverra nec, blandit vel, egestas et, augue</b>. Integer id quam.
-    <b>Morbi in ipsum sit amet pede facilisis laoreet</b>. Morbi mi. Quisque nisl felis, venenatis tristique, dignissim in, ultrices sit amet, augue. Proin sodales libero eget ante. Nulla quam. Aenean laoreet.
-    <b>Nulla facilisi</b>. Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, pede.
-  </p>
+    Pošto jednostranične aplikacije konzumiraju **API** samo za razmenu podataka, identičan API se može iskoristiti i za druge aplikacije; na primer, mobilna aplikacija može gađati iste tačke na API-ju, a interno na drugačiji način prikazivati te podatke. Ovo je nemoguće ostvariti u tradicionalnoj paradigmi jer server vraća čitavu HTML stranicu, koja je mobilnom klijentu beskorisna.
 
-  <h2>Title at Level Two, Once Again</h2>
+    **Mane** jednostraničnih aplikacija su mnogo suptilnije i uglavnom se tiču činjenice da one ne mogu u potpunosti iskoristiti funkcionalnosti brauzera, već da moraju manuelno iznova implementirati te funkcionalnosti u JavaSkriptu.
 
-  <p>Ut orci risus, accumsan porttitor, cursus quis, aliquet eget, justo. Sed pretium blandit orci.
-    <b>Integer id quam</b>. Ut eu
-    <code>diam at pede suscipit sodales</code>. Aenean lectus elit, fermentum non, convallis id, sagittis at, neque. Nullam mauris orci, aliquet et, iaculis et, viverra vitae, ligula. Nulla ut felis in purus aliquam imperdiet. Maecenas aliquet mollis lectus. Vivamus consectetuer risus et tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero.
-    <b>Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, pede</b>. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.
-  </p>
+    Brauzeri čuvaju **istoriju posećenih stranica** što čini povratak na prethodnu stranicu veoma brzim. Kada korisnik pritisne dugme za navigaciju unazad, on očekuje da se promena dogodi uz veoma malo kašnjenje i da stranica bude u sličnom stanju u odnosu na ono kada je poslednji put bila prikazana na ekranu. Kada je sajt izgrađen tradicionalnim modelom, brauzer će biti u stanju da iskoristi keširanu verziju stranice i povezane resurse. Naivna implementacija jednostranične aplikacije će povratak nazad poistovetiti sa bilo kojom drugom akcijom, odnosno biće okinut događaj koji će detektovai osluškivač u JavaSkriptu, što će kao posledicu imati ponovno ispaljivanje zahteva ka serveru za istim podacima; dakle javlja se dodatna latentnost i (verovatno) vizuelna promena.
 
-  <h3>Title at Level Three</h3>
+    Da bi korisnici mogli da imaju zadovoljavajuće iskustvo prilikom navigacije kroz jednostraničnu aplikaciju, slična funkcionalnost se mora implementirati u JavaSkriptu. Aplikacija treba da kešira stranice korišćenjem memorije, lokalnog skladišta, baze podataka na strani klijenta ili kolačića. Sem toga, aplikacija mora da odluči i _kada_ da pokupi te stranice i iskoristi ih. Da bi se ovo rešilo, neophodno je da se napravi razlika između klika na link ili kucanja adrese direktno u brauzer, i pritiskom na dugmad _back_ i _forward_ na brauzeru. Međutim, iz bezbednosnog razloga, nemoguće je iz Javaskripta ustanoviti na koji je način korisnik navigirao na drugu stranicu.
 
-  <p>Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.
-    <b>Nullam mauris orci, aliquet et, iaculis et, viverra vitae, ligula</b>. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis.
-  </p>
+    Sličan problem postoji i kod **čuvanja pozicije skrola**. Brauzeri pamte poziciju skrola na stranicama koje su ranije posećene. Pošto se kod jednostraničnih aplikacija stranica nikada ne menja, brauzer nije svestan promene "stranica", pa čuva poziciju skrola čak i kada se to ne očekuje. Na primer, ako korisnik klikne na link na dnu stranice, kada mu se otvori "nova" stranica, brauzer neće znati da treba da ažurira poziciju skrola na vrh, pa će korisnik biti odveden na dno.
 
-  <hr>
+    Brauzeri će korisnike obavestiti da imaju **popunjenu formu** koja još uvek nije poslata kada probaju da navigiraju na neku drugu stranicu. Ovo je implementirano kroz događaj `beforeunload` na koji se developer može pretplatiti. Međutim, kod jednostraničnih aplikacija ovaj događaj postaje beskoristan jer brauzer ne pravi zahteve ka pravim stranicama. Developer bi morao lično da bude odgovoran da pruži ovakvo iskusvo korisnicima.
 
-  <p>
-    <b>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos</b>. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor.
-    <b>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos</b>. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa.
-    <i>Mauris massa</i>. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
-    <b>Sed convallis tristique sem</b>. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla.
-    <i>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos</i>. Suspendisse potenti.
-  </p>
-
-  <p>Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna.
-    <b>Ut fringilla</b>. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui.
-    <b>Suspendisse potenti</b>. Praesent blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec, blandit vel, egestas et, augue.
-  </p>
-
-  <h3>Title at Level Three</h3>
-
-  <p>Vestibulum tincidunt malesuada tellus. Ut ultrices ultrices enim. Curabitur sit amet mauris. Morbi in dui quis est pulvinar ullamcorper. Nulla facilisi.
-    <b>Praesent blandit dolor</b>. Integer lacinia sollicitudin massa. Cras metus. Sed aliquet risus a tortor. Integer id quam. Morbi mi. Quisque nisl felis, venenatis tristique, dignissim in, ultrices sit amet, augue.
-  </p>
-
-  <h4>Title at Level Four</h4>
-
-  <p><b>Curabitur sit amet mauris</b>. Proin sodales libero eget ante. Nulla quam.
-    <b>Integer lacinia sollicitudin massa</b>. Aenean laoreet. Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, pede.
-    <b>Integer lacinia sollicitudin massa</b>. Ut orci risus, accumsan porttitor, cursus quis, aliquet eget, justo. Sed pretium blandit orci.
-    <b>Cras metus</b>. Ut eu diam at pede suscipit sodales. Aenean lectus elit, fermentum non, convallis id, sagittis at, neque. Nullam mauris orci, aliquet et, iaculis et, viverra vitae, ligula.
-    <b>Proin sodales libero eget ante</b>. Nulla ut felis in purus aliquam imperdiet. Maecenas aliquet mollis lectus.
-  </p>
-
-  <h4>Title at Level Four</h4>
-
-  <p>Vivamus consectetuer risus et tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.
-    <b>Ut eu diam at pede suscipit sodales</b>. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.
-  </p>
-
-  <h3>Title at Level Three</h3>
-
-  <p>Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero. Sed dignissim lacinia nunc.
-    <b>Duis sagittis ipsum</b>. Curabitur tortor. Pellentesque nibh.
-    <i>Praesent libero</i>. Aenean quam. In scelerisque sem at dolor.
-    <b>Duis sagittis ipsum</b>. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa.
-  </p>
-
-  <ul>
-    <li>Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit.</li>
-    <li>
-      <i>Maecenas mattis</i>. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus.
-    </li>
-  </ul>
-
-  <p>
-    <b>Curabitur sodales ligula in libero</b>. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh. Quisque volutpat condimentum velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien.
-  </p>
-
-  <p>Proin quam. Etiam ultrices. Suspendisse in justo eu magna luctus suscipit.
-    <b>Ut fringilla</b>. Sed lectus.
-    <b>Nam nec ante</b>. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi lacinia molestie dui. Praesent blandit dolor. Sed non quam. In vel mi sit amet augue congue elementum.
-    <i>Maecenas mattis</i>. Morbi in ipsum sit amet pede facilisis laoreet. Donec lacus nunc, viverra nec, blandit vel, egestas et, augue. Vestibulum tincidunt malesuada tellus.
-  </p>
-
-  <p>Ut ultrices ultrices enim. Curabitur sit amet mauris. Morbi in dui quis est pulvinar ullamcorper. Nulla facilisi. Integer lacinia sollicitudin massa.
-    <b>Sed non quam</b>. Cras metus. Sed aliquet risus a tortor. Integer id quam. Morbi mi. Quisque nisl felis, venenatis tristique, dignissim in, ultrices sit amet, augue. Proin sodales libero eget ante. Nulla quam.
-  </p>
-
-  <h2>Title at Level Two, for the Last Time</h2>
-
-  <p>Aenean laoreet. Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, pede. Ut orci risus, accumsan porttitor, cursus quis, aliquet eget, justo. Sed pretium blandit orci. Ut eu diam at pede suscipit sodales. Aenean lectus elit, fermentum non, convallis id, sagittis at, neque. Nullam mauris orci, aliquet et, iaculis et, viverra vitae, ligula. Nulla ut felis in purus aliquam imperdiet. Maecenas aliquet mollis lectus. Vivamus consectetuer risus et tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    <b>Proin sodales libero eget ante</b>. Integer nec odio. </p>
-
-  <p>
-    <b>Vestibulum nisi lectus, commodo ac, facilisis ac, ultricies eu, pede</b>. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta.
-    <b>Nulla ut felis in purus aliquam imperdiet</b>. Mauris massa. Vestibulum lacinia arcu eget nulla. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur sodales ligula in libero.
-  </p>
-
-  <p>Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam.
-    <b>Mauris massa</b>. In scelerisque sem at dolor.
-    <b>Mauris massa</b>. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa. Fusce ac turpis quis ligula lacinia aliquet. Mauris ipsum.
-    <b>In scelerisque sem at dolor</b>. Nulla metus metus, ullamcorper vel, tincidunt sed, euismod in, nibh.
-    <b>In scelerisque sem at dolor</b>. Quisque volutpat condimentum velit. </p>
-
-  <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam nec ante. Sed lacinia, urna non tincidunt mattis, tortor neque adipiscing diam, a cursus ipsum ante quis turpis. Nulla facilisi. Ut fringilla. Suspendisse potenti. Nunc feugiat mi a tellus consequat imperdiet. Vestibulum sapien. Proin quam. Etiam ultrices.
-    <b>Nam nec ante</b>. Suspendisse in justo eu magna luctus suscipit. Sed lectus. Integer euismod lacus luctus magna. Quisque cursus, metus vitae pharetra auctor, sem massa mattis sem, at interdum magna augue eget diam.
-  </p>
+    Možda najčešće pominjana mana jednostraničnih aplikacija jeste **optimizacija za pretraživače** (<abbr
+    title="Search Engine Optimization">SEO</abbr>). Pošto je dovlačenje podataka asinhrono, Guglovi kroleri prilikom obilaska stranice neće "znati" da treba da sačekaju neko vreme pre nego što se podaci dobave sa servera i stranica prikaže, pa će stranicu tretirati kao potpuno praznu, što znači da stranica neće biti indeksirana i neće se pojavljivati u rezultatima pretrage, što je za mnoge biznis-stranice nedopustivo. Srećom, popularni frejmvorci u poslednje vreme nude mogućnost da nekoliko ključnih stranica (npr. početna stranica, stranica sa opisom firme, stranica sa podacima za kontakt, stranica koja predstavlja oglas za otvorenu poziciju u firmi) budu renderovane na serveru
+    (<abbr title="Server-Side Rendering">SSR</abbr>)
+    i da se direktno takve dostave klijentu. Ovo omogućava pojavu statičkih stranica, iako su napisane u frejmvorku koji je namenjen dinamičkim jednostraničnim aplikacijama, čime se sprečava dupliranje funkcionalnosti, tj. održavanje dve različito kodirane verzije istog sadržaja.
+  </lrn-markdown>
 
 </lrn-notebook>

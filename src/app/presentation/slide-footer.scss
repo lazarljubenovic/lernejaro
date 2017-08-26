@@ -3,7 +3,6 @@
 
 
 .footer {
-  @include force-height($slide-footer-height);
   display: flex;
   align-items: center;
 

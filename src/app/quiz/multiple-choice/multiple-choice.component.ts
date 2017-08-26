@@ -16,9 +16,15 @@ import {
 import {ChoiceComponent} from './choice/choice.component'
 import * as _ from 'lodash'
 import {UniqueIdService} from '../../unique-id.service'
-import {LoggerService} from '../../logger.service'
+import {LoggerService} from '../../logger/logger.service'
 import {QuestionComponent} from '../question/question.component'
 import {MultipleChoiceInfo} from './interfaces'
+import {
+  ConflictingFeedbackErrorComponent,
+  MultipleChoiceNoChoicesErrorComponent,
+  MultipleChoiceNoCorrectAnswerErrorComponent,
+  MultipleChoiceNoQuestionErrorComponent,
+} from '../errors'
 
 @Component({
   selector: 'lrn-multiple-choice',
@@ -37,7 +43,7 @@ export class MultipleChoiceComponent implements AfterContentInit, AfterViewInit,
   // TODO This is the same as in the fill-in-the-blank component
   private submitted: boolean
 
-  private icon: string
+  public icon: string
 
   private resetIcon(): void {
     this.icon = 'question'
@@ -54,7 +60,7 @@ export class MultipleChoiceComponent implements AfterContentInit, AfterViewInit,
   private defaultFeedbackFunction = (info: MultipleChoiceInfo) => null
   @Input() feedback: Function = this.defaultFeedbackFunction
 
-  private feedbackString: string
+  public feedbackString: string
 
   private resetFeedback(): void {
     this.feedbackString = null
@@ -165,9 +171,7 @@ export class MultipleChoiceComponent implements AfterContentInit, AfterViewInit,
       .some(choice => choice.feedback != null)
 
     if (this.feedback != this.defaultFeedbackFunction && existsChoiceWithFeedbackString) {
-      this.logger.warn(`If [feedback] function is given to <multiple-choice>, [feedback] ` +
-        `inputs on children will be ignored.`, this.elementRef.nativeElement)
-      return
+      this.logger.display(ConflictingFeedbackErrorComponent)
     }
 
     this.feedback = ({answer}) => {
@@ -179,18 +183,18 @@ export class MultipleChoiceComponent implements AfterContentInit, AfterViewInit,
 
   private assert() {
     if (this.questionComponent == null) {
-      this.logger.error(`Multiple choice must have a question (lrn-question).`,
-        this.elementRef.nativeElement)
+      this.logger.display(MultipleChoiceNoQuestionErrorComponent)
+      return
     }
 
     if (this.choicesQueryList.length == 0) {
-      this.logger.error(`Multiple choice must have at least one lrn-choice inside.`,
-        this.elementRef.nativeElement)
+      this.logger.display(MultipleChoiceNoChoicesErrorComponent)
+      return
     }
 
     if (!this.choicesQueryList.some(choice => choice.isCorrect())) {
-      this.logger.error(`At least one choice must be marked as correct.`,
-        this.elementRef.nativeElement)
+      this.logger.display(MultipleChoiceNoCorrectAnswerErrorComponent)
+      return
     }
   }
 

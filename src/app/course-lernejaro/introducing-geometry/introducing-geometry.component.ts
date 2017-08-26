@@ -184,6 +184,14 @@ export class IntroducingGeometryComponent {
       `,
     },
     'axis': {
+      interactivePoints: [
+        Point.FromCartesianCoordinates(-200, -200)
+          .label('A').strokeColor(MaterialColor.AMBER),
+        Point.FromCartesianCoordinates(200, -200)
+          .label('B').strokeColor(MaterialColor.AMBER),
+        Point.FromCartesianCoordinates(0, 250)
+          .label('C').strokeColor(MaterialColor.AMBER),
+      ],
       code: format`
       <lrn-planimetrics [interactivePoints]="points"
                         [evaluate]="evaluate"

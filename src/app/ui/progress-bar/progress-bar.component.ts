@@ -12,7 +12,6 @@ export class ProgressBarComponent implements OnInit {
 
     @Input() public total: number = 100
     @Input() public current: number = 0
-    @Input() public percent: number = null
 
     constructor() {
     }
