@@ -21,15 +21,17 @@
   <ng-content></ng-content>
 
   <!-- Automatically generated headings -->
-  <h2 class="references">References</h2>
-  <dl>
-    <div *ngFor="let reference of references">
-      <dt><a [href]="reference.href">{{ reference.name }}</a></dt>
-      <dd *ngFor="let id of reference.ids; let index = index">
-        <button (click)="goToFragment(id)">[{{ index + 1 }}]</button>
-      </dd>
-    </div>
-  </dl>
+  <ng-container *ngIf="references && references.length > 0">
+    <h2 class="references">References</h2>
+    <dl>
+      <div *ngFor="let reference of references">
+        <dt><a [href]="reference.href">{{ reference.name }}</a></dt>
+        <dd *ngFor="let id of reference.ids; let index = index">
+          <button (click)="goToFragment(id)">[{{ index + 1 }}]</button>
+        </dd>
+      </div>
+    </dl>
+  </ng-container>
 
   <!--<h2>Abbrevations</h2>-->
 </article>
