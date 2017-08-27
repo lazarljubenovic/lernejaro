@@ -52,8 +52,6 @@ export class ConsoleComponent implements OnInit {
       }
       // Clear text inside the prompt
       (this.prompt.nativeElement as HTMLElement).innerText = ''
-      // Scroll to bottom
-      this.elementRef.nativeElement.scrollTop = this.elementRef.nativeElement.scrollHeight
     }
   }
 
