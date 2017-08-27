@@ -5,13 +5,15 @@ import {LoggerModule} from '../logger/logger.module'
 import {UiModule} from '../ui/ui.module'
 import {
   ConsoleClashingInterpretersErrorComponent,
-  ConsoleNoLanguageErrorComponent, ConsoleUnknownLanguageErrorComponent,
+  ConsoleNoLanguageErrorComponent,
+  ConsoleUnknownLanguageErrorComponent,
 } from './errors'
 import {MarkdownModule} from '../markdown/markdown.module'
 import {CodeModule} from '../code/code.module'
 import {CounterInterpreter} from './interpreters/counter'
 import {LRN_CONSOLE_INTERPRETER} from './console'
 import {JavaScriptInterpreter} from './interpreters/javascript'
+import {LispInterpreter} from './interpreters/lisp'
 
 const errors = [
   ConsoleNoLanguageErrorComponent,
@@ -43,6 +45,11 @@ const errors = [
     {
       provide: LRN_CONSOLE_INTERPRETER,
       useClass: JavaScriptInterpreter,
+      multi: true,
+    },
+    {
+      provide: LRN_CONSOLE_INTERPRETER,
+      useClass: LispInterpreter,
       multi: true,
     },
   ],

@@ -24,10 +24,12 @@ import {DisplayQuoteModule} from '../display-quote/display-quote.module'
 import {IntroducingKvizoComponent} from './introducing-kvizo/introducing-kvizo.component'
 import {LayoutModule} from '../layout/layout.module'
 import {CodeModule} from '../code/code.module'
-import {IntroducingConsoleComponent} from './introducing-console/introducing-console.component'
+import {
+  IntroducingConsoleComponent,
+  PalindromeInterpreter,
+} from './introducing-console/introducing-console.component'
 import {ConsoleModule} from '../console/console.module'
 import {LRN_CONSOLE_INTERPRETER} from '../console/console'
-import {LispInterpreter} from '../console/interpreters/lisp'
 
 @NgModule({
   imports: [
@@ -116,7 +118,7 @@ import {LispInterpreter} from '../console/interpreters/lisp'
   providers: [
     {
       provide: LRN_CONSOLE_INTERPRETER,
-      useClass: LispInterpreter,
+      useClass: PalindromeInterpreter,
       multi: true,
     },
   ],

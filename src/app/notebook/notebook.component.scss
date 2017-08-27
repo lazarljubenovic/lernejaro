@@ -159,19 +159,16 @@ lrn-notebook {
     }
 
     code {
-      padding: .1em;
-      margin-left: .2em;
-      margin-right: .2em;
-      border-radius: 2pt;
+      font-size: .92em;
     }
 
     pre {
       display: block;
-      padding: .8rem 1.2em;
       box-sizing: border-box;
       overflow-x: auto;
 
       code {
+        line-height: 1.2;
         display: inline;
         background-color: transparent;
         box-shadow: none;
@@ -431,18 +428,6 @@ lrn-notebook {
         $border: solid 1px get-theme($inverse-theme-name, 'back');
         border-top: $border;
         border-bottom: $border;
-      }
-
-      code {
-        background-color: rgba(get-theme($inverse-theme-name, 'front'), .08);
-      }
-
-      pre {
-        background-color: rgba(get-theme($inverse-theme-name, 'front'), .08);
-
-        code {
-          background-color: transparent;
-        }
       }
     }
 
