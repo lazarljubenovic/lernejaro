@@ -8,6 +8,9 @@ const errors = [
   NoLanguageSpecifiedErrorComponent,
 ]
 
+/**
+ * The module which exports a single `CodeComponent`.
+ */
 @NgModule({
   imports: [
     CommonModule,
