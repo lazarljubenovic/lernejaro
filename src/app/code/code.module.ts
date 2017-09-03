@@ -4,6 +4,10 @@ import {CodeComponent} from './code.component'
 import {LoggerModule} from '../logger/logger.module'
 import {NoLanguageSpecifiedErrorComponent} from './errors'
 
+const errors = [
+  NoLanguageSpecifiedErrorComponent,
+]
+
 @NgModule({
   imports: [
     CommonModule,
@@ -11,13 +15,13 @@ import {NoLanguageSpecifiedErrorComponent} from './errors'
   ],
   declarations: [
     CodeComponent,
-    NoLanguageSpecifiedErrorComponent,
+    ...errors,
   ],
   exports: [
     CodeComponent,
   ],
   entryComponents: [
-    NoLanguageSpecifiedErrorComponent,
+    ...errors,
   ],
 })
 export class CodeModule {
