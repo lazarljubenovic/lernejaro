@@ -1,10 +1,5 @@
 import {Renderer} from './renderer'
-import {Point} from '../geometry-objects/point'
-import {Segment} from '../geometry-objects/segment'
-import {Circle} from '../geometry-objects/circle'
-import {Line} from '../geometry-objects/line'
-import {Polygon} from '../geometry-objects/polygon'
-import {Ellipse} from '../geometry-objects/ellipse'
+import {Circle, Ellipse, Line, Point, Polygon, Segment} from '../geometry-objects/everything'
 
 export class ConsoleRenderer extends Renderer {
 

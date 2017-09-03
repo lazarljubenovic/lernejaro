@@ -1,10 +1,12 @@
-import {GeometryObject} from '../geometry-objects/geometry-object'
-import {Point} from '../geometry-objects/point'
-import {Line} from '../geometry-objects/line'
-import {Segment} from '../geometry-objects/segment'
-import {Circle} from '../geometry-objects/circle'
-import {Polygon} from '../geometry-objects/polygon'
-import {Ellipse} from '../geometry-objects/ellipse'
+import {
+  Circle,
+  Ellipse,
+  GeometryObject,
+  Line,
+  Point,
+  Polygon,
+  Segment,
+} from '../geometry-objects/everything'
 
 export abstract class Renderer {
 

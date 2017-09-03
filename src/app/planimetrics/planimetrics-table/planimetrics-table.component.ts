@@ -1,6 +1,5 @@
 import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core'
-import {GeometryObject} from '../../planimetryts/geometry-objects/geometry-object'
-import {Point} from '../../planimetryts/geometry-objects/point'
+import {GeometryObject, Point} from '../../planimetryts/geometry-objects/everything'
 
 @Component({
     selector: 'lrn-planimetrics-table',

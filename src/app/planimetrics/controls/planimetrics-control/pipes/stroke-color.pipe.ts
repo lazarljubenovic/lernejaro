@@ -1,23 +1,23 @@
 import {Pipe, PipeTransform} from '@angular/core'
 // tslint:disable-next-line
-import {GeometryObjectController} from '../../geometry-object-controllers/geometry-object-controller';
-import {MaterialColor} from '../../../../planimetryts/geometry-objects/material-colors'
+import {GeometryObjectController} from '../../geometry-object-controllers/geometry-object-controller'
+import {MaterialColor} from '../../../../planimetryts/geometry-objects/everything'
 
 @Pipe({name: 'strokeColor'})
 export class StrokeColorPipe implements PipeTransform {
 
-    transform(controller: GeometryObjectController,
-              defaultColor: MaterialColor = MaterialColor.BLUE_GREY): MaterialColor {
-        try {
-            const strokeColor = controller.getGeometryObject().strokeColor()
-            if (!strokeColor) {
-                return defaultColor
-            } else {
-                return strokeColor
-            }
-        } catch (e) {
-            return defaultColor
-        }
+  transform(controller: GeometryObjectController,
+            defaultColor: MaterialColor = MaterialColor.BLUE_GREY): MaterialColor {
+    try {
+      const strokeColor = controller.getGeometryObject().strokeColor()
+      if (!strokeColor) {
+        return defaultColor
+      } else {
+        return strokeColor
+      }
+    } catch (e) {
+      return defaultColor
     }
+  }
 
 }

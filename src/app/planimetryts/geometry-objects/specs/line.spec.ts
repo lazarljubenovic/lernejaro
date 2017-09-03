@@ -1,7 +1,5 @@
-import {Line} from '../line'
-import {Point} from '../point'
 import {areEqualFloats, isZero} from '../../util'
-import {MaterialColor} from '../material-colors'
+import {Line, Point, MaterialColor} from '../everything'
 
 const customEqualities = function (first: any, second: any) {
   if (first.kind == 'line' && second.kind == 'line') {

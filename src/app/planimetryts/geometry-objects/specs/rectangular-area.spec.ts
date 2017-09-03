@@ -1,9 +1,4 @@
-import {Point} from '../point'
-import {RectangularArea} from '../rectangular-area'
-import {Polygon} from '../polygon'
-import {Segment} from '../segment'
-import {Line} from '../line'
-
+import {Line, Point, Polygon, RectangularArea, Segment} from '../everything'
 const customEqualities = function (first: any, second: any) {
   if (first.kind == 'point' && second.kind == 'point') {
     return Point.AreEqual(first, second)

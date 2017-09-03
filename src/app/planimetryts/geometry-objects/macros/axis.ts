@@ -1,9 +1,6 @@
 import {EvaluateFunction} from '../../../planimetrics/planimetrics.component'
-import {Line} from '../line'
-import {Segment} from '../segment'
 import {AxisConfiguration} from './axis.interface'
-import {Point} from '../point'
-import {RectangularArea} from '../rectangular-area'
+import {Line, Point, RectangularArea, Segment} from '../everything'
 
 const arrayGen = length => Array.from({length}).map((_, index) => index)
 

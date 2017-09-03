@@ -1,7 +1,5 @@
-import {Point} from '../point'
-import {Line} from '../line'
 import {areEqualFloats} from '../../util'
-import {MaterialColor} from '../material-colors'
+import {Line, MaterialColor, Point} from '../everything'
 
 const pointEquality = function (first: any, second: any) {
   if (first.kind == 'point' && second.kind == 'point') {

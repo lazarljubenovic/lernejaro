@@ -1,17 +1,18 @@
 import {Renderer} from './renderer'
-import {Point} from '../geometry-objects/point'
-import {Segment} from '../geometry-objects/segment'
-import {Circle} from '../geometry-objects/circle'
-import {Line} from '../geometry-objects/line'
-import {GeometryObject} from '../geometry-objects/geometry-object'
-import {Matrix} from '../geometry-objects/matrix'
-import {Subject} from 'rxjs'
-import {Polygon} from '../geometry-objects/polygon'
 import {MaterialColor} from './color'
-import {MaterialColor as MaterialColorEnum} from '../geometry-objects/material-colors'
-import {Ellipse} from '../geometry-objects/ellipse'
-import {RectangularArea} from '../geometry-objects/rectangular-area'
-
+import {
+  Circle,
+  Ellipse,
+  GeometryObject,
+  Line,
+  MaterialColor as MaterialColorEnum,
+  Matrix,
+  Point,
+  Polygon,
+  RectangularArea,
+  Segment,
+} from '../geometry-objects/everything'
+import {Subject} from 'rxjs/Subject'
 
 function getCursorPosition(canvas, event): Coordinate {
   let rect = canvas.getBoundingClientRect()

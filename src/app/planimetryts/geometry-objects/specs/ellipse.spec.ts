@@ -1,6 +1,4 @@
-import {Ellipse, EllipseGeneralForm} from '../ellipse'
-import {Point} from '../point'
-
+import {Ellipse, Point} from '../everything'
 
 const customEqualities = function (first: any, second: any) {
   if (first.kind == 'point' && second.kind == 'point') {

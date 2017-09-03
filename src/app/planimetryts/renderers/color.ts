@@ -1,5 +1,5 @@
 import * as chroma from 'chroma-js'
-import {MaterialColor as MaterialColorEnum} from '../geometry-objects/material-colors'
+import {MaterialColor as MaterialColorEnum} from '../geometry-objects/everything'
 
 const materialColors: any = {
   'red': {

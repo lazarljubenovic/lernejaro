@@ -1,13 +1,13 @@
 import {Component} from '@angular/core'
-import {Point} from '../../planimetryts/geometry-objects/point'
-import {MaterialColor} from '../../planimetryts/geometry-objects/material-colors'
 import {EvaluateFunction} from '../../planimetrics/planimetrics.component'
 import {AxisConfiguration} from '../../planimetryts/geometry-objects/macros/axis.interface'
 import {format} from '../../code/code'
-import {Segment} from '../../planimetryts/geometry-objects/segment'
-import {Line} from '../../planimetryts/geometry-objects/line'
-import {Triangle} from '../../planimetryts/geometry-objects/triangle'
-import {Ellipse} from '../../planimetryts/geometry-objects/ellipse'
+import {
+  Ellipse,
+  Line,
+  MaterialColor, Point, Segment,
+  Triangle,
+} from '../../planimetryts/geometry-objects/everything'
 
 interface Example {
   interactivePoints?: Point[]

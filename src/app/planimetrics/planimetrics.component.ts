@@ -14,12 +14,10 @@ import {
 } from '@angular/core'
 import {CanvasRenderer} from '../planimetryts/renderers/canvas-renderer'
 import {RendererService} from './renderer.service'
-import {GeometryObject} from '../planimetryts/geometry-objects/geometry-object'
-import {Point} from '../planimetryts/geometry-objects/point'
 import {areEqualFloats} from '../planimetryts/util'
-import {Matrix} from '../planimetryts/geometry-objects/matrix'
 import {AxisConfiguration} from '../planimetryts/geometry-objects/macros/axis.interface'
 import {Axis} from '../planimetryts/geometry-objects/macros/axis'
+import {GeometryObject, Matrix, Point} from '../planimetryts/geometry-objects/everything'
 
 export interface EvaluateFunctionArgumentObject {
   interactivePoints: Point[]

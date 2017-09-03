@@ -1,5 +1,4 @@
 import {Component, Input, OnInit} from '@angular/core'
-import {MaterialColor} from '../../planimetryts/geometry-objects/material-colors'
 
 @Component({
   selector: 'lrn-chip',
