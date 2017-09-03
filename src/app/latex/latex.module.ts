@@ -6,7 +6,8 @@ import {LatexService} from './latex.service'
   imports: [
     CommonModule,
   ],
-  declarations: [
+  declarations: [],
+  providers: [
     LatexService,
   ],
 })

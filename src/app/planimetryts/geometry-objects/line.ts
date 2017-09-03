@@ -76,7 +76,7 @@ export class Line extends GeometryObject {
 
   public static HorizontalThroughPoint(point: Point | number): Line {
     let y: number
-    if (typeof point == 'number') {
+    if (typeof point === 'number') {
       y = point
     } else {
       y = point.getCartesianCoordinates().y
@@ -86,7 +86,7 @@ export class Line extends GeometryObject {
 
   public static VerticalThroughPoint(point: Point | number): Line {
     let x: number
-    if (typeof point == 'number') {
+    if (typeof point === 'number') {
       x = point
     } else {
       x = point.getCartesianCoordinates().x
@@ -212,15 +212,16 @@ export class Line extends GeometryObject {
   }
 
   public static OrthogonalThroughPoint(line: Line | Segment, point: Point): Line {
-    if (line instanceof Segment) {
-      line = Line.FromSegment(line)
+    let _line: any = line // fuck you TS
+    if (_line instanceof Segment) {
+      _line = Line.FromSegment(_line)
     }
-    if (line.isVertical()) {
+    if (_line.isVertical()) {
       return Line.HorizontalThroughPoint(point)
-    } else if (line.isHorizontal()) {
+    } else if (_line.isHorizontal()) {
       return Line.VerticalThroughPoint(point)
     } else {
-      const k = line.getExplicitForm().k
+      const k = _line.getExplicitForm().k
       const newK = -1 / k
       return Line.FromPointAndCoefficient(point, newK)
     }

@@ -1,4 +1,4 @@
-import {Ellipse} from '../ellipse'
+import {Ellipse, EllipseGeneralForm} from '../ellipse'
 import {Point} from '../point'
 
 
@@ -17,7 +17,7 @@ describe(`Ellipse`, () => {
     it(`should create a new ellipse from canonical form`, () => {
       const ellipse = Ellipse.FromCanonicalForm(2, 5)
       const actual = ellipse.getGeneralForm()
-      const expected = {A: 25, B: 0, C: 4, D: 0, E: 0, F: -100}
+      const expected: any = {A: 25, B: 0, C: 4, D: 0, E: 0, F: -100}
       expect(actual).toEqual(expected)
     })
 

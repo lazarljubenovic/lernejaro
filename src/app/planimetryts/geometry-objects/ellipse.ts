@@ -4,6 +4,10 @@ import {areEqualFloats, isZero} from '../util'
 import {Line} from './line'
 import {Matrix} from './matrix'
 
+export interface EllipseGeneralForm {
+  A: number, B: number, C: number, D: number, E: number, F: number
+}
+
 export class Ellipse extends GeometryObject {
 
   public static AreEqual(ellipse1: Ellipse, ellipse2: Ellipse): boolean {
@@ -171,7 +175,7 @@ export class Ellipse extends GeometryObject {
     }
   }
 
-  public getGeneralForm(): { A: number, B: number, C: number, D: number, E: number, F: number } {
+  public getGeneralForm(): EllipseGeneralForm {
     const [A, B, C, D, E, F] = [this.A, this.B, this.C, this.D, this.E, this.F]
     return {A, B, C, D, E, F}
   }
