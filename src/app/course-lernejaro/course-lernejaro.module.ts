@@ -9,8 +9,6 @@ import {PresentationModule} from '../presentation/presentation.module'
 import {MarkdownMarkupComponent} from './markdown-markup/markdown-markup.component'
 import {IntroducingTablesComponent} from './introducing-tables/introducing-tables.component'
 import {TableModule} from '../table/table.module'
-import {IntroducingBitmapsComponent} from './introducing-bitmaps/introducing-bitmaps.component'
-import {BitmapModule} from '../bitmap/bitmap.module'
 import {IntroducingGeometryComponent} from './introducing-geometry/introducing-geometry.component'
 import {PlanimetricsModule} from '../planimetrics/planimetrics.module'
 import {FormsModule} from '@angular/forms'
@@ -43,7 +41,6 @@ import {LRN_CONSOLE_INTERPRETER} from '../console/console'
     MarkdownModule,
     PresentationModule,
     TableModule,
-    BitmapModule,
     PlanimetricsModule,
     NotebookModule,
     KatexModule,
@@ -69,10 +66,6 @@ import {LRN_CONSOLE_INTERPRETER} from '../console/console'
       {
         path: '5-Tables',
         component: IntroducingTablesComponent,
-      },
-      {
-        path: '6-Bitmaps',
-        component: IntroducingBitmapsComponent,
       },
       {
         path: '9-Geometry',
@@ -109,7 +102,6 @@ import {LRN_CONSOLE_INTERPRETER} from '../console/console'
     IntroductionComponent,
     MarkdownMarkupComponent,
     IntroducingTablesComponent,
-    IntroducingBitmapsComponent,
     IntroducingGeometryComponent,
     IntroducingNotebookComponent,
     IntroducingKvizoComponent,
