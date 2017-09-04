@@ -13,7 +13,6 @@ import {NotebookModule} from './notebook/notebook.module'
 import {KatexModule} from './katex/katex.module'
 import {QuizModule} from './quiz/quiz.module'
 import {UniqueIdService} from './unique-id.service'
-import {FitTextModule} from './fit-text/fit-text.module'
 import {LayoutModule} from './layout/layout.module'
 import {LoggerService} from './logger/logger.service'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
@@ -47,7 +46,6 @@ export const ROUTES: Routes = [
     PresentationModule,
     KatexModule,
     QuizModule,
-    FitTextModule,
     LayoutModule,
     RouterModule.forRoot(ROUTES),
     BrowserAnimationsModule,
