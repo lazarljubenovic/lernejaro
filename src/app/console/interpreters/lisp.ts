@@ -6,6 +6,34 @@ interface Token {
   value: any
 }
 
+/**
+ * A very basic version of Lisp interpreter used with the `ConsoleComponent`
+ * class. For advances interpreting, you might want to use an instance of
+ * this class in your components instead of relying on its usage internally
+ * inside `ConsoleComponent`. Since there are no dependencies, you can easily
+ * instantiate it without hassle around `Injector`.
+ *
+ * This very basic version of Lisp supports the following operators:
+ * - n-ary addition with `+`,
+ * - n-ary subtraction with `-`,
+ * - n-ary multiplication with `*`,
+ * - n-ary division with `/`,
+ * - unary absolute value with `abs`,
+ * - unary square root with `sqrt`,
+ * - binary equality comparison with `=`,
+ * - binary less-than comparison with `<`,
+ * - binary greater-than comparison with `>`,
+ * - unary `car`, `cdr`, `cadr` and `cddr`.
+ *
+ * For example, the following code would output `10`.
+ *
+ * ```lisp
+ * (+ 1 2 3 4)
+ * ```
+ *
+ * You can see more examples in the tests, which are contained inside
+ * the `lisp.spec.ts` file.
+ */
 @Injectable()
 export class LispInterpreter implements Interpreter {
   public language = 'lisp'

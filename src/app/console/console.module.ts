@@ -10,7 +10,6 @@ import {
 } from './errors'
 import {MarkdownModule} from '../markdown/markdown.module'
 import {CodeModule} from '../code/code.module'
-import {CounterInterpreter} from './interpreters/counter'
 import {LRN_CONSOLE_INTERPRETER} from './console'
 import {JavaScriptInterpreter} from './interpreters/javascript'
 import {LispInterpreter} from './interpreters/lisp'
@@ -21,6 +20,11 @@ const errors = [
   ConsoleClashingInterpretersErrorComponent,
 ]
 
+/**
+ * Console is a module exporting single component, `ConsoleComponent`.
+ * It also exports the `LRN_CONSOLE_INTERPRETER` token for providing
+ * custom languages into the console.
+ */
 @NgModule({
   imports: [
     CommonModule,
@@ -37,11 +41,6 @@ const errors = [
     ConsoleComponent,
   ],
   providers: [
-    {
-      provide: LRN_CONSOLE_INTERPRETER,
-      useClass: CounterInterpreter,
-      multi: true,
-    },
     {
       provide: LRN_CONSOLE_INTERPRETER,
       useClass: JavaScriptInterpreter,

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core'
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core'
 import {format} from '../../code/code'
 import {Interpreter} from '../../console/interpreter.interface'
 
@@ -16,6 +16,7 @@ export class PalindromeInterpreter implements Interpreter {
   selector: 'lrn-introducing-console',
   templateUrl: './introducing-console.component.html',
   styleUrls: ['./introducing-console.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class IntroducingConsoleComponent implements OnInit {
 

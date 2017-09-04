@@ -1,6 +1,13 @@
 import {Injectable} from '@angular/core'
 import {Interpreter} from '../interpreter.interface'
 
+/**
+ * The JavaScript interpreter used with the `ConsoleComponent` class.
+ * For advanced interpreting, you might want to use an instance of this
+ * class in your components instead of relying on its usage internally
+ * inside `ConsoleComponent`. Since there are no dependencies, you can
+ * easily instantiate it without hassle around `Injector`.
+ */
 @Injectable()
 export class JavaScriptInterpreter implements Interpreter {
   public language = 'javascript'

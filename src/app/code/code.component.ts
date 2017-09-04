@@ -70,6 +70,9 @@ import {NoLanguageSpecifiedErrorComponent} from './errors'
 })
 export class CodeComponent implements AfterViewInit, OnInit {
 
+  /**
+   * The language which the snippet is written in.
+   */
   @Input('lrnCode') public language: string
 
   constructor(private elementRef: ElementRef,
