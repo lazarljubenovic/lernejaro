@@ -5,6 +5,12 @@
                   [withoutThankYouSlide]="true"
 >
 
+  <lrn-slide section="a" title="b">
+    <lrn-katex [math]="[['1', '2'], ['3', '4']] | bMatrix"
+               [displayMode]="true"
+    ></lrn-katex>
+  </lrn-slide>
+
   <lrn-slide [section]="'Basic examples'"
              [title]="'Two points'"
   >
