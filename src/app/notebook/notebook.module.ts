@@ -20,12 +20,15 @@ import {LoggerModule} from '../logger/logger.module'
 import {CodeModule} from '../code/code.module'
 import {
   NoExternalResourcesWarningComponent,
-  NotebookTitleWithoutContentErrorComponent,
+  NotebookTitleWithoutContentErrorComponent, NotebookWithoutAuthorErrorComponent,
+  NotebookWithoutLanguageSpecifiedErrorComponent,
 } from './errors'
 import {LatexModule} from '../latex/latex.module'
 
 const errors = [
   NotebookTitleWithoutContentErrorComponent,
+  NotebookWithoutAuthorErrorComponent,
+  NotebookWithoutLanguageSpecifiedErrorComponent,
 ]
 
 const warnings = [

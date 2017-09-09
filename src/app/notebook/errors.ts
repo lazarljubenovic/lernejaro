@@ -33,6 +33,72 @@ export class NotebookTitleWithoutContentErrorComponent {
 
 @Component({
   template: `
+    <lrn-error heading="No author specified">
+      <p>
+        Why hide your identity? Tell your students who you are!
+      </p>
+
+      <p>
+        Include <strong>your name</strong> in the <code>author</code> input.
+        You can see how to do that in the example below.
+      </p>
+
+      <p style="font-size: .8em; line-height: 2">
+        (But please don't write Chuck Norris...
+        Unless your name is actually Chuck Norris.)
+      </p>
+
+      <pre><code lrnCode="html">{{ example }}</code></pre>
+    </lrn-error>
+  `,
+})
+export class NotebookWithoutAuthorErrorComponent {
+  example = format`
+    <lrn-notebook author="Chuck Norris"
+    ></lrn-notebook>
+  `
+}
+
+
+@Component({
+  template: `
+    <lrn-error heading="No language specified">
+      <p>
+        It might be obvious to the reader <b>what language you're writing in</b>,
+        but it will not be obvious to Lernejaro!
+      </p>
+
+      <p>
+        Some parts of the final notebook which you're currently writing
+        will be written by Lernejaro; for instance, the headings for
+        <b>auto-generated titles</b> at the end of the document.
+      </p>
+
+      <p>
+        This is why you need to provide the language. Don't worry,
+        it's easy! Just pass in <code>lang</code> as an input,
+        in the two-letter form.
+      </p>
+
+      <p>
+        For example, use <code>en</code> for English and <code>sr</code>
+        for Serbian.
+      </p>
+
+      <pre><code lrnCode="html">{{ example }}</code></pre>
+    </lrn-error>
+  `,
+})
+export class NotebookWithoutLanguageSpecifiedErrorComponent {
+  example = format`
+    <lrn-notebook lang="sr"
+    ></lrn-notebook>
+  `
+}
+
+
+@Component({
+  template: `
     <lrn-warning heading="No External Resources"
                  suppress="suppressNoExternalResourcesWarning">
       <p>

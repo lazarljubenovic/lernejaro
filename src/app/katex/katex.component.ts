@@ -1,13 +1,15 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
+  ElementRef, HostBinding,
   Input,
   OnChanges,
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core'
 import * as KaTeX from 'katex'
+import {LoggerService} from '../logger/logger.service'
+import {KatexMissingMathErrorComponent} from './errors'
 
 /**
  * A component which encapsulates KaTeX. This is a text rendering
@@ -31,28 +33,33 @@ import * as KaTeX from 'katex'
 @Component({
   selector: 'lrn-katex',
   template: `
-    <span #original><ng-content></ng-content></span>
     <span #result></span>
   `,
   styleUrls: ['../../../node_modules/katex/dist/katex.min.css'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  interpolation: ['[[', ']]'],
 })
 export class KatexComponent implements OnChanges {
 
-  @Input() public math: string
+  @Input() @HostBinding('attr.data-original-math')  public math: string
+
   @Input() public displayMode: boolean = false
 
   @ViewChild('result') public result: ElementRef
 
-  constructor() {
+  constructor(private logger: LoggerService) {
   }
 
   ngOnChanges() {
     const options: KaTeX.KatexOptions = {
       displayMode: this.displayMode,
     }
+
+    if (this.math == null) {
+      this.logger.display(KatexMissingMathErrorComponent)
+      return
+    }
+
     KaTeX.render(this.math, this.result.nativeElement, options)
   }
 

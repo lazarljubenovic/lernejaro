@@ -13,6 +13,7 @@ import {highlightElement} from 'prismjs'
 import {LoggerService} from '../logger/logger.service'
 import {PresentationComponent} from '../presentation/presentation.component'
 import {NoLanguageSpecifiedErrorComponent} from './errors'
+import {format} from './code'
 
 /**
  * A component for using code snippets. Works for both inline snippets and
@@ -61,7 +62,7 @@ import {NoLanguageSpecifiedErrorComponent} from './errors'
  */
 @Component({
   selector: 'code[lrnCode]',
-  template: `
+  template: format`
     <ng-content></ng-content>
   `,
   styleUrls: ['./code.component.scss'],

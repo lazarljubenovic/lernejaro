@@ -32,12 +32,15 @@ import {PaletteService} from '../ui/palette.service'
 import {animate, state, style, transition, trigger} from '@angular/animations'
 import * as _ from 'lodash'
 import {ModalService} from '../ui/modal/modal.service'
-import {MissingTitleComponent} from './errors/missing-title.component'
 import {
   NoExternalResourcesWarningComponent,
   NotebookTitleWithoutContentErrorComponent,
+  NotebookWithoutAuthorErrorComponent,
+  NotebookWithoutLanguageSpecifiedErrorComponent,
 } from './errors'
 import {LatexService} from '../latex/latex.service'
+import {MissingTitleComponent} from './errors/missing-title.component'
+import {LatexComponent} from '../latex/latex.component'
 
 const HUMAN_WPM = 275
 
@@ -74,6 +77,9 @@ const roundUp = (step: number) => (number: number) => number - (number % step) +
 export class NotebookComponent implements OnInit, AfterContentInit {
 
   @Input() public suppressNoExternalResourcesWarning: boolean
+
+  @Input() public author: string
+  @Input('lang') public language: 'en' | 'sr'
 
   constructor(private elementRef: ElementRef,
               private logger: LoggerService,
@@ -216,11 +222,24 @@ export class NotebookComponent implements OnInit, AfterContentInit {
   }
 
   public openAsLatexDocument() {
-    const latexDocument = this.latex.transform(this.article.nativeElement as HTMLElement)
-    console.log(latexDocument)
+    const latexDocument = this.latex.render(this.article.nativeElement as HTMLElement, {
+      title: this.notebookTitle,
+      author: this.author,
+      language: this.language,
+    })
+    this.modal.open(LatexComponent, {code: latexDocument})
   }
 
   ngOnInit() {
+    if (this.author == null) {
+      this.logger.display(NotebookWithoutAuthorErrorComponent)
+      return
+    }
+
+    if (this.language == null) {
+      this.logger.display(NotebookWithoutLanguageSpecifiedErrorComponent)
+      return
+    }
   }
 
   ngAfterContentInit() {
@@ -238,6 +257,7 @@ export class NotebookComponent implements OnInit, AfterContentInit {
       this.notebookTitle = heading1.title
     } else {
       this.logger.display(MissingTitleComponent)
+      return
     }
 
     this.prepareWordCount()

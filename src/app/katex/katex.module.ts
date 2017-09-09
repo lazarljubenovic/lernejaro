@@ -4,6 +4,12 @@ import {KatexComponent} from './katex.component'
 import {KatexService} from './katex.service'
 import {BMatrixPipe} from './pipes/matrix-b.pipe'
 import {VMatrixPipe} from './pipes/matrix-v.pipe'
+import {LoggerModule} from '../logger/logger.module'
+import {KatexMissingMathErrorComponent} from './errors'
+
+const errors = [
+  KatexMissingMathErrorComponent,
+]
 
 /**
  * A simple module which enables using LaTeX inside written materials.
@@ -16,11 +22,13 @@ import {VMatrixPipe} from './pipes/matrix-v.pipe'
 @NgModule({
   imports: [
     CommonModule,
+    LoggerModule,
   ],
   declarations: [
     KatexComponent,
     BMatrixPipe,
     VMatrixPipe,
+    ...errors,
   ],
   providers: [
     KatexService,
@@ -29,6 +37,9 @@ import {VMatrixPipe} from './pipes/matrix-v.pipe'
     KatexComponent,
     BMatrixPipe,
     VMatrixPipe,
+  ],
+  entryComponents: [
+    ...errors,
   ],
 })
 export class KatexModule {

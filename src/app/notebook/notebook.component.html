@@ -14,7 +14,9 @@
   </div>
 </header>
 
-<article [class]="'wrapper'" #article>
+<article [class]="'wrapper'" #article
+         [lang]="language"
+>
   <div class="table-of-content" [class.hidden]="!isVisibleTableOfContent">
     <lrn-table-of-content [tree]="tableOfContents"></lrn-table-of-content>
   </div>
