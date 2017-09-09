@@ -1,11 +1,9 @@
 import {BrowserModule} from '@angular/platform-browser'
 import {NgModule} from '@angular/core'
 import {FormsModule} from '@angular/forms'
-import {HttpModule} from '@angular/http'
 import {AppComponent} from './app.component'
 import {MarkdownParserService} from './markdown/markdown-parser.service'
 import {RouterModule, Routes} from '@angular/router'
-import {ObjectEditorModule} from './object-editor/object-editor.module'
 import {UiModule} from './ui/ui.module'
 import {PlanimetricsModule} from './planimetrics/planimetrics.module'
 import {StereometricsModule} from './stereometrics/stereometrics.module'
@@ -37,8 +35,6 @@ export const ROUTES: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
-    ObjectEditorModule,
     UiModule.forRoot({theme: 'light', color: 'yellow'}),
     PlanimetricsModule,
     StereometricsModule,

@@ -1,9 +1,0 @@
-<div class="wrapper">
-  <lrn-input *ngFor="let kvPair of object | keyValuePairs; trackBy: trackBy"
-             [type]="kvPair.type"
-             [label]="kvPair.key"
-             [value]="kvPair.value"
-             (valueChange)="onChange(kvPair.key, $event)"
-  ></lrn-input>
-</div>
-
