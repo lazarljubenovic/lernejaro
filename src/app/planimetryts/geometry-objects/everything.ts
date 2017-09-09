@@ -1037,9 +1037,6 @@ export class Angle extends GeometryObject {
 
 }
 
-/**
- * @deprecated
- */
 export class Circle extends GeometryObject {
 
   public static AreEqual(circle1: Circle, circle2: Circle): boolean {
