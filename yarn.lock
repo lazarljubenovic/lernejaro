@@ -157,18 +157,17 @@
   dependencies:
     tsickle "^0.23.5"
 
-"@compodoc/compodoc@^1.0.0-beta.14":
-  version "1.0.0-beta.14"
-  resolved "https://registry.yarnpkg.com/@compodoc/compodoc/-/compodoc-1.0.0-beta.14.tgz#66f0682eacdf85b1ef4bf6ac780794bd352650f8"
+"@compodoc/compodoc@next":
+  version "1.0.0-beta.15"
+  resolved "https://registry.yarnpkg.com/@compodoc/compodoc/-/compodoc-1.0.0-beta.15.tgz#17f6c7220514a6a45ac89df9c8bfa6c73562983e"
   dependencies:
-    "@compodoc/ngd-core" "^2.0.0-alpha.1"
-    "@compodoc/ngd-transformer" "^2.0.0-alpha.3"
+    "@compodoc/ngd-transformer" "^2.0.0-alpha.4"
     cheerio "^1.0.0-rc.2"
     chokidar "^1.7.0"
     colors "^1.1.2"
     commander "2.11.0"
     findit "^2.0.0"
-    fs-extra "^4.0.0"
+    fs-extra "^4.0.1"
     glob "^7.1.2"
     gulp-util "^3.0.8"
     handlebars "^4.0.10"
@@ -180,16 +179,16 @@
     marked "^0.3.6"
     os-name "^2.0.1"
     shelljs "^0.7.8"
-    typescript "2.4.2"
+    typescript "2.5.2"
 
-"@compodoc/ngd-core@2.0.0-alpha.3", "@compodoc/ngd-core@^2.0.0-alpha.1":
+"@compodoc/ngd-core@2.0.0-alpha.3":
   version "2.0.0-alpha.3"
   resolved "https://registry.yarnpkg.com/@compodoc/ngd-core/-/ngd-core-2.0.0-alpha.3.tgz#5fc28fe6b5dd13b176fdd6c8aff59692b5065745"
   dependencies:
     gulp-util "^3.0.8"
     typescript "^2.4.2"
 
-"@compodoc/ngd-transformer@^2.0.0-alpha.3":
+"@compodoc/ngd-transformer@^2.0.0-alpha.4":
   version "2.0.0-alpha.5"
   resolved "https://registry.yarnpkg.com/@compodoc/ngd-transformer/-/ngd-transformer-2.0.0-alpha.5.tgz#f7cb05a1df81b36e79209c61bc7026b5361d99f6"
   dependencies:
@@ -6165,13 +6164,13 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@2.4.2, "typescript@>=2.0.0 <2.5.0":
-  version "2.4.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.4.2.tgz#f8395f85d459276067c988aa41837a8f82870844"
-
-typescript@^2.2.1, typescript@^2.3.3, typescript@^2.4.2:
+typescript@2.5.2, typescript@^2.2.1, typescript@^2.3.3, typescript@^2.4.2:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.5.2.tgz#038a95f7d9bbb420b1bf35ba31d4c5c1dd3ffe34"
+
+"typescript@>=2.0.0 <2.5.0":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.4.2.tgz#f8395f85d459276067c988aa41837a8f82870844"
 
 uglify-js@3.0.x:
   version "3.0.28"

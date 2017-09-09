@@ -4,6 +4,7 @@
 /dist
 /tmp
 /sassdoc
+documentation/
 
 # dependencies
 /node_modules

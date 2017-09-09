@@ -18,7 +18,7 @@ const declarations = [
   imports: [
     CommonModule,
   ],
-  declarations,
+  declarations: declarations,
   exports: declarations,
 })
 export class LayoutModule {

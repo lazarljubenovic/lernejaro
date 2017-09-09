@@ -32,7 +32,7 @@ import {NoLanguageSpecifiedErrorComponent} from './errors'
  * ```
  *
  * For code blocks, it's technically the same syntax. You just need to
- * wrap everything inside a <pre> tag.
+ * wrap everything inside a `<pre>` tag.
  *
  * ```html
  * <pre><code lrnCode=html>Code snippet goes here</code></pre>
