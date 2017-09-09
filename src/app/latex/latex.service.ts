@@ -127,6 +127,10 @@ const htmlTagsMap = new Map<string, Generator>()
   .set('p', c => [...c, '\n\n'])
 
 
+/**
+ * The service used to transform an article (as Notebook component) into a
+ * Latex document which can be compiled.
+ */
 @Injectable()
 export class LatexService {
 

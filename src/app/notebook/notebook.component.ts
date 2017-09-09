@@ -37,6 +37,7 @@ import {
   NoExternalResourcesWarningComponent,
   NotebookTitleWithoutContentErrorComponent,
 } from './errors'
+import {LatexService} from '../latex/latex.service'
 
 const HUMAN_WPM = 275
 
@@ -77,7 +78,8 @@ export class NotebookComponent implements OnInit, AfterContentInit {
   constructor(private elementRef: ElementRef,
               private logger: LoggerService,
               private palette: PaletteService,
-              public modal: ModalService) {
+              public modal: ModalService,
+              private latex: LatexService) {
   }
 
   @ContentChildren(H1Directive) public heading1: QueryList<H1Directive>
@@ -211,6 +213,11 @@ export class NotebookComponent implements OnInit, AfterContentInit {
       })
       .sortBy(({name}) => name)
       .value()
+  }
+
+  public openAsLatexDocument() {
+    const latexDocument = this.latex.transform(this.article.nativeElement as HTMLElement)
+    console.log(latexDocument)
   }
 
   ngOnInit() {

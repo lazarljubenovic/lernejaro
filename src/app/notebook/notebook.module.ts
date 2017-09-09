@@ -22,6 +22,7 @@ import {
   NoExternalResourcesWarningComponent,
   NotebookTitleWithoutContentErrorComponent,
 } from './errors'
+import {LatexModule} from '../latex/latex.module'
 
 const errors = [
   NotebookTitleWithoutContentErrorComponent,
@@ -38,6 +39,7 @@ const warnings = [
     MarkdownModule,
     LoggerModule,
     CodeModule,
+    LatexModule,
   ],
   declarations: [
     NotebookComponent,
