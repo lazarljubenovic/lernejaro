@@ -138,6 +138,8 @@ function sanitizeForLatex(text: string): string {
   return text
     .replace(/\\/g, '\\textbackslash{}')
     .replace(/~/g, '\\textasciitilde{}')
+    .replace(/"/g, `''`)
+    // .replace(/'/g, '')
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
     .replace(/\$/g, '\\$')

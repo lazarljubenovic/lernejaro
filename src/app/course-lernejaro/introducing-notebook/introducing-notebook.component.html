@@ -27,42 +27,41 @@
     Lernejaro je nastao kao rezultat suočavanja sa lošim materijalima za učenje tokom školovanja. Inspiraciju dobija od sistema za pripremu teksta _LaTeX_, od Guglovog jezika za komunikaciju putem korisničkih interfejsa _Material Design_, i od nekolicine dobro pripremljenih interaktivnih materijala na internetu.
   </summary>
 
-  <p>Još od otkrivanja prvog digitalnog računara, brzina izračunavanja i kapacitet skladišta podataka su bili u
+  <h3>Multimedija i interaktivnost</h3>
+
+  <lrn-markdown>
+    Još od otkrivanja prvog digitalnog računara, brzina izračunavanja i kapacitet skladišta podataka su bili u
     <a href="https://sr.wikipedia.org/sr-el/Murov_zakon"
        title="Murov zakon">eksponencijalnom porastu</a>. Personalni računari i pametni telefoni, a u poslednje vreme i pametni satovi i drugi pametni uređaji, su u stanju da kreiraju, modifikuju i pristupe ogromnoj količini digitalnih podataka. U kombinaciji sa internetom, svetskom mrežom, digitalni medijumi su u potpunosti transformisali čovečanstvo dvadesetprvog veka.
-  </p>
-
-  <p lrnMarkdown>
     **Digitalni medijum** je svaki medijum koji je šifriran (enkodiran) u formatu koji je čitljiv mašinama. On se može kreirati, pregledati, distribuirati, modifikovati i trajno skladištiti na elektronskim uređajima: računarski programi, digitalna fotografija, digitalni video- i audio-snimci, podaci i baze podataka, knjige u elektronskom formatu. Digitalni medijumi se često porede sa **štampanim medijumima**, kao što su štampane knjige, novine i časopisi, i analogni medijumi kao što su slike, filmovi i audio-trake. Za pojam digitalnih medijuma često se vezuje i **multimedija**. To je sadržaj koji koristi kombinaciju različitih oblika digitalnih medijuma, uključujući tekst, audio, slike, animacije, video i **interaktivni sadržaj**.
-  </p>
 
-  <p lrnMarkdown>
     I mada se uveliko priča o potencijalu digitalnog medijuma za kreiranje nastavnih materijala, pojmovi "multimedija" i "interaktivnost" često ostaju samo prazno obećanje, a učenicima se kao materijal za učenje dostavljaju slajdovi koji se po malo čemu razlikuju od tradicionalne knjige: imaju striktnu linearnu strukturu, a "multimedija" je svedena jedino na statičke slike.
-  </p>
 
-  <p lrnMarkdown>
     Postoji mnogo alata za izgradnju prezentacija i tekstualnih datoteka. Najčešće korišćeni alati
     za kreiranje prezentacija u vidu slajdova su _PowerPoint_ na Vindouzu i _Keynote_ na
     Meku, a kao veb-aplikacije se izdvajaju _Google Slides_ i _Prezi_. Za tekstualne
     datoteke se uglavnom koristi Majkrosoftov _Word_ ili neki drugi softver kompatibilan sa
     .doc i .docx fajlovima, kao što je _LibreOffice_.
+  </lrn-markdown>
 
+  <h3>Značaj semantike i prednost WYMIYG alata</h3>
+
+  <lrn-markdown>
     Premda ovi alati u teoriji mogu da pruže, barem u neku ruku, dobru semantičku strukturu
     teksta i pratećih medija, činjenica da se radi o
     <abbr title="What You See Is What You Get">WYSIWYG</abbr>
     alatima uglavnom sputava kreatora prezentacije sa ovog cilja. Na primer, u PowerPoint-u je čest slučaj da predavač iskoristi običan _text-box_ umesto _caption_ elementa za sliku. Mada je vizuelna reprezentacija ista, ili barem slična, gubi se semantička struktura, što za posledicu ima nemogućnost da _PowerPoint_ automatski konvertuje prezentacije u čitljiv tekstualni fajl spreman za štampu; već bi student, ukoliko želi da ima prezentacije u štampanom obliku, morao da odštampa slajd bukvalno kao sliku, što svakako nije optimalno, ni sa stanovišta uštede prostora, ni sa stanovišta preglednosti. Slično, često se umesto semantičkog naslova koristi deo glavnog teksta kome se poveća veličina i težina fonta, zbog čega je navigacija kroz prezentaciju otežana (jer alati ne znaju da se radi o naslovu, pa ne mogu da ponude prečice za navigaciju, niti da, na primer, automatski generišu sadržaj).
 
     Ovo je glavni razlog zbog čega Lernejaro nije zamišljen kao alat sa bilo kakvom GUI podrškom. Ovo znači da se ne radi o WYSIWYG (_what you **see** is what you get_, dobiješ to što _vidiš_) alatu, već o takozvanom WYMIWYG (_what you **mean** is what you get_, dobiješ to što _misliš_). Ova ideja je pozajmljena od semantičke strukture HTML5 dokumenata i sistema za pripremanje teksta LaTeX.
-  </p>
 
-  <p>
+
     Praktični pokazatelj da su interaktivni materijali neprocenjivi izvor za učenje su blog
     <a href="http://www.redblobgames.com/"><b>Red Blob Games</b></a>
     (autor <a href="https://twitter.com/redblobgames">Amit Patel</a>),
     i <a href="https://pomax.github.io/bezierinfo/"><b>A Primer on Bézier Curves</b></a>
     (autor <a href="https://github.com/Pomax">Pomaks</a>),
     koji su upravo zbog ovog pristupa postali glavni izvor informacija za oblasti kojom se bave. Mada se naizgled radi o običnom tekstu ispresecanom slikama koji se svakodnevno sreću i u štampanom i u digitalnom obliku, ova dva autora su iskoristili potencijal koji im pruža digitalni zapis: interaktivnost i dinamičnost. Na primer, skoro svi dijagrami su vezani za neku kontrolu kojom korisnik može da manipuliše i tako istraži kako bi se oblik dijagrama menjao u zavinosti od parametara.
-  </p>
+  </lrn-markdown>
 
   <lrn-digression [heading]="'Još primera'">
     <p>
@@ -137,7 +136,11 @@
     title="Single Page Application">SPA</abbr>) jer se potpuno odvajaju od tipične veb paradigme gde se korisnik kreće kroz stranice koje imaju različite
     <abbr
       title="Uniform Resource Locator">URL</abbr>-ove. Tokom poslednjih godina se pojavio veliki broj frejmvorka, uglavnom otvorenog koda, koji omogućuju jednostavniji razvoj jednostraničnih aplikacija.
+  </lrn-markdown>
 
+  <h4>Tehnologije na koje se oslanja SPA</h4>
+
+  <lrn-markdown>
     U osnovi svake SPA aplikacije leži Ajaks (<abbr
     title="Asynchronous JavaScript and XML">AJAX</abbr>). Striktno govoreći, ne radi se o tehnologiji, već o skupu više tehnologija, od kojih se kao najznačajnija izdvaja `XMLHttpRequest` koja u kombinaciji sa HTML-om, CSS-om, JavaSkriptom, DOM-om i
     <abbr title="Extensible Markup Language">XML</abbr>-om ili <abbr
@@ -157,16 +160,22 @@
     <code>Http</code> koju nudi kao preporučeno rešenje za obavljanje zahteva.
   </p>
 
+  <h4>Prednosti</h4>
+
   <lrn-markdown>
-    Kao **prednosti** jednostraničnih aplikacija izdvajaju se tri glavne osobine.
+    Kao prednosti jednostraničnih aplikacija izdvajaju se tri glavne osobine.
 
     Jednostranične aplikacije su **brze**. Većina resursa se učitava samo jednom (lejaut, stilovi, skripte). Samo se podaci razmenjuju sa serverom. Na primer, u aplikacijama kao što su mejl-klijenti, struktura aplikacije ostaje ista tokom navigacije kroz nju. Umesto da se otvaranjem mejla iznova učitava čitava stranica, dobavlja se samo sadržaj mejla i zatim se JavaSkriptom taj sadržaj ubacuje u odgovarajuću sekciju sajta -- ostatak stranice nema potrebe da se ponovo preuzima sa servera.
 
     **Iskustvo korisnika** je znatno bolje prilikom korišćenja jednostraničnih aplikacija spram klasičnih veb-sajtova. Ovo je direktna posledica goreopisane brzine. Ako se iskoriste neke _pre-load_ tehnike, moguće je čak i učiniti da se sve promene koje korisnik zahteva dogode istog trenutka kada korisnik isporuči zahtev za njih.
 
     Pošto jednostranične aplikacije konzumiraju **API** samo za razmenu podataka, identičan API se može iskoristiti i za druge aplikacije; na primer, mobilna aplikacija može gađati iste tačke na API-ju, a interno na drugačiji način prikazivati te podatke. Ovo je nemoguće ostvariti u tradicionalnoj paradigmi jer server vraća čitavu HTML stranicu, koja je mobilnom klijentu beskorisna.
+  </lrn-markdown>
 
-    **Mane** jednostraničnih aplikacija su mnogo suptilnije i uglavnom se tiču činjenice da one ne mogu u potpunosti iskoristiti funkcionalnosti brauzera, već da moraju manuelno iznova implementirati te funkcionalnosti u JavaSkriptu.
+  <h4>Mane</h4>
+
+  <lrn-markdown>
+    Mane jednostraničnih aplikacija su mnogo suptilnije i uglavnom se tiču činjenice da one ne mogu u potpunosti iskoristiti funkcionalnosti brauzera, već da moraju manuelno iznova implementirati te funkcionalnosti u JavaSkriptu.
 
     Brauzeri čuvaju **istoriju posećenih stranica** što čini povratak na prethodnu stranicu veoma brzim. Kada korisnik pritisne dugme za navigaciju unazad, on očekuje da se promena dogodi uz veoma malo kašnjenje i da stranica bude u sličnom stanju u odnosu na ono kada je poslednji put bila prikazana na ekranu. Kada je sajt izgrađen tradicionalnim modelom, brauzer će biti u stanju da iskoristi keširanu verziju stranice i povezane resurse. Naivna implementacija jednostranične aplikacije će povratak nazad poistovetiti sa bilo kojom drugom akcijom, odnosno biće okinut događaj koji će detektovai osluškivač u JavaSkriptu, što će kao posledicu imati ponovno ispaljivanje zahteva ka serveru za istim podacima; dakle javlja se dodatna latentnost i (verovatno) vizuelna promena.
 
@@ -184,11 +193,17 @@
 
   <h3>Sazrevanje JavaSkripta</h3>
 
+  <h4>Nastanak</h4>
+
   <lrn-markdown>
     JavaSkript je nastao maja 1995. godine kao "jezik-lepak" za tadašnji dominantni brauzer Netskejp. Prvobitno nazvan _Mocha_, četiri meseca kasnije biva prekršten u _LiveScript_ da bi tri meseca nakon toga dobio ime po kojem je i danas poznat: _JavaScript_. Ovaj jezik je nastao iz potrebe za premošćavanjem jaza između brauzera kao korisničkog okruženja za prikaz dokumenata i jezika za opis tih dokumenata, HTML-a. Definisao ga je **Brendon Ajk** za samo deset dana.
 
     Sa pojavom drugih brauzera, pojavili su se i jezici koji su očigledno bili inspirisani JavaSkriptom, ali njihovi stvaratelji nisu smeli da ga zvanično tretiraju kao JavaSkript zbog autorskih prava koji je imao San Majkrosistems. Na primer, JavaSkript je poslužio kao podloga Adobiju za jezik ActionScript, i sada predstavlja njegov zvaničan dijalekat. Ipak, najpoznatiji primer kopije JavaSkripta je nesumnjivo _JScript_ koji je došao uz Majkrosoftov Internet Eksplorer u verziji 3, već krajem 1996. Osim u imenu, razlikovao se i u nekim detaljima u implementaciji, ali i u API-ju za komunikaciju sa DOM-om (_Document Object Model_). Iz tog razloga je ubrzo organizovana komisija za standardizaciju JavaSkripta, nazvana ECMA.
+  </lrn-markdown>
 
+  <h4>Pokušaji popravke</h4>
+
+  <lrn-markdown>
     Osnova za moderni JavaSkript definisana je 1999. godine u trećoj verziji standarda, **ES3**. Počelo se sa radom na četvrtoj verziji, koja je trebalo da bude još radikalnija i da ispravi neke "greške" u JavaSkript standardu. Najavljivane promene su bile toliko velike da su čak dovele do toga da **ES4** bude postane poznat kao "JavaSkript 2". Međutim, komitet za standardizaciju je bio podeljen: dok se jedna strana zalagala za poboljšanje jezika zarad bolje budućnosti, druga se bojala da će ovime nastati prevelika pometnja, jer bi sve veb-stranice koje koriste "stari" JavaSkript prestale da rade zbog promene u sintaksi jezika (tzv. "slamanje veba"). Sukob je aktivno trajao do 2003, kada je projekat zvanično napušten.
 
     Dve godine kasnije, osnivač JavaSkripta **Ajk** u saradnji za Mozilom počinje da radi na projektu **E4X**. Pridružuje im se i Makromedija (sada Adobi), u nadi da će standardizovati svoj ActionScript3 u saradnji sa ECMA-om, i time ponovo spojiti razdeljene dijalekte jezika. Ipak, razlika je bila previše velika, što su obe strane počele da shvataju krajem 2007. godine. Otprilike u to vreme, **Daglas Krokford**, koji je tada radio u Jahuu, udružuje snage sa Majkrosoftom kao opozicija promenama koje treba da budu definisane standardom ES4, a svoje stavove iskazuju tako što standard žele da nazovu jednostavno ES3.1, jer unosi samo neznatne promene.
@@ -198,13 +213,21 @@
     Iz rata oko konačnog oblika četvrte verzije standarda koji se konačno okončava 2009. godine izlazi **Krokford**. U JavaSkript je posle dvanaest godina uneto svega nekoliko neznatnih promena, a rezultujući standard je preimenovan u **ES5**, kako ne bi došlo do kasnije zabune oko eventualne četvrte verzije o kojoj se već godinama govori. U standard tada dolazi takozvani `strict mode`, koji definiše "strožu" verziju jezika, ali na kompatibilan način, kako ne bi narušio već postojeći kod koji se nalazi na vebu.
 
     Dve godine kasnije usledila je mala promena standarda, editorijalnog karaktera, nazvana ES5.1, koja nije bila od većeg značaja za JavaSkript.
+  </lrn-markdown>
 
+  <h4>Godišnji ciklusi</h4>
+
+  <lrn-markdown>
     Nove osobine JavaSkripta koje nisu ušle u ES5 standard ostale su poznate pod imenom Harmonija (_Harmony_). Tek 2015. godine se ECMA komitet ponovo sastaje radi definisanja standarda šeste edicije standarda, kada se konačno, posle petanest godina nagomilanih ideja za proširene i poboljšanje jezika, sprovode u delo. Šesta edicija standarda je vrlo kratko pre zvaničnog objavljana preimanovana iz ES6 u **ES2015**, zbog ideje da se u nastavku standard za JavaSkript obnavlja na svakih godinu dana, kako naredne promene ne bi bile toliko velike kao ova.
 
     ES2015 je drastično promenio izgled JavaSkripta, čime je omogućeno znatno jednostavnije pisanje složenih aplikacija. Nesumnjivo najznačanija novina u jeziku su moduli koji omogućuju podelu koda u fajlove, ali je tu i intuitivnija sintaksa za defisanje klasa, iteratori i generatori (koji će poslužiti kao osnova za `async/await` u ES2017), generatorski izrazi, `for-of` petlje, "streličaste" funkcije za sintaksno jednostavnije pisanje funkcionalnog koda, binarni podaci, tipizirani nizovi, kolekcije (mape, skupovi, slabe mape), promisi, dodatne funkcije na `Math` objektu, bolja refleksija, kao i posrednici za metaprogramiranje virtuelnih objekata i omotača.
 
     **Sedma** edicija objavljena 2016. godine uvodi blage promene: operator za stepenovanje `**` i `Array#includes`. Presek za **ES2017** napravljen je juna 2017. godine i ponovo uvodi revolucionarne promene u jezik koje omogućavaju da se procesorska moć iskoristi na znatno višem nivou nego ranije. Među novinama koje ES2017 uvodi izdvaja se mogućnost paralelnog programiranja, izvođenja atomičnih operacija ukoliko ih procesor podržava, nadgledanja tokova podataka (_observable streams_), definisanja tipova podataka koji omogućuju SIMD programiranje. Sem toga, uvedena je sintaksna integracija promisa i generatora pomoću ključnih reči `async` i `await`, a bolji Simboli predstavljaju korak bliže predefinisanju operatora.
+  </lrn-markdown>
 
+  <h4>Najčešći izvori zabune</h4>
+
+  <lrn-markdown>
     Popularnost interneta učinila je da JavaSkript postane najpopularniji programski jezik na svetu. Vrlo je verovatno da na svetu ne postoji računar opšte namene na kome nije instaliran interpreter za JavaSkript. Ovo ima brojne prednosti zbog velike zajednice koja aktivno radi na poboljšanju jezika i ekosistema, ali zbog turbulentnih okolnosti u kojima je JavaSkript nastao i u kojima se razvijao tokom niza godina, nosi i određene mane sa sobom. **Daglas Krokford**, poznat po svom aktivnom učešću u razviću JavaSkripta, po popularizaciji JSON formata i alatima _JSLint_ i _JSMin_, naziva JavaSkript "najneshvaćenijim programskim jezikom".
 
     Krokford svoje [popularno izlaganje](http://javascript.crockford.com/javascript.html) počinje od samog imena. Ne samo da _Java-_ stvara očiglednu zabunu i lažnu ascoijaciju sa Javom, već i nastavak _-Script_ ostavlja utisak da se ne radi o pravom programskom jeziku, i da je "skript" jezik na neki način manje od "programskog" jezika; zapravo se radi o specijalizaciji: na primer, u poređenju sa C-om, JavaSkript po cenu performansi ističe svoju izražajnu moć i dinamičnost.
@@ -230,13 +253,19 @@
     Tajpskript je jezik vrlo sličan JavaSkriptu, i istovremeno predstavlja njegovu tipiziranu nadgradnju i transpajler u neku stariju verziju ECMAScript-a.
   </summary>
 
+  <h4>Transpajliranje</h4>
+
   <lrn-markdown>
-    TajpSkript (_TypeScript_) je programski jezik koji predstavlja statički tipizirani nadskup JavaSkripta i transpajlira se u JavaSkript. **Trajnspajliranje** je vrsta kompajliranja pri kojoj je ulaz jedan viši programski jezik, a izlaz je kod sa ekvivalentnom funkcionalnošću, napisan na drugom (višem) programskom jeziku. Rezultujući JavaSkript se može pokrenuti u brauzerima ili kroz node.js okruženje. Korišćenjem konfiguracionog fajla `tsconfig.json` ili zadavanjem opcija preko komandne linije moguće je izabrati bilo koju verziju JavaSkript standarda (ES3, ES5, ES2015, itd) u zavinosti od željene podrške na starijim brauzerima i verzijama node.js okruženja.
+    TajpSkript (_TypeScript_) je programski jezik koji predstavlja statički tipizirani nadskup JavaSkripta. Alat koji prevodi TajpSkript u JavaScript naziva se `tsc` (_TypeScript Compiler_), a za proces prevođenja se uemsto termina _kompajliranje_ češće koristi _transpajliranje_. **Trajnspajliranje** je vrsta kompajliranja pri kojoj je ulaz jedan viši programski jezik, a izlaz je kod sa ekvivalentnom funkcionalnošću, napisan na drugom (višem) programskom jeziku. Rezultujući JavaSkript se može pokrenuti u brauzerima ili kroz node.js okruženje. Korišćenjem konfiguracionog fajla `tsconfig.json` ili zadavanjem opcija preko komandne linije moguće je izabrati bilo koju verziju JavaSkript standarda (ES3, ES5, ES2015, itd) u zavinosti od željene podrške na starijim brauzerima i verzijama node.js okruženja.
 
     Namenski je zamišljen kao nadskup JavaSkripta kako bi migracija projekta već napisanog u JavaSkriptu na TajpSkript bila skoro trivijalna. Ovo omogućava developerima da inkrementalno dodaju osobine TajpSkripta u postojeći kod, kao i da developeri koji nemaju velikog iskustva u TajpSkriptu mogu samo da "zaobiđu" delove specifične za TajpSkript i koncentrišu se na JavaSkript.
 
-    Mada pruža i mnoge druge prednosti u radu, osnovna namena zbog koje je i nastao jeste dodavanje tipova podataka u kod napisan u JavaSkriptu. Ipak, kao da se istorija ponavlja: TajpSkript deli neke sintaksičke sličnosti sa C# (TajpSkript je Majkrosoftov proizvod), ali se zapravo stvari u pozadini odvijaju drugačije. Kao i sa JavaSkriptom i Javom, mada ovo ima svojih prednosti jer je developerima koji imaju iskustvo u strogo-tipizranim _klasnim_ jezicima, TajpSkript ne može da bude _klasni_ jezik (jer se svakako transpajraliranja u JavaSkript), već samo pruža sintaksni šećer nad JavaSkriptom. Ovi tipovi podataka više podsećaju na tipove podataka koje imaju funkcionalni jezici kao što je Haskel, nego klasni jezici kao što je C#. Ovo je manifestovano sledećim osobinama tipova podataka koje definiše TajpSkript.
+    Mada pruža i mnoge druge prednosti u radu, osnovna namena zbog koje je i nastao jeste dodavanje tipova podataka u kod napisan u JavaSkriptu. Ipak, kao da se istorija ponavlja: TajpSkript deli neke sintaksičke sličnosti sa C# (TajpSkript je Majkrosoftov proizvod), ali se zapravo stvari u pozadini odvijaju drugačije. Kao i sa JavaSkriptom i Javom, mada ovo ima svojih prednosti jer je developerima koji imaju iskustvo u strogo-tipizranim _klasnim_ jezicima, TajpSkript ne može da bude _klasni_ jezik (jer se svakako transpajraliranja u JavaSkript), već samo pruža sintaksni šećer nad JavaSkriptom. Ovi tipovi podataka više podsećaju na tipove podataka koje imaju funkcionalni jezici kao što je Haskel, nego klasni jezici kao što je C#. Ovo je manifestovano brojnim osobinama tipova podataka koje definiše TajpSkript.
+  </lrn-markdown>
 
+  <h4>Statički tipovi</h4>
+
+  <lrn-markdown>
     Postoje jezici gde je neophodno precizno definisati tipove, čak i ako se prilikom deklarisanja vrši i inicijalizacija. Na primer, u C-u se mora navesti `int a = 1` iako je iz same dodele `a = 1` očigledno da se radi o podatku celobrojnog tipa. TajpSkript se trudi da **automatski zaključi** o kom se tipu radi; stoga ga nije neophodno uvek eksplicitno definisati. Na primer, `const a = 1` će imati isti efekat kao i `const a: number = 1` -- u oba slučaja je TajpSkript svestan da se radi o broju (JavaSkript, pa ni TajpSkript, ne razlikuje celobrojne od razlomljenih podataka za razliku od većine drugih jezika).
   </lrn-markdown>
 
@@ -263,9 +292,15 @@
 
   <lrn-markdown>
     Osim navedenih prednosti, tipovi podataka nude i bolje iskustvo prilikom **refaktorisanja** koda, jer je okruženje svesnije zavinosti između promenljivih. U čistom JavaSkriptu, preimenovanje promenljivih ili drugih tokena se može vršiti samo na osnovu imena, što vrlo često predstavlja problem u velikim projektima. Sem ovoga, **automatsko kompletiranje** koda postaje znatno moćnije, a svaki dobar IDE će u toku kucanja sprovoditi kod inkrementalno kroz kompajler, pa developer u realnom vremenu dobija povratnu informaciju o sintaksičkoj ispravnosti koda. Na primer, ako developer proba da sabere string i broj, dobar IDE će ga odmah obavestiti o grešci (na primer, podvući će problematičan isečak koda crvenom linijom), bez potrebe za time da developer ručno pokrene kompajler i tako dobije broj linije koda u kojoj se nalazi greška.
+  </lrn-markdown>
 
+  <lrn-markdown>
     Glavna mana TajpSkripta jeste činjenica da on postaje beskoristan u slučaju da deo koda nije pisan u TajpSkriptu. Ovo je čest slučaj sa eksternim bibliotekama. Zbog toga postoje posebni **definicioni fajlovi** u kojima se nalaze samo deklaracije funkcija, klasa i ostalih promenljivih i konstanti koje se koriste u kodu. Ukoliko takav fajl ne postoji, TajpSkript će potpuno ignorisati modul, odnosno sve što je uvezeno iz tog eksternog modula će imati tip `any`. Ipak, kako TajpSkript dobija na popularnosti, to sve više i više biblioteka pružaju i definicione `.d.ts` fajlove. Sem toga, za mnoge popularne biblioteke su definicioni fajlovi kreirani od strane zajednice i dostupni su za instalaciju preko zvaničnog npm registra.
+  </lrn-markdown>
 
+  <h4>Podrška za buduće standarde</h4>
+
+  <lrn-markdown>
     Mada je misija TajpSkripta da prvenstveno pruži informacije o tipovima podataka, i da osim toga ne ubacuje nove konstrukcije u postojeću specifikaciju JavaSkripta, postoji jedna oblast koda koju TajpSkript značajno menja, a to su **klase**.
 
     Ključna reč `class` je dodata u ECMAScript specifiakciju u verziji ES2015, i predstavlja samo "sintaksni šećer" za funkciju (što se lako proverava operatorom `typeof` koji za klase vraća `'function'`). Kao što je već rečeno, rad sa klasama u JavaSkriptu je drugačiji od rada sa klasama u klasnim jezicima poput Jave i C# i od developera zahteva poznavanje funkcionalne i prototipne paradigme.
@@ -298,10 +333,17 @@
 
     Konfiguracija Vebpeka bazira se na četiri osnovna koncepta koji su opisani u nastavku.
 
-    Početna tačka za kreiranje grafa zavisnosti u aplikaciji naziva se **ulazna tačka** (_entry point_). Za fajl koji se definiše kao ulazna tačka se još kaže da predstavlja kontektualni koren, odnosno fajl koji pokreće celu aplikaciju.
+    Početna tačka za kreiranje grafa zavisnosti u aplikaciji naziva se **ulazna tačka** (_entry point_). Za fajl koji se definiše kao ulazna tačka se još kaže da predstavlja kontekstualni koren, odnosno fajl koji pokreće celu aplikaciju.
+  </lrn-markdown>
 
-    Često se za ulaznu tačku bira više fajlova. Najčešća jednostavna postavka kod jednostraničnih aplikacija su dve ulazne tačke: jedna za sam aplikacioni kod, a druga za vendore. Vendori su eksterni moduli: najčešće je to frejmvork koji se koristi u kombinaciji sa drugim eksternim bibliotekama koje su uključene u aplikaciju. Ova postavka se koristi jer omogućava korišćenje obrasca _dugoročnog keširanja vendorskog koda_. (https://medium.com/@okonetchnikov/long-term-caching-of-static-assets-with-webpack-1ecb139adb95)
+  <p>
+    Često se za ulaznu tačku bira više fajlova. Najčešća jednostavna postavka kod jednostraničnih aplikacija su dve ulazne tačke: jedna za sam aplikacioni kod, a druga za vendore. Vendori su eksterni moduli: najčešće je to frejmvork koji se koristi u kombinaciji sa drugim eksternim bibliotekama koje su uključene u aplikaciju. Ova postavka se koristi jer omogućava korišćenje obrasca
+    <a
+      href="https://medium.com/@okonetchnikov/long-term-caching-of-static-assets-with-webpack-1ecb139adb95"
+      title="Keširanje vendora pomoću Vebpeka"><i>dugoročnog keširanja vendorskog koda</i></a>.
+  </p>
 
+  <lrn-markdown>
     Naime, svaki put kada se neki deo aplikacionog koda promeni, mora da se ponovo okači na server i da se ponovo preuzme od strane svih klijenata. Ovo je očigledno neefikasno jer pribavljanje podataka preko mreže može da bude sporo. Zato brauzeri keširaju statičke resurse. Međutim, ukoliko se ne promeni putanja i ime do fajla kada se objavljuje nova verzija, brauzer može da pomisli da fajl nije ažuriran i da klijentu dostavi keširanu verziju. Vebpek zbog ovoga nudi automatsko dodavanje dvadesetocifrenog heksadekadnog broja u ime fajla, koji se generiše nekom funkcijom za heširanje.
 
     Na ovaj način je omogućeno da menjaju samo imena fajlova koji unose promene u kodu. Ako se vendori ne ažuriraju na novije verzije, njihov heš ostaje isti, pa brauzer koristi keširanu verziju. Izmena aplikacionog koda znači da će pribaviti samo novi kod, a ne čitav kod iznova. Ipak, treba voditi računa o broju bandlova i održati balans: više bandlova znači bolje keširanje, ali slabija kompresija.
@@ -623,7 +665,7 @@
   <lrn-markdown>
     Kao što je već rečeno, biblioteka Zone.js implementira zone; to je mehanizam koji omogućava enkapsulaciju i presretanje asinhronih događaja u brauzeru. Angular koristi ovaj kontekst izvršenja na osnovu koga prati početak i okočenje izvršenja asinhronih aktivnosti, što npr. omogućuje da zna kada treba pokrenuti algoritam za detekciju promena. (https://angular-2-training-book.rangle.io/handout/zones/)
 
-    Zone.js pruža jednu globalnu zonu koja se može forkovati i proširiti da detaljnije enkapsulira i izoluje asinhrono ponašanje, što Angular radi u vidu servisa `NgZone`.  Ovaj servis se može ubrizgati kao zavinost u bilo koju direktivu, cev ili servis. U njemu je implementiran određen broj metoda i nadgledivih promenljivih koji služe za ispitivanje stanja Angularove zone i za izvršenje koda unutar ili van ove zone.
+    Zone.js pruža jednu globalnu zonu koja se može forkovati i proširiti da detaljnije enkapsulira i izoluje asinhrono ponašanje, što Angular radi u vidu servisa `NgZone`. Ovaj servis se može ubrizgati kao zavinost u bilo koju direktivu, cev ili servis. U njemu je implementiran određen broj metoda i nadgledivih promenljivih koji služe za ispitivanje stanja Angularove zone i za izvršenje koda unutar ili van ove zone.
 
     - `onUnstable` obaveštava da je kod počeo za izvršenjem unutar Angularove zone.
     - `onMicrotaskEmpty` obaveštava da nema mikro-zadataka u redu za izvršenje. Angular se interno pretplaćuje na ovaj događaj da bi signalizirao da treba pokrenuti detekciju promena.
@@ -633,10 +675,92 @@
     Kako svi asinhroni događaji koji se obavljaju unutar Angularove zone mogu okinuti detekciju promena, Angular nudi način za izvršavanje asinhronih događaja koji neće okinuti detekciju promena (npr. kod za ispis trenutnog vremena može koristiti `setInterval`; nema potrebe da Angular traži promenu u celom stablu jer je developer svestan da je taj poziv funkcije namenjen ažuriranju samo jedne stvari). Ovo se ostvaruje pozivom metode `runOutsideAngular` nad ubrizganom instancom `NgZone`.
   </lrn-markdown>
 
-  <h2>Lernejaro moduli</h2>
+  <h2>Proces rada</h2>
 
-  Lernejaro je sačinjen od skupa modula koji mogu funkcionisati nezavisno, ali su načinjeni tako da dobro funkcionišu u međusobnoj sprezi jer dele zajedničke API osobine.
+  <summary lrnMarkdown>
+    Ovo poglavlje opisuje alate koji su korišćeni tokom razvitka biblioteke, kao i načine na koji su oni korišćeni. Uključuje **git** kao kontrolu verzije, **tslint** i **codelyzer** kao kontrolu konzistentnosti u stilu pisanja koda i "lov" na česte greške, **compodoc** kao alat za generisanje dokumentacije, **yarn** kao menadžer paketa, **Karma** i **Jasmine** kao okruženje i frejmvork za pisanje testova i **ng**, konzolnu aplikaciju koja enkapsulira neka podešavanja na jednostavniji način.
+  </summary>
 
-  Ipak, posebno se izdvajaju dva centarlna modula, _Prezento_ (prezentacija) i _Kajero_ (sveska), za koje se očekuje da svaki predavač koristi kada koristi Lernejaro. Ovi moduli, respektivno, služe za izgradnju prezentacije i materijala za učenje u vidu "digitalne sveske".
+  <h3>Git</h3>
+
+  <h4>Kontrola verzije</h4>
+
+  <lrn-markdown>
+    Kontrola verzije je sistem koji beleži promene načinjene nad fajlom ili skupom fajlova tokom vremena, kako bi se ranije verzije fajlova mogle naknadno pribaviti. Najjednostavniji način kontrole verzije je ručno kopiranje fajlova u posebne foldere koji imaju vremensku oznaku. Ovo je istovremeno i način najviše podložan greškama, jer je lako greškom upisati fajl na pogrešno mesto i time nepovratno izgubiti stariju verziju projekta.
+
+    Kao rešenja za ovaj problem javljaju se **alati za kontrolu verzija**. Uglavnom imaju ugrađenu podršku za kolaboraciju sa drugim developerima. Mogu biti centralizovani i distribuirani.
+
+    **Centralizovani** sistemi za kontrolu verzije (_CVS_, _Subversion_, _Perforce_) koriste jedan server koji sadrži sve verzionisanje fajlove, a klijenti ih pribavljaju iz tog centralnizovanog mesta. Osnovni nedostatak ovakvog sistema je jedinstvena tačka kvara: server. Ako server bude nedostupan neko vreme, nijedan developer neće moći da povuče fajlove sa servera, niti da tamo objavi svoje promene. Ako se ošteti hard-disk na serveru, celokupna istorija će biti izgubljena.
+
+    **Distribuirani** sistemi za kontrolu verzije (_Git_, _Mercurial_, _Bazaar_, _Darcs_) rešavaju ovaj problem tako što klijenti ne preuzimaju samo trenutni izlged fajlova, već potpuno preslikavaju ceo repozitorijum, Drugim rečima, svaki developer čuva redundansu u podacima za istoriju projekta.
+  </lrn-markdown>
+
+  <h4>Kratka istorija Gita</h4>
+
+  <lrn-markdown>
+    Linuks jezgro je prilično širok softverski projekat otvorenog koda. Tokom većine vremena održavanja Linuksovog jezgra (1991-2002), promene u softveru slate su unaokolo kao zakrpe i arhivirani fajlovi. Godine 2002, projekat Linuks jezgra počeo je da koristi vlasnički DVCS koji se zvao _BitKeeper_.
+
+    Godine 2005, odnos između zajednice koja je radila na Linuks jezgru i komercijalne kompanije koja je razvijala _BitKeeper_ se raspao, i besplatan status alata bio je ukinut. Ovo je primoralo Linuksovu zajednicu programera (i posebno Linusa Torvaldsa, osnivača Linuksa) da osmisle svoj sopstveni alat oslanjajući se na neke lekcije koje su naučili dok su koristili _BitKeeper_. Neki od ciljeva koje je imao novi sistem bili su sledeći:
+
+    - brzina,
+    - jednostavan dizajn,
+    - snažna podrška za nelinearni razvitak (na hiljade paralelnih grana),
+    - potpuna distribucija,
+    - mogućnost da efiksno rukuje velikim projektima kao što je Linuks jezgro (brzina i veličina podataka).
+
+    Od njegovog nastanka 2005, Git je evoluirao i sazreo u alat koji je bio jednostavan za upotrebu, ali je zadržao ove kvalitete. Neverovatno je brz, veoma je efikasan sa velikim projektima, i ima odličan sistem grananja za nelinearno razviće programa.
+  </lrn-markdown>
+
+  <h4>Semantičke komit poruke</h4>
+
+  <lrn-markdown>
+    Svaki komit u Gitu mora da ima komit-poruku uz sebe, koja treba da jasno govori o tome kako promena koju uvodi utiče na postojeći sistem. Komit poruke se prikazuju prilikom listanja istorije komitova korišćenjem naredbe `git log`.
+
+    Projekat koristi stroga pravila prilikom formatiranja prve (uglavnom jedine) linije komit poruke. Ovo kao rezultat ima **čitljivije** komit poruke koje je lakše protumačiti prilikom pregleda istorije komitova. Sem toga, omogućuje **automatsko generisanje** _changelog_-a.
+
+    Ako komit poruka poštuje specificiran format, kaže se da je ona **semantička komit poruka**. Gugl je <a
+    href="https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#-git-commit-guidelines"
+    title="Format komit poruka za AngularJS repozitorijumu">definisao</a> format za semantičke komit poruke za repozitorijum AngularJS,
+    koji su kasnije preuzeli mnogi projekti otvorenog koda i prilagodili svojim potrebama (npr. <a
+    href="http://karma-runner.github.io/0.10/dev/git-commit-msg.html"
+    title="Format komit poruka za Karma repozitorijum">Karma</a>).
+  </lrn-markdown>
+
+  <h3>Linteri</h3>
+
+  <h3>Dokumentacija</h3>
+
+  <h3>Menadžment paketa</h3>
+
+  <h3>Testovi</h3>
+
+  <h3>Angularov CLI</h3>
+
+  <summary>
+    `g` komande
+    postavka projekta
+    `build`, `--prod`
+    `--stat-json` i optimizator + webpack bundle analyzer
+  </summary>
+
+  <h2>Odabrani implementacioni detalji</h2>
+
+  <h3>Paleta boja i teme</h3>
+
+  <summary>
+    Provajderi preko statičke metode `.forRoot`, CSS promenljive.
+  </summary>
+
+  <h3>Podizanje modala iz servisa</h3>
+
+  <h3>Multi-provajderi u modulu za konzolu</h3>
+
+  <h3>Bandlovanje posebnih biblioteka</h3>
+
+  <summary>
+    https://github.com/angular/angular/pull/16486/files?diff=unified#diff-3911b89a8b42ea53a4342aa134735437
+    https://github.com/filipesilva/angular-quickstart-lib
+
+  </summary>
 
 </lrn-notebook>
