@@ -4,13 +4,13 @@ import * as marked from 'marked'
 @Injectable()
 export class MarkdownParserService {
 
-    private geFirstNonEmptyLine(text: string): string {
+    private getFirstNonEmptyLine(text: string): string {
         return text.split('\n').find(line => line !== '')
     }
 
     // Find the gobble automatically
     private getGobble(text: string): number {
-        const firstLine: string = this.geFirstNonEmptyLine(text)
+        const firstLine: string = this.getFirstNonEmptyLine(text)
         const spaces: string = firstLine.match(/(^\s*)/)[0]
         return spaces.length
     }
