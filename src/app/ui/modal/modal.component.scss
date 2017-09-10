@@ -14,8 +14,7 @@
   pointer-events: none;
 
   lrn-card {
-    //width: calc(100% - 8vw);
-    max-width: 50rem;
+    max-width: calc(100% - 8vw);
     margin-left: 5vw;
     margin-right: 5vw;
   }
