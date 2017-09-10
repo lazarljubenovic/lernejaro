@@ -8,7 +8,8 @@ import {
   TemplateRef,
 } from '@angular/core'
 import {ModalComponent} from './modal.component'
-import {BlackoutService} from '../blackout/blackout.service'
+import {BlackoutService} from '@lernejaro/blackout'
+import 'rxjs/add/operator/take'
 
 @Injectable()
 export class ModalService {

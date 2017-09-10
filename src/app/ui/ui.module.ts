@@ -27,12 +27,10 @@ import {CheckboxGroupComponent} from './checkbox-group/checkbox-group.component'
 import {CardBadgeComponent} from './card/card-badge/card-badge.component'
 import {ChipComponent} from './chip/chip.component'
 import {IconComponent} from './icon/icon.component'
-import { BlackoutComponent } from './blackout/blackout.component'
-import {BlackoutService} from './blackout/blackout.service'
 import {UnknownIconErrorComponent} from './errors'
 import {LoggerModule} from '../logger/logger.module'
 import {CodeModule} from '../code/code.module'
-import {MarkdownComponent} from '../markdown/markdown.component'
+import {BlackoutModule} from '@lernejaro/blackout'
 
 @NgModule({
   imports: [
@@ -40,6 +38,7 @@ import {MarkdownComponent} from '../markdown/markdown.component'
     FormsModule,
     LoggerModule,
     CodeModule,
+    BlackoutModule,
   ],
   declarations: [
     InputComponent,
@@ -64,7 +63,7 @@ import {MarkdownComponent} from '../markdown/markdown.component'
     CardBadgeComponent,
     ChipComponent,
     IconComponent,
-    BlackoutComponent,
+    // BlackoutComponent,
     UnknownIconErrorComponent,
   ],
   exports: [
@@ -91,11 +90,9 @@ import {MarkdownComponent} from '../markdown/markdown.component'
     ModalComponent,
   ],
   providers: [
-    BlackoutService,
     ModalService,
   ],
   entryComponents: [
-    BlackoutComponent,
     ModalComponent,
     UnknownIconErrorComponent,
     PalettePickerComponent,
