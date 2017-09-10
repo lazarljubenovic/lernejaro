@@ -30,10 +30,10 @@ import {animate, keyframes, style, transition, trigger} from '@angular/animation
 })
 export class ModalComponent implements OnChanges {
 
+  @HostBinding('@showHide') public showHide = 'show'
+
   constructor(private changeDetectorRef: ChangeDetectorRef) {
   }
-
-  @HostBinding('@showHide') public showHide = 'show'
 
   public ngOnChanges(): void {
     this.changeDetectorRef.detectChanges()
