@@ -6,13 +6,13 @@ import {
   GeometryObject,
   Line,
   MaterialColor as MaterialColorEnum,
-  Matrix,
   Point,
   Polygon,
   RectangularArea,
   Segment,
 } from '../geometry-objects/everything'
 import {Subject} from 'rxjs/Subject'
+import {Matrix} from '../geometry-objects/matrix'
 
 function getCursorPosition(canvas, event): Coordinate {
   let rect = canvas.getBoundingClientRect()

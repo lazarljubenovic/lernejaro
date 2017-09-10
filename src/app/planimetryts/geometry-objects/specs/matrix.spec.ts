@@ -1,5 +1,5 @@
 import {areEqualFloats} from '../../util'
-import {Matrix} from '../everything'
+import {Matrix} from '../matrix'
 
 const customEqualities = function (first: any, second: any) {
   if (typeof first == 'number' && typeof second == 'number') {

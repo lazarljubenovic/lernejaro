@@ -6,7 +6,6 @@ import {MarkdownParserService} from './markdown/markdown-parser.service'
 import {RouterModule, Routes} from '@angular/router'
 import {UiModule} from './ui/ui.module'
 import {PlanimetricsModule} from './planimetrics/planimetrics.module'
-import {StereometricsModule} from './stereometrics/stereometrics.module'
 import {NotebookModule} from './notebook/notebook.module'
 import {KatexModule} from './katex/katex.module'
 import {QuizModule} from './quiz/quiz.module'
@@ -37,7 +36,6 @@ export const ROUTES: Routes = [
     FormsModule,
     UiModule.forRoot({theme: 'light', color: 'yellow'}),
     PlanimetricsModule,
-    StereometricsModule,
     NotebookModule,
     PresentationModule,
     KatexModule,

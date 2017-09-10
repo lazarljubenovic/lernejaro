@@ -17,7 +17,8 @@ import {RendererService} from './renderer.service'
 import {areEqualFloats} from '../planimetryts/util'
 import {AxisConfiguration} from '../planimetryts/geometry-objects/macros/axis.interface'
 import {Axis} from '../planimetryts/geometry-objects/macros/axis'
-import {GeometryObject, Matrix, Point} from '../planimetryts/geometry-objects/everything'
+import {GeometryObject, Point} from '../planimetryts/geometry-objects/everything'
+import {Matrix} from '../planimetryts/geometry-objects/matrix'
 
 export interface EvaluateFunctionArgumentObject {
   interactivePoints: Point[]
