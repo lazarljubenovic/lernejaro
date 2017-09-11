@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core'
-import {ModalService} from '../../modal/modal.service'
 import {PalettePickerComponent} from '../../ui/palette-picker/palette-picker.component'
+import {ModalService} from '@lernejaro/modal'
 
 @Component({
   selector: 'lrn-slide-controls',

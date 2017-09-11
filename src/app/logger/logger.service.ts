@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core'
-import {ModalService} from '../modal/modal.service'
+import {ModalService} from '@lernejaro/modal'
 
 @Injectable()
 export class LoggerService {

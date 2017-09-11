@@ -29,8 +29,8 @@ import {UnknownIconErrorComponent} from './errors'
 import {LoggerModule} from '../logger/logger.module'
 import {CodeModule} from '../code/code.module'
 import {BlackoutModule} from '@lernejaro/blackout'
-import {ModalModule} from '../modal/modal.module'
 import {ModalComponent} from './modal/modal.component'
+import {ModalModule} from '@lernejaro/modal'
 
 @NgModule({
   imports: [

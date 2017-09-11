@@ -208,6 +208,10 @@
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/@lernejaro/blackout/-/blackout-0.1.1.tgz#58a514b15d956f046c2d3848b15764a5f60d757f"
 
+"@lernejaro/modal@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/@lernejaro/modal/-/modal-0.2.1.tgz#0c04f3cdf4cc49d85a23455daced85442b62eecb"
+
 "@ngtools/json-schema@1.1.0", "@ngtools/json-schema@^1.1.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@ngtools/json-schema/-/json-schema-1.1.0.tgz#c3a0c544d62392acc2813a42c8a0dc6f58f86922"

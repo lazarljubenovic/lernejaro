@@ -31,7 +31,6 @@ import {LoggerService} from '../logger/logger.service'
 import {PaletteService} from '../ui/palette.service'
 import {animate, state, style, transition, trigger} from '@angular/animations'
 import * as _ from 'lodash'
-import {ModalService} from '../modal/modal.service'
 import {
   NoExternalResourcesWarningComponent,
   NotebookTitleWithoutContentErrorComponent,
@@ -41,6 +40,7 @@ import {
 import {LatexService} from '../latex/latex.service'
 import {MissingTitleComponent} from './errors/missing-title.component'
 import {LatexComponent} from '../latex/latex.component'
+import {ModalService} from '@lernejaro/modal'
 
 const HUMAN_WPM = 275
 

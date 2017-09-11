@@ -13,7 +13,6 @@ import {Subject} from 'rxjs/Subject'
 import 'rxjs/add/observable/merge'
 import 'rxjs/add/operator/scan'
 import 'rxjs/add/operator/withLatestFrom'
-import {ModalService} from '../../modal/modal.service'
 import {
   ConsoleClashingInterpretersErrorComponent,
   ConsoleNoLanguageErrorComponent,
@@ -22,6 +21,7 @@ import {
 import {LRN_CONSOLE_INTERPRETER} from '../console'
 import {Interpreter} from '../interpreter.interface'
 import * as _ from 'lodash'
+import {ModalService} from '@lernejaro/modal'
 
 /**
  * A component which represents a basic console applicative interface
