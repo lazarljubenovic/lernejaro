@@ -17,7 +17,6 @@ import {IntroducingNotebookComponent} from './introducing-notebook/introducing-n
 import {NotebookModule} from '../notebook/notebook.module'
 import {KatexModule} from '../katex/katex.module'
 import {QuizModule} from '../quiz/quiz.module'
-import {TaxonomyModule} from '../taxonomy/taxonomy.module'
 import {IntroducingKvizoComponent} from './introducing-kvizo/introducing-kvizo.component'
 import {LayoutModule} from '../layout/layout.module'
 import {CodeModule} from '../code/code.module'
@@ -44,7 +43,6 @@ import {LRN_CONSOLE_INTERPRETER} from '../console/console'
     NotebookModule,
     KatexModule,
     QuizModule,
-    TaxonomyModule,
     LayoutModule,
     CodeModule,
     ConsoleModule,
