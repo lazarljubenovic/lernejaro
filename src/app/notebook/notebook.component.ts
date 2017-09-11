@@ -31,7 +31,7 @@ import {LoggerService} from '../logger/logger.service'
 import {PaletteService} from '../ui/palette.service'
 import {animate, state, style, transition, trigger} from '@angular/animations'
 import * as _ from 'lodash'
-import {ModalService} from '../ui/modal/modal.service'
+import {ModalService} from '../modal/modal.service'
 import {
   NoExternalResourcesWarningComponent,
   NotebookTitleWithoutContentErrorComponent,

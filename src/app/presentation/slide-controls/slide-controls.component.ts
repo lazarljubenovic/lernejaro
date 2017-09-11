@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core'
-import {ModalService} from '../../ui/modal/modal.service'
+import {ModalService} from '../../modal/modal.service'
 import {PalettePickerComponent} from '../../ui/palette-picker/palette-picker.component'
 
 @Component({

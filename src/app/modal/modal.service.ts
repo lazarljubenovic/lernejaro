@@ -3,19 +3,20 @@ import {
   ComponentFactory,
   ComponentFactoryResolver,
   ComponentRef,
+  Inject,
   Injectable,
   Injector,
   TemplateRef,
 } from '@angular/core'
-import {ModalComponent} from './modal.component'
 import {BlackoutService} from '@lernejaro/blackout'
 import 'rxjs/add/operator/take'
+import {LRN_MODAL} from './modal.module'
 
 @Injectable()
 export class ModalService {
 
-  private modelComponentFactory: ComponentFactory<ModalComponent>
-  private modalCmp: ComponentRef<ModalComponent>
+  private modelComponentFactory: ComponentFactory<any>
+  private modalCmp: ComponentRef<any>
   // private modalEmbeddedViewRef: EmbeddedViewRef<void>
 
   public open(templateOrComponentRef: TemplateRef<any> | Function, context = {}): void {
@@ -69,8 +70,9 @@ export class ModalService {
   constructor(private cfr: ComponentFactoryResolver,
               private injector: Injector,
               private applicationRef: ApplicationRef,
-              private blackout: BlackoutService) {
-    this.modelComponentFactory = cfr.resolveComponentFactory(ModalComponent)
+              private blackout: BlackoutService,
+              @Inject(LRN_MODAL) private modalComponent: any) {
+    this.modelComponentFactory = cfr.resolveComponentFactory(this.modalComponent)
   }
 
 }

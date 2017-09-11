@@ -13,7 +13,7 @@ import {Subject} from 'rxjs/Subject'
 import 'rxjs/add/observable/merge'
 import 'rxjs/add/operator/scan'
 import 'rxjs/add/operator/withLatestFrom'
-import {ModalService} from '../../ui/modal/modal.service'
+import {ModalService} from '../../modal/modal.service'
 import {
   ConsoleClashingInterpretersErrorComponent,
   ConsoleNoLanguageErrorComponent,

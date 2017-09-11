@@ -1,10 +1,10 @@
-import {ChangeDetectorRef, Component, HostBinding, OnChanges} from '@angular/core'
+import {Component, HostBinding} from '@angular/core'
 import {animate, keyframes, style, transition, trigger} from '@angular/animations'
 
 @Component({
   selector: 'lrn-modal',
   template: `
-    <lrn-card [@showHide]="showHide">
+    <lrn-card>
       <ng-content></ng-content>
     </lrn-card>
   `,
@@ -28,15 +28,8 @@ import {animate, keyframes, style, transition, trigger} from '@angular/animation
     ]),
   ],
 })
-export class ModalComponent implements OnChanges {
+export class ModalComponent {
 
   @HostBinding('@showHide') public showHide = 'show'
-
-  constructor(private changeDetectorRef: ChangeDetectorRef) {
-  }
-
-  public ngOnChanges(): void {
-    this.changeDetectorRef.detectChanges()
-  }
 
 }

@@ -11,8 +11,6 @@ import {OptionComponent} from './option-picker/option/option.component'
 import {RadioButtonGroupComponent} from './radio-button-group/radio-button-group.component'
 import {ExpandingFabComponent} from './expanding-fab/expanding-fab.component'
 import {ProgressBarComponent} from './progress-bar/progress-bar.component'
-import {ModalComponent} from './modal/modal.component'
-import {ModalService} from './modal/modal.service'
 import {PalettePickerComponent} from './palette-picker/palette-picker.component'
 import {LrnPalette} from './palette'
 import {PaletteConfigService} from './palette-config.service'
@@ -31,6 +29,8 @@ import {UnknownIconErrorComponent} from './errors'
 import {LoggerModule} from '../logger/logger.module'
 import {CodeModule} from '../code/code.module'
 import {BlackoutModule} from '@lernejaro/blackout'
+import {ModalModule} from '../modal/modal.module'
+import {ModalComponent} from './modal/modal.component'
 
 @NgModule({
   imports: [
@@ -39,6 +39,7 @@ import {BlackoutModule} from '@lernejaro/blackout'
     LoggerModule,
     CodeModule,
     BlackoutModule,
+    ModalModule.forRoot(ModalComponent),
   ],
   declarations: [
     InputComponent,
@@ -63,7 +64,6 @@ import {BlackoutModule} from '@lernejaro/blackout'
     CardBadgeComponent,
     ChipComponent,
     IconComponent,
-    // BlackoutComponent,
     UnknownIconErrorComponent,
   ],
   exports: [
@@ -87,11 +87,8 @@ import {BlackoutModule} from '@lernejaro/blackout'
     CardBadgeComponent,
     ChipComponent,
     IconComponent,
-    ModalComponent,
   ],
-  providers: [
-    ModalService,
-  ],
+  providers: [],
   entryComponents: [
     ModalComponent,
     UnknownIconErrorComponent,
@@ -103,7 +100,6 @@ export class UiModule {
     return {
       ngModule: UiModule,
       providers: [
-        ModalService,
         PaletteService,
         {
           provide: PaletteConfigService,
