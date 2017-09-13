@@ -41,26 +41,37 @@
   }
 
   .color-picker {
-
-    @include grid(
-        'x x x x'
-        'x x x x'
-        'x x x x'
-        'x x x x'
-    );
+    @include grid('x x x x' 'x x x x' 'x x x x' 'x x x x');
 
     li {
-      @include all-background-colors('500');
+      &.red { background-color: var(--color-red); }
+      &.pink { background-color: var(--color-pink); }
+      &.purple { background-color: var(--color-purple); }
+      &.deep-purple { background-color: var(--color-deep-purple); }
+      &.indigo { background-color: var(--color-indigo); }
+      &.blue { background-color: var(--color-blue); }
+      &.light-blue { background-color: var(--color-light-blue); }
+      &.cyan { background-color: var(--color-cyan); }
+      &.teal { background-color: var(--color-teal); }
+      &.green { background-color: var(--color-green); }
+      &.light-green { background-color: var(--color-light-green); }
+      &.lime { background-color: var(--color-lime); }
+      &.yellow { background-color: var(--color-yellow); }
+      &.amber { background-color: var(--color-amber); }
+      &.orange { background-color: var(--color-orange); }
+      &.deep-orange { background-color: var(--color-deep-orange); }
+      &.brown { background-color: var(--color-brown); }
+      &.grey { background-color: var(--color-grey); }
+      &.blue-grey { background-color: var(--color-blue-grey); }
     }
   }
 
   .theme-picker {
-
     @include grid(('x x',));
 
     li {
-      &.light { background-color: $light-theme-status-bar-background-color; }
-      &.dark { background-color: $dark-theme-status-bar-background-color; }
+      &.light { background-color: #cccccc; }
+      &.dark { background-color: #555555; }
     }
   }
 }

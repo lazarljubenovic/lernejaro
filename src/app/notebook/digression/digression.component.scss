@@ -2,6 +2,10 @@
 
 :host {
   display: block;
+
+  .content {
+    border-bottom: dashed 1px var(--color-status-bar);
+  }
 }
 
 .toggle-area {
@@ -25,6 +29,7 @@
 
   .line {
     height: 0;
+    border-bottom: dashed 1px var(--color-status-bar);
   }
 }
 
@@ -50,22 +55,5 @@
 
   ::ng-deep p:last-child {
     margin-bottom: .2em;
-  }
-}
-
-@each $theme-name in 'light' 'dark' {
-  :host-context(.lrn-theme-#{$theme-name}) {
-    $inverse-theme-name: inverse-theme-name($theme-name);
-
-    .toggle-area {
-
-      .line {
-        border-bottom: dashed 1px get-theme($theme-name, 'status-bar');
-      }
-    }
-
-    .content {
-      border-bottom: dashed 1px get-theme($theme-name, 'status-bar');
-    }
   }
 }

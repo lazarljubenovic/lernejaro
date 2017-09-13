@@ -1,341 +1,52 @@
 @import 'imports';
 
-@function get-color-strings() {
-  @return 'red' 'pink' 'purple' 'deep-purple' 'indigo' 'blue' 'light-blue' 'cyan' 'teal' 'green' 'light-green' 'lime' 'yellow' 'amber' 'orange' 'deep-orange'
-}
+:root {
 
-@function get-accent-color-string-for($color) {
-  $map: (
-    'red': 'light-green',
-    'pink': 'lime',
-    'purple': 'green',
-    'deep-purple': 'lime',
-    'indigo': 'pink',
-    'blue': 'orange',
-    'light-blue': 'orange',
-    'cyan': 'amber',
-    'teal': 'deep-orange',
-    'green': 'deep-purple',
-    'light-green': 'purple',
-    'lime': 'indigo',
-    'yellow': 'red',
-    'amber': 'teal',
-    'orange': 'orange',
-    'deep-orange': 'lime',
-  );
-  @return map-get($map, $color);
-}
+  // Colors
+  --color-red: #f44336;
+  --color-pink: #e91e63;
+  --color-purple: #9c27b0;
+  --color-deep-purple: #673ab7;
+  --color-indigo: #3f51b5;
+  --color-blue: #2196f3;
+  --color-light-blue: #03a9f4;
+  --color-cyan: #00bcd4;
+  --color-teal: #009688;
+  --color-green: #4caf50;
+  --color-light-green: #8bc34a;
+  --color-lime: #cddc39;
+  --color-yellow: #ffeb3b;
+  --color-amber: #ffc107;
+  --color-orange: #ff9800;
+  --color-deep-orange: #ff5722;
+  --color-brown: #795548;
+  --color-grey: #9e9e9e;
+  --color-blue-grey: #607d8b;
 
-$light-theme-primary-text-color: rgba(black, .87);
-$light-theme-secondary-text-color: rgba(black, .54);
-$light-theme-hint-text-color: rgba(black, .38);
-$light-theme-dividers-text-color: rgba(black, .12);
+  // Default theme is light
+  --color-primary: rgba(black, .87);
+  --color-secondary: rgba(black, .54);
+  --color-hint: rgba(black, .38);
+  --color-dividers: rgba(black, .12);
+  --color-front: #ffffff;
+  --color-back: #fafafa;
+  --color-app-bar: #f5f5f5;
+  --color-status-bar: #e0e0e0;
 
-$light-theme-front-background-color: #ffffff;
-$light-theme-back-background-color: #fafafa;
-$light-theme-app-bar-background-color: #f5f5f5;
-$light-theme-status-bar-background-color: #e0e0e0;
-
-$dark-theme-primary-text-color: rgba(white, 1);
-$dark-theme-secondary-text-color: rgba(white, .7);
-$dark-theme-hint-text-color: rgba(white, .5);
-$dark-theme-dividers-text-color: rgba(white, .12);
-
-$dark-theme-front-background-color: #424242;
-$dark-theme-back-background-color: #303030;
-$dark-theme-app-bar-background-color: #212121;
-$dark-theme-status-bar-background-color: #000000;
-
-$map-light-theme-text-colors: (
-  'primary': $light-theme-primary-text-color,
-  'secondary': $light-theme-secondary-text-color,
-  'hint': $light-theme-hint-text-color,
-  'dividers': $light-theme-dividers-text-color,
-);
-
-$map-light-theme-background-colors: (
-  'front': $light-theme-front-background-color,
-  'back': $light-theme-back-background-color,
-  'app-bar': $light-theme-app-bar-background-color,
-  'status-bar': $light-theme-status-bar-background-color,
-);
-
-$map-dark-theme-text-colors: (
-  'primary': $dark-theme-primary-text-color,
-  'secondary': $dark-theme-secondary-text-color,
-  'hint': $dark-theme-hint-text-color,
-  'dividers': $dark-theme-dividers-text-color,
-);
-
-$map-dark-theme-background-colors: (
-  'front': $dark-theme-front-background-color,
-  'back': $dark-theme-back-background-color,
-  'app-bar': $dark-theme-app-bar-background-color,
-  'status-bar': $dark-theme-status-bar-background-color,
-);
-
-$map-light-theme-colors: map_merge($map-light-theme-text-colors, $map-light-theme-background-colors);
-$map-dark-theme-colors: map_merge($map-dark-theme-text-colors, $map-dark-theme-background-colors);
-
-$_until-900-a700: (
-  '50': $map-light-theme-colors,
-  '100': $map-light-theme-colors,
-  '200': $map-light-theme-colors,
-  '300': $map-light-theme-colors,
-  '400': $map-light-theme-colors,
-  '500': $map-light-theme-colors,
-  '600': $map-light-theme-colors,
-  '700': $map-light-theme-colors,
-  '800': $map-light-theme-colors,
-  '900': $map-light-theme-colors,
-  'a100': $map-light-theme-colors,
-  'a200': $map-light-theme-colors,
-  'a400': $map-light-theme-colors,
-  'a700': $map-light-theme-colors,
-);
-$_until-800-a700: (
-  '50': $map-light-theme-colors,
-  '100': $map-light-theme-colors,
-  '200': $map-light-theme-colors,
-  '300': $map-light-theme-colors,
-  '400': $map-light-theme-colors,
-  '500': $map-light-theme-colors,
-  '600': $map-light-theme-colors,
-  '700': $map-light-theme-colors,
-  '800': $map-light-theme-colors,
-  '900': $map-dark-theme-colors,
-  'a100': $map-light-theme-colors,
-  'a200': $map-light-theme-colors,
-  'a400': $map-light-theme-colors,
-  'a700': $map-light-theme-colors,
-);
-$_until-700-a700: (
-  '50': $map-light-theme-colors,
-  '100': $map-light-theme-colors,
-  '200': $map-light-theme-colors,
-  '300': $map-light-theme-colors,
-  '400': $map-light-theme-colors,
-  '500': $map-light-theme-colors,
-  '600': $map-light-theme-colors,
-  '700': $map-light-theme-colors,
-  '800': $map-dark-theme-colors,
-  '900': $map-dark-theme-colors,
-  'a100': $map-light-theme-colors,
-  'a200': $map-light-theme-colors,
-  'a400': $map-light-theme-colors,
-  'a700': $map-light-theme-colors,
-);
-$_until-600-a700: (
-  '50': $map-light-theme-colors,
-  '100': $map-light-theme-colors,
-  '200': $map-light-theme-colors,
-  '300': $map-light-theme-colors,
-  '400': $map-light-theme-colors,
-  '500': $map-light-theme-colors,
-  '600': $map-light-theme-colors,
-  '700': $map-dark-theme-colors,
-  '800': $map-dark-theme-colors,
-  '900': $map-dark-theme-colors,
-  'a100': $map-light-theme-colors,
-  'a200': $map-light-theme-colors,
-  'a400': $map-light-theme-colors,
-  'a700': $map-light-theme-colors,
-);
-$_until-500-a400: (
-  '50': $map-light-theme-colors,
-  '100': $map-light-theme-colors,
-  '200': $map-light-theme-colors,
-  '300': $map-light-theme-colors,
-  '400': $map-light-theme-colors,
-  '500': $map-light-theme-colors,
-  '600': $map-dark-theme-colors,
-  '700': $map-dark-theme-colors,
-  '800': $map-dark-theme-colors,
-  '900': $map-dark-theme-colors,
-  'a100': $map-light-theme-colors,
-  'a200': $map-light-theme-colors,
-  'a400': $map-light-theme-colors,
-  'a700': $map-dark-theme-colors,
-);
-$_until-500-a700: (
-  '50': $map-light-theme-colors,
-  '100': $map-light-theme-colors,
-  '200': $map-light-theme-colors,
-  '300': $map-light-theme-colors,
-  '400': $map-light-theme-colors,
-  '500': $map-light-theme-colors,
-  '600': $map-dark-theme-colors,
-  '700': $map-dark-theme-colors,
-  '800': $map-dark-theme-colors,
-  '900': $map-dark-theme-colors,
-  'a100': $map-light-theme-colors,
-  'a200': $map-light-theme-colors,
-  'a400': $map-light-theme-colors,
-  'a700': $map-light-theme-colors,
-);
-$_until-400-a100: (
-  '50': $map-light-theme-colors,
-  '100': $map-light-theme-colors,
-  '200': $map-light-theme-colors,
-  '300': $map-light-theme-colors,
-  '400': $map-light-theme-colors,
-  '500': $map-dark-theme-colors,
-  '600': $map-dark-theme-colors,
-  '700': $map-dark-theme-colors,
-  '800': $map-dark-theme-colors,
-  '900': $map-dark-theme-colors,
-  'a100': $map-light-theme-colors,
-  'a200': $map-dark-theme-colors,
-  'a400': $map-dark-theme-colors,
-  'a700': $map-dark-theme-colors,
-);
-$_until-400-a200: (
-  '50': $map-light-theme-colors,
-  '100': $map-light-theme-colors,
-  '200': $map-light-theme-colors,
-  '300': $map-light-theme-colors,
-  '400': $map-light-theme-colors,
-  '500': $map-dark-theme-colors,
-  '600': $map-dark-theme-colors,
-  '700': $map-dark-theme-colors,
-  '800': $map-dark-theme-colors,
-  '900': $map-dark-theme-colors,
-  'a100': $map-light-theme-colors,
-  'a200': $map-light-theme-colors,
-  'a400': $map-dark-theme-colors,
-  'a700': $map-dark-theme-colors,
-);
-$_until-400-a700: (
-  '50': $map-light-theme-colors,
-  '100': $map-light-theme-colors,
-  '200': $map-light-theme-colors,
-  '300': $map-light-theme-colors,
-  '400': $map-light-theme-colors,
-  '500': $map-dark-theme-colors,
-  '600': $map-dark-theme-colors,
-  '700': $map-dark-theme-colors,
-  '800': $map-dark-theme-colors,
-  '900': $map-dark-theme-colors,
-  'a100': $map-light-theme-colors,
-  'a200': $map-light-theme-colors,
-  'a400': $map-light-theme-colors,
-  'a700': $map-light-theme-colors,
-);
-$_until-300-a100: (
-  '50': $map-light-theme-colors,
-  '100': $map-light-theme-colors,
-  '200': $map-light-theme-colors,
-  '300': $map-light-theme-colors,
-  '400': $map-dark-theme-colors,
-  '500': $map-dark-theme-colors,
-  '600': $map-dark-theme-colors,
-  '700': $map-dark-theme-colors,
-  '800': $map-dark-theme-colors,
-  '900': $map-dark-theme-colors,
-  'a100': $map-light-theme-colors,
-  'a200': $map-dark-theme-colors,
-  'a400': $map-dark-theme-colors,
-  'a700': $map-dark-theme-colors,
-);
-$_until-200-a100: (
-  '50': $map-light-theme-colors,
-  '100': $map-light-theme-colors,
-  '200': $map-light-theme-colors,
-  '300': $map-dark-theme-colors,
-  '400': $map-dark-theme-colors,
-  '500': $map-dark-theme-colors,
-  '600': $map-dark-theme-colors,
-  '700': $map-dark-theme-colors,
-  '800': $map-dark-theme-colors,
-  '900': $map-dark-theme-colors,
-  'a100': $map-light-theme-colors,
-  'a200': $map-dark-theme-colors,
-  'a400': $map-dark-theme-colors,
-  'a700': $map-dark-theme-colors,
-);
-
-$map-background-color-to-text-color: (
-  'red': $_until-300-a100,
-  'pink': $_until-200-a100,
-  'purple': $_until-200-a100,
-  'deep-purple': $_until-200-a100,
-  'indigo': $_until-200-a100,
-  'blue': $_until-400-a100,
-  'light-blue': $_until-500-a400,
-  'cyan': $_until-600-a700,
-  'teal': $_until-400-a700,
-  'green': $_until-500-a700,
-  'light-green': $_until-600-a700,
-  'lime': $_until-800-a700,
-  'yellow': $_until-900-a700,
-  'amber': $_until-900-a700,
-  'orange': $_until-700-a700,
-  'deep-orange': $_until-400-a200,
-);
-
-// $background-color: string
-@function get-color($background-color-string: 'blue', $variant: '500', $type: null) {
-  @if ($type == null) {
-    @return map_get(map_get($map-background-color-to-text-color, $background-color-string), $variant);
-  } @else {
-    $text-color-string: map_get($map-background-color-to-text-color, $background-color-string);
-    $theme-string: map_get($text-color-string, $variant);
-    @return map_get($theme-string, $type);
-  }
-}
-
-@function get-theme($theme-name: 'light', $type: 'front') {
-  @if ($theme-name == 'light') {
-    @return map_get($map-light-theme-colors, $type);
-  } @else if ($theme-name == 'dark') {
-    @return map_get($map-dark-theme-colors, $type);
-  } @else {
-    @error 'theme-name must be "light" or "dark"';
-  }
-}
-
-@function inverse-theme-name($theme-name: 'light') {
-  @if ($theme-name == 'light') {
-    @return 'dark';
-  } @else if ($theme-name == 'dark') {
-    @return 'light';
-  } @else {
-    @error 'theme-name must be "light" or "dark"';
-  }
-}
-
-@mixin all-background-colors($variant: '500') {
-  @each $color in get-color-strings() {
-    &.#{$color}, &.lrn-theme-color-#{$color} {
-      background-color: material-color($color, $variant);
-    }
-  }
-}
-
-@mixin all-border-colors($variant: '500', $border-style: solid, $border-width: 1px) {
-  @each $color in get-color-strings() {
-    &.#{$color} {
-      border: $border-style $border-width material-color($color, $variant);
-    }
-  }
-}
-
-@mixin all-text-colors($variant: '500') {
-  @each $color in get-color-strings() {
-    &.#{$color} {
-      color: material-color($color, $variant);
-    }
-  }
+  // Default colors
+  --color: var(--color-blue);
+  --accent-color: var(--color-orange);
+  --text-on-color: var(--color-primary);
 }
 
 // $theme-name: 'light' or 'dark'
-@mixin card-basic($theme-name: 'light', $z-depth-dp: 2) {
-  background-color: get-theme($theme-name, 'front');
+@mixin card-basic($z-depth-dp: 2) {
+  background-color: var(--color-front);
   @include z-depth($z-depth-dp);
   border-radius: 3px;
 }
 
-@mixin button-flat-badge($background-color-string: 'light', $color-variant: '500', $size: 2.5em) {
+@mixin button-flat-badge($size: 2.5em) {
   font-size: inherit;
   @include square($size);
   border: none;
@@ -343,13 +54,7 @@ $map-background-color-to-text-color: (
   border-radius: 50%;
   background-color: transparent;
   cursor: pointer;
-  @if ($background-color-string == 'light') {
-    color: map_get($map-light-theme-colors, 'hint');
-  } @else if ($background-color-string == 'dark') {
-    color: map_get($map-dark-theme-colors, 'hint');
-  } @else {
-    color: get-color($background-color-string, $color-variant, 'primary');
-  }
+  color: var(--color-hint);
 
   &:focus,
   &:hover {

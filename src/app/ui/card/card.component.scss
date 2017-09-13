@@ -6,6 +6,7 @@ $padding-bottom: 1rem;
 
 lrn-card {
   display: block;
+  background-color: var(--color-back);
   @include z-depth-2dp;
   border-radius: 3px;
   overflow: hidden;
@@ -45,11 +46,5 @@ lrn-card {
   // Zero or one
   lrn-card-footer {
     border-top: 1px solid rgba(black, .06);
-  }
-}
-
-@each $theme-name in 'light' 'dark' {
-  .lrn-theme-#{$theme-name} lrn-card {
-    background-color: get-theme($theme-name, 'back');
   }
 }

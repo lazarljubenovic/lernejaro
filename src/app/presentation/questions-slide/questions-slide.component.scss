@@ -9,6 +9,7 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
+  color: var(--primary);
 
   .banner {
     display: flex;
@@ -18,10 +19,12 @@
     .picture {
       display: block;
       font-size: 20vh;
+      color: var(--color-accent); // TODO a400
     }
 
     .text {
       font-size: 5em;
+      color: var(--color);
     }
   }
 
@@ -43,29 +46,5 @@
     .email {
       font-family: monospace;
     }
-  }
-}
-
-// Theming
-@each $color-string in get-color-strings() {
-  :host-context(.lrn-theme-color-#{$color-string}) {
-    $accent-color-string: get-accent-color-string-for($color-string);
-
-    .banner {
-
-      .picture {
-        color: material-color($accent-color-string, a400);
-      }
-
-      .text {
-        color: get-color($color-string, 500);
-      }
-    }
-  }
-}
-
-@each $theme in ('light', 'dark') {
-  :host-context(.lrn-theme-#{$theme}) {
-    color: get-theme($theme, primary);
   }
 }

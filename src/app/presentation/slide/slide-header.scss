@@ -1,23 +1,5 @@
 @import '../../global';
 
-// Theming
-@each $color-string in get-color-strings() {
-  .lrn-theme-color-#{$color-string} lrn-slide {
-
-    .slide-header {
-      background-color: material-color($color-string, '500');
-
-      .section {
-        color: get-color($color-string, '500', 'primary');
-      }
-
-      .title {
-        color: get-color($color-string, '500', 'secondary');
-      }
-    }
-  }
-}
-
 .slide-header {
   box-sizing: border-box;
   margin: 0;
@@ -27,6 +9,15 @@
   justify-content: space-between;
   align-items: center;
   @include force-height($slide-header-height);
+  background-color: var(--color);
+
+  .section {
+    color: var(--color-primary);
+  }
+
+  .title {
+    color: var(--color-secondary);
+  }
 
   .title-and-subtitle {
     display: flex;

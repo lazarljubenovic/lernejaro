@@ -2,38 +2,16 @@
 
 $color: material-color('blue-grey', '900');
 
-// TODO make these ems, exs
+// TODO make these ems
 $size: 64px;
 $margin: 36px;
 $cog-icon-size: $size / 2;
-
-// Theming
-@each $color-string in get-color-strings() {
-  .lrn-theme-color-#{$color-string} lrn-expanding-fab {
-    $background-color-string: get-accent-color-string-for($color-string);
-    color: get-color($background-color-string, 'a400', 'hint');
-
-    .visible {
-      background-color: material-color($background-color-string, 'a400');
-
-      .icon {
-        color: get-color($background-color-string, 'a400', 'primary');
-      }
-
-      .content {
-
-        > button {
-          @include button-flat-badge($background-color-string, 'a400');
-        }
-      }
-    }
-  }
-}
 
 lrn-expanding-fab {
   position: fixed;
   bottom: $margin;
   right: $margin;
+  color: var(--text-on-color); // hint
 
   .visible {
     color: $black; // TODO Make a mixin that will generate dark/light color based on background color
@@ -44,6 +22,7 @@ lrn-expanding-fab {
     flex-direction: row-reverse;
     align-items: center;
     overflow: hidden;
+    background-color: var(--color); // a400
 
     .icon {
       @include force-square($size);
@@ -74,6 +53,7 @@ lrn-expanding-fab {
     }
 
     > button {
+      @include button-flat-badge;
     }
   }
 }

@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core'
-import {PaletteService} from '../palette.service'
-import {LrnPaletteColor, LrnPaletteTheme} from '../palette'
+import {MaterialColorsString, PaletteService, ThemeNameString} from '../palette.service'
 
 @Component({
   selector: 'lrn-palette-picker',
@@ -11,7 +10,7 @@ export class PalettePickerComponent implements OnInit {
 
   // TODO This should be a separate component
   // and this array should actually be injected or something
-  public colors = [
+  public colors: MaterialColorsString[] = [
     'red',
     'pink',
     'purple',
@@ -30,11 +29,11 @@ export class PalettePickerComponent implements OnInit {
     'deep-orange',
   ]
 
-  public selectColor(color: LrnPaletteColor = this.palette.color) {
+  public selectColor(color: MaterialColorsString = this.palette.color) {
     this.palette.selectColor(color)
   }
 
-  public selectTheme(theme: LrnPaletteTheme = this.palette.theme) {
+  public selectTheme(theme: ThemeNameString = this.palette.theme) {
     this.palette.selectTheme(theme)
   }
 

@@ -4,10 +4,8 @@
   padding: 2em;
   display: block;
   font-size: 1.4em;
-
-  > ::ng-deep * + * {
-    color: red;
-  }
+  background-color: var(--color-back);
+  color: var(--color-primary);
 
   ol {
     margin: 0;
@@ -18,6 +16,11 @@
 
     li {
       margin: 0;
+      color: var(--color-primary);
+
+      &.current {
+        color: var(--accent-color)
+      }
 
       &:not(:last-child) {
         border-bottom: solid 1px black;
@@ -38,37 +41,3 @@
     }
   }
 }
-
-@each $color-string in get-color-strings() {
-  $accent-color-string: get-accent-color-string-for($color-string);
-
-  :host-context(.lrn-theme-color-#{$color-string}) {
-
-    ol {
-
-      li {
-
-        &.current {
-          color: material-color($accent-color-string, '600');
-        }
-      }
-    }
-  }
-}
-
-@each $theme-name in ('light' 'dark') {
-  $inverse-theme-name: inverse-theme-name($theme-name);
-
-  :host-context(.lrn-theme-#{$theme-name}) {
-    background-color: get-theme($theme-name, 'back');
-    color: get-theme($inverse-theme-name, 'front');
-
-    ol {
-
-      li {
-        color: get-theme($inverse-theme-name, 'front');
-      }
-    }
-  }
-}
-

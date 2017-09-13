@@ -1,18 +1,30 @@
 @import '../../global';
 
 .slide-inner {
+}
+
+.slide-inner {
   width: 100%;
   height: calc(100vh - #{$slide-header-height});
   box-sizing: border-box;
   font-size: 2.6em;
   padding: 0.6em 1em;
+  color: var(--color-primary);
+
+  pre {
+  }
+
+  blockquote {
+  }
 
   pre {
     padding: 1em;
     overflow-y: auto;
+    @include card-basic;
+    color: var(--color-primary);
 
     > code {
-      background-color: transparent!important;
+      background-color: transparent !important;
     }
   }
 
@@ -27,42 +39,15 @@
     display: inline-block;
     padding: .3ex .3em;
     border-radius: 3px;
+    background-color: var(--color); // TODO .1
   }
 
   blockquote {
     padding: 1em;
     margin: 0;
+    @include card-basic;
 
     p:first-child { margin-top: 0; }
     p:last-child { margin-bottom: 0; }
-  }
-}
-
-// Theming
-@each $color-string in get-color-strings() {
-  .lrn-theme-color-#{$color-string} lrn-slide {
-    .slide-inner {
-
-      code {
-        background-color: rgba(material-color($color-string, '500'), .1);
-      }
-    }
-  }
-}
-
-@each $theme in ('light' 'dark') {
-  .lrn-theme-#{$theme} lrn-slide {
-    .slide-inner {
-      color: get-theme($theme, 'primary');
-
-      pre {
-        @include card-basic(inverse-theme-name($theme));
-        color: get-theme(inverse-theme-name($theme), 'primary');
-      }
-
-      blockquote {
-        @include card-basic($theme);
-      }
-    }
   }
 }

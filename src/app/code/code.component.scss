@@ -1,6 +1,7 @@
 @import '../global';
 
 code[class*=language-] {
+  color: var(--color-primary);
 
   &.language-javascript {
 
@@ -8,6 +9,11 @@ code[class*=language-] {
 
       &.keyword {
         font-weight: bold;
+        color: var(--accent-color); // 400, .8 opacity TODO
+      }
+
+      &.string {
+        color: var(--color); // TODO 600 .8
       }
 
       &.operator {
@@ -26,44 +32,16 @@ code[class*=language-] {
 
     .token.tag {
       font-weight: bold;
+      color: var(--accent-color); // TODO 400 .8
     }
 
     > .token.tag > .token.attr-value {
       font-style: italic;
     }
-  }
-}
 
-@each $color-string in get-color-strings() {
-  $accent-color-string: get-accent-color-string-for($color-string);
-
-  body.lrn-theme-color-#{$color-string} code[class*=language-] {
-
-    &.language-javascript {
-
-      .token {
-
-        &.keyword {
-          color: rgba(material-color($accent-color-string, '400'), .8);
-        }
-
-        &.string {
-          color: rgba(material-color($color-string, '600'), .8);
-        }
-      }
+    > .token.attr-name, .token.attr-value {
+      color: var(--color); // TODO 600 .8
+      font-weight: normal;
     }
-
-    &.language-html {
-
-      > .token.tag {
-        color: rgba(material-color($accent-color-string, '400'), .8);
-
-        > .token.attr-name, .token.attr-value {
-          color: rgba(material-color($color-string, '600'), .8);
-          font-weight: normal;
-        }
-      }
-    }
-
   }
 }

@@ -13,6 +13,8 @@ lrn-notebook {
   align-items: center;
   width: 100%;
   min-height: 100vh;
+  color: var(--color-primary);
+  background-color: var(--color-back);
 
   .table-of-content {
     position: fixed;
@@ -27,6 +29,8 @@ lrn-notebook {
     padding-left: 2em;
     margin-left: -1em;
     border-radius: 4px;
+    background-color: var(--color-app-bar);
+    color: var(--color-primary);
 
     &.hidden {
       display: none;
@@ -53,12 +57,25 @@ lrn-notebook {
     @include z-depth-2dp;
     display: flex;
     z-index: 10;
+    background-color: var(--color-app-bar);
+
+    .icon {
+      color: var(--color-back);
+    }
+
+    .buttons {
+
+      button {
+        color: var(--color);
+      }
+    }
 
     .icon {
       display: flex;
       justify-content: center;
       align-items: center;
       width: $header-height;
+      background-color: var(--color); // TODO 500
 
       > i {
         font-size: 1.5em;
@@ -74,6 +91,7 @@ lrn-notebook {
 
       .title {
         font-size: 1.5em;
+        color: var(--accent-color); // TODO 700
       }
     }
 
@@ -113,6 +131,11 @@ lrn-notebook {
       display: none;
     }
 
+    > h1 + summary {
+      border-top: solid 1px var(--color-divider);
+      border-bottom: solid 1px var(--color-divider);
+    }
+
     > h1, > h2, > h3, > h4, > h5, > h6 {
 
       button {
@@ -125,6 +148,18 @@ lrn-notebook {
         &:focus {
           opacity: .5;
         }
+      }
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--color); // TODO 900
+      border-bottom: solid 1px var(--color); // TODO 400
+
+      &:hover,
+      &:focus {
+        //background-color: rgba(#{var(--accent-color)}, .1); // TODO does this work?
+        background-color: var(--accent-color);
       }
     }
 
@@ -280,6 +315,16 @@ lrn-notebook {
           padding: 0;
           min-width: 10em;
           margin-right: 1em;
+
+          a {
+            border-bottom: none;
+
+            &:hover,
+            &:focus {
+              border-bottom: solid 1px var(--color); // TODO 200
+              background-color: transparent;
+            }
+          }
         }
 
         dd {
@@ -288,6 +333,18 @@ lrn-notebook {
 
           button {
             @include button-reset;
+
+            button {
+              width: 1em;
+              height: 1em;
+              line-height: 1em;
+              color: var(--color);
+
+              &:hover,
+              &:focus {
+                background-color: var(--accent-color); // TODO 50
+              }
+            }
           }
         }
 
@@ -307,6 +364,7 @@ lrn-notebook {
     line-height: 1;
     padding-top: .5em;
     padding-bottom: .5em;
+    background-color: var(--color-status-bar);
 
     dl, dd, dt {
       margin: 0;
@@ -324,115 +382,6 @@ lrn-notebook {
       dd {
         margin-left: .5em;
       }
-    }
-  }
-}
-
-@each $color-string in get-color-strings() {
-  .lrn-theme-color-#{$color-string} lrn-notebook {
-    $accent-color-string: get-accent-color-string-for($color-string);
-
-    header {
-
-      .icon {
-        background-color: material-color($color-string, '500');
-      }
-
-      .title-and-subtitle {
-
-        .title {
-          color: material-color($accent-color-string, '700');
-        }
-      }
-    }
-
-    article {
-
-      a {
-        text-decoration: none;
-        color: material-color($color-string, '900');
-        border-bottom: solid 1px material-color($color-string, '400');
-
-        &:hover,
-        &:focus {
-          background-color: rgba(material-color($accent-color-string, '500'), .1);
-        }
-      }
-
-      .references + dl {
-
-        div {
-
-          dt {
-
-            a {
-              border-bottom: none;
-
-              &:hover,
-              &:focus {
-                border-bottom: solid 1px material-color($color-string, '200');
-                background-color: transparent;
-              }
-            }
-          }
-
-          dd {
-
-            button {
-              width: 1em;
-              height: 1em;
-              line-height: 1em;
-              color: material-color($color-string, '500');
-
-              &:hover,
-              &:focus {
-                background-color: material-color($accent-color-string, '50');
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-@each $theme-name in 'light' 'dark' {
-  .lrn-theme-#{$theme-name} lrn-notebook {
-    $inverse-theme-name: inverse-theme-name($theme-name);
-    color: get-theme($inverse-theme-name, 'front');
-    background-color: get-theme($theme-name, 'back');
-
-    header {
-      background-color: get-theme($theme-name, 'app-bar');
-
-      .icon {
-        color: get-theme($theme-name, 'back');
-      }
-
-      .buttons {
-
-        button {
-          color: get-theme($inverse-theme-name, 'front');
-        }
-      }
-    }
-
-    .table-of-content {
-      background-color: rgba(get-theme($theme-name, 'app-bar'), .86);
-      color: get-theme($inverse-theme-name, 'front');
-    }
-
-    > article.wrapper {
-
-      > h1 + summary {
-        $border: solid 1px get-theme($inverse-theme-name, 'back');
-        border-top: $border;
-        border-bottom: $border;
-      }
-    }
-
-    footer {
-      background-color: get-theme($theme-name, 'status-bar');
     }
   }
 }

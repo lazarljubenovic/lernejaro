@@ -19,6 +19,8 @@
 
   &.raised {
     @include z-depth-2dp;
+    background-color: var(--color);
+    color: var(--color-primary);
 
     &:focus,
     &:hover {
@@ -28,11 +30,11 @@
 
   &.flat {
     background-color: transparent;
-    @include all-text-colors;
+    color: var(--color-primary);
 
     &:focus,
     &:hover {
-      @include all-text-colors('400');;
+      color: var(--color); // TODO 400
     }
   }
 
@@ -54,24 +56,6 @@
     i.fa {
       display: inline-block;
       font-size: 2em;
-    }
-  }
-}
-
-@each $color-string in get-color-strings() {
-  :host-context(.lrn-theme-color-#{$color-string}) {
-
-    &.raised {
-      background-color: material-color($color-string, '500');
-    }
-  }
-}
-
-@each $theme-name in 'light' 'dark' {
-  :host-context(.lrn-theme-#{$theme-name}) {
-
-    &.raised {
-      color: rgba(white, .86);
     }
   }
 }

@@ -5,6 +5,8 @@
   position: fixed;
   bottom: 1rem;
   right: 1rem;
+  @include card-basic;
+  color: var(--color-primary);
 
   nav {
     display: flex;
@@ -18,15 +20,18 @@
       height: 4ex;
       width: 0;
       margin: 0 .5em;
+      border-left: 1px solid var(--color-dividers);
     }
   }
 
   .slide-index {
     margin-left: 1em;
     margin-right: 1em;
+    color: var(--color-primary);
 
     .current {
       font-weight: bold;
+      color: var(--accent-color); // TODO a700
     }
   }
 
@@ -35,46 +40,11 @@
     width: 3em;
     height: 3em;
     border-radius: 50%;
-  }
-}
+    color: inherit;
 
-// Theming
-@each $color-string in get-color-strings() {
-  :host-context(.lrn-theme-color-#{$color-string}) {
-    $accent-color-string: get-accent-color-string-for($color-string);
-
-    .slide-index .current {
-      color: material-color($accent-color-string, 'a700');
-    }
-  }
-}
-
-@each $theme-name in ('light', 'dark') {
-  :host-context(.lrn-theme-#{$theme-name}) {
-    $inverse-name: inverse-theme-name($theme-name);
-
-    @include card-basic($theme-name);
-
-    nav {
-      color: get-theme($theme-name, 'front');
-
-      hr {
-        $border-color: get-theme($theme-name, 'dividers');
-        border-left: 1px solid $border-color;
-      }
-
-      button {
-        color: get-theme($inverse-name, 'front');
-
-        &:focus,
-        &:hover {
-          background-color: get-theme($theme-name, 'dividers');
-        }
-      }
-
-      .slide-index {
-        color: get-theme($inverse-name, 'front');
-      }
+    &:focus,
+    &:hover {
+      background-color: var(--color-dividers);
     }
   }
 }
