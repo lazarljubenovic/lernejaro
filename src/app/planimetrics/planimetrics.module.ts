@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core'
 import {CommonModule} from '@angular/common'
 import {PlanimetricsComponent} from './planimetrics.component'
 import {RendererService} from './renderer.service'
-import {TableModule} from '../table/table.module'
 import {FormsModule} from '@angular/forms'
 import {UiModule} from '../ui/ui.module'
 
@@ -11,7 +10,6 @@ import {UiModule} from '../ui/ui.module'
     CommonModule,
     FormsModule,
     UiModule,
-    TableModule,
   ],
   declarations: [
     PlanimetricsComponent,

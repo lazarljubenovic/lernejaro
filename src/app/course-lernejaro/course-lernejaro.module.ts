@@ -7,8 +7,6 @@ import {RouterModule} from '@angular/router'
 import {MarkdownModule} from '../markdown/markdown.module'
 import {PresentationModule} from '../presentation/presentation.module'
 import {MarkdownMarkupComponent} from './markdown-markup/markdown-markup.component'
-import {IntroducingTablesComponent} from './introducing-tables/introducing-tables.component'
-import {TableModule} from '../table/table.module'
 import {IntroducingGeometryComponent} from './introducing-geometry/introducing-geometry.component'
 import {PlanimetricsModule} from '../planimetrics/planimetrics.module'
 import {FormsModule} from '@angular/forms'
@@ -38,7 +36,6 @@ import {LRN_CONSOLE_INTERPRETER} from '../console/console'
     LessonNavigatorModule,
     MarkdownModule,
     PresentationModule,
-    TableModule,
     PlanimetricsModule,
     NotebookModule,
     KatexModule,
@@ -58,10 +55,6 @@ import {LRN_CONSOLE_INTERPRETER} from '../console/console'
       {
         path: '2-Markdown',
         component: MarkdownMarkupComponent,
-      },
-      {
-        path: '5-Tables',
-        component: IntroducingTablesComponent,
       },
       {
         path: '9-Geometry',
@@ -97,7 +90,6 @@ import {LRN_CONSOLE_INTERPRETER} from '../console/console'
     CourseLernejaroComponent,
     IntroductionComponent,
     MarkdownMarkupComponent,
-    IntroducingTablesComponent,
     IntroducingGeometryComponent,
     IntroducingNotebookComponent,
     IntroducingKvizoComponent,
