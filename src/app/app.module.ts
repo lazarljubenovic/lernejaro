@@ -14,6 +14,7 @@ import {LayoutModule} from './layout/layout.module'
 import {LoggerService} from './logger/logger.service'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations'
 import {PresentationModule} from './presentation/presentation.module'
+import {LoggerModule} from './logger/logger.module'
 
 export const ROUTES: Routes = [
   {
@@ -41,13 +42,13 @@ export const ROUTES: Routes = [
     KatexModule,
     QuizModule,
     LayoutModule,
+    LoggerModule,
     RouterModule.forRoot(ROUTES),
     BrowserAnimationsModule,
   ],
   providers: [
     MarkdownParserService,
     UniqueIdService,
-    LoggerService,
   ],
   bootstrap: [
     AppComponent,

@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core'
 import {CommonModule} from '@angular/common'
 import {ErrorComponent} from './error/error.component'
 import {WarningComponent} from './warning/warning.component'
+import {LoggerService} from './logger.service'
 
 /**
  * A module which is responsible for showing error messages to the
@@ -22,6 +23,9 @@ import {WarningComponent} from './warning/warning.component'
   exports: [
     ErrorComponent,
     WarningComponent,
+  ],
+  providers: [
+    LoggerService,
   ],
 })
 export class LoggerModule {
