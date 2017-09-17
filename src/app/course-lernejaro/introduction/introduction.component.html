@@ -6,7 +6,7 @@
   <lrn-slide [section]="'Uvod'"
              [suppressUntitledSlideWarning]="true"
   >
-    
+
   </lrn-slide>
 
   <lrn-slide [suppressUntitledSlideWarning]="true"
@@ -14,11 +14,36 @@
     <lrn-logo></lrn-logo>
   </lrn-slide>
 
-  <lrn-slide [title]="'Code'">
+  <lrn-slide [section]="'Mogućnosti'"
+             [title]="'HTML'"
+  >
+    <pre><code [lrnCode]="'html'">{{ htmlExample }}</code></pre>
+  </lrn-slide>
+
+  <lrn-slide [section]="'Mogućnosti'"
+             [title]="'HTML'"
+  >
+    <p>
+      Paragraf sa <b>bold</b> i <i>italic</i> tekstom
+    </p>
+
+    <ul>
+      <li>Neuređene</li>
+      <li>Liste</li>
+    </ul>
+  </lrn-slide>
+
+  <lrn-slide [section]="'Mogućnosti'"
+             [title]="'Markdown'"
+  >
+    <pre><code [lrnCode]="'html'">{{ markdownExample }}</code></pre>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Kod'">
     <pre><code [lrnCode]="'javascript'">{{ codeExample }}</code></pre>
   </lrn-slide>
 
-  <lrn-slide [title]="'Code example'">
+  <lrn-slide [title]="'Kod (primer)'">
     <div lrnVertical>
       <pre><code [lrnCode]="'javascript'">const a = 1</code></pre>
       <pre><code [lrnCode]="'html'">&lt;pre>
@@ -29,49 +54,25 @@
     </div>
   </lrn-slide>
 
-  <lrn-slide [title]="'Cats Should Rule the World'">
-    <lrn-markdown>
-      Do **you** want to _purr_ with me?
-
-      - Purr.
-      - Puuurrrr! Mm `rawwr` yes.
-
-      > PURRR
-
-      ```js
-      const a = 5;
-      ```
-    </lrn-markdown>
+  <lrn-slide [title]="'KaTeX'">
+    <div lrnCenter>
+      <lrn-katex [displayMode]="true"
+                 [math]="formula"
+                 style="margin-bottom: 1em"
+      ></lrn-katex>
+    </div>
   </lrn-slide>
 
-  <lrn-slide [title]="'Interaktivnost'">
-    <lrn-markdown>
-      - prelazak na sledeći slajd
-      - ???
-    </lrn-markdown>
+  <lrn-slide [title]="'KaTeX'">
+    <pre><code [lrnCode]="'html'">{{ katexExample }}</code></pre>
   </lrn-slide>
 
-  <lrn-slide [title]="'Duolingo'"></lrn-slide>
-
-  <lrn-slide [title]="'RedBlobGames'"></lrn-slide>
-
-  <!--<lrn-slide [title]="'Kompleksni brojevi'"></lrn-slide>-->
-
-  <lrn-slide [title]="'UpamtiMe'"></lrn-slide>
-
-  <lrn-slide [title]="'CryptoVisual'"></lrn-slide>
-
-  <lrn-slide [title]="'Lernejaro'"></lrn-slide>
-
-  <lrn-slide [title]="'Lernejaro'">
-    <lrn-markdown>
-      - Markdown
-      - Prezentacije
-      - Tables
-      - Bitmaps
-      - Networks
-      - Geometry
-    </lrn-markdown>
+  <lrn-slide [title]="'Kviz'">
+    <lrn-multiple-choice>
+      <lrn-question>lol</lrn-question>
+      <lrn-choice lrnCorrect>Imperativno</lrn-choice>
+      <lrn-choice lrnCorrect>Imperativno</lrn-choice>
+    </lrn-multiple-choice>
   </lrn-slide>
 
 </lrn-presentation>

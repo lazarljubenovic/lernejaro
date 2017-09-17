@@ -1,6 +1,7 @@
 @import '../../global';
 
 :host {
+  font: inherit;
   border: 0;
   outline: 0;
   padding: .6em .8em;
@@ -11,11 +12,6 @@
   cursor: pointer;
   border-radius: 3px;
   transition: all .2s ease-out;
-
-  &:hover,
-  &:focus {
-    text-decoration: underline;
-  }
 
   &.raised {
     @include z-depth-2dp;

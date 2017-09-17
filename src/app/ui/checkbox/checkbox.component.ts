@@ -9,9 +9,8 @@ import {UniqueIdService} from '../../unique-id.service'
 })
 export class CheckboxComponent implements OnInit {
 
-  @Input() public name: string = this._uniqueIdService.getUniqueId(`checkbox-name-`)
-
-  @Input() public value: string = this._uniqueIdService.getUniqueId(`checkbox-value-`)
+  @Input() public name: string = this.uniqueIdService.getUniqueId(`checkbox-name-`)
+  @Input() public value: string = this.uniqueIdService.getUniqueId(`checkbox-value-`)
 
   @Input() public currentValue: boolean
   @Output() public currentValueChange = new EventEmitter<boolean>()
@@ -24,7 +23,7 @@ export class CheckboxComponent implements OnInit {
   }
 
   constructor(@Optional() public checkboxGroup: CheckboxGroupComponent,
-              private _uniqueIdService: UniqueIdService) {
+              private uniqueIdService: UniqueIdService) {
   }
 
   ngOnInit() {

@@ -37,7 +37,6 @@ export class MultipleChoiceComponent implements AfterContentInit, AfterViewInit,
   @ContentChild(QuestionComponent) public questionComponent: QuestionComponent
 
   @Input() public shuffle: boolean = true
-  @Input() public header: string = 'Choose the correct answer'
   @Input() public formId: string = this._uniqueId.getUniqueId('multiple-choice-')
 
   // TODO This is the same as in the fill-in-the-blank component

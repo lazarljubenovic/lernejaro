@@ -158,8 +158,7 @@ lrn-notebook {
 
       &:hover,
       &:focus {
-        //background-color: rgba(#{var(--accent-color)}, .1); // TODO does this work?
-        background-color: var(--accent-color);
+        color: var(--accent-color);
       }
     }
 
@@ -215,6 +214,35 @@ lrn-notebook {
       text-decoration: none;
       border-bottom: 1px dotted mix(black, white);
       cursor: help;
+      position: relative;
+
+      &:after {
+        font-size: .72em;
+        line-height: 1.2;
+        content: attr(title);
+        position: absolute;
+        background-color: var(--color-primary);
+        color: var(--color-front);
+        padding: .66em;
+        left: -2em;
+        min-width: calc(100% + 4em);
+        width: 100%;
+        top: 2em;
+        transform: translateY(-.5em);
+        opacity: 0;
+        pointer-events: none;
+        transition: all .2s ease-out;
+        z-index: 99;
+        box-sizing: border-box;
+      }
+
+      &:focus,
+      &:hover {
+        &:after {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
     }
 
     img {
