@@ -1,37 +1,31 @@
 <lrn-presentation [author]="'Lazar Ljubenović'"
-                  [description]="'Opis'"
                   [title]="'Lernejaro'"
+                  [email]="'lazar.ljubenovic.1995@gmail.com'"
 >
 
-  <lrn-slide [section]="'Introduction'"
-             [title]="'Logo'"
+  <lrn-slide [section]="'Uvod'"
+             [suppressUntitledSlideWarning]="true"
+  >
+    
+  </lrn-slide>
+
+  <lrn-slide [suppressUntitledSlideWarning]="true"
   >
     <lrn-logo></lrn-logo>
   </lrn-slide>
 
   <lrn-slide [title]="'Code'">
-    <div lrnCenter>
-      <pre><code [lrnCode]="'javascript'">const foo = 'a string'
-const add => x => y => x + y
-var fn = function fn(one, two, ...rest) {{'{'}}
-  console.log(one + two) // write to console
-  return [...rest, one, two] /* spread */
-{{'}'}}</code></pre>
-    </div>
+    <pre><code [lrnCode]="'javascript'">{{ codeExample }}</code></pre>
   </lrn-slide>
 
   <lrn-slide [title]="'Code example'">
     <div lrnVertical>
-      <div lrnCenter>
-        <pre><code [lrnCode]="'javascript'">const a = 1</code></pre>
-      </div>
-      <div lrnCenter>
-        <pre><code [lrnCode]="'html'">&lt;pre>
+      <pre><code [lrnCode]="'javascript'">const a = 1</code></pre>
+      <pre><code [lrnCode]="'html'">&lt;pre>
   &lt;code [lrnCode]="'javascript'">
     const a = 1
   &lt;/code>
 &lt;/pre></code></pre>
-      </div>
     </div>
   </lrn-slide>
 

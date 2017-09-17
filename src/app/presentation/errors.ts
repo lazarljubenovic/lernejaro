@@ -147,7 +147,9 @@ export class PresentationNotEnoughSectionsWarningComponent {
 
 @Component({
   template: `
-    <lrn-warning heading="Untitled Slide">
+    <lrn-warning heading="Untitled Slide"
+                 suppress="suppressUntitledSlideWarning"
+    >
       <p>
         Your presentation “{{ presentationTitle }}” contains a slide without a title.
       </p>

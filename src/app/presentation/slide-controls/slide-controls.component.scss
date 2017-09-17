@@ -7,11 +7,12 @@
   right: 1rem;
   @include card-basic;
   color: var(--color-primary);
+  font-size: .66em;
 
   nav {
     display: flex;
     align-items: center;
-    padding: .66rem;
+    padding: .66em;
     box-sizing: border-box;
 
     hr {

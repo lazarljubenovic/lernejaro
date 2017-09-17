@@ -29,6 +29,8 @@ export class SlideComponent implements OnInit {
   @Input() public subtitle: string
   @Input() public logo: string | TemplateRef<any>
 
+  @Input() public suppressUntitledSlideWarning: boolean
+
   @ContentChildren(SlideColumnComponent)
   public slideColumnComponents: QueryList<SlideColumnComponent>
 
@@ -56,7 +58,10 @@ export class SlideComponent implements OnInit {
       return
     }
 
-    if (this.title == null || this.title.trim().length == 0) {
+    if (
+      !this.suppressUntitledSlideWarning &&
+      (this.title == null || this.title.trim().length == 0)
+    ) {
       this.logger.display(UntitledSlideWarningComponent, {
         presentationTitle: this.presentation.title,
       })

@@ -40,7 +40,6 @@ export class PresentationComponent implements OnInit, AfterContentInit {
   @Input() public suppressNotEnoughSectionsWarning: boolean
 
   @Input() public author: string | TemplateRef<any>
-  @Input() public description: string | TemplateRef<any>
   @Input() public title: string | TemplateRef<any>
   @Input() public logo: string | TemplateRef<any> =
     'https://akimg0.ask.fm/assets/149/346/095/normal/elfaklogo.png'
