@@ -194,6 +194,7 @@ const htmlTagsMap = new Map<string, Generator>()
   //   ')',
   // ])
   .set('a', (c, el: HTMLAnchorElement) => [
+    ' ',
     ...c,
     tag('footnote', [
       tag('url', [el.href]),
@@ -206,7 +207,7 @@ const htmlTagsMap = new Map<string, Generator>()
   .set('h5', c => [tag('paragraph', c)])
   .set('h6', c => [tag('subparagraph', c)])
   .set('button', c => [])
-  .set('abbr', c => c)
+  .set('abbr', c => [' ', ...c])
   .set('lrn-markdown', (c, el, ctx) => createContent(el.children[1], ctx))
   .set('lrn-digression', (c, el, ctx) => [
     ...createContent(el.children[1], ctx), // TODO smaller font siye

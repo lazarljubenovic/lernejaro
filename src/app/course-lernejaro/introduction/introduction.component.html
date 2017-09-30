@@ -3,10 +3,26 @@
                   [email]="'lazar.ljubenovic.1995@gmail.com'"
 >
 
-  <lrn-slide [section]="'Uvod'"
+  <lrn-slide section="Uvod"
              [suppressUntitledSlideWarning]="true"
   >
+    <div lrnCenter>
+      <div lrnHorizontal>
+        <img src="https://angular.io/assets/images/logos/angular/angular.png" alt="Angular" width="300" height="300">
+        <img src="https://cdn.worldvectorlogo.com/logos/react.svg" alt="React">
+        <img src="https://vuejs.org/images/logo.png" alt="Vue">
+      </div>
+    </div>
+  </lrn-slide>
 
+  <lrn-slide [section]="'Angular'"
+             [suppressUntitledSlideWarning]="true"
+  >
+    <ul>
+      <li>Deklarativni šabloni
+      <li>Detekcija promena
+      <li>Ubrizgavanje zavisnosti
+    </ul>
   </lrn-slide>
 
   <lrn-slide [suppressUntitledSlideWarning]="true"
@@ -69,9 +85,9 @@
 
   <lrn-slide [title]="'Kviz'">
     <lrn-multiple-choice>
-      <lrn-question>lol</lrn-question>
-      <lrn-choice lrnCorrect>Imperativno</lrn-choice>
-      <lrn-choice lrnCorrect>Imperativno</lrn-choice>
+      <lrn-question>what am i</lrn-question>
+      <lrn-choice lrnCorrect>im lazy</lrn-choice>
+      <lrn-choice>im not lazy</lrn-choice>
     </lrn-multiple-choice>
   </lrn-slide>
 

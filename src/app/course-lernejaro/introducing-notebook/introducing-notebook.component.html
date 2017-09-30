@@ -47,8 +47,7 @@
   <h3>Značaj semantike i prednost WYMIYG alata</h3>
 
   <lrn-markdown>
-    Premda ovi alati u teoriji mogu da pruže, barem u neku ruku, dobru semantičku strukturu
-    teksta i pratećih medija, činjenica da se radi o
+    Premda ovi alati u teoriji mogu da pruže, barem u neku ruku, dobru semantičku strukturu teksta i pratećih medija, činjenica da se radi o
     <abbr title="What You See Is What You Get">WYSIWYG</abbr>
     alatima uglavnom sputava kreatora prezentacije sa ovog cilja. Na primer, u PowerPoint-u je čest slučaj da predavač iskoristi običan _text-box_ umesto _caption_ elementa za sliku. Mada je vizuelna reprezentacija ista, ili barem slična, gubi se semantička struktura, što za posledicu ima nemogućnost da _PowerPoint_ automatski konvertuje prezentacije u čitljiv tekstualni fajl spreman za štampu; već bi student, ukoliko želi da ima prezentacije u štampanom obliku, morao da odštampa slajd bukvalno kao sliku, što svakako nije optimalno, ni sa stanovišta uštede prostora, ni sa stanovišta preglednosti. Slično, često se umesto semantičkog naslova koristi deo glavnog teksta kome se poveća veličina i težina fonta, zbog čega je navigacija kroz prezentaciju otežana (jer alati ne znaju da se radi o naslovu, pa ne mogu da ponude prečice za navigaciju, niti da, na primer, automatski generišu sadržaj).
 
@@ -663,7 +662,7 @@
   <h4>Zone u Angularu</h4>
 
   <lrn-markdown>
-    Kao što je već rečeno, biblioteka Zone.js implementira zone; to je mehanizam koji omogućava enkapsulaciju i presretanje asinhronih događaja u brauzeru. Angular koristi ovaj kontekst izvršenja na osnovu koga prati početak i okočenje izvršenja asinhronih aktivnosti, što npr. omogućuje da zna kada treba pokrenuti algoritam za detekciju promena. (https://angular-2-training-book.rangle.io/handout/zones/)
+    Kao što je već rečeno, biblioteka Zone.js implementira zone; to je mehanizam koji omogućava enkapsulaciju i presretanje asinhronih događaja u brauzeru. Angular koristi ovaj kontekst izvršenja na osnovu koga prati početak i okočenje izvršenja asinhronih aktivnosti, što npr. omogućuje da zna kada treba pokrenuti algoritam za detekciju promena.
 
     Zone.js pruža jednu globalnu zonu koja se može forkovati i proširiti da detaljnije enkapsulira i izoluje asinhrono ponašanje, što Angular radi u vidu servisa `NgZone`. Ovaj servis se može ubrizgati kao zavinost u bilo koju direktivu, cev ili servis. U njemu je implementiran određen broj metoda i nadgledivih promenljivih koji služe za ispitivanje stanja Angularove zone i za izvršenje koda unutar ili van ove zone.
 
@@ -693,11 +692,7 @@
     **Centralizovani** sistemi za kontrolu verzije (_CVS_, _Subversion_, _Perforce_) koriste jedan server koji sadrži sve verzionisanje fajlove, a klijenti ih pribavljaju iz tog centralnizovanog mesta. Osnovni nedostatak ovakvog sistema je jedinstvena tačka kvara: server. Ako server bude nedostupan neko vreme, nijedan developer neće moći da povuče fajlove sa servera, niti da tamo objavi svoje promene. Ako se ošteti hard-disk na serveru, celokupna istorija će biti izgubljena.
 
     **Distribuirani** sistemi za kontrolu verzije (_Git_, _Mercurial_, _Bazaar_, _Darcs_) rešavaju ovaj problem tako što klijenti ne preuzimaju samo trenutni izlged fajlova, već potpuno preslikavaju ceo repozitorijum, Drugim rečima, svaki developer čuva redundansu u podacima za istoriju projekta.
-  </lrn-markdown>
 
-  <h4>Kratka istorija Gita</h4>
-
-  <lrn-markdown>
     Linuks jezgro je prilično širok softverski projekat otvorenog koda. Tokom većine vremena održavanja Linuksovog jezgra (1991-2002), promene u softveru slate su unaokolo kao zakrpe i arhivirani fajlovi. Godine 2002, projekat Linuks jezgra počeo je da koristi vlasnički DVCS koji se zvao _BitKeeper_.
 
     Godine 2005, odnos između zajednice koja je radila na Linuks jezgru i komercijalne kompanije koja je razvijala _BitKeeper_ se raspao, i besplatan status alata bio je ukinut. Ovo je primoralo Linuksovu zajednicu programera (i posebno Linusa Torvaldsa, osnivača Linuksa) da osmisle svoj sopstveni alat oslanjajući se na neke lekcije koje su naučili dok su koristili _BitKeeper_. Neki od ciljeva koje je imao novi sistem bili su sledeći:
@@ -709,18 +704,15 @@
     - mogućnost da efiksno rukuje velikim projektima kao što je Linuks jezgro (brzina i veličina podataka).
 
     Od njegovog nastanka 2005, Git je evoluirao i sazreo u alat koji je bio jednostavan za upotrebu, ali je zadržao ove kvalitete. Neverovatno je brz, veoma je efikasan sa velikim projektima, i ima odličan sistem grananja za nelinearno razviće programa.
-  </lrn-markdown>
 
-  <h4>Semantičke komit poruke</h4>
-
-  <lrn-markdown>
     Svaki komit u Gitu mora da ima komit-poruku uz sebe, koja treba da jasno govori o tome kako promena koju uvodi utiče na postojeći sistem. Komit poruke se prikazuju prilikom listanja istorije komitova korišćenjem naredbe `git log`.
 
     Projekat koristi stroga pravila prilikom formatiranja prve (uglavnom jedine) linije komit poruke. Ovo kao rezultat ima **čitljivije** komit poruke koje je lakše protumačiti prilikom pregleda istorije komitova. Sem toga, omogućuje **automatsko generisanje** _changelog_-a.
 
-    Ako komit poruka poštuje specificiran format, kaže se da je ona **semantička komit poruka**. Gugl je <a
-    href="https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#-git-commit-guidelines"
-    title="Format komit poruka za AngularJS repozitorijumu">definisao</a> format za semantičke komit poruke za repozitorijum AngularJS,
+    Ako komit poruka poštuje specificiran format, kaže se da je ona **semantička komit poruka**. Gugl je
+    <a
+      href="https://github.com/angular/angular.js/blob/master/CONTRIBUTING.md#-git-commit-guidelines"
+      title="Format komit poruka za AngularJS repozitorijumu">definisao</a> format za semantičke komit poruke za repozitorijum AngularJS,
     koji su kasnije preuzeli mnogi projekti otvorenog koda i prilagodili svojim potrebama (npr. <a
     href="http://karma-runner.github.io/0.10/dev/git-commit-msg.html"
     title="Format komit poruka za Karma repozitorijum">Karma</a>).
@@ -728,39 +720,200 @@
 
   <h3>Linteri</h3>
 
+  <summary>
+    Linteri služe da osiguraju da stil pisanja koda bude konzistentan, a pomažu i u brzom nalaženju potencijalnih grešaka u kodu, čak i pre procesa kompilacije.
+  </summary>
+
+  <lrn-markdown>
+    Kako projekat raste, sve je teže održati konzistentnost u **stilu** pisanja koda, pogotovo kada se
+    development obavlja dugo, kroz nekoliko faza, ili kada je u proces uključen veliki tim.
+
+    Nezavisno od toga, jezici često pružaju mogućnost da se zapiše određena konstrukcija, što se
+    vremenom ispostavi kao ne tako dobra osobina jezika, pa se vremenom usvoji kao **loša praksa** od strane zajedinice.
+
+    Kako bi se rešili gorenavedeni problemi, koriste se alati poznati kao **linteri**. Naziv "linter" dolazi od programa `lint` koji je prolazio kroz izvorni kod napisan u programskom jeziku C i beležio konstrukcije koje bi mogle da prouzrokuju bagove. Danas se termin _lint_ koristi generičke, za sve alate koji za cilj imaju da otkriju konstrukcije u jeziku za koje se veruje da mogu dovesti do bagova.
+
+    Lernejaro je pisan u Tajpskriptu, pa je za development korišćen program `tslint`. U pitanju je statički analizator koda koji proverava **stil, čitljivost, održivost i funkcionalne greške** u Tajpskript kodu. Mnogi moderni editori imaju ugrađenu podršku za tslint, što znači da mogu da prijave upozorenje ili grešku dok developer radi na kodu, najčešće u vidu crvene linije u predelu greške.
+
+    Najjednostavniji način pokretanja lintera jeste preko komandne linije, ali se onda pri svakom pokretanju moraju navesti flegovi koji detaljnije specificiraju pravila, formatere, itd. Zato se konfiguracija lintera uvek obavlja u posebnom JSON fajlu, koji se po konvecniji naziva `tslint.json` i nalazi se u korenom direktorijumu projekta.
+
+    U njemu su specificirana pravila koja se koriste prilikom obilaska izvornog koda ("lintovanje"). Moguće je konfigurasti i to koja pravila prouzrokuju greške, a koja samo upozorenje.
+
+    Pravilo `indent` je tipičan primer pravila koje se tiče **stila** (izgleda) koda. Moguće je konfigurasati ga ili na `tabs` ili na `spaces`. Ukoliko se u kodu nađe linija koja počinje suprotnim znakom beline od onog koje je navedeno, linter će se pobuniti.
+
+    **Čitljivost** koda je moguće kontrolisati kontrolisanjem slobode stila u kodu. Ne savetuje se da se definiše previše pravila koja kontrolišu stil pisanja, jer onda često dolazi do kontra-efekta, gde kod postaje nečitljiv iako bi developer blagim odstupanjem od pravila mogao da ga ulini razumljvijim. Zato treba biti obazriv prilikom definisanja ovih pravila. Pravilo koje se često koristi je `no-shadowed-variable` koje ne dozvoljava da se javi promenljiva ili konstanta sa imenom koje već postoji u roditeljskom opsegu.
+
+    **Održivost koda** je najznačajnija upotreba lintera i pravila koja spadaju u ovu grupu su često blisko povezana sa pravilima koje love **funkcionalne greške**. Na primer, pravilo `no-switch-case-fall-through` obavezuje developera da se svaki `case` blok u `switch` naredbi završi sa `break`, `return` ili `throw`, ili da nema nijednu naredbu u sebi. Ovo povećava čitljivost jer developeri očekuju da se `case` konstrukcije ne prožimaju međusobno.
+
+    `tslint` je pisan tako da bude modularan i ekstenzibilan. Zajednica Angulara napravila je skup pravila koja se koriste u Angular aplikacijama koja služe da održe konzistentnost u pisanju Angular komponenti i direktiva. Projekat je nazvan
+    <b>codelyzer</b>. Reprezentativni primer pravila koje nudi jeste `component-class-suffix`, koje obezbeđuje da klasa obeležena `@Component` dekoratorom ima sufiks `Component`.
+
+    Pošto je linter neophodno ručno pokrenuti, napravljen je huk za git koji pokreće linter pre svakog komita i ne dozvoljava da se komit uspešno obavi ukoliko je prođena greška.
+  </lrn-markdown>
+
   <h3>Dokumentacija</h3>
 
-  <h3>Menadžment paketa</h3>
+  <lrn-markdown>
+    Većina javno dostupnih klasa je dokumentovana pisanjem komentara iznad klase, atributa, metode, funkcije ili konstante; u pitanju je derivat takozvanih **JSDoc** komenatara, prilagođen Tajpskriptu.
 
-  <h3>Testovi</h3>
+    Direktive koje počinju sa `@` (npr. `@example`, `@param`) semantički opisuju o čemu govori sledeća rečenica u komentaru. Statički analizator prolazi kroz kod i čupa podatke iz komenatara koji počinju sa `/**`. Kao izlaz daje JSON datoteku, koja se nekim generatorom može eksportovati u neki format čitljiv ljudima, tipično HTML, uz ugrađenu funkcionalnost za pretragu dokumentacije i slične dinamičke funkcionalnosti.
 
-  <h3>Angularov CLI</h3>
+    Alat korišćen u ovom projektu je **compodoc**; to je generator dokumentacije koji je posred JSDoc komentara svestan da se radi o Angular projektu, pa pored dokumentacije generiše i grafove modula, komponenti, direktiva i cevi definisane pomoću meta-podataka.
+  </lrn-markdown>
 
-  <summary>
-    `g` komande
-    postavka projekta
-    `build`, `--prod`
-    `--stat-json` i optimizator + webpack bundle analyzer
-  </summary>
+  <!--<h3>Menadžment paketa</h3>-->
+
+  <!--<h3>Testovi</h3>-->
+
+  <!--<h3>Angularov CLI</h3>-->
+
+  <!--<summary>-->
+  <!--`g` komande-->
+  <!--postavka projekta-->
+  <!--`build`, `&#45;&#45;prod`-->
+  <!--`&#45;&#45;stat-json` i optimizator + webpack bundle analyzer-->
+  <!--</summary>-->
 
   <h2>Odabrani implementacioni detalji</h2>
 
   <h3>Paleta boja i teme</h3>
 
-  <summary>
-    Provajderi preko statičke metode `.forRoot`, CSS promenljive.
-  </summary>
+  <lrn-markdown>
+    Imena atributa koja imaju prefiks `--` predstavljaju prilagodljive atribute u kojima se nalaze vrednosti koje se mogu koristiti kroz ostatak dokumenta koristeći funkciju `var()`. Prilagodljivi atributi učestvuju u klasičnom kaskadiranju CSS-a: svaki se može pojaviti nekoliko puta, pri čemu će se vrednost koja se koristi za njega odlučiti na osnovu rezultata algoritma kaskadiranja.
+
+    Za razliku od drugih CSS atributa, prilagodljivi atributi, kao i njihove vrednosti, razlikuju mala i velika slova.
+
+    Modul `@lernejaro/ui` intenzivno koristi prilagodljive atribute kako bi bilo moguće promeniti temu koja se koristi, ali u toku izvršenja aplikacije i bez ponovnog učitavanja stranice.
+
+    Podrška za prilagodljive atribute nije idealna: dostupni su u Hromu od verzije 49, a u Fajerfoksu od 31. Ipak, kako se radi o fičeru koji je samo progresivno poboljšanje, korisnikovo iskustvo neće biti narušeno bez ove funkcionalnosti. Korišćenjem `@supports` se dugme za promenu tema ne prikazuje u brauzerima koji tu funkcionalnost nemaju.
+  </lrn-markdown>
+
+  <h3>Eksportovanje u LaTeX</h3>
+
+  <lrn-markdown>
+    Materijal napisan koristeći _Notebook_ modul koristi se kroz Angular komponentu i kao rezultat se dobija veb-stranica.
+
+    Ovu veb-stranicu je moguće odštampati koristeći brauzer (a operativni sistemi uglavnom pružaju podršku za "štampanje" u PDF dokument). Definisani su posebni stilovi kroz medija kveri gde je `media` podešeno na `print`, čime se neznatno menja izgled dokumenta kako bi bio pogodan za štampu. Na primer, sve digresije su automtaski otvorene (jer je na papiru nemoguće opciono ih otvoriti), uvek je prikazan sadržaj, itd.
+
+    Ipak, ovo rešenje nije uvek zadovoljavajuće. Kako bi bili ispunjeni standardi koji se očekuju od materijala za učenje u ozbiljnim obrazovnim institucijama, štampani materijali bi trebalo da budu pisani u LaTeX-u kako bi se ispoštovala određena tipografska pravila zahvaljujući kojima je čitljivost dokumenta povećana na najveću vrednost.
+
+    Zato je omogućeno eksportovanje kreiranih materijala u LaTeX sintaksu. Pošto Lernejaro definiše neke proizvoljne HTML elemente koji se ne nalaze u HTML5 specifikaciji, ne može se iskoristiti postojeći konverter HTML dokumenta u LaTeX kod.
+
+    Eksporter materijala napravljenog koristeći _Notebook_ komponentu implementiran je kroz `Latex` servis. Sačinjen je od dva glavna dela: transformer i renderer.
+
+    **Transformer** rekurzivno obilazi HTML strukturu dela dokumenta koji se nalazi unutar _Notebook_ komponente. Od ovoga izgrađuje strukturu stabla gde su zapisane informcije o tome kakavu LaTeX komandu ili okruženje predstavlja HTML čvor. Svaki HTML čvor ima definisanu funkciju koja na osnovu (već transformisanog) sadržaja, atributa HTML elementa i konteksta u kojoj se čvor nalazi na izlaz daje čvor nove strukture koji se zatim smešta u nju.
+
+    **Renderer** zatim rekurzivno obilazi strukturu koju je generisao transformer i na osnovu nje kreira string koji predstavlja validnu LaTeX sintaksu, spremnu za kompajliranje.
+
+    Kako je Lernejaro biblioteka koja se izvršava isključivo na klijentu, kompajliranje pomoću LaTeX-a nije podržano na Lernejaru. Potrošač biblioteke može povezati aplikaciju sa nekim spoljnim servisom koje će kompajlirati LaTeX i krajnjem korisniku irektno ponuditi PDF (ili neki drugi format, u zavinoti od LaTeX kompajlera). Trenutno se korisnku nudi string koji treba da prekopira lokalno i tu izvrši kompilaciju.
+  </lrn-markdown>
 
   <h3>Podizanje modala iz servisa</h3>
 
-  <h3>Multi-provajderi u modulu za konzolu</h3>
+  <lrn-markdown>
+    Naivna implementacija popap prozora podrazumeva da se u šablonu sa koje se popap poziva napravi deo koji predstavlja okvir i sadržaj popapa, i da se jednom logičkom promenljivom menja njegova vidljivost.
+
+    Ovo ima nekoliko mana.
+
+    - Pre svega, svaka komponenta u kojoj se nalazi popap mora da ima dodatnu promenljivu koja govori o njegovoj vidljivosti. Potrebne su i dve funkcije koje menjaju njenu vrednost. Ova mana je posebno izražena ukoliko stranica može imati više popapa. Sem promenljivi, i sami popapovi će se nagomilati u šablonu.
+    - Popap prozori se obično gase na dva načina: pritiskom na dugme za zatvaranje ili klikom na zacrnjenu oblast koja se javlja oko popapa. Svaka komponenta sa popapom mora da vodi računa o tome da podrži oba načina za kreiranje.
+    - Ako se kroz popap prosleđuju neki podaci, nije jasno definisan trenutak kada to treba da se dogodi. Developer može lako da načini grešku ukoliko u pogrešnom trenutku ažurira podatke koji su vezani za popap (ili ih ne ažurira uopšte).
+    - Okvir u kome se nalazi sadržaj obično izgleda isto kroz celu aplikaciju. Na developeru ostaje da se ručno postara da se isti okvir koristi. Naravno, okvir bi trebalo enkapsulirati u posebnu komponentu, ali developer je i dalje odgovoran da sve vreme bude svestan toga _koja_ komponenta se koristi.
+
+    Kako bi se prevazišle ove mane, implementiran je modul za modale kao paket `@lernejaro/modal`.
+
+    Ovaj paket ne pravi nikakvu pretpostavku o izgledu modala, niti o njegovom ponašanju, izuzev toga da se može zatvoriti barem klikom negde na zarnjenu oblast iza njega. Prilikom importovanja modula u potrošački modul treba pozvati statičku metodu `.forRoot`. Ova metoda po konvenciji nosi ovaj naziv i koristi se kada importovanje modula treba i da provajduje neke servise, ali na dinamički način; potrošač treba da nekim konfiguracionim objektom obavesti biblioteku šta i kako treba da provaduje. U ovom slučaju se komponenta koja će biti kreirana oko sadržaja svakog modala proleđuje kao jedini parametar `.forRoot` metode.
+
+    Sadržaj modala je moguće definisati ili kroz potpuno odvojenu komponentu ili kroz šablon. U oba slučaja se modali otvaraju na isti način: u komponentu koja treba da otvori modal se ubrizgava servis koji pruža paket, i nad dobijenom instancom se zove metoda `.open`. Kao parametar se prosleđuje `TemplateReference` ili klasa koja predstavlja komponentu. Ako se radi o klasi, ona se mora i navesti u `entryComponents` u modulu kako bi Angularov kompajler znao da treba da iskompajlira ovu klasu (to ne može da zaključi automatski jer je nema u šablonima, već se instancira dinamički iz koda). Metoda `.open` vraća nadgledivu promenljivu koja će emitovati prvu i jedinu vrednost kada se modal zatvori.
+
+    Na ovaj način su rešeni svi gorenavedeni promeni.
+
+    - Dodatna promenljva ne postoji jer se modal uopšte ne instancira kao deo pogleda komponente. To se čini kroz servis koji je odgovoran za kreiranje i uništavanje modala.
+    - Pošto se omotač oko popapa definše samo jednom, u komponenti koja će se automatsi pozivati iz servisa gde god se servis koristi, ona sama može da definiše dodatne načine na koje modal može biti ugašen.
+    - Proleđivanje podataka kroz modal se odvija u jasno definisanim tačkama: prilkom poziva metode `.open` i prilikom izvršenja asinhronog događaja zatvaranja popapa na koji se potrošač pretplaćuje korišćenjem metode `.subscribe` nad nadgledivom promenljivom koju vraća `.open`.
+    - Okvir modala se jasno definiše još prilikom samog importovanja modula, tako da ne može doći do zabune oko toga kako on treba da izgleda.
+
+    Kada `@lernejaro/ui` modul importuje `@lernejaro/modal`, prosleđuje okvir za modale. U komponenti se definiše pozicija i izgled modala, kao i animacija koja se koristi prilikom otvaranja i zatvaranja modala (tj. kreiranja i uništavanja komponente).
+  </lrn-markdown>
+
+  <!--<h3>Multi-provajderi u modulu za konzolu</h3>-->
 
   <h3>Bandlovanje posebnih biblioteka</h3>
 
-  <summary>
-    https://github.com/angular/angular/pull/16486/files?diff=unified#diff-3911b89a8b42ea53a4342aa134735437
-    https://github.com/filipesilva/angular-quickstart-lib
+  <lrn-markdown>
+    U modernom načinu kreiranja veb-aplikacija, developeri mogu da konzumiraju pakete na različite načine. Na primer, neki koriste SystemJS, a neki Vebpek. Moguće je povezati pakete kroz Node, ali i kroz brauzer kao UMD bandl ili kroz globalne promenljive.
 
-  </summary>
+    Angular paketi bi trebalo da podrže sve načine na koji mogu da budu konzumirani. Posebno treba obratiti pažnju na to da je moguće u najvećoj mogućoj meri optimizovati pozvani paket, u skladu sa izabranim načinom korišćenja.
+  </lrn-markdown>
+
+  <p>
+    <b>Primarna ulazna tačka</b> paketa je modul čiji se ID poklapa sa imenom paketa. Na primer, za paket
+    <code>@angular/core</code>, uvoz klase
+    <code>Component</code> izvezene iz primarne ulazne tačke postiže se naredbom
+    <code>import {{ '{' }}Component{{ '}' }} from '@angular/core'</code>.
+  </p>
+
+  <lrn-markdown>
+    Ova ulazna tačka mora sadržati `package.json` datoteku koja različite alate preusmerava na različite ulazne tačke (`module` za FESM, `es2015` za GCC, `main` za brauzere ili Node). Sem toga, `package.json` mora definisati koji je ulazni definicioni fajl za TajpSkript (`typings`).
+
+    Sem primarne, paket može da sadrži i jednu ili više **sekundarnih ulaznih tačaka**, na primer `@angular/core/testing`. Ovde se nalaze simboli koje ne bi trebalo grupisati sa primarnim simbolima. Motiv za ovo može biti to da sa korisnikove tačke gledišta oni izgledaju kao dve različite grupe simbola; ili to da se sekundarna grupa koristi samo pod određenim uslovima ili u nekim specijalnim situacijama (kao što je pisanje testova).
+
+    Sekundarna ulazna tačka takođe mora sadržati odovarajući `package.json`.
+
+    Kako bi se proizveli fajlovi neophodni za konzumiranje biblioteke, potrebno je kompajlirati ih. Za ovo bi trebalo koristiti Angularov kompajler `ngc`, kako bi buduće optimizacije bile izvodljive.
+
+    Kako je `ngc` samo tanak omotač oko TajpSkript kompajlera `tsc`, podešavanja se mogu zadati direktno u `tsconfig.json` fajlu, u objektu sa ključem `angularCompilerOptions`. Bilo da se kreira FESM5 ili FESM15, treba uključiti opciju za generisanje meta-podataka (omogućuje AOT), isključiti generisanje koda za kreiranje šablona (prepušta se potrošaču biblioteke) i uključiti anotacije za GCC (kako bi modul mogao da se optimizuje GCC-om).
+
+    Pre nego što se biblioteka objavi na npm repozitorijum, treba se iskoristiti **tehnika poravnjanja** ES modula. Ovo
+    <a href="https://nolanlawson.com/2016/08/15/the-cost-of-small-modules/"
+       title="Cena korišćenja malih modula">značajno</a> smanjuje vreme bildanja Angular aplikacija, kao i vreme preuzimanja i parsiranja koda finalne Angular aplikacije od strane krajnjih korisnika.
+
+    Angularov kompajler podržava generisanje indeksnih ES modulskih fajlova koji se mogu koristiti u alatima kao što je Rolap. Rezultujući format se naziva
+    <abbr title="Flat ECMAScript Module">FESM</abbr> (čita se _fesom_).
+
+    FESM je format koji se dobija kada se svi ES moduli koji su dostupni iz ulazne tačke poravnjaju u jedan ES modul. Ovakav format se dobija praćenjem svih importa iz paketa i kopiranjem koda u pozivajući fajl, pri čemu se održava konzistentnost svih javnih eksporta, a brišu se svi privatni importi.
+
+    Za FESM module se često vezuje i broj koji govori o nivou JavaSkripta koji se koristi unutar fajla: FESM5, FESM15, itd.
+
+    Kako bi se aplikaciji olakšalo konzumiranje biblioteke, poželjno je inlajnovati šablone i stilove u komponentu, tj. koristiti `template` i `styles` umesto `templateUrl` i `styleUrls`. Ovako aplikacija ne mora da vodi računa o tome da pronađe odgovarajući fajl na disku prilikom kompajliranja. Ovo je posebno značajno za konzumiranje aplikacije direktno kroz brauzer.
+
+    Najveći broj alata koji je danas dostupan u ekosistemu JavaSkripta očekuje da import iz `node_modules` bude u ES5 formatu. Ali sada kada svi moderni brauzeri podržavaju ES2015 module, trebalo bi koristiti prednosti koje on pruža. Pre svega, proces bildovanja će biti pojednostavljen. Ali ono što je mnogo važnije jeste da će omogućiti bolju minifikaciju tokom kompajliranja i pakovanja.
+
+    Anotacije za Guglov _Closure Compiler_ (GCC) su trenutno u eksperimentalnoj podršci. Da bi izlaz iz `ngc`-a bio od koristi GCC-u, on mora biti anotiran JSDoc komentarima u kojima se nalaze informacije o tipovima podataka. Pošto se Anglar aplikacije uglavnom pišu u TajpSkriptu, `ngc` može samostalno da umetne ove komentare na osnovu tipova podataka koje je programer definisao kroz TajpSkript.
+
+    Lernejaro je, slično i samom Angularu, distribuiran kroz niz paketa. Svi paketi imaju zajednički opseg `@lernejaro`. Na primer, paket u kome se nalazi kod za modale nalazi se u `@lernejaro/modal`.
+
+    Struktura izvornog koda biblioteke je organizovana tako da se u folderu `src/lib` nalazi sama biblioteka, a u `src/demo` -- minijaturna demo-aplikacija koja predstavlja potrošač modula i koristi se za testiranje.
+
+    Proces kreiranja rezultujućih bandlova je automatizovan pomoću nekoliko Node skripti. Sažet pregled koraka kroz koje prolazi generisanje `dist` foldera dat je u nastavku.
+
+    - Najpre se biblioteka kopira u privremeni folder, Sass se kompajlira u CSS, i vrši se inlajnovanje šablona i stilova.
+    - Zatim se pomoću `ngc`-a biblioteka kompajlira u ES5 i ES2015 i smešta u privremeni folder. Za ovo se koriste dva različita `tsconfig.json` fajla.
+    - Informacije o tipovima podataka i meta-podaci za AOT kompilaciju se kopiraju iz privremenog u odredišni folder.
+    - Podešavaju se globalni i eksterni moduli u okvru Rolap konfiguracije. Ovde se navode sve biblioteke koje su `peerDependency`, tj. za koje se očekuje da će ih aplikacija već koristiti (pa nisu direktne zavisnosti). To znači da se biblioteke navedene ovde neće naći u rezultujućem bandlu modula.
+    - Genriše se UMD bandl, a zatim i minifikovani UMD bandl radi direktnog korišćenja preko CDN-a.
+    - Generišu se FESM5 i FESM2015 bandlovi.
+    - Originalni koreni `package.json` koji je korišćen za development modula se kopira u odredišni direktorijum, zajedno sa fajlovima kao što su `README.md` i `LICENCE`.
+
+    U `tsconfig.json` fajlu se u okviru opcija koje se prosleđuju Angularovom kompilatoru navode i `flatModuleId` (ime na osnovu koga će se vršiti importi iz aplikacije) i `flatModuleOutFile` (putanja do fajla koja predstavlja FESM).
+
+    Moduli se objavljuju na npm i prate <a href="http://semver.org/"
+                                           title="Semantičko verzionisanje">semver</a>, uz automatsko generisanje `CHANGELOG.md` fajla.
+
+    Ovakva postavka omogućuje sledeće slučajeve korišćenja za biblioteku `@angular/core`.
+
+    - Aplikacija koristi modul kroz optimizovanu konfiguraciju Vebpeka ili GCC-a. Ovo je omogućeno FESM2015 formatom. Primarna ulazna tačka se čita iz fajla `@angular/core.js`.
+    - Aplikacija koristi modul kroz Rolap, Vebpek ili Angularov CLI. Ovo je moguće zahvaljujući FESM5 formatu. Primarna ulazna tačka se čita iz `@angular/core.es5.js`.
+    - Aplikacija se učitava iz brauzera pomoću `script` elementa (na primer, koristi se na sajtovima kao što su Codepen, Plunker, JSFiddle, JSBin). Ovo je mogućeno UMD formatom jer je on kompatibilan sa AMD formatom. Developer mora ručno da obavi rezoluciju do `@angular/bundles/core.umd.js` ili do odgovarajuće minifikovane verzije.
+    - Aplikacija se učitava iz Node okruženja. Za ovo se takođe koristi UMD format, jer je on kompatibilan sa CJS formatom. Primarna ulazna tačka se čita iz `@angular/bundles/core.umd.js`.
+    - Aplikacija koristi TajpSkriptov kompajler i neophodne su joj informacije o tipovima. Ovo je omogućeno ESM formatom, uz odgovarajući definicioni fajl `@angular/core/core.d.ts`.
+    - Aplikacija treba da može da se kompajlira u AOT režimu. Ovo je moguće zahvaljujući meta-podacima u `@angular/core/core.metadata.json`.
+  </lrn-markdown>
+
+  <!--<summary>-->
+  <!--https://github.com/angular/angular/pull/16486/files?diff=unified#diff-3911b89a8b42ea53a4342aa134735437-->
+  <!--https://github.com/filipesilva/angular-quickstart-lib-->
+  <!---->
+  <!--</summary>-->
 
 </lrn-notebook>
