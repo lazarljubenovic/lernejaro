@@ -1,8 +1,0 @@
-<div class="background"
-     [style.background-color]="lesson.color | color : !lesson.isUnlocked"
-     [routerLink]="lesson.isUnlocked ? (lesson.id + '-' + lesson.name) : './'"
->
-  <lrn-icon [icon]="lesson.icon"></lrn-icon>
-</div>
-
-<div class="name">{{lesson.name}}</div>

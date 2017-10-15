@@ -7,7 +7,7 @@ import {
   OnChanges,
   OnInit,
 } from '@angular/core'
-import {LessonIcon} from '../../lesson-navigator/lesson-icon.enum'
+import {LessonIcon} from './lesson-icon.enum'
 import {LoggerService} from '../../logger/logger.service'
 import {UnknownIconErrorComponent} from '../errors'
 

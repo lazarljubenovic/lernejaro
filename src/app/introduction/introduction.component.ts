@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core'
-import {format} from '../../code/code'
+import {format} from '../code/code'
 
 @Component({
   selector: 'lrn-introduction',
@@ -42,10 +42,22 @@ export class IntroductionComponent implements OnInit {
     \\int_{-\\infty}^{+\\infty} e^{-x^2} \\, \\mathrm dx = \\sqrt \\pi
   `
 
-  public katexExample = format`
+  katexExample = format`
     <lrn-katex [displayMode]="true"
                math="${this.formula}"
     ></lrn-katex>
+  `
+
+  quizExample = format`
+    <lrn-multiple-choice>
+      <lrn-question>
+        What is the answer to life,
+        the universe and everything?
+      </lrn-question>
+      
+      <lrn-choice>Angular</lrn-choice>
+      <lrn-choice lrnCorrect>42</lrn-choice>
+    </lrn-multiple-choice>
   `
 
   constructor() {

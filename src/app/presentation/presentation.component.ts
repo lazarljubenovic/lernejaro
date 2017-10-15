@@ -6,6 +6,7 @@ import {
   HostListener,
   Input,
   OnInit,
+  Optional,
   QueryList,
   Renderer,
   TemplateRef,
@@ -23,6 +24,7 @@ import {
   PresentationWithoutEmailErrorComponent,
   UntitledPresentationErrorComponent,
 } from './errors'
+import 'rxjs/add/operator/distinctUntilChanged'
 
 interface SlideIdentifier {
   type: string // 'title' | 'user' | 'questions' | 'thank-you'
@@ -122,7 +124,9 @@ export class PresentationComponent implements OnInit, AfterContentInit {
     // Update route
     // TODO: What if multiple presentations on the same screen?
     const slide = this.currentSlideIndex + 1
-    this.router.navigate(['.', {slide}], {relativeTo: this.route})
+    if (this.route && this.router) {
+      this.router.navigate(['.', {slide}], {relativeTo: this.route})
+    }
   }
 
   public isFirstSlide(): boolean {
@@ -182,8 +186,8 @@ export class PresentationComponent implements OnInit, AfterContentInit {
   }
 
   constructor(private renderer: Renderer,
-              private route: ActivatedRoute,
-              private router: Router,
+              @Optional() private route: ActivatedRoute,
+              @Optional() private router: Router,
               private palette: PaletteService,
               private logger: LoggerService) {
   }
@@ -209,16 +213,20 @@ export class PresentationComponent implements OnInit, AfterContentInit {
     this.currentSlideIdentifier = this.slideIdentifiers[0]
 
     // Navigate to correct slide based on route
-    this.route.params
-      .distinctUntilKeyChanged('slide')
-      .subscribe(params => {
-        const slideIndex = +params['slide'] - 1
-        if (slideIndex != null && !isNaN(slideIndex) && slideIndex < this.slideIdentifiers.length) {
-          this.currentSlideIndex = slideIndex
-        } else {
-          this.goToFirstSlide()
-        }
-      })
+    if (this.route) {
+      this.route.params
+        .distinctUntilKeyChanged('slide')
+        .subscribe(params => {
+          const slideIndex = +params['slide'] - 1
+          const cond1 = slideIndex != null
+          const cond2 = !isNaN(slideIndex) && slideIndex < this.slideIdentifiers.length
+          if (cond1 && cond2) {
+            this.currentSlideIndex = slideIndex
+          } else {
+            this.goToFirstSlide()
+          }
+        })
+    }
 
     // Set logo to all slides
     // Set sections based on first mention of the section in a row

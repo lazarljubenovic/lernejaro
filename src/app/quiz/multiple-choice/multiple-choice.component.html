@@ -28,7 +28,10 @@
   </lrn-card-content>
 
   <lrn-card-footer>
-    <button [lrnButton]="'raised'" type="submit" [attr.form]="formId">Odgovori</button>
+    <div class="card-footer">
+      <div><i class="fa fa-{{ icon }}"></i></div>
+      <button [lrnButton]="'raised'" type="submit" [attr.form]="formId">Odgovori</button>
+    </div>
   </lrn-card-footer>
 
 </lrn-card>

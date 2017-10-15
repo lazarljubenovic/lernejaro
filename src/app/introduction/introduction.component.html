@@ -63,7 +63,7 @@
     <div lrnVertical>
       <pre><code [lrnCode]="'javascript'">const a = 1</code></pre>
       <pre><code [lrnCode]="'html'">&lt;pre>
-  &lt;code [lrnCode]="'javascript'">
+  &lt;code lrnCode="javascript">
     const a = 1
   &lt;/code>
 &lt;/pre></code></pre>
@@ -85,10 +85,14 @@
 
   <lrn-slide [title]="'Kviz'">
     <lrn-multiple-choice>
-      <lrn-question>what am i</lrn-question>
-      <lrn-choice lrnCorrect>im lazy</lrn-choice>
-      <lrn-choice>im not lazy</lrn-choice>
+      <lrn-question>What is the answer to life the universe and everything?</lrn-question>
+      <lrn-choice>Angular</lrn-choice>
+      <lrn-choice lrnCorrect>42</lrn-choice>
     </lrn-multiple-choice>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Kviz'">
+    <pre><code lrnCode="html">{{ quizExample }}</code></pre>
   </lrn-slide>
 
 </lrn-presentation>

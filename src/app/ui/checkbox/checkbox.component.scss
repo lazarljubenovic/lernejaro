@@ -1,3 +1,5 @@
+@import '../../global';
+
 :host {
   display: inline-block;
 }
@@ -18,7 +20,6 @@ div {
 }
 
 input:checked + div {
-  box-shadow: 0 0 0 .06em var(--color) inset,
-  0 0 0 .12em var(--color-front) inset;
+  box-shadow: 0 0 0 .06em var(--color) inset, 0 0 0 .12em var(--color-front) inset;
   background-color: var(--accent-color);
 }
