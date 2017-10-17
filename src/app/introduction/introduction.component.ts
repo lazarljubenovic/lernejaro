@@ -60,6 +60,146 @@ export class IntroductionComponent implements OnInit {
     </lrn-multiple-choice>
   `
 
+  slidesExample = format`
+    <lrn-presentation>
+      <lrn-slide>
+        <!-- Content -->
+      </lrn-slide>
+    </lrn-presentation>
+  `
+
+  declarative = {
+    sample: format`
+      <section>
+        <h1>Title</h1>
+        <p>Paragraph</p>
+        <img src="cat.jpg" alt="A cat">
+      </section>
+    `,
+    interpolation: {
+      view: format`
+        <section>
+          Welcome, {{ user.name }}!
+        </section>
+      `,
+      model: format`
+        class UserComponent {
+          user = { name: 'John Doe' }
+        }
+      `,
+    },
+    dataBinding: {
+      view: format`
+        <img [src]="imageUrl" [alt]="description">
+      `,
+      model: format`
+        class ImageComponent {
+          imageUrl = 'cat.jpg'
+          description = 'A cat'
+        }
+      `,
+    },
+    eventBinding: {
+      view: format`
+        <button (click)="logIn()">Log in</button>
+      `,
+      model: format`
+        class LogInComponent {
+          logIn() {
+            fetch(\`example.com/log-in\`)
+          }
+        }
+      `,
+    },
+    twoWay: {
+      view: format`
+        <label>
+          <span>Username</span>
+          <input type="text" [(ngModel)]="username">
+        </label>
+      `,
+      model: format`
+        class SomeComponent {
+          username = ''
+        }
+      `,
+    },
+    structural: {
+      view: format`
+        <div *ngIf="isUserLoggedIn">
+          Welcome, {{ user.name }}!
+        </div>
+      `,
+      viewExpanded: format`
+        <ng-template [ngIf]="isUserLoggedIn">
+          <div>Welcome, {{ user.name }}!</div>
+        </ng-template>
+      `,
+    },
+  }
+
+  typescript = {
+    simple: {
+      input: format`
+        const a: number = 1
+        const b = 1
+      `,
+      output: format`
+        const a = 1
+        const b = 1
+      `,
+    },
+    interfaces: {
+      input: format`
+        interface User { name: string }
+        
+        const user: User = {
+          firstName: 'John', // error
+        }
+      `,
+    },
+    others: {
+      input: format`
+        async function() {
+          let data: number | string
+          data = await fetch('example.api/data')
+          if (typeof data == 'number') {
+            // ...
+          } else {
+            // ...
+          }
+        }
+      `,
+    },
+    generics: format`
+      function sort<T>(arr:  T[]):  T[] {
+        // ...
+      }
+    `,
+    targetEs5: {
+      input: format`
+        const arr = [1, 2, 3].map(x => x ** 2)    
+      `,
+      output: format`
+        var arr = [1, 2, 3].map(function(x) {
+          return Math.pow(x, 2)
+        })
+      `,
+    },
+  }
+
+  di = {
+    api: format`
+      @Injectable()
+      class ServiceA { /* ... */ }
+      
+      @Injectable()
+      class ServiceB {
+        constructor(a: ServiceA) {}
+      }
+    `,
+  }
+
   constructor() {
   }
 

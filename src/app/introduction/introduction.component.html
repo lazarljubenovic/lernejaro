@@ -3,16 +3,94 @@
                   [email]="'lazar.ljubenovic.1995@gmail.com'"
 >
 
-  <lrn-slide section="Uvod"
-             [suppressUntitledSlideWarning]="true"
+  <!--<lrn-slide section="Uvod"-->
+             <!--[suppressUntitledSlideWarning]="true"-->
+  <!--&gt;-->
+    <!--<div lrnCenter>-->
+      <!--<div lrnHorizontal>-->
+        <!--<img src="https://angular.io/assets/images/logos/angular/angular.png" alt="Angular"-->
+             <!--width="300" height="300">-->
+        <!--<img src="https://cdn.worldvectorlogo.com/logos/react.svg" alt="React">-->
+        <!--<img src="https://vuejs.org/images/logo.png" alt="Vue">-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</lrn-slide>-->
+
+  <lrn-slide [section]="'Typescript'"
+             [title]="'Transpajliranje'"
   >
-    <div lrnCenter>
-      <div lrnHorizontal>
-        <img src="https://angular.io/assets/images/logos/angular/angular.png" alt="Angular" width="300" height="300">
-        <img src="https://cdn.worldvectorlogo.com/logos/react.svg" alt="React">
-        <img src="https://vuejs.org/images/logo.png" alt="Vue">
+    <blockquote>
+      Tajpskript je jezik sličan JavaSkriptu, i istovremeno predstavlja njegovu
+      <b>tipiziranu</b> nadgradnju i transpajler u neku stariju verziju ECMAScript-a.
+    </blockquote>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Statički tipovi'">
+    <div lrnVertical>
+      <div>
+        <pre><code lrnCode="javascript">{{ typescript.simple.input }}</code></pre>
+      </div>
+      <div>
+        <pre><code lrnCode="javascript">{{ typescript.simple.output }}</code></pre>
       </div>
     </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Interfejsi'">
+    <div lrnVertical>
+      <div>
+        <pre><code lrnCode="javascript">{{ typescript.interfaces.input }}</code></pre>
+      </div>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Unije'">
+    <div lrnVertical>
+      <div>
+        <pre><code lrnCode="javascript">{{ typescript.others.input }}</code></pre>
+      </div>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Generičke funkcije i klase'">
+    <div lrnVertical>
+      <div>
+        <pre><code lrnCode="javascript">{{ typescript.generics }}</code></pre>
+      </div>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'ESnext'">
+    <div lrnVertical>
+      <div>
+        <pre><code lrnCode="javascript">{{ typescript.targetEs5.input }}</code></pre>
+      </div>
+      <div>
+        <pre><code lrnCode="javascript">{{ typescript.targetEs5.output }}</code></pre>
+      </div>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [section]="'Reactive Extensions'"
+             [suppressUntitledSlideWarning]="true"
+  >
+    <blockquote>
+      Reaktivne ekstenzije omogućavaju programiranje korišćenjem
+      <b>nadgledivih</b> promenljvih, kombinujući ga na najbolji način sa
+      <b>funkcionalnim</b> programiranjem.
+    </blockquote>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Operatori'">
+    <div lrnCenter><img class="expand" src="https://i.imgur.com/Z9Hnzd7.png"></div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Operatori'">
+    <div lrnCenter><img class="expand" src="https://i.imgur.com/0OrIlBP.png"></div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Operatori'">
+    <div lrnCenter><img class="expand" src="https://i.imgur.com/W4QuGo1.png"></div>
   </lrn-slide>
 
   <lrn-slide [section]="'Angular'"
@@ -25,10 +103,93 @@
     </ul>
   </lrn-slide>
 
-  <lrn-slide [suppressUntitledSlideWarning]="true"
+  <lrn-slide [title]="'Deklarativni šabloni'"
   >
-    <lrn-logo></lrn-logo>
+    <pre><code lrnCode="html">{{ declarative.sample }}</code></pre>
   </lrn-slide>
+
+  <lrn-slide [section]="'Angular'"
+             [title]="'Deklarativni šabloni'"
+  >
+    <div lrnVertical>
+      <div>
+        <pre><code lrnCode="html">{{ declarative.interpolation.view }}</code></pre>
+      </div>
+      <div>
+        <pre><code lrnCode="javascript">{{ declarative.interpolation.model }}</code></pre>
+      </div>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Deklarativni šabloni'"
+  >
+    <div lrnVertical>
+      <div>
+        <pre><code lrnCode="html">{{ declarative.dataBinding.view }}</code></pre>
+      </div>
+      <div>
+        <pre><code lrnCode="javascript">{{ declarative.dataBinding.model }}</code></pre>
+      </div>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Deklarativni šabloni'"
+  >
+    <div lrnVertical>
+      <div>
+        <pre><code lrnCode="html">{{ declarative.eventBinding.view }}</code></pre>
+      </div>
+      <div>
+        <pre><code lrnCode="javascript">{{ declarative.eventBinding.model }}</code></pre>
+      </div>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Deklarativni šabloni'"
+  >
+    <div lrnVertical>
+      <div>
+        <pre><code lrnCode="html">{{ declarative.twoWay.view }}</code></pre>
+      </div>
+      <div>
+        <pre><code lrnCode="javascript">{{ declarative.twoWay.model }}</code></pre>
+      </div>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Deklarativni šabloni'"
+  >
+    <div lrnVertical>
+      <div>
+        <pre><code lrnCode="html">{{ declarative.structural.view }}</code></pre>
+      </div>
+      <div>
+        <pre><code lrnCode="html">{{ declarative.structural.viewExpanded }}</code></pre>
+      </div>
+    </div>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Detekcija promena'"
+  >
+    <ul>
+      <li><b>događaji:</b> klik mišem, slanje forme, itd
+      <li><b>mreža:</b> pribavljanje podataka sa servera
+      <li><b>tajmeri:</b> setTimeout, setInterval
+    </ul>
+  </lrn-slide>
+
+  <lrn-slide [section]="'Angular'"
+             [title]="'Ubrizgavanje zavinosti'"
+  >
+    <blockquote>Arhitekturni obrazac gde jedan objekat pruža zavisnosti drugom objektu.</blockquote>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Ubrizgavanje zavinosti'"
+  >
+    <pre><code lrnCode="javascript">{{ di.api }}</code></pre>
+  </lrn-slide>
+
+  <!-- Lernejaro examples -->
 
   <lrn-slide [section]="'Mogućnosti'"
              [title]="'HTML'"
@@ -93,6 +254,10 @@
 
   <lrn-slide [title]="'Kviz'">
     <pre><code lrnCode="html">{{ quizExample }}</code></pre>
+  </lrn-slide>
+
+  <lrn-slide [title]="'Slajdovi'">
+    <pre><code lrnCode="html">{{ slidesExample }}</code></pre>
   </lrn-slide>
 
 </lrn-presentation>
